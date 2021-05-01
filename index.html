@@ -39,7 +39,7 @@ row footer
 
 -->
 
-<div id="full-screen" class="container">
+<div id="full-screen" class="container-fluid">
 
     <div id="header" class="row">
         Header
@@ -50,13 +50,61 @@ row footer
     <div id="main-body" class="row">
         
 
-        <div id="left-panel" class="col-3">
+        <div id="left-panel" class="col-4">
             
-            <div id="mining-main">
-                Mining Device
-            </div><!-- close device-main-->
+            <div id="mining-main" class="row">
+                <p>Mining Devices</p>
 
-            <div id="power-main">
+                <div id="miner-1" class="miner">
+                    <p class="miner-title">Miner 1</p>       
+                    <form class="row row-cols-md-auto">
+                        <div class="col-3">
+                            <i>icon</i>
+                            <label>name</label>
+                        </div>
+
+                        <div class="col-3">
+                            <p>detail</p>
+                        </div>
+
+                        <div class="col-3">
+                            <p>value</p>
+                        </div>
+
+                        <div class="col-3">
+                                <button class="btn">Upgrade</button> 
+                        </div>
+                    </form>   
+                </div>  <!--close miner-1-->     
+
+                    
+                
+            </div>   <!--close mining-main-->      
+<!--
+                
+                    
+                        <div class="components">Components
+                            <p class="motherboard">Motherboard</p>
+                            <p class="GPU">GPU</p>
+                            <p class="CPU">CPU</p>
+                            <p class="RAM">RAM</p>
+                            <p class="storage">Storage</p>
+                        </div>  close components-->
+<!--
+                        <div class="performance">Performance
+                            <p class="speed">Mining Speed</p>
+                            <p class="power-consump">Power Consumption</p>
+                            <p class="likelihood">Likelihood of Success</p>
+                            <p class="quality">Quality</p>
+                            <p class="max-coin-storage">Max. Coin Storage</p>
+                        </div> close performance-->
+
+<!--               </div> close miner1-->
+                
+
+       
+
+            <div id="power-main" class="row">
                 Power
             </div><!-- close power-main-->
 
@@ -64,7 +112,7 @@ row footer
 
 
 
-        <div id="center-panel" class="col-3">
+        <div id="center-panel" class="col-4">
             <div id="game-play-main">
                 Game Panel
             </div><!-- close game-play-main-->
@@ -72,7 +120,7 @@ row footer
 
 
 
-        <div id="right-panel" class="col-3">
+        <div id="right-panel" class="col-4">
             <div id="stats-main">
                 Stats
             </div><!-- close stats-main-->

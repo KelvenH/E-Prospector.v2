@@ -1,25 +1,45 @@
 #full-screen {
-    width: 100vw;
     height:100vh;
+    background-color:#303030;
    
 }
 
+
 #header, #main-body, #footer {
+    padding:20px;
     border: solid 5px red;
-    width: 95%;
+    width: 100%;
     position:relative;
     background-color: grey;
 }
+
 
 #header  {
     
     height:25%;
 }
 
+
 #main-body {
     
     height:50%;
 }
+
+#left-panel {
+    border: solid 2px blueviolet;
+}
+
+#mining-main {
+    height:75%;
+    border-bottom: solid 5px blue;
+}
+
+
+#power-main {
+    height:25%;
+}
+
+
 
 #footer {
     
