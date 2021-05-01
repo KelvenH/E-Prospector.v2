@@ -1,0 +1,27 @@
+#full-screen {
+    width: 100vw;
+    height:100vh;
+   
+}
+
+#header, #main-body, #footer {
+    border: solid 5px red;
+    width: 95%;
+    position:relative;
+    background-color: grey;
+}
+
+#header  {
+    
+    height:25%;
+}
+
+#main-body {
+    
+    height:50%;
+}
+
+#footer {
+    
+    height:25%;
+}
