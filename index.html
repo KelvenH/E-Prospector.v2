@@ -24,11 +24,9 @@
     <div id="full-screen" class="container-fluid align-items-center justify-content-center">
         
         <div id="header" class="row d-flex align-items-center text-center">
-            <h1 id="welcome"> 
-            Mine-Your-Luck
-            </h1>
+            <h1> Mine-Your-Luck</h1>
             <div id="rules" class="row">
-                <h3>How to Play</h3>
+                <h3 class="col-12">How to Play</h3>
                 <div class="col">
                     <h4>Aim of the game</h4>
                 </div>
@@ -41,7 +39,7 @@
                     <h4>Watch Those Costs!</h4>
                 </div>
                 
-            </div>  <!-- close header-->
+            </div>  <!-- close rules-->
         </div> <!-- close header-->
 
 
@@ -108,21 +106,40 @@
 
 
             <div id="center-panel" class="col-3">
-                <div id="game-play-main">
+                <div id="gameplay-main" class="row">
                     <h3>Game Panel</h3>
+
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                        <button id="btn-upgrade" type="button" class="btn btn-lg btn-outline-warning">Upgrade</button>
+                        <button id="btn-play" type="button" class="btn btn-lg btn-success">Mine Block!</button>
+                    </div>
+
                 </div><!-- close game-play-main-->
             </div><!-- close center-panel-->
 
 
 
             <div id="right-panel" class="col-4">
-                <div id="stats-main">
+                <div id="stats-main" class="row">
                     <h3>Game Stats</h3>
+                    <div class="row">
+                        <div class="col text-end">
+                            <h4>Balance:</h4>
+                        </div>
+                        <div class="col">
+                            <p id="balance-current" class="field-value">£100</p>
+                        </div>
+                        
+                    </div><!--close balance row-->
                 </div><!-- close stats-main-->
             </div><!-- close right-panel-->
 
 
         </div> <!-- close main-body-->
+
+        <div id="footer" class="row">
+            Footer
+        </div> --><!-- close footer-->
 
     </div> <!-- close full screen -->
 
