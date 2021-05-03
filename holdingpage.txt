@@ -48,6 +48,4 @@ row footer
 
                         
                          <!--placeholder
-    <div id="footer" class="row">
-        Footer
-    </div> --><!-- close footer-->
+    
