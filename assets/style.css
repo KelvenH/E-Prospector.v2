@@ -1,3 +1,8 @@
+p {
+    margin:0;
+}
+
+
 #full-screen {
     height:100vh;
     background-color:#303030;
@@ -10,6 +15,7 @@
     border: solid 5px orange;
     width: 90vw;
     background-color: grey;
+    overflow: hidden;
 }
 
 
@@ -18,24 +24,40 @@
     height:25%;
 }
 
+#rules {
+    height:20vh;
+    border: solid 5px darkgoldenrod
+}
 
 #main-body {
-    
     height:50%;
 }
 
-#left-panel {
-    border: solid 2px orange;
+#main-body h3 {
+    text-align:center
 }
+
+#left-panel, #center-panel, #right-panel {
+    border: solid 2px orange;
+    border-top:none;
+}
+
+
+
 
 #mining-main {
     height:75%;
     margin-left:12px;
-    padding:0;
+    margin-right:12px;
+    padding:10px 0;
 }
+
+
 
 #miners-table {
     background-color: silver;
+    padding-top:15px;
+    padding-bottom:15px;
     
 }
 
@@ -43,6 +65,10 @@
     height:25%;
 }
 
+.field-value {
+    background-color:papayawhip;
+    padding-left:10px;
+}
 
 
 #footer {

@@ -19,43 +19,80 @@
 
 <body>
 
-    <div id="full-screen" class="container-fluid d-flex align-items-center justify-content-center">
+
+
+    <div id="full-screen" class="container-fluid align-items-center justify-content-center">
+        
+        <div id="header" class="row d-flex align-items-center text-center">
+            <h1 id="welcome"> 
+            Mine-Your-Luck
+            </h1>
+            <div id="rules" class="row">
+                <h3>How to Play</h3>
+                <div class="col">
+                    <h4>Aim of the game</h4>
+                </div>
+                
+                <div class="col">
+                    <h4>Improve Your Chances</h4>
+                </div>
+                
+                <div class="col">
+                    <h4>Watch Those Costs!</h4>
+                </div>
+                
+            </div>  <!-- close header-->
+        </div> <!-- close header-->
+
 
         <div id="main-body" class="row">
 
-            <div id="left-panel" class="col-4">
+            <div id="left-panel" class="col-5">
 
-                <div id="mining-main" class="row align-items-center">
+                <div id="mining-main" class="row">
                     <h3>Mining Device</h3>
 
                     <form id="miners-table">
-                        <div class="row">
 
-                            <div class="col">
-                                <h4 for="miner-class">Miner Class:</h4>
+                        <div class="row" id="miner-details">
+                            <h4>Miner Details:</h4>
+
+                            <div class="col text-end">
+                                <p for="miner-class">Miner Level:</p>
                             </div>
 
                             <div class="col">
-                                <p id="miner-class">(Default) Miner Level 0</p>
+                                <p id="miner-class" class="field-value">(Default) Miner Level 0</p>
                             </div>
                         </div>
-                        <!--close row-->
+                        <!--close miner details row-->
 
                         <div class="row" id="miner-attributes">
                             <h4>Attributes:</h4>
 
-                            <div class="col">
-                                <label for="miner-chance">Success Likelihood</label>
-                                <p id="miner-chance">1:25</p>
+                            <div class="col text-end">
+                                <p for="miner-chance">Success Likelihood:</p>
+                                <p for="miner-consumption">Power Consumption:</p>
                             </div>
 
                             <div class="col">
-                                <label for="miner-consumption">Power Consumption</label>
-                                <p id="miner-consumption">10<span>k/w per hr</span></p>
+                                <p id="miner-chance" class="field-value">1:25</p>
+                                <p id="miner-consumption" class="field-value">10<span>k/w per hr</span></p>
                             </div>
 
                         </div>
-                        <!--close miner-attributes-->
+                        <!--close miner-attributes-row -->
+
+                        <div id="power-main" class="row">
+                            <h4>Power:</h4>
+                            <div class="col text-end">
+                                <p for="power-rate">Cost per Unit:</p>
+                            </div>
+                            
+                            <div class="col">
+                                <p id="power-rate" class="field-value"><span>£</span>1<span> per k/w</span></p>
+                            </div>
+                        </div><!-- close power-main-row -->
 
                     </form>
                     <!--close miners-table-->
@@ -64,19 +101,15 @@
                 <!--close mining-main-->
 
 
-
-
-                <div id="power-main" class="row">
-                    Power
-                </div><!-- close power-main-->
+                
 
             </div><!-- close left-panel-->
 
 
 
-            <div id="center-panel" class="col-4">
+            <div id="center-panel" class="col-3">
                 <div id="game-play-main">
-                    Game Panel
+                    <h3>Game Panel</h3>
                 </div><!-- close game-play-main-->
             </div><!-- close center-panel-->
 
@@ -84,7 +117,7 @@
 
             <div id="right-panel" class="col-4">
                 <div id="stats-main">
-                    Stats
+                    <h3>Game Stats</h3>
                 </div><!-- close stats-main-->
             </div><!-- close right-panel-->
 

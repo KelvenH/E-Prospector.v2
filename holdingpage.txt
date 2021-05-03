@@ -24,9 +24,7 @@ row footer
 
 
     <!--placeholder
-    <div id="header" class="row">
-        Header
-    </div> --><!-- close header-->
+   
 
 <!--
                 
