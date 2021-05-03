@@ -1,3 +1,59 @@
+
+/*--------------Style libray ----------------------------------------------------*/
+
+
+/*---------------Font Types------------------------------------------------------*/
+
+
+
+/*----------------------------Global Root Variables---------------------------------------*/
+
+:root {
+
+                 /*---Font Variables---*/
+
+ 
+
+
+                
+                /*---Font Sizing Variables-----(only defined for specific instances where need to override - as typically fonts-sizings matched by element type (i.e. H1) to the responsive font groupings as tabled below---*/
+
+
+
+                /*---Font Color Variables---*/
+
+  --ink0:rgb(0,0,0);          /*-- black----------------------*/
+  --ink1:rgb(42,42,49);       /*-- off-black -----------------*/
+  --ink2:rgb(246,143,8);      /*-- orange --------------------*/ 
+  --ink3:rgb(184,134,11);     /*-- deep orange ---------------*/  
+  --ink4:rgb(119, 112, 104);  /*-- light grey + orange hue ---*/
+  --ink5:#303030;             /*-- dark grey -----------------*/ 
+  --ink6:rgb(255,239,213);    /*-- papayawhip ----------------*/ 
+  --ink7:rgb(3,136,3);        /*-- green ---------------------*/
+
+                /*----Special Font Colors----*/
+
+  --LED1:   rgba(0,217,255,1);      /*--LED screens , ticker and digital - hex value #00d9ff-------*/
+  --glass1: rgba(0,196,255,0.9);    /*--svg glass edge  - hex value 00d9ff--*/
+  --glass2: rgba(107,196,255,0.18); /*--svg glass fill w high transparency - hex value #6bc4dff--*/
+  --glass3: rgba(0,0,0,0.3);      /*--black 50% transparency---*/
+ 
+}
+
+
+
+
+/*---------------------Responsive Font Groups -----------------------------------------*/
+
+
+body {
+    color:var(--ink3);
+}
+
+h1, h2, h3 {
+    color:var(--ink2);
+}
+
 p {
     margin:0;
 }
@@ -5,20 +61,18 @@ p {
 
 #full-screen {
     height:100vh;
-    background-color:#303030;
+    background-color:var(--ink5);
     padding-top:50px;
-   
 }
 
 
 #header, #main-body, #footer {
    
-    border: solid 5px orange;
+    border: solid 5px var(--ink2);
     width: 90vw;
     margin-left:5vw;
-    background-color: grey;
+    background-color: var(--ink5);
     overflow: hidden;
-
 }
 
 
@@ -27,13 +81,14 @@ p {
     padding:10px;
 }
 
+
 #welcome {
     width:100%;
-    
 }
 
+
 #rules {
-    border: solid 5px darkgoldenrod;
+    border: solid 5px var(--ink3);
     margin-left:0;
     margin-right:0;
     margin-bottom:10px;
@@ -46,11 +101,13 @@ p {
 
 
 #main-body h3 {
-    text-align:center
+    text-align:center;
+    color:var(--ink2);
 }
 
+
 #left-panel, #center-panel, #right-panel {
-    border: solid 2px orange;
+    border: solid 2px var(--ink3);
     border-top:none;
     padding:10px 0;
 }
@@ -61,22 +118,25 @@ p {
     height:75%;
     margin-left:12px;
     margin-right:12px;
+    color:var(--ink1);
 }
-
 
 
 #miners-table {
-    background-color: silver;
+    background-color: var(--ink2);
     padding-top:15px;
     padding-bottom:15px;
 }
+
 
 #power-main {
     height:25%;
 }
 
+
 .field-value {
-    background-color:papayawhip;
+    background-color:var(--ink5);
+    color:var(--ink6);
     padding-left:10px;
 }
 
@@ -86,19 +146,30 @@ p {
 }
 
 
+#terminal-window, #balance-current {
+    background-color:var(--ink1);
+    border: solid 2px var(--ink3);
+    color:rgb(3, 136, 3);
+}
+
+
+
+
+#terminal-window {
+    height:50%;
+}
+
+#balance-current {
+    width:80%;
+    height:20%;
+}
+
 #stats-main {
     height:75%;
 }
 
+
 #footer {
-    
     height:10vh;
 }
 
-/*----Buttons
-
-.btn {
-    width:50%;
-    margin-top:25px;
-}
------*/

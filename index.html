@@ -121,12 +121,18 @@
                 <div id="gameplay-main" class="row">
                     <h3>Game Panel</h3>
 
-                    <div class="d-grid gap-2 col-8 mx-auto">
-                        <button id="btn-upgrade" type="button" data-type="submit" class="btn btn-lg btn-outline-warning">Upgrade</button>
-                        <button id="btn-play" type="button" class="btn btn-lg btn-success">Mine Block!</button>
+                    <div id="terminal-window" class="d-grid col-9 mx-auto">
+                        <p id="user-message">>> Miner Status: Inactive</p>
+                    </div>
+
+                    <div class="d-grid col-10 gap-3 mx-auto">
+                        <button id="btn-upgrade" type="button" data-type="upgrade" class="btn btn-lg btn-outline-warning">Upgrade</button>
+                        <button id="btn-play" type="button" data-type="submit" class="btn btn-lg btn-success">Mine Block!</button>
                     </div>
 
                 </div><!-- close game-play-main-->
+
+                
             </div><!-- close center-panel-->
 
 
