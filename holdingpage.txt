@@ -1,0 +1,55 @@
+<!-- outline:
+
+
+header
+
+main body
+    - left hand panel 
+        - mining device 
+            - info panel
+            - upgrade
+        - power 
+    
+
+    - middle panel 
+        - start mining    
+        - game cycle (status, outcome, events)
+    
+    - right hand panel
+        - stats balance £ / crypto), game round, totals (rnds played, p&l, )
+
+row footer
+
+-->
+
+
+    <!--placeholder
+    <div id="header" class="row">
+        Header
+    </div> --><!-- close header-->
+
+<!--
+                
+                    
+                        <div class="components">Components
+                            <p class="motherboard">Motherboard</p>
+                            <p class="GPU">GPU</p>
+                            <p class="CPU">CPU</p>
+                            <p class="RAM">RAM</p>
+                            <p class="storage">Storage</p>
+                        </div>  close components-->
+<!--
+                        <div class="performance">Performance
+                            <p class="speed">Mining Speed</p>
+                            <p class="power-consump">Power Consumption</p>
+                            <p class="likelihood">Likelihood of Success</p>
+                            <p class="quality">Quality</p>
+                            <p class="max-coin-storage">Max. Coin Storage</p>
+                        </div> close performance-->
+
+
+                        
+                         <!--placeholder
+    <div id="footer" class="row">
+        Footer
+    </div> --><!-- close footer-->
