@@ -57,10 +57,10 @@
 
         <div id="main-body" class="row">
 
-            <div id="left-panel" class="col-5">
+            <div id="left-panel" class="col-4">
 
                 <div id="mining-main" class="row">
-                    <h3>Mining Device</h3>
+                    <h3 class="panel-title">Mining Device</h3>
 
                     <form id="miners-table">
 
@@ -117,35 +117,49 @@
 
 
 
-            <div id="center-panel" class="col-3">
+            <div id="center-panel" class="col-4">
                 <div id="gameplay-main" class="row">
-                    <h3>Game Panel</h3>
+                    <h3 class="panel-title">Game Panel</h3>
 
-                    <div id="terminal-window" class="d-grid col-9 mx-auto">
-                        <p id="user-message">>> Miner Status: Inactive</p>
-                    </div>
+                    <div class="row">
+                        <div id="terminal-window" class="col-10 mx-auto digital-value">
+                            <div class="row">
+                                <div id="terminal-labels" class="col-8">
+                                    <label for="terminal-status">Miner Status:</label>
+                                    <label for="terminal-device1-key">Device Cryptography Key:</label>
+                                    <label for="terminal-block1-id">Blockchain ID:</label>
+                                </div>
+                                <div id="terminal-values" class="col-4">
+                                    <p id="terminal-status">Inactive</p>
+                                    <p id="terminal-device1-key">0</p>
+                                    <p id="terminal-block1-id">0</p>
+                                </div>
+                            </div>
+                        </div>  <!-- close terminal-window-->
+                    </div>      <!-- close terminal-row-->
 
-                    <div class="d-grid col-10 gap-3 mx-auto">
-                        <button id="btn-upgrade" type="button" data-type="upgrade" class="btn btn-lg btn-outline-warning">Upgrade</button>
-                        <button id="btn-play" type="button" data-type="submit" class="btn btn-lg btn-success">Mine Block!</button>
-                    </div>
+                    <div class="row">
+                        <div class="d-grid col-10 gap-3 mx-auto">
+                            <button id="btn-upgrade" type="button" data-type="upgrade" class="btn btn-lg btn-outline-warning">Upgrade</button>
+                            <button id="btn-play" type="button" data-type="submit" class="btn btn-lg btn-success">Mine Block!</button>
+                        </div>
+                    </div>      <!-- close buttons-row-->
 
-                </div><!-- close game-play-main-->
-
+                </div>          <!-- close game-play-main-->
                 
-            </div><!-- close center-panel-->
+            </div>              <!-- close center-panel-->
 
 
 
             <div id="right-panel" class="col-4">
                 <div id="stats-main" class="row">
-                    <h3>Game Stats</h3>
-                    <div class="row">
+                    <h3 class="panel-title">Game Stats</h3>
+                    <div class="row d-flex align-items-center">
                         <div class="col text-end">
                             <h4>Balance:</h4>
                         </div>
                         <div class="col">
-                            <p id="balance-current" class="field-value">£100</p>
+                            <p id="balance-current" class="digital-value">£100</p>
                         </div>
                         
                     </div><!--close balance row-->
@@ -156,8 +170,8 @@
         </div> <!-- close main-body-->
 
         <div id="footer" class="row">
-            <h7 class="text-end align-self-center">Version 0.1</h7>
-        </div> --><!-- close footer-->
+            <h7 class="text-end align-self-center">Version 0.1 [Proof of Concept]</h7>
+        </div> <!-- close footer-->
 
     </div> <!-- close full screen -->
 
@@ -168,5 +182,4 @@
     <script src="assets/script.js"></script>
 
 </body>
-
 </html>
