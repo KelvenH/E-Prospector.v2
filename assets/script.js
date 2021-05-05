@@ -2,7 +2,7 @@
 // Populate Default Chance & Power Consumption Stats 
 
 let minerClass = document.getElementById('miner-class').innerText;
-let minerChance = document.getElementById('miner-chance').innerText;
+let minerChance = parseInt(document.getElementById('miner-chance').innerText);
 let minerPowerConsumption = parseInt(document.getElementById('miner-consumption').innerText);
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -35,48 +35,53 @@ play.addEventListener('click', mineBlock);
 function mineBlock (event) {
     console.log('button clicked id:', this.id);  
 
+    
     // Game stage A(i) - generate miner ID / Key and display in Game Panel  
+    
     var minerId = document.getElementById('terminal-key-device1').innerText;
     var minerId = 5;             // ---------- {Baseline value fixed @ 5}
     console.log("minerId:", minerId);
-
+    console.log("minerChance:", minerChance);
+    
     // Game stage Aii - generate block ID
+    
     var blockId = Math.floor(Math.random() * minerChance) + 1;
     console.log("blockId:", blockId);
 
+    
     // Game stage B - check if block ID matches miner ID
    
     let blockSuccess = minerId === blockId;
+    console.log("blockSuccess:", blockSuccess);
     
     if (blockSuccess) {
-        let coinsMined = parseInt(document.getElementById("balance-current").innerText);
-        document.getElementById("balance-current").innerText = ++coinsMined;
-    };
+        coinMined ()
+    } else {
+        notMined();
     }
-  
+}
+    
     // Game Stage C - Calculate costs
 
+    function costs () {
+    let cost = minerPowerConsumption;
+    let balance = parseInt(document.getElementById('current-balance').innerText);
+    console.log("balance was:", balance);
+    let subTotal = balance - cost;
+    console.log("new balance", subTotal);
+    }    
 
+// Game Stage D - Calculate Outcome 
 
-
+function notMined () {
+    costs ();
+}
 
 function coinMined () {
-        let coinCount = 1;
-
-
+    
 }
 
 
-
-
-
-
-
-
-
-
-
-// Game Stage D - Calculate Outcome 
 
 // Update Balance (post game-cycle)
 
