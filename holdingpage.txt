@@ -49,3 +49,75 @@ row footer
                         
                          <!--placeholder
     
+
+
+
+
+                    <form id="miners-table">
+
+                        <div class="row" id="miner-details">
+                            <h4>Miner Details:</h4>
+
+                            <div class="col text-end">
+                                <p for="miner-class">Miner Level:</p>
+                            </div>
+
+                            <div class="col">
+                                <p id="miner-class" class="field-value">(Default) Miner Level 0</p>
+                            </div>
+                        </div>
+                        <!--close miner details row-->
+
+                        <div id="miner-attributes" class="row g-2">
+                            <div class="col">
+                                <h4>Attributes:</h4>
+
+                                <div class="col text-end">
+                                    <p for="miner-chance">Success Likelihood:</p>
+                                    <p for="miner-consumption">Power Consumption:</p>
+                                </div>
+
+                                <div class="col">
+                                    <div class="field-value">
+                                        <div id="miner-chance"><span> 1 in </span>25
+                                        </div>
+                                    <div class="field-value">
+                                        <div id="miner-consumption">10<span> k/w per block</span>
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--close miner-attributes-row -->
+
+                        <div id="power-main" class="row g-2">
+                            <div class="col">
+                                <h4>Power:</h4>
+                                
+                                <div class="col text-end">
+                                    <p for="power-rate">Cost per Unit:</p>
+                                </div>
+                            
+                                <div class="col">
+                                    <p id="power-rate" class="field-value"><span>£</span>1<span> per k/w</span></p>
+                                </div>
+                            </div>
+                        </div>  <!-- close power-main-row -->
+                    </form>     <!--close miners-table-->
+
+
+
+
+                    function createMinerProb () {
+
+if (minerClass.includes('Level 0')) {
+    let v = 25;
+}
+
+minerClass.includes('Level 0');
+
+minerProbOne.innerHTML='v';
+}
+
+console.log(minerProbOne);

@@ -129,10 +129,12 @@ p {
 
 #miners-table {
     background-color: var(--ink2);
-    padding-top:15px;
-    padding-bottom:15px;
+    padding:1vh 1vw;
 }
 
+.miners-table-sub-section {
+    margin-bottom:2vh;
+}
 
 .field-value {
     background-color:var(--ink5);
@@ -142,15 +144,24 @@ p {
 
 /*---------------------Main Body : Center Panel (Terminal Window and Buttons)--------------*/
 
+#gameplay-main {
+    
+    margin-left:12px;
+    margin-right:12px;
+    color:var(--ink1);
+}
+
 .digital-value {
     background-color:var(--ink1);
     color:rgb(3, 136, 3);
+    padding-right:2vw;
 }
 
 #terminal-window {
     border: solid 2px var(--ink3);
-    padding:2vh 2vw;
+    padding:2vh 1vw;
     margin-bottom:5vh;
+    
 }
 
 
