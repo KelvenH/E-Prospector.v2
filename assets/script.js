@@ -2,22 +2,33 @@
 // Populate Default Chance & Power Consumption Stats 
 
 var minerClass = document.getElementById('miner-class').innerText;
-var minerChance = document.getElementById('miner-chance').innerText;
+var minerChance = parseInt(document.getElementById('miner-chance').innerText);
 var minerPowerConsumption = parseInt(document.getElementById('miner-consumption').innerText);
 var powerRate = parseInt(document.getElementById('power-rate').innerText);
+console.log("onload minerChance =", minerChance);
+console.log("onload powerUsage =", minerPowerConsumption);
+console.log("onload powerRate =", powerRate);
+
+//  Refer 'hoisted' variable creations to support - is this the right method? Why var not identified in other functions if global?
+var blockSuccess;
+var subTotal;                                                           
 
 document.addEventListener("DOMContentLoaded", function () {
     
     if (minerClass.includes('Level 0')) {
-        minerChance = "25";                                                // Hard-coded - to be balanced !! 
-        document.getElementById("miner-chance").innerText = minerChance;
-        minerPowerConsumption = "10";                                      // Hard-coded - to be balanced !! 
-        document.getElementById("miner-consumption").innerText = minerPowerConsumption;
+        minerChance = 25;                                                // Hard-coded - to be balanced !! 
+        minerPowerConsumption = 10;                                      // Hard-coded - to be balanced !! 
+        powerRate = 20;                                                   // Hard-coded - to be balanced !! 
+        
     } else (console.log("ALERT! - Miner Class Not Found"));
     
-    console.log("minerChance =", minerChance);
-    console.log("powerUsage =", minerPowerConsumption);
-    console.log("powerRate =", powerRate);
+    document.getElementById("miner-chance").innerText = minerChance;
+    document.getElementById("miner-consumption").innerText = minerPowerConsumption;
+    document.getElementById("power-rate").innerText = powerRate;
+
+    console.log("updated minerChance =", minerChance);
+    console.log("updated powerUsage =", minerPowerConsumption);
+    console.log("updated powerRate =", powerRate);
 });
 
 
@@ -42,84 +53,87 @@ function mineBlock (event) {
     
     // Game stage A(i) - generate miner ID / Key and display in Game Panel  
     
-    var minerId = document.getElementById('terminal-key-device1').innerText;
-    var minerId = 5;                                // ---------- {Baseline miner value fixed @ 5}
+    var minerId = parseInt(document.getElementById('terminal-key-device1').innerText);
+    minerId = 5;                                // ---------- {Baseline miner value fixed @ 5}
+    document.getElementById("terminal-key-device1").innerText = minerId;
+    
     console.log("minerId =", minerId);
     console.log("minerChance =", minerChance);
     
     // Game stage Aii - generate block ID
     
     var blockId = Math.floor(Math.random() * minerChance) + 1;
+    document.getElementById("terminal-key-block1").innerText = blockId;
     console.log("blockId =", blockId);
 
     
     // Game stage B - check if block ID matches miner ID
    
-    var blockSuccess = minerId === blockId;         // wil return true or false 
-    console.log("blockSuccess =", blockSuccess);    
-
+    blockSuccess = minerId === blockId;         // wil return true or false 
+    document.getElementById("terminal-status").innerText = "Activated";
+    console.log("blockSuccess =", blockSuccess);
     calcSubTotal ();
-    console.log("subTotal=", subTotal); 
+    
 
+    // Game Stage D - Calculate Outcome 
+
+    function calcSubTotal () {
+     
+        var roundCost = calcRoundCost ();
+        console.log("RoundCost[D] =", roundCost);       //not being returned as a value(?)
+
+        var roundWin = calcRoundWin ();
+        console.log("RoundWin[D] =", roundWin);         //not being returned as a value(?)
+
+        var subTotal = roundWin - roundCost;
+        console.log("subTotal[D] =", subTotal);         //not being returned as a value(?)
+    };
+
+    // Update Balance (post game-cycle)
+    endRoundUpdateBalance ();
 }
 
-    // Game Stage Ci - Calculate win
-
-function calcRoundWin () {
-    var roundWin = 100;                           // checks if true adds 100
-    console.log("RoundWin=", roundWin);
-        }
-
-
-    // Game Stage Cii - Calculate costs
+    // Game Stage Ci - Calculate costs
 
 function calcRoundCost () {
-    var roundCost = minerPowerConsumption * powerRate;
-    console.log("PowerConsumption =", minerPowerConsumption);
-    console.log("PowerRate =", powerRate);
-    console.log("PowerCost =", roundCost);
+    roundCost = minerPowerConsumption * powerRate;
+    console.log("PowerConsumption[C] =", minerPowerConsumption);
+    console.log("PowerRate[C] =", powerRate);
+    console.log("RoundCost[C] =", roundCost);
 }
+        
+        
+      // Game Stage Cii - Calculate win
 
-
-// Game Stage D - Calculate Outcome 
-
-
-function calcSubTotal () {
-
-    var subTotal = 0;
-   
-    if (blockSuccess) {                                 //if true
-        calcRoundWin ();
-        calcRoundCost();
-        subTotal = roundWin - roundCost;
-
+function calcRoundWin () {
+    if (blockSuccess) {
+    roundWin = +100;                        // checks if true (block mined) adds 100
     } else {
-        calcRoundCost();
-        subTotal = 0 - roundCost;                           // if false
-    }
+    roundWin = 0;                           // checks if false (not mined) remains 0
+    }                           
+    console.log("RoundWin[C]=", roundWin);
 }
 
-
-
-// Update Balance (post game-cycle)
 
 function endRoundUpdateBalance () {
-    var oldBalance = document.getElementById('balance-current').innerText;
-    
+    var oldBalance = parseInt(document.getElementById('balance-current').innerText);   
+    console.log("oldBalance = ", oldBalance);                                               //not being returned as a value(?)
+
+    console.log("subTotal", subTotal);                                                      //not being returned as a value(?)
+
     var newBalance = oldBalance + subTotal;
-    console.log("oldBalance = ", oldBalance);
-    console.log("subTotal", subTotal);
-    console.log("newBalance", newBalance);
-    document.getElementById('balance-current').innerText = newBalance;
+    document.getElementById('balance-current').innerText = newBalance;  
+    console.log("newBalance", newBalance);                                                  //not being returned as a value(?)
+    
 }
 
 
-// Reset screen for new game
+// Reset variables for new round(?)
 
 //create template literals for terminal window messages
 
 
 // Temporary - test feture button
 
-var test = document.getElementById('btn-test');
+var test = document.getElementById('btn-test1');
 test.addEventListener('click', endRoundUpdateBalance);
