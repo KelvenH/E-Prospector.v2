@@ -1,17 +1,31 @@
+
+
+function checkifNaN(x) {
+    if (isNaN(x)) {
+      return NaN;
+    }
+    return x;
+  }
+
+//console.log(checkifNaN('1'));
+
+//  Variables 'hoisted' to global level to be visible across independent functions - refer to Mentor / Support if this is the correct approach??
+
+let minerClass = document.getElementById('miner-class').innerText;
+let minerChance = parseInt(document.getElementById('miner-chance').innerText);
+let minerPowerConsumption = parseInt(document.getElementById('miner-consumption').innerText);
+let powerRate = parseInt(document.getElementById('power-rate').innerText);
+console.log("1. onload minerChance =", minerChance);
+// console.log(checkifNaN(minerChance));
+console.log("2. onload powerUsage =", minerPowerConsumption);
+// console.log(checkifNaN('minerPowerConsumption'));
+console.log("3. onload powerRate =", powerRate);
+// console.log(checkifNaN(powerRate));
+
+let blockSuccess;
+    
 // Wait until DOM loaded before populating default Mining Device Stats
 // Populate Default Chance & Power Consumption Stats 
-
-var minerClass = document.getElementById('miner-class').innerText;
-var minerChance = parseInt(document.getElementById('miner-chance').innerText);
-var minerPowerConsumption = parseInt(document.getElementById('miner-consumption').innerText);
-var powerRate = parseInt(document.getElementById('power-rate').innerText);
-console.log("1. onload minerChance =", minerChance);
-console.log("2. onload powerUsage =", minerPowerConsumption);
-console.log("3. onload powerRate =", powerRate);
-
-//  Refer 'hoisted' variable creations to support - is this the right method? Why variables not recognised across other functions if global?
-var blockSuccess;
-var subTotal;                                                           
 
 document.addEventListener("DOMContentLoaded", function () {
     
@@ -27,12 +41,15 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("power-rate").innerText = powerRate;
 
     console.log("4. updated minerChance =", minerChance);
+   //  console.log(checkifNaN(minerChance));
     console.log("5. updated powerUsage =", minerPowerConsumption);
+   //  console.log(checkifNaN(minerPowerConsumption));
     console.log("6.updated powerRate =", powerRate);
+    // console.log(checkifNaN(powerRate));
 });
 
 
-// Event listener for upgrade button
+// Add Event listener for upgrade button
 
 // Device upgrades A - User Selection
 
@@ -41,31 +58,33 @@ document.addEventListener("DOMContentLoaded", function () {
 // Device upgrades C - Update Balance (post transaction)
 
 
-
 // Event listener for run game button (initiate game cycle stages)
 
-var play = document.getElementById('btn-play');
+let play = document.getElementById('btn-play');
 play.addEventListener('click', mineBlock);
 
 function mineBlock (event) {
-    console.log("7. game round started /btn clicked id =", this.id);
+    console.log("7. game round started / btn id =", this.id);
     document.getElementById("terminal-status").innerText = "Activated";  
 
     
     // Game stage A(i) - generate miner ID / Key and display in Game Panel  
     
-    var minerId = parseInt(document.getElementById('terminal-key-device1').innerText);
-    minerId = 5;                                // ---------- {Baseline miner value fixed @ 5}
+    let minerId = parseInt(document.getElementById('terminal-key-device1').innerText);
+    minerId = 5;                                                                // ---------- [For Baseline version miner value fixed @ 5]
     document.getElementById("terminal-key-device1").innerText = minerId;
     
     console.log("8. minerId =", minerId);
+    // console.log(checkifNaN(minerId));
     console.log("9. minerChance =", minerChance);
+    // console.log(checkifNaN(minerChance));
     
     // Game stage Aii - generate block ID
     
-    var blockId = Math.floor(Math.random() * minerChance) + 1;
+    let blockId = Math.floor(Math.random() * minerChance) + 1;
     document.getElementById("terminal-key-block1").innerText = blockId;
     console.log("10. blockId =", blockId);
+    // console.log(checkifNaN(blockId));
 
     
     // Game stage B - check if block ID matches miner ID
@@ -73,37 +92,51 @@ function mineBlock (event) {
     blockSuccess = minerId === blockId;         // wil return true or false 
     
     console.log("11. blockSuccess =", blockSuccess);
+    // console.log(checkifNaN(blockSuccess));
     
-    calcSubTotal ();
-    
+
+    // Game Stage D - Calculate Outcome 
+
+    let subTotal = calcSubTotal ();                                           // subTotal hoisted out of code-block so as it can be seen / within scope of function which updates balance (but demoted from global as caused an undefined error - likely due to sequencing?
+    // calcSubTotal ();
+            
+    function calcSubTotal (subTotal) {
+     
+        let roundCost = calcRoundCost();  
+        console.log("15. RoundCost[D] =", roundCost);       
+        // console.log(checkifNaN(roundCost));
+
+        let roundWin = calcRoundWin();
+        console.log("17. RoundWin[D] =", roundWin);         
+        // console.log(checkifNaN(roundWin));
+
+        let i = roundWin - roundCost;
+        console.log("18. subTotal[D] =", i);         
+        // console.log(checkifNaN(i));
+        return subTotal = i;
+    };
+
     endRoundUpdateBalance ();
 
     // Game Stage D - Calculate Outcome 
 
-    function calcSubTotal (subTotal) {
-     
-        var roundCost = calcRoundCost();  
-        console.log("15. RoundCost[D] =", roundCost);       //not being returned as a value(?)
-
-        var roundWin = calcRoundWin(roundWin);
-        console.log("17. RoundWin[D] =", roundWin);         //not being returned as a value(?)
-
-        var subTotal = roundWin - roundCost;
-        console.log("18. subTotal[D] =", subTotal);         //not being returned as a value(?)
-    };
-
    // Update Balance E - (post game-cycle)
         
     function endRoundUpdateBalance () {
-        var oldBalance = parseInt(document.getElementById('balance-current').innerText);   
-        console.log("19. oldBalance [E]= ", oldBalance);                                               //not being returned as a value(?)
+
+        
+        let oldBalance = parseInt(document.getElementById('balance-current').innerText);   
+        console.log("19. oldBalance [E]= ", oldBalance);                                              
+        // console.log(checkifNaN(oldBalance));
     
-        //subTotal = calcSubTotal ();
-        //console.log("20. subTotal [E]", subTotal);                                                      //not being returned as a value(?)
-    
-        var newBalance = oldBalance + subTotal;
-        document.getElementById('balance-current').innerText = newBalance.parseInt;  
+        console.log("20. subTotal [E]", subTotal);                                                      //not being returned as a value(?)
+        // console.log(checkifNaN(subTotal));
+        
+        let newBalance = 0;
+        newBalance = oldBalance + subTotal;
+        document.getElementById('balance-current').innerText = newBalance;  
         console.log("21. newBalance [E]", newBalance);                                                  //not being returned as a value(?)
+        // console.log(checkifNaN(newBalance));
     };
 }
 
@@ -113,8 +146,11 @@ function calcRoundCost (roundCost) {
     roundCost = minerPowerConsumption * powerRate;
     
     console.log("12. PowerConsumption[C] =", minerPowerConsumption);
+    // console.log(checkifNaN(minerPowerConsumption));
     console.log("13. PowerRate[C] =", powerRate);
+    // console.log(checkifNaN(powerRate));
     console.log("14. RoundCost[C] =", roundCost);
+    // console.log(checkifNaN(roundCost));
     
     return roundCost;
     }
@@ -124,12 +160,13 @@ function calcRoundCost (roundCost) {
 
 function calcRoundWin (roundWin) {
     if (blockSuccess) {
-    i = +100;                        // checks if true (block mined) adds 100
+    ii = +100;                        // checks if true (block mined) adds 100
     } else {
-    i = 0;                           // checks if false (not mined) remains 0
+    ii = 0;                           // checks if false (not mined) remains 0
     } 
-    console.log("16. RoundWin[C]=", i);
-    return roundWin = i;                          
+    console.log("16. RoundWin[C]=", ii);
+    // console.log(checkifNaN(ii));
+    return roundWin = ii;                          
     }
 
 
@@ -142,5 +179,7 @@ function calcRoundWin (roundWin) {
 
 // Temporary - test feture button
 
-//var test = document.getElementById('btn-test1');
+//let test = document.getElementById('btn-test1');
 //test.addEventListener('click', endRoundUpdateBalance);
+
+
