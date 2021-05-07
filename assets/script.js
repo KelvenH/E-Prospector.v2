@@ -138,6 +138,10 @@ function mineBlock (event) {
         console.log("21. newBalance [E]", newBalance);                                                  //not being returned as a value(?)
         // console.log(checkifNaN(newBalance));
     };
+
+    function endRoundStyling () {                                                                       // changes to default styling if condition met e.g. negative values displayed in red
+        document.getElementsByClass("field-value").style.color= "red";
+    };
 }
 
     // Game Stage Ci - Calculate costs

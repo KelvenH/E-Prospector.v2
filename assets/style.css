@@ -188,3 +188,22 @@ p {
     width:25vw;
     height:auto;
 }
+
+
+
+
+
+/*---------------------Temp - Schedule-------------------------------*/
+
+.schedule-fullScreen {
+    color: black;
+    background-color: grey;
+}
+
+
+
+.header-row {
+    font-weight: bold;
+}
+
+
