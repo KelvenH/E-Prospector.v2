@@ -20,6 +20,8 @@
 
 <body>
 
+     <!---Bootstrap class names p (padding) m (margin) g (gutter) l (left) r (right) x (left & right)t (top) b (bottom) y (top & bottom) 3 (sizing 0 - 5) -->
+
     <div id="full-screen" class="container-fluid align-items-center justify-content-center">
 
         <div id="header" class="row d-flex align-items-center text-center">
@@ -177,23 +179,49 @@
 
         </div> <!-- close main-body-->
 
-        <div id="footer" class="row">
+        <div id="footer" class="row">  <!--section to be removed from final version-->
+            
+            <h5>Temporary panel : development / testing purposes only</h5>
+            <div class="col">            
+                <div id="release-list" class="dropdown" aria-labelledby="btn-test1">
+                    <button type="button" id="btn-test1" class="btn btn-lg btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Switch to Different Release
+                    </button>
+                    <ul id="release-items" class="dropdown-menu">
+                      <li><a class="dropdown-item" href="plan.html">Enhancements: Plan</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="index0.1.html">Proof of Concept (v0.1)</a></li>
+                      <li><a class="dropdown-item" href="#">Baseline (v1.0)</a></li>
+                      <li><a class="dropdown-item" href="#">Enhanced (v1.1)</a></li>
+                      <li><a class="dropdown-item" href="#">Enhanced (v1.2)</a></li>
+                    </ul>
+                </div>  <!-- close dropdown-->     
+            </div> <!-- close col-->
+            
             <div class="col">
-                <h5>Panel in use for development / testing purposes only</h5>
-                <button id="btn-test1" type="button" data-type="submit"
-                class="btn btn-test btn-lg btn-primary mx-auto">Test Feature 1</button>
                 <button id="btn-test2" type="button" data-type="submit"
-                class="btn btn-test btn-lg btn-danger mx-auto">Test Feature 2</button>
-                <div id="window-width"></div>
-                <div id="window-height"></div>
-                <div class="text-end align-self-center">Version 0.1 [Proof of Concept]</div>
-                
-            </div>
+                class="btn btn-test btn-lg btn-danger mx-auto">Test Feature</button>
+            </div>  <!-- close col-->
+
+            <div class="col text-end align-self-center">
+                <div>Viewport width : <span id="viewport-width"></span></div>
+                <div>Viewport height : <span id="viewport-height"></span></div>
+                    <script>
+                        var w = window.innerWidth;
+                        var h = window.innerHeight;
+                        var x = document.getElementById("viewport-width");
+                        var y = document.getElementById("viewport-height");
+                        x.innerHTML = w + "px";
+                        y.innerHTML = h + "px";
+                    </script>
+                <div>Version 0.1 [Proof of Concept]</div>
+
+            </div>  <!-- close col-->
+
         </div> <!-- close footer-->
 
-      </div> <!-- close full screen -->
-
-
+    </div> <!-- close full screen -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>

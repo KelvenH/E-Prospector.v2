@@ -66,13 +66,21 @@ p {
 }
 
 
-#header, #main-body, #footer {
+#header, #main-body {
     border: solid 5px var(--ink2);
     width: 90vw;
     margin-left:5vw;
     background-color: var(--ink5);
     overflow: hidden;
 }
+
+
+/*---------------------Temporary Styling / Testing -----------------------------------------*/
+
+ #footer {
+    overflow: auto;
+}
+
 
 
 /*---------------------Header -----------------------------------------*/

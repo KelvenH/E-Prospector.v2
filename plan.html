@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Add Meta Data---->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/style.css">
+    <!--Add Favicon---->
+
+    <title>Updates - Schedule</title>
+
+<style>
+
+#plan-fullScreen {
+    background:rgb(119, 112, 104);
+    color: white;
+}
+
+#plan-main {
+    background:rgb(42, 42, 49);
+    color: white;
+    min-height: 50vh;
+}
+
+.plan-content {
+    border: solid 2px white;
+    padding: 10px;
+    height:auto;
+    display:grid;
+    place-self: center center;
+    justify-items:stretch;
+    align-items: stretch;
+    grid-template-columns:1fr 1.5fr 2fr 2fr 2fr;
+    grid-gap: 1em;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "A1  A2   A3   A4   A5"
+    "B1  B2   B3   B4   B5"
+    "C1  C2   C3   C4   C5"
+    "D1  D2   D3   D4   D5"
+    "E1  E2   E3   E4   E5"
+    "F1  F2   F3   F4   F5"
+    "G1  G2   G3   G4   G5"
+    "H1  H2   H3   H4   H5"
+    "I1  I2   I3   I4   I5"
+    "J1  J2   J3   J4   J5"
+    "K1  K2   K3   K4   K5"
+    "L1  L2   L3   L4   L5";
+}
+
+.header, .aspect{
+    background-color: darkblue;
+}
+
+.v01 {
+    background-color: rgb(39, 39, 139);
+}
+
+.v10 {
+    background-color: rgb(62, 62, 143);
+}
+
+.v11 {
+    background-color: rgb(72, 72, 136);
+}
+
+.tbd {
+    background-color: rgb(94, 94, 133);
+}
+
+.plan-content > div {
+    border: solid 1px gray;
+    padding: 10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+    <div id="plan-fullScreen" class="p-3">
+
+        <h1>Enhancements Plan</h1>
+
+        <div id="plan-main" class="container-fluid">
+
+            <h2>Feedback</h2>
+            <ul>
+                <li>No clear objective - purpose</li>
+                <li>Not sure what i'm meant to be doing</li>
+                <li>Can I not lose?</li>
+                <li>Not very fun!</li>
+                <li>What are cryptocurrencies / block-chain</li>
+            </ul>
+
+            <div class="plan-content p-3">
+                <div class="A1 header"> Aspect </div>
+                <div class="A2 header"> Proof of Concept (v0.1) </div>
+                <div class="A3 header"> Baseline (v1.0) </div>
+                <div class="A4 header"> Enhanced (v1.1) </div>
+                <div class="A5 header"> Future / Unscheduled (TBD)</div>
+                
+                <div class="B1 aspect"> Timer (Gameplay) </div>
+                <div class="B2 v01"> None </div> 
+                <div class="B3 v10"> Add timer element e.g. 30secs to mine block</div>
+                <div class="B4 v11"> Upgradeable element</div>
+                <div class="B5 tbd"> - </div>
+
+                <div class="C1 aspect"> Objective (Gameplay) </div>
+                <div class="C2 v01"> None </div>
+                <div class="C3 v10"> Set max. loss </div>
+                <div class="C4 v11"> Add player rank </div>
+                <div class="C5 tbd"> Generate AI opponent (simple - randomise round score, through to more complex) </div>
+
+                <div class="D1 aspect"> Mining Devices (Gameplay) </div>
+                <div class="D2 v01"> Simplified upgrade element  </div>
+                <div class="D3 v10"> Overclock (double / triple chance @ exacerbated costs) </div>
+                <div class="D4 v11"> Add reliability factor </div>
+                <div class="D5 tbd"> Individual upgradeable components </div>
+
+                <div class="E1 aspect"> Power (Gameplay) </div>
+                <div class="E2 v01"> None - single power provider @ flat rate </div>
+                <div class="E3 v10"> Options - e.g. fixed rate cheaper but has min. charge </div>
+                <div class="E4 v11"> Reliability factor e.g. cheap provider (renewable energy) but higher fail rate </div>
+                <div class="E5 tbd">  </div>
+
+                <div class="F1 aspect"> Coins / Monetary </div>
+                <div class="F2 v01"> Single crypto-coin; flat coin to £ FX rate </div>
+                <div class="F3 v10"> Multiple e-currencies (higher quality / value but lower success likelihood and / or time to mine</div>
+                <div class="F4 v11"> Distinguish coin vs. cash  (i.e. E-wallet and bank balance), player actions x-change </div>
+                <div class="F5 tbd"> Variable x-rates (API to link movements to real-life rates or randomise each round) </div>
+
+                <div class="G1 aspect"> Events (Gameplay) </div>
+                <div class="G2 v01"> None </div>
+                <div class="G3 v10"> Simple bank of events which generate a positive or negative outcome depending on player's selection </div>
+                <div class="G4 v11"> Expands the events and links into other player decisions (e.g. if using a particular power provider) </div>
+                <div class="G5 tbd"> - </div>
+
+                <div class="H1 aspect"> Game Stats </div>
+                <div class="H2 v01"> Overall £ Balance </div>
+                <div class="H3 v10"> Display values from last round alongside Game Total</div>
+                <div class="H4 v11"> Link to other developments </div>
+                <div class="H5 "> Link to other developments (e.g. exchange rates) </div>
+
+                <div class="I1 aspect"> Instructions </div>
+                <div class="I2 v01"> Simple bulleted panels displaying Aim, Upgrade and Costs (game core) </div>
+                <div class="I3 v10"> <li> Expand to include additional elements + explanation on crypto-currencies (link to external sources?) </li>
+                                 <li> Player Support - i.e. contact for technical support, feedback for improvements</li></div>
+                <div class="I4 v11"> Add modals / on-screen pop-ups alongside screen components </div>
+                <div class="I5 tbd"> Develop animation playable on-site and / or via YouTube </div>
+
+                <div class="J1 aspect"> Layout </div>
+                <div class="J2 v01"> Ensure Responsive </div>
+                <div class="J3 v10"> Introduce collapsible sections </div>
+                <div class="J4 v11"> Enhanced to accommodate new features / content </div>
+                <div class="J5 tbd"> Enhanced to accommodate new features / content </div>
+
+                <div class="K1 aspect"> Styling </div>
+                <div class="K2 v01"> Very basic - focus on gameplay </div>
+                <div class="K3 v10"> Visual Enhancements - implement 'theme' & icons</div>
+                <div class="K4 v11"> Consider simple animations </div>
+                <div class="K5 tbd"> Expand to cover all new additional content </div>
+
+                <div class="L1 aspect"> TBD </div>
+                <div class="L2 v01"> - </div>
+                <div class="L3 v10"> - </div>
+                <div class="L4 v11"> - </div>
+                <div class="L5 tbd"> - </div>
+              
+            </div>
+            <!--close content-->
+        </div>
+        <!--close main-->
+
+    </div> <!--close fullscreen-->
+    
+    <div id="footer" class="row">
+        <!--section to be removed from final version-->
+
+        <h5>Temporary panel : development / testing purposes only</h5>
+        <div class="col">
+            <div id="release-list" class="dropdown" aria-labelledby="btn-test1">
+                <button type="button" id="btn-test1" class="btn btn-lg btn-primary dropdown-toggle"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Switch to Different Release
+                </button>
+                <ul id="release-items" class="dropdown-menu">
+                    <li><a class="dropdown-item" href="updates.html">Release Plan</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="index0.1.html">Proof of Concept (v0.1)</a></li>
+                    <li><a class="dropdown-item" href="#">Baseline (v1.0)</a></li>
+                    <li><a class="dropdown-item" href="#">Enhanced (v1.1)</a></li>
+                    <li><a class="dropdown-item" href="#">Enhanced (v1.2)</a></li>
+                </ul>
+            </div> <!-- close dropdown-->
+        </div> <!-- close col-->
+
+        <div class="col">
+            <button id="btn-test2" type="button" data-type="submit" class="btn btn-test btn-lg btn-danger mx-auto">Test
+                Feature</button>
+        </div> <!-- close col-->
+
+        <div class="col text-end align-self-center">
+            <div>Viewport width : <span id="viewport-width"></span></div>
+            <div>Viewport height : <span id="viewport-height"></span></div>
+            <script>
+                var w = window.innerWidth;
+                var h = window.innerHeight;
+                var x = document.getElementById("viewport-width");
+                var y = document.getElementById("viewport-height");
+                x.innerHTML = w + "px";
+                y.innerHTML = h + "px";
+            </script>
+            <div>Version 0.1 [Proof of Concept]</div>
+
+        </div> <!-- close col-->
+
+    </div> <!-- close footer-->
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+    <script src="assets/script.js"></script>
+
+</body>
+
+</html>
