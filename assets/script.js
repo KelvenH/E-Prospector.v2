@@ -1,5 +1,4 @@
-
-
+//Utilities - code used in development only - to be removed from final submission
 function checkifNaN(x) {
     if (isNaN(x)) {
       return NaN;
@@ -8,6 +7,55 @@ function checkifNaN(x) {
   }
 
 //console.log(checkifNaN('1'));
+
+/*---------------------------------------------------------------------------------
+//Data tables;
+//-------------------------------------------------------------------------------*/
+
+//Mining devices;
+
+/*
+minerClass              purchaseCost     minerPowerConsumption      minerChance
+Level 0 (Default)       0                10                         25
+Level 1                 50               25                         20
+Level 2                 250              50                         15
+Level 3                 500              150                        10
+Level 4                 1000             250                        2
+*/
+
+
+let devices = 
+[ {   name:'Level 0 (Default)',
+        purchaseCost: 0,
+        consumption: 10,
+        chance: 25},
+    {   name:'Level 1',
+        purchaseCost: 50,
+        consumption: 25,
+        chance: 20},
+    {   name:'Level 2',
+        purchaseCost: 250,
+        consumption: 50,
+        chance: 15},
+    {   name:'Level 3',
+        purchaseCost: 500,
+        consumption: 150,
+        chance: 10},
+    {   name:'Level 4',
+        purchaseCost: 1000,
+        consumption: 250,
+        chance: 2},
+];
+
+for (let device = 0; device < 4; device++) {
+    console.log(devices[device]);
+  }
+
+  console.log(devices);
+
+
+
+//---------------------------------------------------------------------------------
 
 //  Variables 'hoisted' to global level to be visible across independent functions - refer to Mentor / Support if this is the correct approach??
 
