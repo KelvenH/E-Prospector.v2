@@ -75,11 +75,7 @@ p {
 }
 
 
-/*---------------------Temporary Styling / Testing -----------------------------------------*/
 
- #footer {
-    overflow: auto;
-}
 
 
 
@@ -150,7 +146,11 @@ p {
     padding-left:10px;
 }
 
-/*---------------------Main Body : Center Panel (Terminal Window and Buttons)--------------*/
+#btn-open-upgrade-modal {
+    margin-top:1vh;
+}
+
+/*---------------------Main Body : Center Panel (Terminal Window)--------------*/
 
 #gameplay-main {
     
@@ -181,7 +181,7 @@ p {
 }
 
 
-
+/*---------------------Temporary Styling / Testing -----------------------------------------*/
 
 /*---------------------Footer-------------------------------*/
 
@@ -190,6 +190,7 @@ p {
     padding:1vh 1vw;
     background-color:var(--ink0);
     color:var(--ink2);
+    overflow: auto;
 }
 
 .btn-test {
@@ -198,20 +199,11 @@ p {
 }
 
 
-
-
-
-/*---------------------Temp - Schedule-------------------------------*/
+/*---------------------Temp - Schedule Page-------------------------------*/
 
 .schedule-fullScreen {
     color: black;
     background-color: grey;
-}
-
-
-
-.header-row {
-    font-weight: bold;
 }
 
 

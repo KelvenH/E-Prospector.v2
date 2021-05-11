@@ -24,7 +24,7 @@ Level 4                 1000             250                        2
 */
 
 
-let deviceArray = {abc:[ 
+let dataLibrary = {miningDevices:[ 
     {   name:'Level 0 (Default)',
         purchaseCost: 0,
         consumption: 10,
@@ -49,15 +49,27 @@ let deviceArray = {abc:[
 
 /* -- acknowledgement for the code below https://www.youtube.com/watch?v=AqgVLYpBWG8--- */
 
-let minerNames = deviceArray['abc'];
-for (let i=0, len = minerNames.length; i<len; i++) {
-    console.log(minerNames[i]);
-    console.log(minerNames[i].name);
-    console.log(minerNames[i]['chance']);
-    for (let prop in minerNames[i]) {
-        console.log(prop, minerNames[i][prop])
-    }
+/*
+
+//--example 1
+let minerDataAll = dataLibrary['miningDevices'];
+for (let i=0, len = minerDataAll.length; i<len; i++) {
+    console.log(minerDataAll[i]);                             // logs out all miner data (grouped by object)
+    console.log(minerDataAll[i].name);                        // logs out miner names only
 }
+
+//--example 2 
+
+*/
+
+
+let minerDataAll = dataLibrary['miningDevices'];
+for (let i=0, len=minerDataAll.length; i<len; i++) {
+    for (let minerNames in minerDataAll[i]) {
+        console.log(minerNames, minerDataAll[i][minerNames]);   // logs out all data (splits out each key with value) 
+    }    
+}
+
 
 
 
@@ -86,14 +98,7 @@ let blockSuccess;
 document.addEventListener("DOMContentLoaded", function () {
     
 
-    let miners = deviceArray.name;                                          //referrences list of devices from data array 
-    
-    let option = "";
-    for (x =0,x < miners.length; x++;)
-        { option += '< option value="'+ miners[x] + '">' + miners[x]
-        }
-
-    document.getElementById('miner-class').innerHTML = option; 
+    //insert code to populate drop-down with miner name
 
 
 
