@@ -24,8 +24,8 @@ Level 4                 1000             250                        2
 */
 
 
-let devices = 
-[ {   name:'Level 0 (Default)',
+let deviceArray = {abc:[ 
+    {   name:'Level 0 (Default)',
         purchaseCost: 0,
         consumption: 10,
         chance: 25},
@@ -44,14 +44,21 @@ let devices =
     {   name:'Level 4',
         purchaseCost: 1000,
         consumption: 250,
-        chance: 2},
-];
+        chance: 2}
+]};
 
-for (let device = 0; device < 4; device++) {
-    console.log(devices[device]);
-  }
+/* -- acknowledgement for the code below https://www.youtube.com/watch?v=AqgVLYpBWG8--- */
 
-  console.log(devices);
+let minerNames = deviceArray['abc'];
+for (let i=0, len = minerNames.length; i<len; i++) {
+    console.log(minerNames[i]);
+    console.log(minerNames[i].name);
+    console.log(minerNames[i]['chance']);
+    for (let prop in minerNames[i]) {
+        console.log(prop, minerNames[i][prop])
+    }
+}
+
 
 
 
@@ -72,11 +79,24 @@ console.log("3. onload powerRate =", powerRate);
 
 let blockSuccess;
     
+
 // Wait until DOM loaded before populating default Mining Device Stats
 // Populate Default Chance & Power Consumption Stats 
 
 document.addEventListener("DOMContentLoaded", function () {
     
+
+    let miners = deviceArray.name;                                          //referrences list of devices from data array 
+    
+    let option = "";
+    for (x =0,x < miners.length; x++;)
+        { option += '< option value="'+ miners[x] + '">' + miners[x]
+        }
+
+    document.getElementById('miner-class').innerHTML = option; 
+
+
+
     if (minerClass.includes('Level 0')) {
         minerChance = 25;                                                // Hard-coded - to be balanced !! 
         minerPowerConsumption = 10;                                      // Hard-coded - to be balanced !! 
@@ -234,4 +254,4 @@ function calcRoundWin (roundWin) {
 //let test = document.getElementById('btn-test1');
 //test.addEventListener('click', endRoundUpdateBalance);
 
-
+*/
