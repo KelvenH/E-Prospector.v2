@@ -259,4 +259,4 @@ function calcRoundWin (roundWin) {
 //let test = document.getElementById('btn-test1');
 //test.addEventListener('click', endRoundUpdateBalance);
 
-*/
+
