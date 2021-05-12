@@ -1,4 +1,41 @@
-//Utilities - code used in development only - to be removed from final submission
+
+/*--- Key Steps & Sequence -----------------------------------------------------//
+0.0 - Utilities (temp to be removed!!)
+0.1 - Global variables initiated
+0.2 - Game data tables / library created
+
+1. On Load - miner table loads with default starter device and balance 
+
+2. Upgrade device;
+        a - populate upgrade shop (event = player opening modal)
+        b - action player purchase (event = player clicks 'purchase' button);
+            i - device status changed (mainDataLibrary) indicating miner now available for selection
+            ii - transaction processed (player live balance reduced)
+            iii - liveGameData updated to 'append' purchased device (user able to select from drop-down of available devices) 
+        c - (not in baseline version) player able to purchase additional 'terminal' i.e. run multiple devices
+
+3. (not in baseline) changes to power source / cost rate 
+
+4. Run Game (event = player clicks to run new round);
+        a - game generates device and block keys (linked to active device probability range) 
+        b - checks if match 
+        c - if win calculate winnings
+        d - calc round costs (i.e. active device power consumpation x power unit rate)
+        e - calc subTotal (i.e. balance + winnings - cost)
+        f - update balance
+
+5. Event (not in baseline - may move to being additional step in Run Game sequence) generate event, log player response, generate outcome and apply affect (e.g. + / - balance)
+
+6. X-change (not in baseline) - player exchanges e-coin for £ 
+
+--------------------------------------------------------------------------------*/
+
+
+/*---------------------------------------------------------------------------------
+//  0.0 Utilities - used in development only - to be removed from final submission
+//-------------------------------------------------------------------------------*/
+
+
 function checkifNaN(x) {
     if (isNaN(x)) {
       return NaN;
@@ -8,8 +45,38 @@ function checkifNaN(x) {
 
 //console.log(checkifNaN('1'));
 
+// Temporary - test feature button
+
+//let test = document.getElementById('btn-test1');
+//test.addEventListener('click', endRoundUpdateBalance);
+
+
+
+
+
 /*---------------------------------------------------------------------------------
-//Data tables;
+//   0.1 - Global variables
+//  Variables 'hoisted' to global for visibility across functions - refer with mentor if correct approach??
+//-------------------------------------------------------------------------------*/
+
+
+
+let minerClass = document.getElementById('miner-class').innerText;
+let minerChance = parseInt(document.getElementById('miner-chance').innerText);
+let minerPowerConsumption = parseInt(document.getElementById('miner-consumption').innerText);
+let powerRate = parseInt(document.getElementById('power-rate').innerText);
+console.log("1. onload minerChance =", minerChance);                                            //development only - to be removed
+// console.log(checkifNaN(minerChance));                                                        //development only - to be removed
+console.log("2. onload powerUsage =", minerPowerConsumption);                                   //development only - to be removed
+// console.log(checkifNaN('minerPowerConsumption'));                                            //development only - to be removed
+console.log("3. onload powerRate =", powerRate);                                                //development only - to be removed
+// console.log(checkifNaN(powerRate));                                                          //development only - to be removed
+
+let blockSuccess;
+
+
+/*---------------------------------------------------------------------------------
+//   0.2 - Game data tables / library;
 //-------------------------------------------------------------------------------*/
 
 //Mining devices;
@@ -26,11 +93,10 @@ Level 4                 1000             250                        2           
 [7] : hidden from user 
 [*] - not invoked for baseline version but planned for future enhancement
 
-
 */
 
 
-let dataLibrary = {miningDevices:[ 
+let mainDataLibrary = {miningDevices:[ 
     {   name:'Level 0 (Default)',
         purchaseCost: 0,
         consumption: 10,
@@ -68,6 +134,8 @@ let dataLibrary = {miningDevices:[
         status: 0},
 ]};
 
+//upon player purchasing upgrade, data from the main table will be passed to the 'live' version
+
 let liveGameData = {activeMiner:[
     {   name:'Level 0 (Default)',
         consumption: 10,
@@ -79,78 +147,65 @@ let liveGameData = {activeMiner:[
 
 /* -- acknowledgement for the code below https://www.youtube.com/watch?v=AqgVLYpBWG8--- */
 
-/*
-
 //--example 1
 let minerDataAll = dataLibrary['miningDevices'];
 for (let i=0, len = minerDataAll.length; i<len; i++) {
-    console.log(minerDataAll[i]);                             // logs out all miner data (grouped by object)
-    console.log(minerDataAll[i].name);                        // logs out miner names only
+    console.log(minerDataAll[i]);                                       // logs out all miner data (grouped by object)
+    console.log(minerDataAll[i].name);                                  // logs out miner names only
 }
 
-*/
+
 //--example 2 
 
 
 let minerDataAll = dataLibrary['miningDevices'];
 for (let i=0, len=minerDataAll.length; i<len; i++) {
     for (let minerNames in minerDataAll[i]) {
-        console.log(minerNames, minerDataAll[i][minerNames]);   // logs out all data (splits out each key with value) 
+        console.log(minerNames, minerDataAll[i][minerNames]);           // logs out all data (splits out each key with value) 
     }    
 }
 
 
+/*---------------------------------------------------------------------------------
+//  1.0 On Load
+//      Wait until DOM loaded before populating default Mining Device Stats
+//      Populate Default Chance & Power Consumption Stats 
+//-------------------------------------------------------------------------------*/
 
-
-
-//---------------------------------------------------------------------------------
-
-//  Variables 'hoisted' to global level to be visible across independent functions - refer to Mentor / Support if this is the correct approach??
-
-let minerClass = document.getElementById('miner-class').innerText;
-let minerChance = parseInt(document.getElementById('miner-chance').innerText);
-let minerPowerConsumption = parseInt(document.getElementById('miner-consumption').innerText);
-let powerRate = parseInt(document.getElementById('power-rate').innerText);
-console.log("1. onload minerChance =", minerChance);
-// console.log(checkifNaN(minerChance));
-console.log("2. onload powerUsage =", minerPowerConsumption);
-// console.log(checkifNaN('minerPowerConsumption'));
-console.log("3. onload powerRate =", powerRate);
-// console.log(checkifNaN(powerRate));
-
-let blockSuccess;
-    
-
-// Wait until DOM loaded before populating default Mining Device Stats
-// Populate Default Chance & Power Consumption Stats 
 
 document.addEventListener("DOMContentLoaded", function () {
     
 
-    //insert code to populate drop-down with miner name
-
-
-
     if (minerClass.includes('Level 0')) {
-        minerChance = 25;                                                // Hard-coded - to be balanced !! 
-        minerPowerConsumption = 10;                                      // Hard-coded - to be balanced !! 
-        powerRate = 1;                                                   // Hard-coded - to be balanced !! 
+        minerChance = 25;                                                // Hard-coded - to be re-pointed to liveGameData table 
+        minerPowerConsumption = 10;                                      // Hard-coded - to be re-pointed to liveGameData table 
+        powerRate = 1;                                                   // Hard-coded - to be re-pointed to liveGameData table 
         
-    } else (console.log("ALERT! - Miner Class Not Found"));
+    } else alert("ALERT! - Miner Class Not Found");
     
     document.getElementById("miner-chance").innerText = minerChance;
     document.getElementById("miner-consumption").innerText = minerPowerConsumption;
     document.getElementById("power-rate").innerText = powerRate;
 
-    console.log("4. updated minerChance =", minerChance);
-   //  console.log(checkifNaN(minerChance));
-    console.log("5. updated powerUsage =", minerPowerConsumption);
-   //  console.log(checkifNaN(minerPowerConsumption));
-    console.log("6.updated powerRate =", powerRate);
-    // console.log(checkifNaN(powerRate));
+    console.log("4. updated minerChance =", minerChance);               //development only - to be removed
+   //  console.log(checkifNaN(minerChance));                            //development only - to be removed
+    console.log("5. updated powerUsage =", minerPowerConsumption);      //development only - to be removed
+   //  console.log(checkifNaN(minerPowerConsumption));                  //development only - to be removed
+    console.log("6.updated powerRate =", powerRate);                    //development only - to be removed
+    // console.log(checkifNaN(powerRate));                              //development only - to be removed
 });
 
 
+
+/*---------------------------------------------------------------------------------
+//   2. Upgrade device;
+        a - populate upgrade shop (event = player opening modal)
+        b - action player purchase (event = player clicks 'purchase' button);
+            i - device status changed (mainDataLibrary) indicating miner now available for selection
+            ii - transaction processed (player live balance reduced)
+            iii - liveGameData updated to 'append' purchased device (user able to select from drop-down of available devices) 
+        c - (not in baseline version) player able to purchase additional 'terminal' i.e. run multiple devices
+//-------------------------------------------------------------------------------*/
 // Add Event listener for upgrade button
 
 // Device upgrades A - User Selection
@@ -160,103 +215,121 @@ document.addEventListener("DOMContentLoaded", function () {
 // Device upgrades C - Update Balance (post transaction)
 
 
-// Event listener for run game button (initiate game cycle stages)
+
+/*---------------------------------------------------------------------------------
+//   3. (not in baseline) changes to power source / cost rate 
+//-------------------------------------------------------------------------------*/
+
+
+/*---------------------------------------------------------------------------------
+//   4. Run Game (event = player clicks to run new round);
+        a - game generates device and block keys (linked to active device probability range) 
+        b - checks if match 
+        c - calc outcome,subTotal (last balance + winnings - costs); 
+            i) associated power costs (power consumpation x power unit rate)
+            ii) winnings (if keys match)
+        d - update current balance (last balance + round subTotal)
+//-------------------------------------------------------------------------------*/
+
+// Run Game - Event listener for run game button (initiate game cycle stages)
 
 let play = document.getElementById('btn-play');
 play.addEventListener('click', mineBlock);
 
 function mineBlock (event) {
-    console.log("7. game round started / btn id =", this.id);
+    console.log("7. game round started / btn id =", this.id);                   //development only - to be removed??
     document.getElementById("terminal-status").innerText = "Activated";  
 
     
-    // Game stage A(i) - generate miner ID / Key and display in Game Panel  
+    // Game stage Ai - generate miner ID / Key and display in Game Panel  
     
     let minerId = parseInt(document.getElementById('terminal-key-device1').innerText);
     minerId = 5;                                                                // ---------- [For Baseline version miner value fixed @ 5]
-    document.getElementById("terminal-key-device1").innerText = minerId;
+    document.getElementById("terminal-key-device1").innerText = minerId;        //development only - to be removed??
     
-    console.log("8. minerId =", minerId);
-    // console.log(checkifNaN(minerId));
-    console.log("9. minerChance =", minerChance);
-    // console.log(checkifNaN(minerChance));
+    console.log("8. minerId =", minerId);                                       //development only - to be removed??
+    // console.log(checkifNaN(minerId));                                        //development only - to be removed??
+    console.log("9. minerChance =", minerChance);                               //development only - to be removed??
+    // console.log(checkifNaN(minerChance));                                    //development only - to be removed??
     
     // Game stage Aii - generate block ID
     
     let blockId = Math.floor(Math.random() * minerChance) + 1;
     document.getElementById("terminal-key-block1").innerText = blockId;
-    console.log("10. blockId =", blockId);
-    // console.log(checkifNaN(blockId));
+    console.log("10. blockId =", blockId);                                      //development only - to be removed??
+    // console.log(checkifNaN(blockId));                                        //development only - to be removed??
 
     
     // Game stage B - check if block ID matches miner ID
    
-    blockSuccess = minerId === blockId;         // wil return true or false 
+    blockSuccess = minerId === blockId;                                        // will return true or false 
     
-    console.log("11. blockSuccess =", blockSuccess);
-    // console.log(checkifNaN(blockSuccess));
+    console.log("11. blockSuccess =", blockSuccess);                           //development only - to be removed??
+    // console.log(checkifNaN(blockSuccess));                                  //development only - to be removed??
     
 
-    // Game Stage D - Calculate Outcome 
+    // Game Stage C - Calculate Outcome 
 
     let subTotal = calcSubTotal ();                                           // subTotal hoisted out of code-block so as it can be seen / within scope of function which updates balance (but demoted from global as caused an undefined error - likely due to sequencing?
-    // calcSubTotal ();
+    
             
     function calcSubTotal (subTotal) {
      
         let roundCost = calcRoundCost();  
-        console.log("15. RoundCost[D] =", roundCost);       
-        // console.log(checkifNaN(roundCost));
+        console.log("15. RoundCost[D] =", roundCost);                          //development only - to be removed??
+        // console.log(checkifNaN(roundCost));                                 //development only - to be removed??
 
         let roundWin = calcRoundWin();
-        console.log("17. RoundWin[D] =", roundWin);         
-        // console.log(checkifNaN(roundWin));
+        console.log("17. RoundWin[D] =", roundWin);                            //development only - to be removed??
+        // console.log(checkifNaN(roundWin));                                  //development only - to be removed??
 
         let i = roundWin - roundCost;
-        console.log("18. subTotal[D] =", i);         
-        // console.log(checkifNaN(i));
+        console.log("18. subTotal[D] =", i);                                    //development only - to be removed??
+        // console.log(checkifNaN(i));                                          //development only - to be removed??
         return subTotal = i;
     };
 
     endRoundUpdateBalance ();
 
-    // Game Stage D - Calculate Outcome 
+    
 
-   // Update Balance E - (post game-cycle)
+   // Game stage D - Update Balance 
         
     function endRoundUpdateBalance () {
 
         
         let oldBalance = parseInt(document.getElementById('balance-current').innerText);   
-        console.log("19. oldBalance [E]= ", oldBalance);                                              
-        // console.log(checkifNaN(oldBalance));
+        console.log("19. oldBalance [E]= ", oldBalance);                        //development only - to be removed??                                                    
+        // console.log(checkifNaN(oldBalance));                                 //development only - to be removed??
     
-        console.log("20. subTotal [E]", subTotal);                                                      //not being returned as a value(?)
-        // console.log(checkifNaN(subTotal));
+        console.log("20. subTotal [E]", subTotal);                              //development only - to be removed??                        
+        // console.log(checkifNaN(subTotal));                                   //development only - to be removed??
         
         let newBalance = 0;
         newBalance = oldBalance + subTotal;
-        document.getElementById('balance-current').innerText = newBalance;  
-        console.log("21. newBalance [E]", newBalance);                                                  //not being returned as a value(?)
-        // console.log(checkifNaN(newBalance));
+        document.getElementById('balance-current').innerText = newBalance;      
+        console.log("21. newBalance [E]", newBalance);                         //development only - to be removed?? 
+        // console.log(checkifNaN(newBalance));                                //development only - to be removed??
     };
 
-    function endRoundStyling () {                                                                       // changes to default styling if condition met e.g. negative values displayed in red
+    function endRoundStyling () {                                              // changes to default styling if condition met e.g. negative values displayed in red
         document.getElementsByClass("field-value").style.color= "red";
     };
 }
+
+    //The following functions are called in the above Run Game cycle if condition(s) met
 
     // Game Stage Ci - Calculate costs
 
 function calcRoundCost (roundCost) {
     roundCost = minerPowerConsumption * powerRate;
     
-    console.log("12. PowerConsumption[C] =", minerPowerConsumption);
-    // console.log(checkifNaN(minerPowerConsumption));
-    console.log("13. PowerRate[C] =", powerRate);
-    // console.log(checkifNaN(powerRate));
-    console.log("14. RoundCost[C] =", roundCost);
-    // console.log(checkifNaN(roundCost));
+    console.log("12. PowerConsumption[C] =", minerPowerConsumption);            //development only - to be removed??
+    // console.log(checkifNaN(minerPowerConsumption));                          //development only - to be removed??
+    console.log("13. PowerRate[C] =", powerRate);                               //development only - to be removed??
+    // console.log(checkifNaN(powerRate));                                      //development only - to be removed??
+    console.log("14. RoundCost[C] =", roundCost);                               //development only - to be removed??
+    // console.log(checkifNaN(roundCost));                                      //development only - to be removed??
     
     return roundCost;
     }
@@ -270,22 +343,16 @@ function calcRoundWin (roundWin) {
     } else {
     ii = 0;                           // checks if false (not mined) remains 0
     } 
-    console.log("16. RoundWin[C]=", ii);
-    // console.log(checkifNaN(ii));
+    console.log("16. RoundWin[C]=", ii);                                        //development only - to be removed??
+    // console.log(checkifNaN(ii));                                             //development only - to be removed??
     return roundWin = ii;                          
     }
 
 
+/*---------------------------------------------------------------------------------
+//   5. Events (not in baseline)
+//-------------------------------------------------------------------------------*/
 
-
-// Reset variables for new round(?)
-
-//create template literals for terminal window messages
-
-
-// Temporary - test feture button
-
-//let test = document.getElementById('btn-test1');
-//test.addEventListener('click', endRoundUpdateBalance);
-
-
+/*---------------------------------------------------------------------------------
+//   6. X-change (not in baseline)
+//-------------------------------------------------------------------------------*/
