@@ -15,12 +15,18 @@ function checkifNaN(x) {
 //Mining devices;
 
 /*
-minerClass              purchaseCost     minerPowerConsumption      minerChance
-Level 0 (Default)       0                10                         25
-Level 1                 50               25                         20
-Level 2                 250              50                         15
-Level 3                 500              150                        10
-Level 4                 1000             250                        2
+[1]name            [2]purchaseCost   [3]minerPowerConsumption    [4]minerChance   [5*]speed (timer) [6*]reliability  [7*]status
+Level 0 (Default)       0                10                         25              0               100             0
+Level 1                 50               25                         20              0               100             0
+Level 2                 250              50                         15              0               100             0
+Level 3                 500              150                        10              0               100             0  
+Level 4                 1000             250                        2               0               100             0
+
+[1] - [6] : displayed to user in device information   +   upgrade shop
+[7] : hidden from user 
+[*] - not invoked for baseline version but planned for future enhancement
+
+
 */
 
 
@@ -28,23 +34,47 @@ let dataLibrary = {miningDevices:[
     {   name:'Level 0 (Default)',
         purchaseCost: 0,
         consumption: 10,
-        chance: 25},
+        chance: 25,
+        speed: 0,
+        reliability: 100,
+        status: 0},
     {   name:'Level 1',
         purchaseCost: 50,
         consumption: 25,
-        chance: 20},
+        chance: 20,
+        speed: 0,
+        reliability: 100,
+        status: 0},
     {   name:'Level 2',
         purchaseCost: 250,
         consumption: 50,
-        chance: 15},
+        chance: 15,
+        speed: 0,
+        reliability: 100,
+        status: 0},
     {   name:'Level 3',
         purchaseCost: 500,
         consumption: 150,
-        chance: 10},
+        chance: 10,
+        speed: 0,
+        reliability: 100,
+        status: 0},
     {   name:'Level 4',
         purchaseCost: 1000,
         consumption: 250,
-        chance: 2}
+        chance: 2,
+        speed: 0,
+        reliability: 100,
+        status: 0},
+]};
+
+let liveGameData = {activeMiner:[
+    {   name:'Level 0 (Default)',
+        consumption: 10,
+        chance: 25,
+        speed: 0,
+        reliability: 100,
+        status: 0},
 ]};
 
 /* -- acknowledgement for the code below https://www.youtube.com/watch?v=AqgVLYpBWG8--- */
@@ -58,9 +88,8 @@ for (let i=0, len = minerDataAll.length; i<len; i++) {
     console.log(minerDataAll[i].name);                        // logs out miner names only
 }
 
-//--example 2 
-
 */
+//--example 2 
 
 
 let minerDataAll = dataLibrary['miningDevices'];
