@@ -82,8 +82,8 @@ let blockSuccess;
 //Mining devices;
 
 /*
-[1]name            [2]purchaseCost   [3]minerPowerConsumption    [4]minerChance   [5*]speed (timer) [6*]reliability  [7*]status
-Level 0 (Default)       0                10                         25              0               100             0
+[1]name            [2]purchaseCost   [3]minerPowerConsumption    [4]minerChance   [5*]speed (timer) [6*]reliability  [7i]status
+Level 0 (Default)       0                10                         25              0               100             1
 Level 1                 50               25                         20              0               100             0
 Level 2                 250              50                         15              0               100             0
 Level 3                 500              150                        10              0               100             0  
@@ -91,8 +91,8 @@ Level 4                 1000             250                        2           
 
 [1] - [6] : displayed to user in device information   +   upgrade shop
 [7] : hidden from user 
-[*] - not invoked for baseline version but planned for future enhancement
-
+[**] - not invoked for baseline version but planned for future enhancement
+[i] - status, 0 = not available (i.e. not purchased), 1 = available (default or purchased) 
 */
 
 
@@ -103,7 +103,7 @@ let mainDataLibrary = {miningDevices:[
         chance: 25,
         speed: 0,
         reliability: 100,
-        status: 0},
+        status: 1},
     {   name:'Level 1',
         purchaseCost: 50,
         consumption: 25,
@@ -142,7 +142,7 @@ let liveGameData = {activeMiner:[
         chance: 25,
         speed: 0,
         reliability: 100,
-        status: 0},
+        status: 1},
 ]};
 
 /* -- acknowledgement for the code below https://www.youtube.com/watch?v=AqgVLYpBWG8--- */
