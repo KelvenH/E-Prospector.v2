@@ -3,6 +3,8 @@
 0.0 - Utilities (temp to be removed!!)
 0.1 - Global variables initiated
 0.2 - Game data tables / library created
+    - mainDataLibrary (all game data)
+    - LiveGameData (populated with default data and pulls from mainData library as game progresses)
 
 1. On Load - miner table loads with default starter device and balance 
 
@@ -35,13 +37,14 @@
 //  0.0 Utilities - used in development only - to be removed from final submission
 //-------------------------------------------------------------------------------*/
 
-
+/*--------
 function checkifNaN(x) {
     if (isNaN(x)) {
       return NaN;
     }
     return x;
   }
+---*/
 
 //console.log(checkifNaN('1'));
 
@@ -61,7 +64,7 @@ function checkifNaN(x) {
 
 
 
-let minerClass = document.getElementById('miner-class').innerText;
+//let minerClass = document.getElementById('miner-class').innerText;
 let minerChance = parseInt(document.getElementById('miner-chance').innerText);
 let minerPowerConsumption = parseInt(document.getElementById('miner-consumption').innerText);
 let powerRate = parseInt(document.getElementById('power-rate').innerText);
@@ -81,7 +84,7 @@ let blockSuccess;
 
 //Mining devices;
 
-/*
+/*---
 [1]name            [2]purchaseCost   [3]minerPowerConsumption    [4]minerChance   [5*]speed (timer) [6*]reliability  [7i]status
 Level 0 (Default)       0                10                         25              0               100             1
 Level 1                 50               25                         20              0               100             0
@@ -93,39 +96,39 @@ Level 4                 1000             250                        2           
 [7] : hidden from user 
 [**] - not invoked for baseline version but planned for future enhancement
 [i] - status, 0 = not available (i.e. not purchased), 1 = available (default or purchased) 
-*/
+----*/
 
 
 let mainDataLibrary = {miningDevices:[ 
-    {   name:'Level 0 (Default)',
+    {   device:'Level 0 (Default)',
         purchaseCost: 0,
         consumption: 10,
         chance: 25,
         speed: 0,
         reliability: 100,
         status: 1},
-    {   name:'Level 1',
+    {   device:'Level 1',
         purchaseCost: 50,
         consumption: 25,
         chance: 20,
         speed: 0,
         reliability: 100,
         status: 0},
-    {   name:'Level 2',
+    {   device:'Level 2',
         purchaseCost: 250,
         consumption: 50,
         chance: 15,
         speed: 0,
         reliability: 100,
         status: 0},
-    {   name:'Level 3',
+    {   device:'Level 3',
         purchaseCost: 500,
         consumption: 150,
         chance: 10,
         speed: 0,
         reliability: 100,
         status: 0},
-    {   name:'Level 4',
+    {   device:'Level 4',
         purchaseCost: 1000,
         consumption: 250,
         chance: 2,
@@ -134,49 +137,52 @@ let mainDataLibrary = {miningDevices:[
         status: 0},
 ]};
 
-//upon player purchasing upgrade, data from the main table will be passed to the 'live' version
+//upon player purchasing upgrade, data from the main table will be passed to the 'live' version which becomes the source data for the player to use (i.e. can't 'use' a device which has not been purchased). it also means retaining a devices original stats should future development enable short term changes to the live data (e.g. temporary performance boost);
 
-let liveGameData = {activeMiner:[
-    {   name:'Level 0 (Default)',
-        consumption: 10,
-        chance: 25,
+let liveGameData = {availableMiners:[
+    {   device : 'Level 0 (Default)',
+        consumption : 10,
+        chance : 25,
+        speed : 0,
+        reliability : 100,
+        status : 1},
+    {   device:'Level 1',                                               // REMEBER TO REMOVE LEVEL 1 - ONLY ADDED AT START FOR DEVELOPMENT PURPOSES
+        consumption: 25,
+        chance: 20,
         speed: 0,
         reliability: 100,
-        status: 1},
+        status: 1}
 ]};
 
-/* -- acknowledgement for the code below https://www.youtube.com/watch?v=AqgVLYpBWG8--- */
-
-//--example 1
-let minerDataAll = dataLibrary['miningDevices'];
-for (let i=0, len = minerDataAll.length; i<len; i++) {
-    console.log(minerDataAll[i]);                                       // logs out all miner data (grouped by object)
-    console.log(minerDataAll[i].name);                                  // logs out miner names only
-}
-
-
-//--example 2 
-
-
-let minerDataAll = dataLibrary['miningDevices'];
-for (let i=0, len=minerDataAll.length; i<len; i++) {
-    for (let minerNames in minerDataAll[i]) {
-        console.log(minerNames, minerDataAll[i][minerNames]);           // logs out all data (splits out each key with value) 
-    }    
-}
-
-
+   
 /*---------------------------------------------------------------------------------
-//  1.0 On Load
-//      Wait until DOM loaded before populating default Mining Device Stats
-//      Populate Default Chance & Power Consumption Stats 
+//  1.0 Prepare Game On DOM Load;
+//      Wait until DOM loaded then obtain miner details from 'liveGameData' (default only available at start)
+//      Data used to populate the HTML fields (dropdown menu, and performance stats)
 //-------------------------------------------------------------------------------*/
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    
+document.addEventListener("DOMContentLoaded", function () {             // Waits for the DOM to load before executing the initial game prep
 
-    if (minerClass.includes('Level 0')) {
+
+//acknowledgement for the code below https://www.youtube.com/watch?v=AqgVLYpBWG8
+
+//let activeMiners; 
+let minerDropdown = document.getElementById("miner-list");
+
+let arr = liveGameData['availableMiners'];                        // on initial load only the default device will be available for player to select in the device dropdown
+    for (let i=0, len=arr.length; i<len; i++){
+        
+        console.log(arr[i].device);
+        minerDropdown.options.add(new Option(arr[i].device));
+    };
+
+});                                                                     // end of onload function
+
+
+//add event listener post selection of device
+
+    if (minerlist.includes('Level 0')) {
         minerChance = 25;                                                // Hard-coded - to be re-pointed to liveGameData table 
         minerPowerConsumption = 10;                                      // Hard-coded - to be re-pointed to liveGameData table 
         powerRate = 1;                                                   // Hard-coded - to be re-pointed to liveGameData table 
@@ -193,7 +199,8 @@ document.addEventListener("DOMContentLoaded", function () {
    //  console.log(checkifNaN(minerPowerConsumption));                  //development only - to be removed
     console.log("6.updated powerRate =", powerRate);                    //development only - to be removed
     // console.log(checkifNaN(powerRate));                              //development only - to be removed
-});
+
+
 
 
 
@@ -290,32 +297,32 @@ function mineBlock (event) {
     };
 
     endRoundUpdateBalance ();
-
+}
     
 
    // Game stage D - Update Balance 
         
-    function endRoundUpdateBalance () {
+function endRoundUpdateBalance () {
 
         
-        let oldBalance = parseInt(document.getElementById('balance-current').innerText);   
-        console.log("19. oldBalance [E]= ", oldBalance);                        //development only - to be removed??                                                    
-        // console.log(checkifNaN(oldBalance));                                 //development only - to be removed??
+    let oldBalance = parseInt(document.getElementById('balance-current').innerText);   
+    console.log("19. oldBalance [E]= ", oldBalance);                        //development only - to be removed??                                                    
+    // console.log(checkifNaN(oldBalance));                                 //development only - to be removed??
     
-        console.log("20. subTotal [E]", subTotal);                              //development only - to be removed??                        
-        // console.log(checkifNaN(subTotal));                                   //development only - to be removed??
+    console.log("20. subTotal [E]", subTotal);                              //development only - to be removed??                        
+    // console.log(checkifNaN(subTotal));                                   //development only - to be removed??
         
-        let newBalance = 0;
+    let newBalance = 0;
         newBalance = oldBalance + subTotal;
         document.getElementById('balance-current').innerText = newBalance;      
         console.log("21. newBalance [E]", newBalance);                         //development only - to be removed?? 
-        // console.log(checkifNaN(newBalance));                                //development only - to be removed??
+    // console.log(checkifNaN(newBalance));                                //development only - to be removed??
     };
 
     function endRoundStyling () {                                              // changes to default styling if condition met e.g. negative values displayed in red
         document.getElementsByClass("field-value").style.color= "red";
-    };
-}
+ }
+
 
     //The following functions are called in the above Run Game cycle if condition(s) met
 
@@ -332,7 +339,7 @@ function calcRoundCost (roundCost) {
     // console.log(checkifNaN(roundCost));                                      //development only - to be removed??
     
     return roundCost;
-    }
+}
         
         
       // Game Stage Cii - Calculate win
@@ -346,7 +353,7 @@ function calcRoundWin (roundWin) {
     console.log("16. RoundWin[C]=", ii);                                        //development only - to be removed??
     // console.log(checkifNaN(ii));                                             //development only - to be removed??
     return roundWin = ii;                          
-    }
+}
 
 
 /*---------------------------------------------------------------------------------

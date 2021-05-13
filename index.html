@@ -13,7 +13,7 @@
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style.css">
     <!--Add Favicon---->
-
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <title>Mine Your Luck</title>
 
 </head>
@@ -25,7 +25,7 @@
     <div id="full-screen" class="container-fluid align-items-center justify-content-center">
 
         <div id="header" class="row d-flex align-items-center text-center">
-            <h1> Mine-Your-Luck</h1>
+            <h1> Mine Your Luck</h1>
             <div id="rules" class="row">
                 <h3 class="col-12">How to Play</h3>
                 <div class="col">
@@ -67,20 +67,22 @@
                         <form id="miners-table">
 
                             <div id="miner-details" class="row miners-table-sub-section">
-                                <div class="col">
+                                <div class="col-12">
                                     <h4>Miner Details:</h4>
                                     <div class="row">
-                                        <div class="col text-end">
+                                        <div class="col text-start">
                                             <p for="miner-class">Mining Device:</p>
                                         </div>
 
-                                        <div class="col">
-                                            <select id="miner-class" class="field-value">
-                                                <!--select attribute provides drop-down field-->
-                                                <option id="choose-miner" class="field-value" value="default">Please
-                                                    Make Your Selection</option>
-                                            </select>
-                                            <!--select attribute provides drop-down field-->
+                                        <div class="col-auto">
+                                            
+                                                <select id="miner-list" class="field-value">
+                                                    <option value="" selected disabled hidden>Make a Selection</option>
+                                                 
+                                                </select>
+                                           
+                                            
+                                            
                                         </div>
                                     </div>
                                 </div>

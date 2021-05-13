@@ -140,6 +140,16 @@ p {
     margin-bottom:2vh;
 }
 
+/*-- BUG / DEFECT Outstanding; can't adjust width of drop-down either to 'fill' available space or prevent overspill if col width reduced-------*/
+
+.miner-list {
+    min-width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction: row;
+    word-wrap: break-word;
+}
+
 .field-value {
     background-color:var(--ink5);
     color:var(--ink6);
