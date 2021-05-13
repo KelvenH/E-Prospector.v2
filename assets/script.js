@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {             // Waits
 
 //acknowledgement for the code below https://www.youtube.com/watch?v=AqgVLYpBWG8
 
-//let activeMiners; 
+
 let minerDropdown = document.getElementById("miner-list");
 
 let arr = liveGameData['availableMiners'];                        // on initial load only the default device will be available for player to select in the device dropdown
@@ -180,8 +180,21 @@ let arr = liveGameData['availableMiners'];                        // on initial 
 });                                                                     // end of onload function
 
 
-//add event listener post selection of device
+//update miner stats 'in-play' after selection of device (function can be accessed at any time outside of 'mine block'game cycle)
 
+let refreshMiner = document.getElementById('.miner-list');
+refreshMiner.addEventListener('click', minerStats);
+
+// match device selected (in prior stage) to liveGameData table and return correct attributes (display on screen and pass to later game play functions)
+
+function minerStats (event) {
+
+    let findMiner = minerDropdown;
+    let index = liveGameData.indexOf(findMiner);
+    console.log(index);
+
+};
+/*--
     if (minerlist.includes('Level 0')) {
         minerChance = 25;                                                // Hard-coded - to be re-pointed to liveGameData table 
         minerPowerConsumption = 10;                                      // Hard-coded - to be re-pointed to liveGameData table 
@@ -199,8 +212,7 @@ let arr = liveGameData['availableMiners'];                        // on initial 
    //  console.log(checkifNaN(minerPowerConsumption));                  //development only - to be removed
     console.log("6.updated powerRate =", powerRate);                    //development only - to be removed
     // console.log(checkifNaN(powerRate));                              //development only - to be removed
-
-
+--*/
 
 
 
