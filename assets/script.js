@@ -212,52 +212,12 @@ $("#miner-list").change(function(){                                       //usin
     $("#miner-chance").text(resA);                                             //update html fields with the matching value (chance)
     $("#miner-consumption").text(resB);                                        //update html fields with the matching value (consumption)
     $("#power-rate").text(resP);                                               //update html fields with the matching value (cost per unit) 
+
+    minerChance = resA;
+    minerPowerConsumption = resB;
+    powerRate = resP;
+
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// match device selected (in prior stage) to liveGameData table and return correct attributes (display on screen and pass to later game play functions)
-
-function minerStats (event) {
-
-    let findMiner = minerDropdown;
-    let index = liveGameData.indexOf(findMiner);
-    console.log(index);
-
-};
-
-
-/*--
-    if (minerlist.includes('Level 0')) {
-        minerChance = 25;                                                // Hard-coded - to be re-pointed to liveGameData table 
-        minerPowerConsumption = 10;                                      // Hard-coded - to be re-pointed to liveGameData table 
-        powerRate = 1;                                                   // Hard-coded - to be re-pointed to liveGameData table 
-        
-    } else alert("ALERT! - Miner Class Not Found");
-    
-    document.getElementById("miner-chance").innerText = minerChance;
-    document.getElementById("miner-consumption").innerText = minerPowerConsumption;
-    document.getElementById("power-rate").innerText = powerRate;
-
-    console.log("4. updated minerChance =", minerChance);               //development only - to be removed
-   //  console.log(checkifNaN(minerChance));                            //development only - to be removed
-    console.log("5. updated powerUsage =", minerPowerConsumption);      //development only - to be removed
-   //  console.log(checkifNaN(minerPowerConsumption));                  //development only - to be removed
-    console.log("6.updated powerRate =", powerRate);                    //development only - to be removed
-    // console.log(checkifNaN(powerRate));                              //development only - to be removed
---*/
 
 
 
@@ -307,9 +267,8 @@ function mineBlock (event) {
     
     // Game stage Ai - generate miner ID / Key and display in Game Panel  
     
-    let minerId = parseInt(document.getElementById('terminal-key-device1').innerText);
-    minerId = 5;                                                                // ---------- [For Baseline version miner value fixed @ 5]
-    document.getElementById("terminal-key-device1").innerText = minerId;        //development only - to be removed??
+    let minerId = Math.floor(Math.random() * minerChance) + 1;
+    document.getElementById("terminal-key-device1").innerText = minerId;        
     
     console.log("8. minerId =", minerId);                                       //development only - to be removed??
     // console.log(checkifNaN(minerId));                                        //development only - to be removed??
@@ -354,7 +313,7 @@ function mineBlock (event) {
     };
 
     endRoundUpdateBalance ();
-}
+
     
 
    // Game stage D - Update Balance 
@@ -379,7 +338,7 @@ function endRoundUpdateBalance () {
     function endRoundStyling () {                                              // changes to default styling if condition met e.g. negative values displayed in red
         document.getElementsByClass("field-value").style.color= "red";
  }
-
+};
 
     //The following functions are called in the above Run Game cycle if condition(s) met
 
@@ -403,8 +362,8 @@ function calcRoundCost (roundCost) {
 
 function calcRoundWin (roundWin) {
     if (blockSuccess) {
-    ii = +100;                        // checks if true (block mined) adds 100
-    } else {
+    ii = +1000;                        // checks if true (block mined) // reward value fixed at 1000 for baseline
+     } else {
     ii = 0;                           // checks if false (not mined) remains 0
     } 
     console.log("16. RoundWin[C]=", ii);                                        //development only - to be removed??
