@@ -165,12 +165,11 @@ let liveGameData = {availableMiners:[
 document.addEventListener("DOMContentLoaded", function () {             // Waits for the DOM to load before executing the initial game prep
 
 
-//acknowledgement for the code below https://www.youtube.com/watch?v=AqgVLYpBWG8
+//populates drop-down with available miners
 
+let minerDropdown = document.getElementById("miner-list");              //acknowledgement for the code below https://www.youtube.com/watch?v=AqgVLYpBWG8
 
-let minerDropdown = document.getElementById("miner-list");
-
-let arr = liveGameData['availableMiners'];                        // on initial load only the default device will be available for player to select in the device dropdown
+let arr = liveGameData['availableMiners'];                              // on initial load only the default device will be available for player to select in the device dropdown
     for (let i=0, len=arr.length; i<len; i++){
         
         console.log(arr[i].device);
@@ -182,8 +181,28 @@ let arr = liveGameData['availableMiners'];                        // on initial 
 
 //update miner stats 'in-play' after selection of device (function can be accessed at any time outside of 'mine block'game cycle)
 
-let refreshMiner = document.getElementById('.miner-list');
-refreshMiner.addEventListener('click', minerStats);
+$("#miner-list").change(function(){                                       //using Jquery to identify when change made to miner dropdown selection
+    //let selectedValue = $(this).val();                                  //TO BE DELETED - USED TO TEST VALUE WAS UDATED AFTER DROPDOWN SELECTION
+    //$("#miner-chance").html(selectedValue);                             //TO BE DELETED - AS ABOVE
+        
+    let item = {device : 'Level 1'};                                        //CHANGE HARD-CODED VALUE TO VARIABLE MATCHING HTML ID - NEED TO APPEND 'KEY' TO 'VALUE'
+    //let pos = testData['group1'].indexOf(item);
+
+    let res = 0;                                                          //NEED TO REPLICATE FOR ALL ATTRIBUTES BEING RETURNED
+
+    let matchingItem = liveGameData['availableMiners'].filter( (obj) => {
+
+        if(obj.device === item.device){
+            return true;
+        }
+        return false;
+    })
+
+    res = ( matchingItem[0].chance);
+    console.log( res);
+});
+
+
 
 // match device selected (in prior stage) to liveGameData table and return correct attributes (display on screen and pass to later game play functions)
 
@@ -194,6 +213,8 @@ function minerStats (event) {
     console.log(index);
 
 };
+
+
 /*--
     if (minerlist.includes('Level 0')) {
         minerChance = 25;                                                // Hard-coded - to be re-pointed to liveGameData table 
