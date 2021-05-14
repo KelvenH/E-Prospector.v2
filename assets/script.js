@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {             // Waits
 
 //populates drop-down with available miners
 
-let minerDropdown = document.getElementById("miner-list");              //acknowledgement for the code below https://www.youtube.com/watch?v=AqgVLYpBWG8
+let minerDropdown = document.getElementById("miner-list");              //acknowledgement for the code  https://www.youtube.com/watch?v=AqgVLYpBWG8
 
 let arr = liveGameData['availableMiners'];                              // on initial load only the default device will be available for player to select in the device dropdown
     for (let i=0, len=arr.length; i<len; i++){
@@ -185,21 +185,30 @@ $("#miner-list").change(function(){                                       //usin
     //let selectedValue = $(this).val();                                  //TO BE DELETED - USED TO TEST VALUE WAS UDATED AFTER DROPDOWN SELECTION
     //$("#miner-chance").html(selectedValue);                             //TO BE DELETED - AS ABOVE
         
-    let item = {device : 'Level 1'};                                        //CHANGE HARD-CODED VALUE TO VARIABLE MATCHING HTML ID - NEED TO APPEND 'KEY' TO 'VALUE'
-    //let pos = testData['group1'].indexOf(item);
+    let item = {device : 'Level 1'};                                      //CHANGE HARD-CODED VALUE TO VARIABLE MATCHING HTML ID - NEED TO APPEND 'KEY' TO 'VALUE'
+    
 
-    let res = 0;                                                          //NEED TO REPLICATE FOR ALL ATTRIBUTES BEING RETURNED
+    let resA = 0;                                                          //resA = success likelihood (chance)
+    let resB = 0;                                                          //resB = power consumption (consumption)
+    
 
-    let matchingItem = liveGameData['availableMiners'].filter( (obj) => {
+    let matchingItem = liveGameData['availableMiners'].filter( (obj) => {   //acknowledgement for  https://www.youtube.com/watch?v=w84qY9peByk&t=321s
 
         if(obj.device === item.device){
             return true;
         }
-        return false;
+            return false;
     })
 
-    res = ( matchingItem[0].chance);
-    console.log( res);
+    resA = ( matchingItem[0].chance);
+    resB = ( matchingItem[0].consumption);
+    console.log('chance', resA);
+    console.log('consumption', resB);
+
+    
+   
+    $("#miner-chance").text(resA);                                             //update html fields with the matching value (chance)
+    $("#miner-consumption").text(resB);                                        //update html fields with the matching value (consumption)
 });
 
 
