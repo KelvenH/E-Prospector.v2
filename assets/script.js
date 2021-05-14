@@ -99,7 +99,7 @@ Level 4                 1000             250                        2           
 ----*/
 
 
-let mainDataLibrary = {miningDevices:[ 
+let mainDataLibrary = {miningDevices:[                      // further items to be added to the data tables as developed e.g. variable power costs
     {   device:'Level 0 (Default)',
         purchaseCost: 0,
         consumption: 10,
@@ -190,7 +190,7 @@ $("#miner-list").change(function(){                                       //usin
 
     let resA = 0;                                                          //resA = success likelihood (chance)
     let resB = 0;                                                          //resB = power consumption (consumption)
-    
+    let resP = 1;                                                          //resP = power cost per unit - fixed @£1 baseline version (hard coded but to be fed from datatable if variable costs added) 
 
     let matchingItem = liveGameData['availableMiners'].filter( (obj) => {   //acknowledgement for  https://www.youtube.com/watch?v=w84qY9peByk&t=321s
 
@@ -209,6 +209,7 @@ $("#miner-list").change(function(){                                       //usin
    
     $("#miner-chance").text(resA);                                             //update html fields with the matching value (chance)
     $("#miner-consumption").text(resB);                                        //update html fields with the matching value (consumption)
+    $("#power-rate").text(resP);                                               //update html fields with the matching value (cost per unit) 
 });
 
 
