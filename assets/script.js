@@ -162,8 +162,10 @@ let liveGameData = {availableMiners:[
 //-------------------------------------------------------------------------------*/
 
 
+
 document.addEventListener("DOMContentLoaded", function () {             // Waits for the DOM to load before executing the initial game prep
 
+$('#btn-play').prop("disabled", true);                                  //BUG FIX: - disables 'play' button on load & re-enabled after selection made (avoids 0 miner ID = 0 block id = 100% win rate!)
 
 //populates drop-down with available miners
 
@@ -174,6 +176,7 @@ let arr = liveGameData['availableMiners'];                              // on in
         
         console.log(arr[i].device);
         minerDropdown.options.add(new Option(arr[i].device));
+        
     };
 
 });                                                                     // end of onload function
@@ -217,6 +220,8 @@ $("#miner-list").change(function(){                                       //usin
     minerPowerConsumption = resB;
     powerRate = resP;
 
+
+    $('#btn-play').prop("disabled", false);                                     //BUG FIX : enables 'play' button after selection made
 });
 
 
@@ -260,7 +265,11 @@ $("#miner-list").change(function(){                                       //usin
 let play = document.getElementById('btn-play');
 play.addEventListener('click', mineBlock);
 
-function mineBlock (event) {
+// BUG / DEFECT - if player does not select a miner there is a 1 in 1 chance of 0 = 0 i.e. win evey time!, either add check (with alert) to prevent game from progressing and / or Jquery event on 'play' button so as button deactivated / hidden unt selection made.
+
+    function mineBlock (event) {
+  
+
     console.log("7. game round started / btn id =", this.id);                   //development only - to be removed??
     document.getElementById("terminal-status").innerText = "Activated";  
 
