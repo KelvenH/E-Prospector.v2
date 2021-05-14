@@ -182,12 +182,16 @@ let arr = liveGameData['availableMiners'];                              // on in
 //update miner stats 'in-play' after selection of device (function can be accessed at any time outside of 'mine block'game cycle)
 
 $("#miner-list").change(function(){                                       //using Jquery to identify when change made to miner dropdown selection
-    //let selectedValue = $(this).val();                                  //TO BE DELETED - USED TO TEST VALUE WAS UDATED AFTER DROPDOWN SELECTION
-    //$("#miner-chance").html(selectedValue);                             //TO BE DELETED - AS ABOVE
-        
-    let item = {device : 'Level 1'};                                      //CHANGE HARD-CODED VALUE TO VARIABLE MATCHING HTML ID - NEED TO APPEND 'KEY' TO 'VALUE'
     
+        
+   //let item = {device : 'Level 1'};                                      //CHANGE HARD-CODED VALUE TO VARIABLE MATCHING HTML ID - NEED TO APPEND 'KEY' TO 'VALUE'
 
+   let txt = document.getElementById("miner-list").value;
+   console.log(txt);
+
+   let item = {device : txt};  
+    console.log(item);
+ 
     let resA = 0;                                                          //resA = success likelihood (chance)
     let resB = 0;                                                          //resB = power consumption (consumption)
     let resP = 1;                                                          //resP = power cost per unit - fixed @£1 baseline version (hard coded but to be fed from datatable if variable costs added) 
@@ -205,12 +209,22 @@ $("#miner-list").change(function(){                                       //usin
     console.log('chance', resA);
     console.log('consumption', resB);
 
-    
-   
     $("#miner-chance").text(resA);                                             //update html fields with the matching value (chance)
     $("#miner-consumption").text(resB);                                        //update html fields with the matching value (consumption)
     $("#power-rate").text(resP);                                               //update html fields with the matching value (cost per unit) 
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

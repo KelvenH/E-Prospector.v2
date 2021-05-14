@@ -51,3 +51,5 @@ let liveGameData = {availableMiners:[
         status: 1}
 ]};
 
+
+
