@@ -57,14 +57,18 @@ $(".block-title").click(function() {
     $(this).siblings(".inner-content").slideToggle('fade');
 });
 
-$('.block-title').click(function(e){
+//additional code to scroll bottom panel to top acknowledge: http://jsfiddle.net/Jqaxn/4/
+
+$('#block-title-play').click(function(e){
     e.preventDefault();
 
     var itemTop = $($(this).siblings(".inner-content")).offset().top;
     var itemHeight = $($(this).siblings(".inner-content")).height();
     var windowHeight = $(window).height();
-    
-    $('html,body').animate({scrollTop:itemTop + itemHeight/2 - windowHeight/2},500)
+    console.log(itemTop);
+    console.log(itemHeight);
+    console.log(windowHeight);
+    $('html,body').animate({scrollTop:itemTop + itemHeight/2 - windowHeight/20},500)    //added /20 to final window height deduction to calculate a 5vh (i.e. 1/20) buffer from top
 });
 
 

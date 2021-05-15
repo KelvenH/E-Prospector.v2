@@ -41,8 +41,8 @@ h5 {font-size:clamp(28px, 5vw, 44px);}
  #full-screen {
     min-height: 100vh;
     background-color: var(--ink1);
-    padding-left:7vw;
-    padding-right:7vw;
+    padding-left:2vw;
+    padding-right:2vw;
 }
 
 #zone1 {
@@ -103,4 +103,32 @@ h5 {font-size:clamp(28px, 5vw, 44px);}
 
 #main-game {
     height:90vh;
+}
+
+
+.game-panel {
+    background-color: var(--ink2);
+    color: var(--ink0);
+    border: solid 2px var(--ink0);
+}
+
+#box1 {
+height: 30vh;
+}
+
+#box2 {
+height: 20vh;
+padding-left:20vw;    
+padding-top: 5vh;
+}
+
+#box2 .btn {
+border:solid 2px black;
+}
+
+
+#box3 {
+height: 15vh;
+margin: 2vh 10vw 5vh 10vw;
+background-color:var(--ink1);
 }
