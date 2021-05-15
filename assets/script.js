@@ -34,10 +34,10 @@
 
 
 /*---------------------------------------------------------------------------------
-//  0.0 Utilities - used in development only - to be removed from final submission
+//  0.0 Utilities - 
 //-------------------------------------------------------------------------------*/
 
-/*--------
+/*---used in development only - to be removed from final submission
 function checkifNaN(x) {
     if (isNaN(x)) {
       return NaN;
@@ -53,6 +53,19 @@ function checkifNaN(x) {
 //let test = document.getElementById('btn-test1');
 //test.addEventListener('click', endRoundUpdateBalance);
 
+$(".block-title").click(function() {
+    $(this).siblings(".inner-content").slideToggle('fade');
+});
+
+$('.block-title').click(function(e){
+    e.preventDefault();
+
+    var itemTop = $($(this).siblings(".inner-content")).offset().top;
+    var itemHeight = $($(this).siblings(".inner-content")).height();
+    var windowHeight = $(window).height();
+    
+    $('html,body').animate({scrollTop:itemTop + itemHeight/2 - windowHeight/2},500)
+});
 
 
 
@@ -63,20 +76,20 @@ function checkifNaN(x) {
 //-------------------------------------------------------------------------------*/
 
 
+/*-------
 
-//let minerClass = document.getElementById('miner-class').innerText;
 let minerChance = parseInt(document.getElementById('miner-chance').innerText);
 let minerPowerConsumption = parseInt(document.getElementById('miner-consumption').innerText);
 let powerRate = parseInt(document.getElementById('power-rate').innerText);
 console.log("1. onload minerChance =", minerChance);                                            //development only - to be removed
-// console.log(checkifNaN(minerChance));                                                        //development only - to be removed
+
 console.log("2. onload powerUsage =", minerPowerConsumption);                                   //development only - to be removed
-// console.log(checkifNaN('minerPowerConsumption'));                                            //development only - to be removed
+
 console.log("3. onload powerRate =", powerRate);                                                //development only - to be removed
-// console.log(checkifNaN(powerRate));                                                          //development only - to be removed
+
 
 let blockSuccess;
-
+-------*/
 
 /*---------------------------------------------------------------------------------
 //   0.2 - Game data tables / library;
