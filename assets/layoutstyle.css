@@ -10,7 +10,7 @@
    /*---Font Color Variables---*/
 
 --ink0:rgb(0,0,0);          /*-- black----------------------*/
---ink1:rgb(42,42,49);       /*-- off-black -----------------*/
+--ink1:rgb(51,51,51);       /*-- off-black -----------------*/
 --ink2:rgb(246,143,8);      /*-- orange --------------------*/ 
 --ink3:rgb(184,134,11);     /*-- deep orange ---------------*/  
 --ink4:rgb(119, 112, 104);  /*-- light grey + orange hue ---*/
@@ -39,16 +39,35 @@ h5 {font-size:clamp(28px, 5vw, 44px);}
 
 
  #full-screen {
-    min-height: 100vh;
-    background-color: var(--ink1);
-    padding-left:2vw;
-    padding-right:2vw;
+    
+    background-color: var(ink--0);
+    padding: 0;
+    margin:0;
+
 }
 
 #zone1 {
    
-    color: var(--ink2);
+    background-color: rgba(0,0,0,0);
 
+
+}
+
+
+#zone1-heroimg {
+
+background-image: url(../assets/images/Hero-1920x1080.V2.png);
+background-position: 50pos 50pos; 
+background-repeat: no-repeat; 
+background-size: contain; 
+background-attachment:fixed;
+height:100vh;
+}
+
+
+#zone1-title {
+    background-color: red;
+    
 
 }
 
@@ -66,12 +85,6 @@ h5 {font-size:clamp(28px, 5vw, 44px);}
 #zone4 {
     
     
-}
-
-#zone1-title {
-    margin-top:20vh;
-    margin-bottom:20vh;
-
 }
 
 .block-outer {
@@ -107,7 +120,7 @@ h5 {font-size:clamp(28px, 5vw, 44px);}
 
 
 .game-panel {
-    background-color: var(--ink2);
+    /*--background-color: var(--ink2);--*/
     color: var(--ink0);
     border: solid 2px var(--ink0);
 }
