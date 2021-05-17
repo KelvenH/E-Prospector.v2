@@ -5,68 +5,87 @@
 /*---------------Font Types------------------------------------------------------*/
 
 
+/*----
+@font-face {
+    font-family: 'Mylodon';
+    src: url('../fonts/Mylodon-Regular.otf') format('otf');
+}
+-------*/
+
+@font-face {
+    src:url('../fonts/Mylodon-Regular.otf');
+    font-family:'special';
+    }
+
+
+@font-face {
+    src:url('../fonts/Mylodon-Light.otf');
+    font-family:'special-light';
+    }
+
 
 /*----------------------------Global Root Variables---------------------------------------*/
 
 :root {
 
-                 /*---Font Variables---*/
+/*---Font Variables---*/
 
- 
+--specialfont1:'special', Arial, sans-serif; /*-- used for main headers----------------------*/
+--specialfont-light:'special-light', Arial, sans-serif; /*-- used for content----------------------*/
+
 
 
                 
-                /*---Font Sizing Variables-----(only defined for specific instances where need to override - as typically fonts-sizings matched by element type (i.e. H1) to the responsive font groupings as tabled below---*/
+/*---Font Sizing Variables-----(only defined for specific instances where need to override - as typically fonts-sizings matched by element type (i.e. H1) to the responsive font groupings as tabled below---*/
 
 
 
    /*---Font Color Variables---*/
 
-   --ink0:rgb(0,0,0);          /*-- black----------------------*/
-   --ink1:rgb(18,36,51);       /*-- off-black -----------------*/
-   --ink2:rgb(246,143,8);      /*-- orange --------------------*/ 
-   --ink3:rgb(184,134,11);     /*-- deep orange ---------------*/  
-   --ink4:rgb(119, 112, 104);  /*-- light grey + orange hue ---*/
-   --ink5:#303030;             /*-- dark grey -----------------*/ 
-   --ink6:rgb(255,239,213);    /*-- papayawhip ----------------*/ 
-   --ink7:rgb(3,136,3);        /*-- green ---------------------*/
+   --ink1-black:rgb(0,0,0);                  /*-- black----------------------*/
+   --ink2-offblacksolid:rgba(29,40,49,1);    /*-- blue-black (solid) main b/ground----*/
+   --ink3-offblacksemi:rgba(29,40,49,0.5);   /*-- blue-black (semi-transparent) - to blend with hero image------*/
+   --ink4-blueblack:rgb(10,25,35);           /*-- off-black - mid-level panel ----------------*/
    
-      /*----Special Font Colors----*/
-   
-   --LED1:   rgba(0,217,255,1);      /*--LED screens , ticker and digital - hex value #00d9ff-------*/
-   --glass1: rgba(0,196,255,0.9);    /*--svg glass edge  - hex value 00d9ff--*/
-   --glass2: rgba(107,196,255,0.18); /*--svg glass fill w high transparency - hex value #6bc4dff--*/
-   --glass3: rgba(0,0,0,0.3);      /*--black 50% transparency---*/
+   --ink5-LED1:   rgba(0,217,255,1);         /*--Bright Teal Blue LED-------*/
+   --ink6-LED2:   rgba(0,196,255,0.9);       /*--Blue LED ------------------*/
+   --ink7-LED3:   rgba(0,196,255,0.9);       /*--Dimmer Blue----------------*/
+   --ink7-glass1: rgba(107,196,255,0.18);    /*--svg glass fill w high transparency --*/
+   --ink8-glass2: rgba(0,0,0,0.3);           /*--black 50% transparency---*/
+
+   --ink9:rgb(255,239,213);                 /*-- papayawhip ----------------*/
+   --ink10:rgb(250,250,250);                 /*-- XXXXX --------------------*/ 
+   --ink11:rgb(250,250,250,);                /*-- XXXXX --------------------*/ 
+   --ink12:rgb(250,250,250);                 /*-- XXXXX --------------------*/   
  
 }
 
 
 
 /*---------------------Responsive Font Groups -----------------------------------------*/
-body, div, p {font-size:clamp(16px, 2vw, 2vw);}
-h2 {font-size:clamp(28px, 6vw, 6vw);}
 
-/*--h1 {font-size:clamp(28px, 6vw, 6vw);}
-h3 {font-size:clamp(28px, 5vw, 44px);}
-h4 {font-size:clamp(28px, 5vw, 44px);}
-h5 {font-size:clamp(28px, 5vw, 44px);}
- --*/
+h1 {font-size:clamp(28px, 6vw, 6vw);color:var(--ink5-LED1)}
+h2 {font-size:clamp(26px, 5vw, 5vw);color:var(--ink5-LED1)}
+h3 {font-size:clamp(24px, 4vw, 4vw);color:var(--ink5-LED1)}
+h4 {font-size:clamp(22px, 3vw, 3vw);color:var(--iink5-LED1)}
+h5 {font-size:clamp(20px, 2.5vw, 2.5vw);color:var(--iink5-LED1)}
+body, div, p {font-size:clamp(16px, 2vw, 2vw);font-family: var(--specialfont-light); color:var(--ink7-LED3);}
 
+ 
 
 
  /*---------------------Temp - Schedule Page-------------------------------*/
 
 .schedule-fullScreen {
-    color: black;
-    background-color: grey;
+    color:var(--ink-black);
+    background-color: var(--ink-glass1);
 }
 
 
 
 /*---------------------Full Page -----------------------------------------*/
 #top-screen, #mid-screen, #lower-screen {
-    background-color: var(--ink1);
-    color:var(--LED1);
+    background-color: var(--ink2-offblacksolid);
     }
     
     #top-screen {
@@ -78,12 +97,16 @@ h5 {font-size:clamp(28px, 5vw, 44px);}
     padding-left: 2vw;
     padding-right: 2vw;
     }
-    
+
+    .breaker-line {
+    background-image: linear-gradient(to right, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
+    height:0.5vh;
+    }
     
     /*---------------------Top Screen (zone 1 : Landing Screen) -----------------------------------------*/
     #zone1 {
     width:100vw;
-    background-color: var(--ink1);
+    background-color: var(--ink2-offblacksolid);
     }
     
     #zone1-content {
@@ -124,26 +147,23 @@ h5 {font-size:clamp(28px, 5vw, 44px);}
         text-align:left;
     }
     
-    .block-title1 {
+    .block-title {
         min-height:5vh;
-        border: solid 1px  var(--glass1);
-        align-items: center;
+        font-family: var(--specialfont1);
+        background-image:linear-gradient(to right, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
+        text-align:center;
+        color: var(--ink4-blueblack);
         padding:1vh 0 1vh 1vw;
         cursor: pointer;
         width:100%;
     }
     
-    
-    .block-inner1 {
+        
+    .inner-content1 {
         display: none;
         overflow: hidden;
     }
-    
-    .inner-content1 {
-    
-    }
-    
-    
+
     
     /*---------------------Lower Screen (zone 4 : Game Screen) -----------------------------------------*/
     
@@ -151,56 +171,32 @@ h5 {font-size:clamp(28px, 5vw, 44px);}
         
     }
     
-    .block-title2 {
+   
+    #main-game-wrapper {
+        height: 90vh;
+        position:relative;
         display:flex;
-        min-height:5vh;
-        border: solid 1px  var(--glass1);
-        align-items: center;
-        padding:1vh 0 1vh 1vw;
-        cursor: pointer;
-        width:100%;
+        justify-content:center;
+        align-items:center;
+        background:var(--ink4-blueblack);
     }
     
-    
-    .block-inner2 {
-       overflow: hidden;
-    }
-    
-    .inner-content2 {
-    
-    }
-       
-    /*-- BUG / DEFECT Outstanding; can't adjust width of drop-down either to 'fill' available space or prevent overspill if col width reduced---*/
-
-    .game-panel {
-        /*--background-color: var(--ink2);--*/
-        color: var(--glass1);
-        border: solid 2px var(--ink0);
-    }
- 
-    #miners-table {
-        padding:1vh 1vw;
-        border: solid 1px var(--glass1);
-        width: 100%;
-        table-layout:fixed;
-        margin: 20px auto;
-    }
-    
-    table,
-    td,
-    th {
-      border-collapse: collapse;
+    .styled-pane {
+        margin: 0;
+        padding: 0;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
     }
 
-    th, td {
-    padding: 10px;
-    border: solid 1px;
-    text-align: center;
-    }
 
-.w {
-  width: 400px;
-}
+
+   #game-main-upper {
+       height:45vh;
+       background-color:grey;
+       color:red;
+   }
 
     .miner-list {
         min-width:100%;
@@ -210,9 +206,19 @@ h5 {font-size:clamp(28px, 5vw, 44px);}
         word-wrap: break-word;
     }
 
-/*---Former css - FOR REVIEW AND REMOVAL
+    #game-main-lower {
+        height:45vh;
+        background-color:lightsteelblue;
+    }
+
+    #game-main-lower-left {
+        background-color:rgb(63, 61, 61);
+    }
 
 
+    #game-main-lower-right {
+        background-color:darkslateblue;
+    }
 
 
 

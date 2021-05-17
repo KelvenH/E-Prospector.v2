@@ -53,7 +53,7 @@ function checkifNaN(x) {
 //let test = document.getElementById('btn-test1');
 //test.addEventListener('click', endRoundUpdateBalance);
 
-$(".block-title1").click(function() {
+$(".show-pane").click(function() {
     $(this).siblings(".inner-content1").slideToggle('fade');
 });
 
