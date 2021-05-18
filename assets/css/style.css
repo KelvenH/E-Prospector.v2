@@ -65,16 +65,17 @@
     margin:0;
 }
 
-/*---------------------Responsive Font Groups -----------------------------------------*/
+/*---------------------Responsive Font Groups -----------------------------*/
+html {font-size: 100%;} /*16px*/
+h1 {font-size: 4.209rem;color:var(--ink5-LED1)}
+h2 {font-size: 3.157rem;color:var(--ink5-LED1)}
+h3 {font-size: 2.369rem;color:var(--ink5-LED1)}
+h4 {font-size: 1.777rem;color:var(--iink5-LED1)}
+h5 {font-size: 1.333rem;color:var(--iink5-LED1)}
+body, div, p {font-size: 1rem;font-family: var(--specialfont-light); color:var(--ink7-LED3);}
+.text_small {font-size: 0.75rem;}
 
-h1 {font-size:clamp(28px, 6vw, 6vw);color:var(--ink5-LED1)}
-h2 {font-size:clamp(26px, 5vw, 5vw);color:var(--ink5-LED1)}
-h3 {font-size:clamp(24px, 4vw, 50px);color:var(--ink5-LED1)}
-h4 {font-size:clamp(22px, 3vw, 3vw);color:var(--iink5-LED1)}
-h5 {font-size:clamp(14px, 1vw, 1vw);color:var(--iink5-LED1)}
-body, div, p {font-size:clamp(16px, 1.5vw, 1.5vw);font-family: var(--specialfont-light); color:var(--ink7-LED3);}
 
- 
 
 
  /*---------------------Temp - Schedule Page-------------------------------*/
@@ -178,68 +179,118 @@ body, div, p {font-size:clamp(16px, 1.5vw, 1.5vw);font-family: var(--specialfont
     /*---------------------Lower Screen (zone 4 : Game Screen) -----------------------------------------*/
     
     #zone4 {
-     margin:0;   
+        margin:0;   
     }
 
 
     #main-game-wrapper {
         margin: 0;
-        padding:0;
-        height: 500vh;                   /*--revert to 90vh after test card removed ---*/
-        position:relative;
-        background:var(--ink2-offblacksolid);
-    }
-    
-    #game-main-upper {
-
-        height:45vh;
-        
-    }
-
-    .styled-pane-under {
-        margin:0;
-        padding:0;
-        background:var(--ink4-blueblack);
         padding:1em;
-        height:7%;
+        height: 90vh;                   
+        position:relative;
+        background:var(--ink4-blueblack);
         border-radius:10px 10px;
         box-shadow: -2px -2px 3px var(--ink8-glass1),
                      2px  2px 6px var(--ink1-black);
     }
-
-    .styled-pane-over {
-        font-weight:bold;
-        align-items:center;
-        background-color:var(--ink4-blueblack);
+    
+    #game-main-miner-row {
+        height:50vh;
+        
+    }
+        
+    .styled-pane-card {
+       
         display:flex;
         flex-direction:column;
-        justify-items:center;
-        margin:0 0.5vw 0.5vh 0.5vw;
+        align-items: start;
+        justify-items: start;
+        background-color:var(--ink4-blueblack);
+        font-weight:bold;
         border-radius:10px 10px;
-        height:7vh;
-        width:100%;
-        cursor: pointer;
         box-shadow: -2px -2px 3px var(--ink8-glass1),
-                     2px  2px 6px var(--ink1-black);
+        2px  2px 6px var(--ink1-black);
+        cursor: pointer;
+
     }
-    
-    .styled-pane-over h5 {
-        
+
+    .styled-small {
+        margin-left:0;
+        margin-right:0;
+        margin-top:0;
+        margin-bottom:1rem;
+        padding: 1rem;
+        display:flex;
+        flex-direction:column;
+        flex-wrap:nowrap;
         height:100%;
-        justify-content:center;
+        line-height:3rem;
+        justify-items: center;
+        background-color:var(--ink4-blueblack);
+        font-weight:bold;
+        border-radius:10px 10px;
+        box-shadow: -2px -2px 3px var(--ink8-glass1),
+        2px  2px 6px var(--ink1-black);
+        cursor: pointer;
     }
 
-    .styled-header{
-        background-color:var(--ink6-LED2);
-        color:var(--ink4-blueblack);
+
+    .card-body {
+        width:100%;
+        height:100%;
     }
 
-    .styled-header :hover{
+
+    .card-header {
+        padding-left:0;
+        display:inline-block;
+        width:100%;
+        height:100%;
+    }
+
+    .card-header > * {
+        display:inline;
+        
+        
+    }
+
+    .card-icon {
+        margin-left:0;
+        margin-right:1rem; 
+    }
+
+    .card-label {
+        margin-left:0;
+        margin-right:1rem; 
+    }
+
+    .val {
+        display:inline-block;
+        flex-wrap:no-wrap;
+        height:100%;
+        width:12vw;    
+    }
+
+    .val > * {
+        display:inline-block;
+    
+    }
+
+    .box {
+        display:inline-block;
+        flex-wrap:nowrap;
+        min-width:1rem;
+        min-height:1rem;
         background-color:var(--ink5-LED1);
     }
 
+    .card-footer {
+        
+    }
+
+
     /*--bug - only works when internal text is selected - try mouseenter jquery instead? use aspect below for 'checked' items'--*/
-    .styled-pane-over :hover {
+    .styled-pane-card :hover {
         box-shadow: -2px -2px 3px var(--ink8-glass1),
                      2px  2px 6px var(--ink1-black),
                 inset -2px  -2px 10px var(--ink8-glass1),
@@ -249,7 +300,7 @@ body, div, p {font-size:clamp(16px, 1.5vw, 1.5vw);font-family: var(--specialfont
    
 
     /*--use aspect below for 'checked' items'--*/
-    .styled-pane-over :checked {
+    .styled-pane-card :checked {
         color: var(--ink8-glass1);
         box-shadow: 
         inset    -1px -1px 3px var(--ink8-glass1),
@@ -272,64 +323,7 @@ body, div, p {font-size:clamp(16px, 1.5vw, 1.5vw);font-family: var(--specialfont
     height: 40vh;
     }
 
-.c1 {
-height: 7vh;
-}
 
-.c2 {
-    height: 14vh;
-}
-
-.c3 {
-    height: 7vh;
-}
-
-
-
-.styled-pane-under-test {
-    margin:0;
-    padding:0;
-    background:var(--ink4-blueblack);
-    padding:1em;
-    height:7%;
-    border-radius:10px 10px;
-    box-shadow: -2px -2px 3px var(--ink8-glass1),
-                 2px  2px 6px var(--ink1-black);
-}
-
-
-
-#game-main-test {
-    height:500vh;
-}
-
-
-.styled-pane-card-test {
-    background-color:var(--ink4-blueblack);
-    font-weight:bold;
-    border-radius:10px 10px;
-    box-shadow: -2px -2px 3px var(--ink8-glass1),
-    2px  2px 6px var(--ink1-black);
-    /*--
-    
-    
-    
-    display:flex;
-    flex-direction:column;
-    justify-items:center;
-    margin:0 0.5vw 0.5vh 0.5vw;
-    
-    height:7vh;
-    width:30%;
-    height:15vh;
-    cursor: pointer;
-    
-                 --*/
-}
-
-.card-footer {
-    
-}
 
 /*--
     .miner-list {
