@@ -49,8 +49,10 @@
    
    --ink5-LED1:   rgba(0,217,255,1);         /*--Bright Teal Blue LED-------*/
    --ink6-LED2:   rgba(0,189,255,0.8);       /*--Blue LED ------------------*/
+   --ink6-LED2ON: rgba(0,189,255,1);     /*--'Lit' Blue LED ------------------*/
+   --ink6-LED2OFF:rgba(0,189,255,0.2);     /*--'Lit' Blue LED ------------------*/
    --ink7-LED3:   rgba(0,255,241,1);         /*--'Lit''Blue----------------*/
-   --ink8-glass1: rgba(107,196,255,0.18);    /*--svg glass fill w high transparency --*/
+   --ink8-glass1: rgba(107,196,255,0.2);    /*--svg glass fill w high transparency --*/
    --ink9-glass2: rgba(0,0,0,0.3);           /*--black 50% transparency---*/
 
    --ink9:rgb(255,239,213);                 /*-- papayawhip ----------------*/
@@ -67,18 +69,16 @@
 
 /*---------------------Responsive Font Groups -----------------------------*/
 html {font-size: 100%;} /*16px*/
-h1 {font-size: 4.209rem;color:var(--ink5-LED1)}
-h2 {font-size: 3.157rem;color:var(--ink5-LED1)}
-h3 {font-size: 2.369rem;color:var(--ink5-LED1)}
-h4 {font-size: 1.777rem;color:var(--iink5-LED1)}
-h5 {font-size: 1.333rem;color:var(--iink5-LED1)}
-body, div, p {font-size: 1rem;font-family: var(--specialfont-light); color:var(--ink7-LED3);}
-.text_small {font-size: 0.75rem;}
+h1 {font-size: 4.209rem;color:var(--ink6-LED2)}
+h2 {font-size: 3.157rem;color:var(--ink6-LED2)}
+h3 {font-size: 2.369rem;color:var(--ink6-LED2)}
+h4 {font-size: 1.777rem;color:var(--iink6-LED2)}
+h5 {font-size: 1.333rem;color:var(--iink6-LED2)}
+body, div, p {font-size: 1rem;font-family: var(--specialfont-light); color:var(--ink6-LED2);}
+.text_small {font-size: 0.75rem; color:var(--ink6-LED2);}
 
 
-
-
- /*---------------------Temp - Schedule Page-------------------------------*/
+/*---------------------Temp - Schedule Page-------------------------------*/
 
 .schedule-fullScreen {
     color:var(--ink-black);
@@ -89,12 +89,12 @@ body, div, p {font-size: 1rem;font-family: var(--specialfont-light); color:var(-
 
 /*---------------------Full Page -----------------------------------------*/
 
-#fullscreen {
+    #fullscreen {
     width:100vw;
     overflow:hidden;
-}
+    }
 
-#top-screen, #mid-screen, #lower-screen {
+    #top-screen, #mid-screen, #lower-screen {
     background-color: var(--ink2-offblacksolid);
     }
     
@@ -250,13 +250,17 @@ body, div, p {font-size: 1rem;font-family: var(--specialfont-light); color:var(-
 
     .card-header > * {
         display:inline;
-        
-        
+        padding-left:2rem;
+    }
+
+    .card-header > h3 {
+        padding-right:2rem;
     }
 
     .card-icon {
         margin-left:0;
-        margin-right:1rem; 
+        margin-right:1rem;
+        text-align:center; 
     }
 
     .card-label {
@@ -281,7 +285,7 @@ body, div, p {font-size: 1rem;font-family: var(--specialfont-light); color:var(-
         flex-wrap:nowrap;
         min-width:1rem;
         min-height:1rem;
-        background-color:var(--ink5-LED1);
+        background-color:var(--ink6-LED2OFF);
     }
 
     .card-footer {
@@ -334,42 +338,9 @@ body, div, p {font-size: 1rem;font-family: var(--specialfont-light); color:var(-
         word-wrap: break-word;
     }
 
-    #game-main-lower {
-        height:45vh;
-        background-color:lightsteelblue;
-    }
-
-    #game-main-lower-left {
-        background-color:rgb(63, 61, 61);
-    }
-
-
-    #game-main-lower-right {
-        background-color:darkslateblue;
-    }
-
-
-        box-shadow: -1px -1px 3px rgba(255,255,255,0.1),
-                     2px  2px 6px rgba(0,0,0,0.8);
 
 
 
-/*---------------------Main Body : Left Panel (Mining Device)----------
-
-
-#mining-main {
-    
-    margin-left:12px;
-    margin-right:12px;
-    color:var(--ink1);
-}
-
-
-
-
-.miners-table-sub-section {
-    margin-bottom:2vh;
-}
 
 
 
