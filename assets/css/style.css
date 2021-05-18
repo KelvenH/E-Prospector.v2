@@ -42,16 +42,16 @@
 
    /*---Font Color Variables---*/
 
-   --ink1-black:rgb(0,0,0);                  /*-- black----------------------*/
+   --ink1-black:rgba(0,0,0,0.8);                  /*-- black----------------------*/
    --ink2-offblacksolid:rgba(29,40,49,1);    /*-- blue-black (solid) main b/ground----*/
-   --ink3-offblacksemi:rgba(29,40,49,0.5);   /*-- blue-black (semi-transparent) - to blend with hero image------*/
+   --ink3-offblacksemi:rgba(29,40,49,0.7);   /*-- blue-black (semi-transparent) - to blend with hero image------*/
    --ink4-blueblack:rgb(10,25,35);           /*-- off-black - mid-level panel ----------------*/
    
    --ink5-LED1:   rgba(0,217,255,1);         /*--Bright Teal Blue LED-------*/
-   --ink6-LED2:   rgba(0,196,255,0.9);       /*--Blue LED ------------------*/
-   --ink7-LED3:   rgba(0,196,255,0.9);       /*--Dimmer Blue----------------*/
-   --ink7-glass1: rgba(107,196,255,0.18);    /*--svg glass fill w high transparency --*/
-   --ink8-glass2: rgba(0,0,0,0.3);           /*--black 50% transparency---*/
+   --ink6-LED2:   rgba(0,189,255,0.8);       /*--Blue LED ------------------*/
+   --ink7-LED3:   rgba(0,255,241,1);         /*--'Lit''Blue----------------*/
+   --ink8-glass1: rgba(107,196,255,0.18);    /*--svg glass fill w high transparency --*/
+   --ink9-glass2: rgba(0,0,0,0.3);           /*--black 50% transparency---*/
 
    --ink9:rgb(255,239,213);                 /*-- papayawhip ----------------*/
    --ink10:rgb(250,250,250);                 /*-- XXXXX --------------------*/ 
@@ -60,16 +60,19 @@
  
 }
 
-
+.container {
+    padding:0;
+    margin:0;
+}
 
 /*---------------------Responsive Font Groups -----------------------------------------*/
 
 h1 {font-size:clamp(28px, 6vw, 6vw);color:var(--ink5-LED1)}
 h2 {font-size:clamp(26px, 5vw, 5vw);color:var(--ink5-LED1)}
-h3 {font-size:clamp(24px, 4vw, 4vw);color:var(--ink5-LED1)}
+h3 {font-size:clamp(24px, 4vw, 50px);color:var(--ink5-LED1)}
 h4 {font-size:clamp(22px, 3vw, 3vw);color:var(--iink5-LED1)}
-h5 {font-size:clamp(20px, 2.5vw, 2.5vw);color:var(--iink5-LED1)}
-body, div, p {font-size:clamp(16px, 2vw, 2vw);font-family: var(--specialfont-light); color:var(--ink7-LED3);}
+h5 {font-size:clamp(14px, 1vw, 1vw);color:var(--iink5-LED1)}
+body, div, p {font-size:clamp(16px, 1.5vw, 1.5vw);font-family: var(--specialfont-light); color:var(--ink7-LED3);}
 
  
 
@@ -84,6 +87,12 @@ body, div, p {font-size:clamp(16px, 2vw, 2vw);font-family: var(--specialfont-lig
 
 
 /*---------------------Full Page -----------------------------------------*/
+
+#fullscreen {
+    width:100vw;
+    overflow:hidden;
+}
+
 #top-screen, #mid-screen, #lower-screen {
     background-color: var(--ink2-offblacksolid);
     }
@@ -94,8 +103,7 @@ body, div, p {font-size:clamp(16px, 2vw, 2vw);font-family: var(--specialfont-lig
     }
     
     #mid-screen, #lower-screen {
-    padding-left: 2vw;
-    padding-right: 2vw;
+
     }
 
     .breaker-line {
@@ -154,8 +162,10 @@ body, div, p {font-size:clamp(16px, 2vw, 2vw);font-family: var(--specialfont-lig
         text-align:center;
         color: var(--ink4-blueblack);
         padding:1vh 0 1vh 1vw;
+        margin-bottom:0.5vh;
         cursor: pointer;
-        width:100%;
+        
+        width:100vw;
     }
     
         
@@ -168,36 +178,109 @@ body, div, p {font-size:clamp(16px, 2vw, 2vw);font-family: var(--specialfont-lig
     /*---------------------Lower Screen (zone 4 : Game Screen) -----------------------------------------*/
     
     #zone4 {
-        
+     margin:0;   
     }
-    
-   
+
+
     #main-game-wrapper {
+        margin: 0;
+        padding:0;
         height: 90vh;
         position:relative;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        background:var(--ink4-blueblack);
+        background:var(--ink2-offblacksolid);
     }
     
-    .styled-pane {
-        margin: 0;
-        padding: 0;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        flex-direction:column;
+    #game-main-upper {
+
+        height:45vh;
+        
     }
 
+    .styled-pane-under {
+        margin:0;
+        padding:0;
+        background:var(--ink4-blueblack);
+        padding:1em;
+        height:7%;
+        border-radius:10px 10px;
+        box-shadow: -2px -2px 3px var(--ink8-glass1),
+                     2px  2px 6px var(--ink1-black);
+    }
+
+    .styled-pane-over {
+        font-weight:bold;
+        align-items:center;
+        background-color:var(--ink4-blueblack);
+        display:flex;
+        flex-direction:column;
+        justify-items:center;
+        margin:0 0.5vw 0.5vh 0.5vw;
+        border-radius:10px 10px;
+        height:7vh;
+        width:100%;
+        cursor: pointer;
+        box-shadow: -2px -2px 3px var(--ink8-glass1),
+                     2px  2px 6px var(--ink1-black);
+    }
+    
+    .styled-pane-over h5 {
+        
+        height:100%;
+        justify-content:center;
+    }
+
+    .styled-header{
+        background-color:var(--ink6-LED2);
+        color:var(--ink4-blueblack);
+    }
+
+    .styled-header :hover{
+        background-color:var(--ink5-LED1);
+    }
+
+    /*--bug - only works when internal text is selected - try mouseenter jquery instead? use aspect below for 'checked' items'--*/
+    .styled-pane-over :hover {
+        box-shadow: -2px -2px 3px var(--ink8-glass1),
+                     2px  2px 6px var(--ink1-black),
+                inset -2px  -2px 10px var(--ink8-glass1),
+                inset 2px  2px 10px var(--ink1-black);
+    }
+
+   
+
+    /*--use aspect below for 'checked' items'--*/
+    .styled-pane-over :checked {
+        color: var(--ink8-glass1);
+        box-shadow: 
+        inset    -1px -1px 3px var(--ink8-glass1),
+        inset     2px  2px 6px var(--ink1-black);
+    }
+    
+    #game-main-lower-left {
+    height: 40vh;
+   
+    }
+    
+    #game-main-lower-right {
+    height: 40vh;
+    }
+
+.c1 {
+height: 7vh;
+}
+
+.c2 {
+    height: 14vh;
+}
+
+.c3 {
+    height: 7vh;
+}
 
 
-   #game-main-upper {
-       height:45vh;
-       background-color:grey;
-       color:red;
-   }
 
+
+/*--
     .miner-list {
         min-width:100%;
         display:flex;
@@ -221,7 +304,8 @@ body, div, p {font-size:clamp(16px, 2vw, 2vw);font-family: var(--specialfont-lig
     }
 
 
-
+        box-shadow: -1px -1px 3px rgba(255,255,255,0.1),
+                     2px  2px 6px rgba(0,0,0,0.8);
 
 
 

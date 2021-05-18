@@ -1,88 +1,180 @@
-<!-- outline:
+
+<h3 class="panel-title">Mining Devices</h3><table id="miners-table">
+                            <colgroup>
+                                <col class="w">
+                                <col>
+                                <col>
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr id="miner-details" class="row">
+                                    <th>Name</th>
+                                    <th>Chance</th>
+                                    <th>Power</th>
+                                    <th>Reliability</th>
+                                </tr>
+                                <!--close miner table headers-->
+                            </thead>
+                            <tbody>
+                                <tr id="miner1" class="row">
+                                        <td>
+                                            <select id="miner-list" class="field-value">
+                                                <option value="" selected disabled hidden>Make a Selection</option>
+                                            </select>
+                                        </td>
+            
+                                        <td class="field-value">
+                                            <div>1 in <span id="miner-chance">0</span>
+                                            </div>
+                                        </td>
+            
+                                        <td id="miner-consumption" class="field-value"><span>0</span> k/w per block</td>
+            
+                                        <td id="miner-reliability" class="field-value">0</td>
+                                    </tr>
+                                    <!--close miner 1 details row-->                                   
+                            </tbody>
+                            
+                        </table>    <!--close miners-table-->
+
+                        <!--additional miners to be unlocked here-->
+
+                        <div class="row g-2 miners-table-sub-section">
+                            <div class="col text-end">
+                                <p for="power-rate">Cost per Unit:</p>
+                            </div>
+
+                            <div class="col">
+                                <p class="field-value">£ <span id="power-rate">0</span> per k/w</p>
+                            </div>
+
+                        </div> <!-- close power-main-row -->
+
+                    </div> <!-- close block-inner2 col -->
+
+                    <div class="col-12 game-panel">
+                        Center Panel - Action Buttons
+                        <div id="box2">
+                            <button type="button" id="btn-open-upgrade-modal" class="btn btn-lg btn-info"
+                                data-bs-toggle="modal" data-bs-target="#modal-upgrade-miner">
+                                Upgrade Mining Device
+                            </button>
+                            <button id="btn-play" type="button" data-type="submit" class="btn btn-lg btn-success">Mine
+                                Block!
+                            </button>
+                            <!-- Bug Fix: jQuery added to disbale button on-load and enable after miner selection made (orig fix application / removal of BS class switched to JQuery property change as class name could be manually changed user side)-->
+                        </div>
+                    </div>
+                </div> <!-- close main-body-->
+
+                <div class="col-12 game-panel">
+                    <div id="center-panel" class="col-4">
+                        <div id="gameplay-main" class="row">
+                            <div class="col">
+                                <h3 class="panel-title">Game Panel</h3>
+                                <div class="row g-2">
+                                    <div id="terminal-window" class="col-12 mx-auto digital-value">
+                                        <div class="row">
+                                            <div id="terminal-labels" class="col-6 text-end">
+                                                <label for="terminal-status">Miner Status:</label>
+                                                <label for="terminal-device1-key">Device Cryptography
+                                                    Key:</label>
+                                                <label for="terminal-block1-id">Blockchain ID:</label>
+                                            </div>
+                                            <div id="terminal-values" class="col-4 ">
+                                                <p id="terminal-status">Inactive</p>
+                                                <p id="terminal-key-device1">0</p>
+                                                <p id="terminal-key-block1">0</p>
+                                            </div>
+                                        </div>
+                                    </div> <!-- close terminal-window-->
+                                </div> <!-- close terminal-row-->
+
+                                <div class="row">
+                                    <div class="d-grid col-10 gap-3 mx-auto">
+
+                                    </div>
+                                </div> <!-- close buttons-row-->
+                            </div>
+                        </div> <!-- close game-play-main-->
+                    </div> <!-- close center-panel-->
 
 
-header
-
-main body
-    - left hand panel 
-        - mining device 
-            - info panel
-            - upgrade
-        - power 
-    
-
-    - middle panel 
-        - start mining    
-        - game cycle (status, outcome, events)
-    
-    - right hand panel
-        - stats balance £ / crypto), game round, totals (rnds played, p&l, )
-
-row footer
-
--->
 
 
-    <!--placeholder
-   
+                    <div id="right-panel" class="col-4">
+                        <div id="stats-main" class="row">
+                            <div class="col">
+                                <h3 class="panel-title">Game Stats</h3>
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-5 text-end">
+                                        <h4>Balance:</h4>
+                                    </div>
+                                    <div class="col-5">
+                                        <p class="digital-value text-end"><span>£</span><span
+                                                id="balance-current">100</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!--close balance row-->
+                            </div>
+                        </div><!-- close stats-main-->
+                    </div><!-- close right-panel-->
+                </div>
 
-<!--
-                
-                    
-                        <div class="components">Components
-                            <p class="motherboard">Motherboard</p>
-                            <p class="GPU">GPU</p>
-                            <p class="CPU">CPU</p>
-                            <p class="RAM">RAM</p>
-                            <p class="storage">Storage</p>
-                        </div>  close components-->
-<!--
-                        <div class="performance">Performance
-                            <p class="speed">Mining Speed</p>
-                            <p class="power-consump">Power Consumption</p>
-                            <p class="likelihood">Likelihood of Success</p>
-                            <p class="quality">Quality</p>
-                            <p class="max-coin-storage">Max. Coin Storage</p>
-                        </div> close performance-->
-
-
-                        
-                         <!--placeholder
-    
-
-
-
-
-<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Show a second modal and hide this one with the button below.
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Hide this modal and show the first with the button below.
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Back to first</button>
-      </div>
-    </div>
-  </div>
-</div>
-<a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a>
+                <!-- Upgrade Modal -->
+                <div class="modal fade" id="modal-upgrade-miner" aria-hidden="true"
+                    aria-labelledby="UpgradeModalToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <!--modal-lg for inceased width over default-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-upgrade-title">Upgrade Shop</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>Welcome to Byte I.T. - here for all your crypto-mining
+                                                needs!</h4>
+                                            <p>All of our upgrades offer an improved chance of success out
+                                                in them there
+                                                digital goldmines.... our prices aren't very competitive
+                                                (well there's no
+                                                Amazon to contest here!)</p>
+                                        </div>
+                                        <!--close fullwidth col-->
+                                    </div>
+                                    <!--close modal intro row col-->
+                                    <div class="row row-cols-5">
+                                        <div class="col">
+                                            <h6>Tier</h6>
+                                        </div>
+                                        <div class="col">
+                                            <h6>£ Price</h6>
+                                        </div>
+                                        <div class="col">
+                                            <h6>Power Consumption</h6>
+                                        </div>
+                                        <div class="col">
+                                            <h6>Success Rate (1 in ?)</h6>
+                                        </div>
+                                        <div class="col">
+                                            <h6>Reliability (0 - 20)</h6>
+                                        </div>
+                                    </div>
+                                    <!--close modal-body row 1-->
+                                </div>
+                                <!--close modal-body container-->
+                            </div>
+                            <!--close modal-body---->
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-dismiss="modal">Leave
+                                    shop</button>
+                            </div>
+                            <!--close modal-body---->
+                        </div>
+                    </div>
+                </div>

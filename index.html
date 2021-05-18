@@ -20,130 +20,281 @@
 
 </head>
 
-<body>
+<section>
 
     <!---Bootstrap class names p (padding) m (margin) g (gutter) l (left) r (right) x (left & right)t (top) b (bottom) y (top & bottom) 3 (sizing 0 - 5) -->
-
-    <div id="top-screen" class="container-fluid justify-content-center">
-        <section id="zone1" class="row g-0 no-gutters d-flex text-center">
-            <div id="temp-row" class="col-12">
-                <div id="zone1-content">
-                    <div id="zone1-heroimage">
-                        <picture>
-                            <source media="(orientation: landscape)" srcset="./assets/images/Hero-v3-small.png 576w,
+    <section id="fullscreen">
+        <div id="top-screen" class="container-fluid justify-content-center">
+            <section id="zone1" class="row g-0 no-gutters d-flex text-center">
+                <div id="temp-row" class="col-12">
+                    <div id="zone1ƒ-content">
+                        <div id="zone1-heroimage">
+                            <picture>
+                                <source media="(orientation: landscape)" srcset="./assets/images/Hero-v3-small.png 576w,
                                         ./assets/images/Hero-v3-medium.png 768w,
                                         ./assets/images/Hero-v3-large.png 992w,
                                         ./assets/images/Hero-v3-xlarge.png 1200w,
                                         ./assets/images/Hero-v3-xxlarge.png 1920w" sizes="100vw">
 
-                            <source media="(orientation: portrait)" srcset="./assets/images/Hero-v3-small-portrait.png 576w,
+                                <source media="(orientation: portrait)" srcset="./assets/images/Hero-v3-small-portrait.png 576w,
                                         ./assets/images/Hero-v3-medium-portrait.png 768w" sizes="100vw">
 
-                            <img id="hero-img" class="img-fluid" src="./assets/images/Hero-v3-small.png"
-                                alt="digital block">
-                        </picture>
+                                <img id="hero-img" class="img-fluid" src="./assets/images/Hero-v3-small.png"
+                                    alt="digital block">
+                            </picture>
 
-                    </div>
-                    <h3 id="zone1-strapline">
-                        <!--remove if not used-->
-                    </h3>
-                </div>
-            </div>
-        </section>
-    </div>
-    <!--close top screen-->
-
-    <div id="mid-screen" class="container-fluid justify-content-center">
-        <!--zone2 cypto explained -->
-        <section id="zone2" class="row d-flex">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 block-outer1">
-                        <h3 class="col-6 block-title show-pane">
-                            Crypto-Mining '101'
+                        </div>
+                        <h3 id="zone1-strapline">
+                            <!--remove if not used-->
                         </h3>
-                        <div class="col-12 inner-content1">
-                            Collapsible panel with content - full width
-                            <ul>
-                                <li>So what is crypto-mining.......</li>
-                                <li>Common terms...</li>
-                                <li>Link to external resources....</li>
-                            </ul>
-                            <div class="breaker-line">
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!--close top screen-->
+
+        <div id="mid-screen" class="container-fluid justify-content-center">
+            <!--zone2 cypto explained -->
+            <section id="zone2" class="row d-flex">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 block-outer1 justify-content-center">
+                            <h3 class="col-6 block-title show-pane">
+                                Crypto-Mining '101'
+                            </h3>
+                            <div class="col-12 inner-content1">
+                                Collapsible panel with content - full width
+                                <ul>
+                                    <li>So what is crypto-mining.......</li>
+                                    <li>Common terms...</li>
+                                    <li>Link to external resources....</li>
+                                </ul>
+                                <div class="breaker-line">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section> <!-- close zone 2 / crypto 101-->
+            </section> <!-- close zone 2 / crypto 101-->
 
-        <!--zone3 learn to play zone -->
-        <section id="zone3" class="row d-flex">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 block-outer1">
-                        <h3 class="col-9 block-title show-pane">
-                            How to Play
-                        </h3>
-                        <div class="col-12 inner-content1">
-                            Collapsible panel with content - full width
-                            <ul>
-                                <li>choose miner (stats).....</li>
-                                <li>upgrade device (cost v benefit)...</li>
-                                <li>power (consumption & costs)....</li>
-                                <li>bank / coin balance.... </li>
-                                <li>end game?...... </li>
-                                <li>TBC e.g. events...... </li>
-                            </ul>
-                            <div class="breaker-line">
+            <!--zone3 learn to play zone -->
+            <section id="zone3" class="row d-flex">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 block-outer1">
+                            <h3 class="col-9 block-title show-pane">
+                                How to Play
+                            </h3>
+                            <div class="col-12 inner-content1">
+                                Collapsible panel with content - full width
+                                <ul>
+                                    <li>choose miner (stats).....</li>
+                                    <li>upgrade device (cost v benefit)...</li>
+                                    <li>power (consumption & costs)....</li>
+                                    <li>bank / coin balance.... </li>
+                                    <li>end game?...... </li>
+                                    <li>TBC e.g. events...... </li>
+                                </ul>
+                                <div class="breaker-line">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section> <!-- close zone 3 / learn -->
-    </div> <!-- close mid-screen (zones 2 & 3) -->
+            </section> <!-- close zone 3 / learn -->
+        </div> <!-- close mid-screen (zones 2 & 3) -->
 
-    <div id="lower-screen" class="container-fluid justify-content-center">
-        <!--zone4 game zone -->
-        <section id="zone4" class="row d-flex">
-            <h3 id="block-title-play" class="col-12 block-title">
-                Play
-            </h3>
+        <div id="lower-screen" class="container-fluid justify-content-center">
+            <!--zone4 game zone -->
+            <section id="zone4" class="row d-flex">
+                <h3 id="block-title-play" class="col-12 block-title">
+                    Play
+                </h3>
 
-            <section class="col-12" id="main-game-wrapper">
-                TMP TEXT - MAIN GAME WRAPPER
-                <div id="game-main-upper" class="row styled-pane">
-                        <p>MAIN MINER TABLE</p>
-                </div>
-                <!--close main-upper row-->
+                <div id="main-game-wrapper">
 
-                <div id="game-main-lower" class="row">
+                    <div id="game-main-upper" class="styled-pane-under">
+                        <div id="miner-table" class="styled-pane-under">
+                            <div id="miner-table-row" class="row align-items-start">
+                                <div class="col styled-pane-over styled-header">
+                                    <h5>Device</h5>
+                                </div>
+                                <div class="col styled-pane-over styled-header">
+                                    <h5>Chance</h5>
+                                </div>
+                                <div class="col styled-pane-over styled-header">
+                                    <h5>Power</h5>
+                                </div>
+                                <div class="col styled-pane-over styled-header">
+                                    <h5>Speed</h5>
+                                </div>
+                                <div class="col styled-pane-over styled-header">
+                                    <h5>Reliability</h5>
+                                </div>
+                                <div class="col styled-pane-over styled-header">
+                                    <h5>Overclocked</h5>
+                                </div>
+                                <div class="col styled-pane-over styled-header">
+                                    <h5>TBD</h5>
+                                </div>
+                            </div>
+                            <!--close miner table header row ---->
 
-                    <div id="game-main-lower-left" class="col-6">
-                        <p>Action Buttons</p>
+                            <div id="miner-table-row" class="row align-items-start">
+                                <div class="col styled-pane-over">
+                                    <h5>Miner 1</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>10</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>20</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>30</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>40</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>50</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>60</h5>
+                                </div>
+                            </div>
+                            <!--close miner table row ---->
+
+                            <div id="miner-table-row" class="row align-items-start">
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                            </div>
+                            <!--close miner table row ---->
+
+                            <div id="miner-table-row" class="row align-items-start">
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                            </div>
+                            <!--close miner table row ---->
+
+                            <div id="miner-table-row" class="row align-items-start">
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                                <div class="col styled-pane-over">
+                                    <h5>Locked</h5>
+                                </div>
+                            </div>
+                            <!--close miner table row ---->
+                        </div>
+                        <!--close miner-table-->
                     </div>
-                    <!--close main-lower-left -->
+                    <!--close main-upper-->
 
-                    <div id="game-main-lower-right" class="col-6">
-                        <p>Stats / Info / Balance</p>
+                    <div id="game-main-lower" class="row styled-pane-under">
+
+                        <div id="game-main-lower-left" class="col styled-pane-under">
+                            <p>Action Buttons</p>
+                            <div class="styled-pane-over b1">
+
+                            </div>
+                            <div class="styled-pane-over b2">
+
+                            </div>
+                            <div class="styled-pane-over b3">
+
+                            </div>
+                            <div class="styled-pane-over b4">
+
+                            </div>
+                        </div>
+                        <!--close main-lower-left -->
+
+                        <div id="game-main-lower-right" class="col styled-pane-under">
+                            <p>Stats / Info / Balance</p>
+                            <div class="styled-pane-over c1">
+
+                            </div>
+                            <div class="styled-pane-over c2">
+
+                            </div>
+                            <div class="styled-pane-over c3">
+
+                            </div>
+
+                        </div>
+                        <!--close main-lower-right-->
+
+
                     </div>
-                    <!--close main-lower-right-->
+                    <!--close main-lower row-->
 
-
-                </div>
-                <!--close main-lower row-->
+                </div> <!-- close main game wrapper-->
 
             </section> <!-- close zone 4 / game play-->
 
-    </div> <!-- close lower screen -->
-
+        </div> <!-- close lower screen -->
+    </section>
+    <!--close full screen --->
 
     <script src="./assets/scripts/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
         crossorigin="anonymous"></script>
 
-</body>
+    </body>
 
 </html>
