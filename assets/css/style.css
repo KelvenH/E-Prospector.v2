@@ -185,7 +185,7 @@ body, div, p {font-size:clamp(16px, 1.5vw, 1.5vw);font-family: var(--specialfont
     #main-game-wrapper {
         margin: 0;
         padding:0;
-        height: 90vh;
+        height: 500vh;                   /*--revert to 90vh after test card removed ---*/
         position:relative;
         background:var(--ink2-offblacksolid);
     }
@@ -256,6 +256,13 @@ body, div, p {font-size:clamp(16px, 1.5vw, 1.5vw);font-family: var(--specialfont
         inset     2px  2px 6px var(--ink1-black);
     }
     
+    #game-main-lower {
+
+        height:44vh;
+        
+    }
+
+
     #game-main-lower-left {
     height: 40vh;
    
@@ -279,6 +286,50 @@ height: 7vh;
 
 
 
+.styled-pane-under-test {
+    margin:0;
+    padding:0;
+    background:var(--ink4-blueblack);
+    padding:1em;
+    height:7%;
+    border-radius:10px 10px;
+    box-shadow: -2px -2px 3px var(--ink8-glass1),
+                 2px  2px 6px var(--ink1-black);
+}
+
+
+
+#game-main-test {
+    height:500vh;
+}
+
+
+.styled-pane-card-test {
+    background-color:var(--ink4-blueblack);
+    font-weight:bold;
+    border-radius:10px 10px;
+    box-shadow: -2px -2px 3px var(--ink8-glass1),
+    2px  2px 6px var(--ink1-black);
+    /*--
+    
+    
+    
+    display:flex;
+    flex-direction:column;
+    justify-items:center;
+    margin:0 0.5vw 0.5vh 0.5vw;
+    
+    height:7vh;
+    width:30%;
+    height:15vh;
+    cursor: pointer;
+    
+                 --*/
+}
+
+.card-footer {
+    
+}
 
 /*--
     .miner-list {
