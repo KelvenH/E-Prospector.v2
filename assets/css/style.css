@@ -49,8 +49,8 @@
    
    --ink5-LED1:   rgba(0,217,255,1);         /*--Bright Teal Blue LED-------*/
    --ink6-LED2:   rgba(0,189,255,0.8);       /*--Blue LED ------------------*/
-   --ink6-LED2ON: rgba(0,189,255,1);     /*--'Lit' Blue LED ------------------*/
-   --ink6-LED2OFF:rgba(0,189,255,0.2);     /*--'Lit' Blue LED ------------------*/
+   --ink6-LED2ON: rgba(0,189,255,1);         /*--'Lit' Blue LED ------------------*/
+   --ink6-LED2OFF:rgba(0,189,255,0.2);       /*--'Lit' Blue LED ------------------*/
    --ink7-LED3:   rgba(0,255,241,1);         /*--'Lit''Blue----------------*/
    --ink8-glass1: rgba(107,196,255,0.2);    /*--svg glass fill w high transparency --*/
    --ink9-glass2: rgba(0,0,0,0.3);           /*--black 50% transparency---*/
@@ -193,10 +193,44 @@ body, div, p {font-size: 1rem;font-family: var(--specialfont-light); color:var(-
         box-shadow: -2px -2px 3px var(--ink8-glass1),
                      2px  2px 6px var(--ink1-black);
     }
+
+    #game-main-info-row {
+        height:28vh;
+        margin-top:2vh;
+    }
+
+
+    #game-main-info-left {
+        height: 30vh;
+  
+        
+    }
+
+    #game-main-info-center {
+        height: 30vh;
+        margin-left:1vw;
+        margin-right:1vw;           
+    }
+    
+
+    #message-screen {
+        height:16vh;
+        background-image: repeating-linear-gradient(var(--ink3-offblacksemi), black 1%); 
+
+    }
+
+
+    
+    #game-main-info-right {
+        height: 30vh;
+        
+    }
+
+
     
     #game-main-miner-row {
         height:50vh;
-        
+        margin-top:2vh;
     }
         
     .styled-pane-card {
@@ -234,12 +268,24 @@ body, div, p {font-size: 1rem;font-family: var(--specialfont-light); color:var(-
         cursor: pointer;
     }
 
+#e-wallet {
+        fill:var(--ink6-LED2OFF);
+    }
+    
+
 
     .card-body {
         width:100%;
         height:100%;
     }
 
+    .pwr-rate {
+        display:inline-block;
+    }
+
+    .pwr-rate > * {
+        display:inline;
+    }
 
     .card-header {
         padding-left:0;
@@ -311,21 +357,7 @@ body, div, p {font-size: 1rem;font-family: var(--specialfont-light); color:var(-
         inset     2px  2px 6px var(--ink1-black);
     }
     
-    #game-main-lower {
 
-        height:44vh;
-        
-    }
-
-
-    #game-main-lower-left {
-    height: 40vh;
-   
-    }
-    
-    #game-main-lower-right {
-    height: 40vh;
-    }
 
 
 

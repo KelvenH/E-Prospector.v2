@@ -1,180 +1,158 @@
+<section id="zone4" class="row d-flex">
+                <h2 id="block-title-play" class="col-12 block-title">
+                    Play
+                </h2>
 
-<h3 class="panel-title">Mining Devices</h3><table id="miners-table">
-                            <colgroup>
-                                <col class="w">
-                                <col>
-                                <col>
-                                <col>
-                            </colgroup>
-                            <thead>
-                                <tr id="miner-details" class="row">
-                                    <th>Name</th>
-                                    <th>Chance</th>
-                                    <th>Power</th>
-                                    <th>Reliability</th>
-                                </tr>
-                                <!--close miner table headers-->
-                            </thead>
-                            <tbody>
-                                <tr id="miner1" class="row">
-                                        <td>
-                                            <select id="miner-list" class="field-value">
-                                                <option value="" selected disabled hidden>Make a Selection</option>
-                                            </select>
-                                        </td>
-            
-                                        <td class="field-value">
-                                            <div>1 in <span id="miner-chance">0</span>
+                <div id="main-game-wrapper" class="container ">
+
+                    <div id="game-main-info-row" class="row d-flex g-0 justify-content-between">
+
+                        <div id="game-main-info-left" class="col styled-pane-card">
+                            <div class="col card-grp">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-header d-flex align-items-center">
+                                            <h3>icon</h3>
+                                            <h4>Title</h4>
+                                        </div>
+
+                                        <div class="row d-flex g-0 justify-content-between">
+                                            <div class="col-2 styled-small card-icon">
+                                                <h3>icon</h3>
                                             </div>
-                                        </td>
-            
-                                        <td id="miner-consumption" class="field-value"><span>0</span> k/w per block</td>
-            
-                                        <td id="miner-reliability" class="field-value">0</td>
-                                    </tr>
-                                    <!--close miner 1 details row-->                                   
-                            </tbody>
-                            
-                        </table>    <!--close miners-table-->
-
-                        <!--additional miners to be unlocked here-->
-
-                        <div class="row g-2 miners-table-sub-section">
-                            <div class="col text-end">
-                                <p for="power-rate">Cost per Unit:</p>
-                            </div>
-
-                            <div class="col">
-                                <p class="field-value">£ <span id="power-rate">0</span> per k/w</p>
-                            </div>
-
-                        </div> <!-- close power-main-row -->
-
-                    </div> <!-- close block-inner2 col -->
-
-                    <div class="col-12 game-panel">
-                        Center Panel - Action Buttons
-                        <div id="box2">
-                            <button type="button" id="btn-open-upgrade-modal" class="btn btn-lg btn-info"
-                                data-bs-toggle="modal" data-bs-target="#modal-upgrade-miner">
-                                Upgrade Mining Device
-                            </button>
-                            <button id="btn-play" type="button" data-type="submit" class="btn btn-lg btn-success">Mine
-                                Block!
-                            </button>
-                            <!-- Bug Fix: jQuery added to disbale button on-load and enable after miner selection made (orig fix application / removal of BS class switched to JQuery property change as class name could be manually changed user side)-->
-                        </div>
-                    </div>
-                </div> <!-- close main-body-->
-
-                <div class="col-12 game-panel">
-                    <div id="center-panel" class="col-4">
-                        <div id="gameplay-main" class="row">
-                            <div class="col">
-                                <h3 class="panel-title">Game Panel</h3>
-                                <div class="row g-2">
-                                    <div id="terminal-window" class="col-12 mx-auto digital-value">
-                                        <div class="row">
-                                            <div id="terminal-labels" class="col-6 text-end">
-                                                <label for="terminal-status">Miner Status:</label>
-                                                <label for="terminal-device1-key">Device Cryptography
-                                                    Key:</label>
-                                                <label for="terminal-block1-id">Blockchain ID:</label>
+                                            <div class="col-4 styled-small card-label">
+                                                Info
                                             </div>
-                                            <div id="terminal-values" class="col-4 ">
-                                                <p id="terminal-status">Inactive</p>
-                                                <p id="terminal-key-device1">0</p>
-                                                <p id="terminal-key-block1">0</p>
+                                            <div class="col styled-small">
+                                                ABCD
                                             </div>
                                         </div>
-                                    </div> <!-- close terminal-window-->
-                                </div> <!-- close terminal-row-->
 
-                                <div class="row">
-                                    <div class="d-grid col-10 gap-3 mx-auto">
+                                        <div class="row d-flex g-0 justify-content-between">
+                                            <div class="col-2 styled-small card-icon">
+                                                <h3>icon</h3>
+                                            </div>
+                                            <div class="col-4 styled-small card-label">
+                                                Info
+                                            </div>
+                                            <div class="col styled-small">
+                                                ABCD
+                                            </div>
+                                        </div>
 
+                                        <div class="card-footer">
+                                            <a href="#" class="btn btn-primary">BUTTON??</a>
+
+                                        </div>
+                                        <!--close card footer ---->
                                     </div>
-                                </div> <!-- close buttons-row-->
+                                    <!--close card body---->
+                                </div>
+                                <!--close card  ---->
                             </div>
-                        </div> <!-- close game-play-main-->
-                    </div> <!-- close center-panel-->
+                            <!--close card-col-->
 
+                        </div>
+                        <!--close main-info-left -->
 
+                        <div id="game-main-info-center" class="col styled-pane-card">
+                            <div class="col card-grp">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-header d-flex align-items-center">
+                                            <h3>icon</h3>
+                                            <h4>Title</h4>
+                                        </div>
 
+                                        <div class="row d-flex g-0 justify-content-between">
+                                            <div class="col-2 styled-small card-icon">
+                                                <h3>icon</h3>
+                                            </div>
+                                            <div class="col-4 styled-small card-label">
+                                                Info
+                                            </div>
+                                            <div class="col styled-small">
+                                                ABCD
+                                            </div>
+                                        </div>
 
-                    <div id="right-panel" class="col-4">
-                        <div id="stats-main" class="row">
-                            <div class="col">
-                                <h3 class="panel-title">Game Stats</h3>
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-5 text-end">
-                                        <h4>Balance:</h4>
-                                    </div>
-                                    <div class="col-5">
-                                        <p class="digital-value text-end"><span>£</span><span
-                                                id="balance-current">100</span>
-                                        </p>
+                                        <div class="row d-flex g-0 justify-content-between">
+                                            <div class="col-2 styled-small card-icon">
+                                                <h3>icon</h3>
+                                            </div>
+                                            <div class="col-4 styled-small card-label">
+                                                Info
+                                            </div>
+                                            <div class="col styled-small">
+                                                ABCD
+                                            </div>
+                                        </div>
+
+                                        <div class="card-footer">
+                                            <a href="#" class="btn btn-primary">BUTTON??</a>
+
+                                        </div>
+                                        <!--close card footer ---->
                                     </div>
                                 </div>
-                                <!--close balance row-->
-                            </div>
-                        </div><!-- close stats-main-->
-                    </div><!-- close right-panel-->
-                </div>
+                                <!--close card  ---->
+                            </div> <!--close card-col-->
 
-                <!-- Upgrade Modal -->
-                <div class="modal fade" id="modal-upgrade-miner" aria-hidden="true"
-                    aria-labelledby="UpgradeModalToggleLabel" tabindex="-1">
-                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <!--modal-lg for inceased width over default-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal-upgrade-title">Upgrade Shop</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <h4>Welcome to Byte I.T. - here for all your crypto-mining
-                                                needs!</h4>
-                                            <p>All of our upgrades offer an improved chance of success out
-                                                in them there
-                                                digital goldmines.... our prices aren't very competitive
-                                                (well there's no
-                                                Amazon to contest here!)</p>
+                            <!--close main-info-center -->
+
+
+                            <div id="game-main-info-right" class="col styled-pane-card">
+                                <div class="col card-grp">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-header d-flex align-items-center">
+                                                <h3>icon</h3>
+                                                <h4>Title</h4>
+                                            </div>
+
+                                            <div class="row d-flex g-0 justify-content-between">
+                                                <div class="col-2 styled-small card-icon">
+                                                    <h3>icon</h3>
+                                                </div>
+                                                <div class="col-4 styled-small card-label">
+                                                    Info
+                                                </div>
+                                                <div class="col styled-small">
+                                                    ABCD
+                                                </div>
+                                            </div>
+
+                                            <div class="row d-flex g-0 justify-content-between">
+                                                <div class="col-2 styled-small card-icon">
+                                                    <h3>icon</h3>
+                                                </div>
+                                                <div class="col-4 styled-small card-label">
+                                                    Info
+                                                </div>
+                                                <div class="col styled-small">
+                                                    ABCD
+                                                </div>
+                                            </div>
+
+                                            <div class="card-footer">
+                                                <a href="#" class="btn btn-primary">BUTTON??</a>
+
+                                            </div>
+                                            <!--close card footer ---->
                                         </div>
-                                        <!--close fullwidth col-->
+                                        <!--close card body ---->
                                     </div>
-                                    <!--close modal intro row col-->
-                                    <div class="row row-cols-5">
-                                        <div class="col">
-                                            <h6>Tier</h6>
-                                        </div>
-                                        <div class="col">
-                                            <h6>£ Price</h6>
-                                        </div>
-                                        <div class="col">
-                                            <h6>Power Consumption</h6>
-                                        </div>
-                                        <div class="col">
-                                            <h6>Success Rate (1 in ?)</h6>
-                                        </div>
-                                        <div class="col">
-                                            <h6>Reliability (0 - 20)</h6>
-                                        </div>
-                                    </div>
-                                    <!--close modal-body row 1-->
+                                    <!--close card ---->
                                 </div>
-                                <!--close modal-body container-->
+                                <!--close card-col-->
                             </div>
-                            <!--close modal-body---->
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-dismiss="modal">Leave
-                                    shop</button>
-                            </div>
-                            <!--close modal-body---->
+                            <!--close main-info-right-->
                         </div>
-                    </div>
-                </div>
+                        <!--close main-info-row-->
+
+
+
+                    </div> <!-- close main game wrapper-->
+
+            </section> <!-- close zone 4 / game play-->
