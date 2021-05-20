@@ -2,26 +2,6 @@
 /*--------------Style libray ----------------------------------------------------*/
 
 
-/*---------------Font Types------------------------------------------------------*/
-
-
-/*----
-@font-face {
-    font-family: 'Mylodon';
-    src: url('../fonts/Mylodon-Regular.otf') format('otf');
-}
--------*/
-
-@font-face {
-    src:url('../fonts/Mylodon-Regular.otf');
-    font-family:'special';
-    }
-
-
-@font-face {
-    src:url('../fonts/Mylodon-Light.otf');
-    font-family:'special-light';
-    }
 
 
 /*----------------------------Global Root Variables---------------------------------------*/
@@ -30,14 +10,8 @@
 
 /*---Font Variables---*/
 
---specialfont1:'special', Arial, sans-serif; /*-- used for main headers----------------------*/
---specialfont-light:'special-light', Arial, sans-serif; /*-- used for content----------------------*/
-
-
-
-                
-/*---Font Sizing Variables-----(only defined for specific instances where need to override - as typically fonts-sizings matched by element type (i.e. H1) to the responsive font groupings as tabled below---*/
-
+    --specialfont1: 'Turret Road', sans-serif; /*-- used for main headers----------------------*/
+    --specialfont-light: 'Turret Road', sans-serif; /*-- used for content----------------------*/
 
 
    /*---Font Color Variables---*/
@@ -67,6 +41,11 @@
     margin:0;
 }
 
+.col {
+    margin:0;
+    padding:0;
+}
+
 /*---------------------Responsive Font Groups -----------------------------*/
 
 h1 {font-size: clamp(4.209rem);color:var(--ink6-LED2)}
@@ -91,7 +70,7 @@ body, div, p {font-size: clamp(1rem, 16px);font-family: var(--specialfont-light)
 
     #fullscreen {
     width:100vw;
-    overflow:hidden;
+   
     }
 
     #top-screen, #mid-screen, #lower-screen {
@@ -127,17 +106,14 @@ body, div, p {font-size: clamp(1rem, 16px);font-family: var(--specialfont-light)
     #hero-img {
     position: relative;
     width:100%;
-        
-    /*--max-height:550px;
-    min-height:150px;--*/
+
     }
     
-    
-    /*--REMOVE IF NOT USED 
-    #zone1-strapline {
+    #zone1-buffer-row {
         height:20vh;
-        color:var(--LED1); 
-    }--*/
+        border:hidden;
+    }
+
     
     /*---------------------Middle Screen (zones 2 & 3) : How to Play and Additional Info) -----------------------------------------*/
     
@@ -183,10 +159,19 @@ body, div, p {font-size: clamp(1rem, 16px);font-family: var(--specialfont-light)
     }
 
 
+
+    #zone4-buffer-row {
+        height:30vh;
+        border:hidden;
+    }
+
+
+
+
+
     #main-game-wrapper {
         margin: 0;
         padding:1em;
-        height: 90vh;                   
         position:relative;
         background:var(--ink4-blueblack);
         border-radius:10px 10px;
@@ -195,10 +180,13 @@ body, div, p {font-size: clamp(1rem, 16px);font-family: var(--specialfont-light)
     }
 
     #game-main-info-row {
-        height:28vh;
+        
         margin-top:2vh;
     }
 
+    .info-sub-card1, .info-sub-card2 {    /*--split to enable seperate height to be applied to info panel when moved down alongside miner card---*/
+        height:30vh;
+    }
 
     #game-main-info-left {
         height: 30vh;
@@ -227,16 +215,26 @@ body, div, p {font-size: clamp(1rem, 16px);font-family: var(--specialfont-light)
     }
 
 
-    
+/*---removed to allow 'blended row' at smaller sizes----
+
     #game-main-miner-row {
-        height:50vh;
+       
         margin-top:2vh;
     }
-        
+
+ ----*/   
+    
+
     .styled-pane-card {
-       
+        
+        margin-left:0;
+        margin-right:0;
+        margin-top:0;
+        margin-bottom:0;
+        padding: 1rem;
         display:flex;
         flex-direction:column;
+        flex-wrap:wrap;
         align-items: start;
         justify-items: start;
         background-color:var(--ink4-blueblack);
@@ -252,13 +250,12 @@ body, div, p {font-size: clamp(1rem, 16px);font-family: var(--specialfont-light)
         margin-left:0;
         margin-right:0;
         margin-top:0;
-        margin-bottom:1rem;
+        margin-bottom:0;
         padding: 1rem;
         display:flex;
         flex-direction:column;
-        flex-wrap:nowrap;
-        height:100%;
-        line-height:3rem;
+        flex-wrap:wrap;
+        min-height:100%;
         justify-items: center;
         background-color:var(--ink4-blueblack);
         font-weight:bold;
@@ -268,7 +265,7 @@ body, div, p {font-size: clamp(1rem, 16px);font-family: var(--specialfont-light)
         cursor: pointer;
     }
 
-#e-wallet {
+    #e-wallet {
         fill:var(--ink6-LED2OFF);
     }
     
@@ -291,7 +288,7 @@ body, div, p {font-size: clamp(1rem, 16px);font-family: var(--specialfont-light)
         padding-left:0;
         display:inline-block;
         width:100%;
-        height:100%;
+        
     }
 
     .card-header > * {
@@ -334,29 +331,84 @@ body, div, p {font-size: clamp(1rem, 16px);font-family: var(--specialfont-light)
         background-color:var(--ink6-LED2OFF);
     }
 
-    .card-footer {
-        
+
+ /*---------------------Media Queries -----------------------------------------*/
+ /*----Challanges with applying combination of bootsrap column break points, widths and ordering required a more granular set-up of the layout for responsiveness-----------------------------------------*/
+
+
+/*--by default, site layout accomodates screens xl and above, and custmised for widths below these--*/
+
+/*--large screens--*/
+
+ @media (min-width: 992px) and (max-width: 1199px){
+    #game-main-info-left {
+      order: 1;
+      margin-left:1vw;
+     }
+      
+
+     #game-main-info-right{
+     order: 2;
+     margin-left:1vw;
+     margin-right:1vw;
+     }
+
+
+    #game-main-info-center{
+    order: 3;
+    margin-top:1vh;
+    max-width: 46vw;
     }
 
+    #message-screen {
+    height:35vh;
+    }
 
-    /*--bug - only works when internal text is selected - try mouseenter jquery instead? use aspect below for 'checked' items'--*/
+    .info-sub-card2 {
+    height:50vh;
+    }
+    
+    
+    
+    #terminal1 {
+    order:4;
+    margin-top:1vh;
+    }
+
+    #terminal2 {
+    order:5;
+    margin-top:1vh;
+    }
+
+    #terminal3 {
+    order:6;
+    margin-top:1vh;
+    }
+
+  }
+
+
+
+
+
+    /*--bug - only works when internal text is selected - try mouseenter jquery instead? use aspect below for 'checked' items'
     .styled-pane-card :hover {
         box-shadow: -2px -2px 3px var(--ink8-glass1),
                      2px  2px 6px var(--ink1-black),
                 inset -2px  -2px 10px var(--ink8-glass1),
                 inset 2px  2px 10px var(--ink1-black);
     }
-
+--*/
    
 
-    /*--use aspect below for 'checked' items'--*/
+    /*--use aspect below for 'checked' items'
     .styled-pane-card :checked {
         color: var(--ink8-glass1);
         box-shadow: 
         inset    -1px -1px 3px var(--ink8-glass1),
         inset     2px  2px 6px var(--ink1-black);
     }
-    
+    --*/
 
 
 
