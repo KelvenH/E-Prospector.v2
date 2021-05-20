@@ -109,106 +109,135 @@ body, div, p {font-size: clamp(1rem, 16px);font-family: var(--specialfont-light)
 
 
 
-    #full-screen {
+#full-screen {
     width: 100vw;
     /*-background-color: var(--ink2-offblacksolid);--*/
     background: linear-gradient(217deg, rgba(42,46,51), rgba(29,43,53) 70.71%),
     linear-gradient(127deg, rgba(42,46,51), rgba(24,42,56) 70.71%),
     linear-gradient(336deg, rgba(042,46,51), rgba(24,42,56) 70.71%);
+}
 
-    }
-
-    section {
+section {
     width:100vw;
-   
-    }
+}
     
     /*---------------------Top Screen (zone 1 : Landing Screen) -----------------------------------------*/
 
-    #top-screen {
-        width:100vw;
-   
-    }
+#top-screen {
+    width:100vw;
+}
 
-    #zone1-heroimage {
-        display:flex;
-        object-fit:scale-down;
-        align-items: center;
-        height:100vh;
-    }
+#zone1images {
+    height:100vh;
+}
 
-    #hero-img {
-    
+#zone-1a {
+    max-height:80vh;
+    padding-top:5vh;
+}
+
+#hero-img {
+    object-fit:cover;
+       
     box-shadow: -1px 1px 1px rgb(145,145,145),
-    -1px 2px 1px rgb(145,145,145),
-    -1px 3px 1px rgb(145,145,145),
-    -1px 4px 1px rgb(145,145,145),
-    -1px 5px 1px rgb(145,145,145),
-    -1px 6px 1px rgb(145,145,145),
-    -1px 7px 1px rgb(145,145,145),
-    -1px 8px 1px rgb(145,145,145),
-    -1px 9px 1px rgb(145,145,145),
-    -1px 10px 1px rgb(145,145,145),
-    -1px 18px 6px rgba(0,189,255,0.4),
-    -1px 22px 10px rgba(0,189,255,0.2),
-    -1px 35px 35px rgba(0,189,255,0.2),
-    -1px 60px 60px rgba(0,189,255,0.4);
-    }
-
-    .breaker-line {
-        background-image: linear-gradient(to right, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
-        height:1vh;
-        margin-top:1vh;
-        margin-bottom:1vh;
-        }
-
-    #welcome {
-        margin-top:2vh;
-        text-align:center;
-        color: var(--ink4-blueblack);
-        background-image: linear-gradient(to right, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
-    }
+        -1px 2px 1px rgb(145,145,145),
+        -1px 3px 1px rgb(145,145,145),
+        -1px 4px 1px rgb(145,145,145),
+        -1px 5px 1px rgb(145,145,145),
+        -1px 6px 1px rgb(145,145,145),
+        -1px 7px 1px rgb(145,145,145),
+        -1px 8px 1px rgb(145,145,145),
+        -1px 9px 1px rgb(145,145,145),
+        -1px 10px 1px rgb(145,145,145),
+        -1px 18px 6px rgba(0,189,255,0.4),
+        -1px 22px 10px rgba(0,189,255,0.2),
+        -1px 35px 35px rgba(0,189,255,0.2),
+        -1px 60px 60px rgba(0,189,255,0.4);
+}
 
 
-     /*---------------------Middle Screen (zones 2 & 3) : How to Play and Additional Info) -----------------------------------------*/
-     #zone2, #zone3 {
-        margin-top:1vh;
-    }
+#zone-1b {
+    margin-top:5vh;
+    
+    width:100%;
+    
+}
+
+#EZ {
+    margin-top:5vh;
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content: flex-center;
+    
+    flex: 1;
+    
+}
+
+#EZ > img {
+    max-height: 20vh;
+    text-align:right;
+    flex: 1;
+}
+
+#strapline {
+    height:100%;
+    flex: 1;
+    align-self:center;
+}
+
+.breaker-line {
+    background-image: linear-gradient(to right, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
+    height:1vh;
+    margin-top:1vh;
+    margin-bottom:1vh;
+}
+
+#welcome {
+    margin-top:2vh;
+    text-align:center;
+    color: var(--ink4-blueblack);
+    background-image: linear-gradient(to right, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
+}
+
+
+/*---------------------Middle Screen (zones 2 & 3) : How to Play and Additional Info) -----------------------------------------*/
+#zone2, #zone3 {
+    margin-top:1vh;
+}
     
  
-    #mid-screen {
+#mid-screen {
         
-    }
+}
 
-
-    .block-outer1 {
-        margin-bottom: 3vh;
-        text-align:left;
-    }
+.block-outer1 {
+    margin-bottom: 3vh;
+    text-align:left;
+}
     
-    .block-title {
-        min-height:5vh;
-        font-family: var(--specialfont1);
-        background-image:linear-gradient(to right, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
-        text-align:center;
-        color: var(--ink4-blueblack);
-        padding:1vh 0 1vh 1vw;
-        margin-bottom:0.5vh;
-        cursor: pointer;  
-        width:100%;
-    }
+.block-title {
+    min-height:5vh;
+    font-family: var(--specialfont1);
+    background-image:linear-gradient(to right, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
+    text-align:center;
+    color: var(--ink4-blueblack);
+    padding:1vh 0 1vh 1vw;
+    margin-bottom:0.5vh;
+    cursor: pointer;  
+    width:100%;
+}
     
         
-    .inner-content {    
-        padding:1rem;
-    }
+.inner-content {    
+    padding:1rem;
+}
 
 
-    .inner-content1 {
-        display: none;
-        overflow: hidden;
-        padding:1rem;
-    }
+.inner-content1 {
+    display: none;
+    overflow: hidden;
+    padding:1rem;
+}
 
 
 
@@ -371,6 +400,8 @@ i, .bi, h4 {
     -1px 24px 24px rgba(0,189,255,0.4);
    
 }
+
+
 
 .card-body {
     width:100%;
