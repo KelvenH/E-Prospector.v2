@@ -37,39 +37,11 @@
 //  0.0 Utilities - 
 //-------------------------------------------------------------------------------*/
 
-/*---used in development only - to be removed from final submission
-function checkifNaN(x) {
-    if (isNaN(x)) {
-      return NaN;
-    }
-    return x;
-  }
----*/
-
-//console.log(checkifNaN('1'));
-
-// Temporary - test feature button
-
-//let test = document.getElementById('btn-test1');
-//test.addEventListener('click', endRoundUpdateBalance);
+// show / hide toggle event for How To Play and BitCoin 101
 
 $(".show-pane").click(function() {
     $(this).siblings(".inner-content1").slideToggle('fade');
 });
-
-//additional code to scroll bottom panel to top acknowledge: http://jsfiddle.net/Jqaxn/4/
-
-/*--$('#block-title-play').click(function(e){
-    e.preventDefault();
-
-    var itemTop = $($(this).siblings(".inner-content")).offset().top;
-    var itemHeight = $($(this).siblings(".inner-content")).height();
-    var windowHeight = $(window).height();
-    console.log(itemTop);
-    console.log(itemHeight);
-    console.log(windowHeight);
-    $('html,body').animate({scrollTop:itemTop + itemHeight/2 - windowHeight/20},500)    //added /20 to final window height deduction to calculate a 5vh (i.e. 1/20) buffer from top
-});--*/
 
 
 /*---------------------------------------------------------------------------------
@@ -114,59 +86,40 @@ Level 4                 1000             250                        2           
 ----*/
 
 
-let mainDataLibrary = {miningDevices:[                      // further items to be added to the data tables as developed e.g. variable power costs
-    {   device:'Level 0 (Default)',
+let mainDataLibrary = {
+    miningDevices:[                      // further items to be added to the data tables as developed e.g. variable power costs
+    {   device:'Terminal #1',
         purchaseCost: 0,
+        chance: 50,
+        speed: 1,
         consumption: 10,
-        chance: 25,
-        speed: 0,
         reliability: 100,
         status: 1},
-    {   device:'Level 1',
-        purchaseCost: 50,
-        consumption: 25,
-        chance: 20,
-        speed: 0,
+    {   device:'Terminal #2',
+        purchaseCost: 100,
+        chance: 50,
+        speed: 1,
+        consumption: 10,
         reliability: 100,
         status: 0},
-    {   device:'Level 2',
+    {   device:'Terminal #3',
         purchaseCost: 250,
-        consumption: 50,
-        chance: 15,
-        speed: 0,
+        chance: 50,
+        speed: 1,
+        consumption: 10,
         reliability: 100,
-        status: 0},
-    {   device:'Level 3',
-        purchaseCost: 500,
-        consumption: 150,
-        chance: 10,
-        speed: 0,
-        reliability: 100,
-        status: 0},
-    {   device:'Level 4',
-        purchaseCost: 1000,
-        consumption: 250,
-        chance: 2,
-        speed: 0,
-        reliability: 100,
-        status: 0},
+        status: 0}
 ]};
 
-//upon player purchasing upgrade, data from the main table will be passed to the 'live' version which becomes the source data for the player to use (i.e. can't 'use' a device which has not been purchased). it also means retaining a devices original stats should future development enable short term changes to the live data (e.g. temporary performance boost);
+//upon player purchasing terminal upgrades, data from the main table will be passed to the 'live' version which becomes the source data for the player to use (i.e. can't 'use' a device which has not been purchased). it also means retaining a devices original stats should future development enable short term changes to the live data (e.g. temporary performance boost);
 
 let liveGameData = {availableMiners:[
-    {   device : 'Level 0 (Default)',
+    {   device : 'Terminal #1',
         consumption : 10,
         chance : 25,
         speed : 0,
         reliability : 100,
         status : 1},
-    {   device:'Level 1',                                               // REMEBER TO REMOVE LEVEL 1 - ONLY ADDED AT START FOR DEVELOPMENT PURPOSES
-        consumption: 25,
-        chance: 20,
-        speed: 0,
-        reliability: 100,
-        status: 1}
 ]};
 
    

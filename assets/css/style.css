@@ -2,26 +2,6 @@
 /*--------------Style libray ----------------------------------------------------*/
 
 
-/*---------------Font Types------------------------------------------------------*/
-
-
-/*----
-@font-face {
-    font-family: 'Mylodon';
-    src: url('../fonts/Mylodon-Regular.otf') format('otf');
-}
--------*/
-
-@font-face {
-    src:url('../fonts/Mylodon-Regular.otf');
-    font-family:'special';
-    }
-
-
-@font-face {
-    src:url('../fonts/Mylodon-Light.otf');
-    font-family:'special-light';
-    }
 
 
 /*----------------------------Global Root Variables---------------------------------------*/
@@ -30,19 +10,13 @@
 
 /*---Font Variables---*/
 
---specialfont1:'special', Arial, sans-serif; /*-- used for main headers----------------------*/
---specialfont-light:'special-light', Arial, sans-serif; /*-- used for content----------------------*/
-
-
-
-                
-/*---Font Sizing Variables-----(only defined for specific instances where need to override - as typically fonts-sizings matched by element type (i.e. H1) to the responsive font groupings as tabled below---*/
-
+    --specialfont1: 'Turret Road', sans-serif; /*-- used for main headers----------------------*/
+    --specialfont-light: 'Turret Road', sans-serif; /*-- used for content----------------------*/
 
 
    /*---Font Color Variables---*/
 
-   --ink1-black:rgba(0,0,0,0.8);                  /*-- black----------------------*/
+   --ink1-black:rgba(0,0,0,0.8);             /*-- black----------------------*/
    --ink2-offblacksolid:rgba(29,40,49,1);    /*-- blue-black (solid) main b/ground----*/
    --ink3-offblacksemi:rgba(29,40,49,0.7);   /*-- blue-black (semi-transparent) - to blend with hero image------*/
    --ink4-blueblack:rgb(10,25,35);           /*-- off-black - mid-level panel ----------------*/
@@ -62,18 +36,15 @@
  
 }
 
-.container {
-    padding:0;
-    margin:0;
-}
+
 
 /*---------------------Responsive Font Groups -----------------------------*/
 
-h1 {font-size: clamp(4.209rem);color:var(--ink6-LED2)}
-h2 {font-size: clamp(3.157rem, 32px);color:var(--ink6-LED2)}
-h3 {font-size: clamp(2.369rem, 28px);color:var(--ink6-LED2)}
-h4 {font-size: clamp(1.777rem, 32px);color:var(--iink6-LED2)}
-h5 {font-size: clamp(1.333rem);color:var(--iink6-LED2)}
+h1 {font-size: clamp(5rem);color:var(--ink6-LED2)}
+h2 {font-size: clamp(3rem, 32px);color:var(--ink6-LED2)}
+h3 {font-size: clamp(2.5rem, 28px);color:var(--ink6-LED2)}
+h4 {font-size: clamp(2rem, 32px);color:var(--iink6-LED2)}
+h5 {font-size: clamp(1.5rem);color:var(--iink6-LED2)}
 body, div, p {font-size: clamp(1rem, 16px);font-family: var(--specialfont-light); color:var(--ink6-LED2);}
 .text_small {font-size: clamp(0.75rem, 9px); color:var(--ink6-LED2);}
 
@@ -85,278 +56,443 @@ body, div, p {font-size: clamp(1rem, 16px);font-family: var(--specialfont-light)
     background-color: var(--ink-glass1);
 }
 
+ /*---------------------Media Queries - Portrait-----------------------------------------*/
+ /*----The tabular design of the game requires landscape perspective. Media query added to prevent display on portratit and instruct visitor to rotate device--*/
+
+ #mode-check {
+    display:flex;
+    position:relative;          /*--pos relative to enable absolute position of portrait detection message--*/
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--ink2-offblacksolid);
+    overflow:hidden;    
+    }
+
+ @media (orientation: portrait){
+
+    #rotate {
+    visibility:visible;
+    position:absolute;
+    background-size: 20px 20px;
+    top:20%;
+    left:40%;
+    }
+
+   #portrait-detected {
+   display:block;
+   font-weight:bold;
+   position:absolute;
+   left: 0; 
+   right: 0; 
+   margin-left: auto; 
+   margin-right: auto;
+   top:35%; 
+   width: 50vw;
+   }
+
+
+   #full-screen {
+   display:none;
+   } 
+
+ }
+
+
+@media (orientation: landscape){
+    #mode-check {
+    display: none;
+    }
+         }    
 
 
 /*---------------------Full Page -----------------------------------------*/
 
-    #fullscreen {
+
+
+#full-screen {
+    width: 100vw;
+    /*-background-color: var(--ink2-offblacksolid);--*/
+    background: linear-gradient(217deg, rgba(42,46,51), rgba(29,43,53) 70.71%),
+    linear-gradient(127deg, rgba(42,46,51), rgba(24,42,56) 70.71%),
+    linear-gradient(336deg, rgba(042,46,51), rgba(24,42,56) 70.71%);
+}
+
+section {
     width:100vw;
-    overflow:hidden;
-    }
-
-    #top-screen, #mid-screen, #lower-screen {
-    background-color: var(--ink2-offblacksolid);
-    }
-    
-    #top-screen {
-    padding:0;
-    margin:0;
-    }
-    
-    #mid-screen, #lower-screen {
-
-    }
-
-    .breaker-line {
-    background-image: linear-gradient(to right, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
-    height:0.5vh;
-    }
+}
     
     /*---------------------Top Screen (zone 1 : Landing Screen) -----------------------------------------*/
-    #zone1 {
+
+#top-screen {
     width:100vw;
-    background-color: var(--ink2-offblacksolid);
-    }
-    
-    #zone1-content {
-    /*--min-height:50vh; not needed? --*/
-    width:100vw;
-    }
-    
-    
-    #hero-img {
-    position: relative;
-    width:100%;
-        
-    /*--max-height:550px;
-    min-height:150px;--*/
-    }
-    
-    
-    /*--REMOVE IF NOT USED 
-    #zone1-strapline {
-        height:20vh;
-        color:var(--LED1); 
-    }--*/
-    
-    /*---------------------Middle Screen (zones 2 & 3) : How to Play and Additional Info) -----------------------------------------*/
-    
-    #zone2 {
-     
-    }
-    
-    #zone3 {
-        
-    }
-    
-    .block-outer1 {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 3vh;
-        text-align:left;
-    }
-    
-    .block-title {
-        min-height:5vh;
-        font-family: var(--specialfont1);
-        background-image:linear-gradient(to right, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
-        text-align:center;
-        color: var(--ink4-blueblack);
-        padding:1vh 0 1vh 1vw;
-        margin-bottom:0.5vh;
-        cursor: pointer;
-        
-        width:100vw;
-    }
-    
-        
-    .inner-content1 {
-        display: none;
-        overflow: hidden;
-    }
+}
 
-    
-    /*---------------------Lower Screen (zone 4 : Game Screen) -----------------------------------------*/
-    
-    #zone4 {
-        margin:0;   
-    }
+#zone1images {
+    height:100vh;
+}
 
+#zone-1a {
+    max-height:80vh;
+    padding-top:5vh;
+}
 
-    #main-game-wrapper {
-        margin: 0;
-        padding:1em;
-        height: 90vh;                   
-        position:relative;
-        background:var(--ink4-blueblack);
-        border-radius:10px 10px;
-        box-shadow: -2px -2px 3px var(--ink8-glass1),
-                     2px  2px 6px var(--ink1-black);
-    }
-
-    #game-main-info-row {
-        height:28vh;
-        margin-top:2vh;
-    }
-
-
-    #game-main-info-left {
-        height: 30vh;
-  
-        
-    }
-
-    #game-main-info-center {
-        height: 30vh;
-        margin-left:1vw;
-        margin-right:1vw;           
-    }
-    
-
-    #message-screen {
-        height:16vh;
-        background-image: repeating-linear-gradient(var(--ink3-offblacksemi), black 1%); 
-
-    }
-
-
-    
-    #game-main-info-right {
-        height: 30vh;
-        
-    }
-
-
-    
-    #game-main-miner-row {
-        height:50vh;
-        margin-top:2vh;
-    }
-        
-    .styled-pane-card {
+#hero-img {
+    object-fit:cover;
        
-        display:flex;
-        flex-direction:column;
-        align-items: start;
-        justify-items: start;
-        background-color:var(--ink4-blueblack);
-        font-weight:bold;
-        border-radius:10px 10px;
-        box-shadow: -2px -2px 3px var(--ink8-glass1),
-        2px  2px 6px var(--ink1-black);
-        cursor: pointer;
+    box-shadow: -1px 1px 1px rgb(145,145,145),
+        -1px 2px 1px rgb(145,145,145),
+        -1px 3px 1px rgb(145,145,145),
+        -1px 4px 1px rgb(145,145,145),
+        -1px 5px 1px rgb(145,145,145),
+        -1px 6px 1px rgb(145,145,145),
+        -1px 7px 1px rgb(145,145,145),
+        -1px 8px 1px rgb(145,145,145),
+        -1px 9px 1px rgb(145,145,145),
+        -1px 10px 1px rgb(145,145,145),
+        -1px 18px 6px rgba(0,189,255,0.4),
+        -1px 22px 10px rgba(0,189,255,0.2),
+        -1px 35px 35px rgba(0,189,255,0.2),
+        -1px 60px 60px rgba(0,189,255,0.4);
+}
 
+
+#zone-1b {
+    margin-top:5vh;
+    
+    width:100%;
+    
+}
+
+#EZ {
+    margin-top:5vh;
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content: flex-center;
+    
+    flex: 1;
+    
+}
+
+#EZ > img {
+    max-height: 20vh;
+    text-align:right;
+    flex: 1;
+}
+
+#strapline {
+    height:100%;
+    flex: 1;
+    align-self:center;
+}
+
+.breaker-line {
+    background-image: linear-gradient(to right, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
+    height:1vh;
+    margin-top:1vh;
+    margin-bottom:1vh;
+}
+
+#welcome {
+    margin-top:2vh;
+    text-align:center;
+    color: var(--ink4-blueblack);
+    background-image: linear-gradient(to right, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
+}
+
+
+/*---------------------Middle Screen (zones 2 & 3) : How to Play and Additional Info) -----------------------------------------*/
+#zone2, #zone3 {
+    margin-top:1vh;
+}
+    
+ 
+#mid-screen {
+        
+}
+
+.block-outer1 {
+    margin-bottom: 3vh;
+    text-align:left;
+}
+    
+.block-title {
+    min-height:5vh;
+    font-family: var(--specialfont1);
+    background-image:linear-gradient(to right, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
+    text-align:center;
+    color: var(--ink4-blueblack);
+    padding:1vh 0 1vh 1vw;
+    margin-bottom:0.5vh;
+    cursor: pointer;  
+    width:100%;
+}
+    
+        
+.inner-content {    
+    padding:1rem;
+}
+
+
+.inner-content1 {
+    display: none;
+    overflow: hidden;
+    padding:1rem;
+}
+
+
+
+/*--media queries--*/
+
+@media (max-width: 767px){
+
+    .inner-content1 {
+    font-size:16px;
     }
 
-    .styled-small {
-        margin-left:0;
-        margin-right:0;
-        margin-top:0;
-        margin-bottom:1rem;
-        padding: 1rem;
-        display:flex;
-        flex-direction:column;
-        flex-wrap:nowrap;
-        height:100%;
-        line-height:3rem;
-        justify-items: center;
-        background-color:var(--ink4-blueblack);
-        font-weight:bold;
-        border-radius:10px 10px;
-        box-shadow: -2px -2px 3px var(--ink8-glass1),
-        2px  2px 6px var(--ink1-black);
-        cursor: pointer;
-    }
+}
+
+
+@media (min-width: 768px){
+    
+    .inner-content1 {
+        font-size:1.5rem;
+        }
+
+}
+
+
+
+/*---------------------Lower Screen (zone 4 : Game Screen) 
+
+--ink5-LED1:   rgba(0,217,255,1);         
+   --ink6-LED2:   rgba(0,189,255,0.8);       
+   --ink6-LED2ON: rgba(0,189,255,1);         
+   --ink6-LED2OFF:rgba(0,189,255,0.2);       
+   --ink7-LED3:   rgba(0,255,241,1);-----------------------------------------*/
+
+#dashboard-title {
+    font-size:6rem;
+    color:var(--ink6-LED2ON);
+    text-align:center;
+    text-shadow: -1px 1px 1px rgb(145,145,145),
+                -1px 2px 1px rgb(145,145,145),
+                -1px 3px 1px rgb(145,145,145),
+                -1px 4px 1px rgb(145,145,145),
+                -1px 5px 1px rgb(145,145,145),
+                -1px 6px 1px rgb(145,145,145),
+                -1px 7px 1px rgb(145,145,145),
+                -1px 8px 1px rgb(145,145,145),
+                -1px 9px 1px rgb(145,145,145),
+                -1px 10px 1px rgb(145,145,145),
+                -1px 18px 6px rgba(0,189,255,0.4),
+                -1px 22px 10px rgba(0,189,255,0.2),
+                -1px 35px 35px rgba(0,189,255,0.2),
+                -1px 60px 60px rgba(0,189,255,0.4);
+    position:relative;
+}
+
+
+
+
+
+
+#main-game-wrapper {
+    margin-top:2vh;
+    padding:1em;
+    position:relative;
+    background:var(--ink4-blueblack);
+    border-radius:10px 10px;
+    box-shadow: -1px 1px 1px rgb(145,145,145),
+    -1px 2px 1px rgb(145,145,145),
+    -1px 3px 1px rgb(145,145,145),
+    -1px 4px 1px rgb(145,145,145),
+ 
+    -1px 12px 4px rgba(0,189,255,0.4),
+    -1px 16px 8px rgba(0,189,255,0.2),
+    -1px 28px 28px rgba(0,189,255,0.2),
+    -1px 35px 35px rgba(0,189,255,0.4);
+}
+
+
+
+.info-sub-card1, .info-sub-card2 {    /*--split to enable seperate height to be applied to info panel when moved down alongside miner card---*/
+    height:30vh;
+}
+
+
+#message-screen {
+    height:16vh;
+    background-image: repeating-linear-gradient(var(--ink3-offblacksemi), black 1%); 
+
+}
+
+
+.styled-pane-card {
+    max-width:30vw;    
+    margin-left:0;
+    margin-right:0;
+    margin-top:4vh;
+    margin-bottom:2vh;
+    padding: 1rem;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    align-items: start;
+    justify-items: start;
+    background-color:var(--ink4-blueblack);
+    font-weight:bold;
+    border-radius:10px 10px;
+    box-shadow: -1px 1px 1px rgb(107,196,255),
+    -1px 2px 1px rgb(107,196,255),
+    -1px 3px 1px rgb(107,196,255),
+    -1px 4px 1px rgb(107,196,255),
+ 
+    -1px 12px 4px rgba(0,189,255,0.4),
+    -1px 16px 8px rgba(0,189,255,0.2),
+    -1px 28px 28px rgba(0,189,255,0.2),
+    -1px 35px 35px rgba(0,189,255,0.4);
+    
+    cursor: pointer;
+
+}
+
+.styled-small {
+    margin-left:0;
+    margin-right:0;
+    margin-top:0.5vh;
+    margin-bottom:0;
+    padding: 1rem;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    min-height:100%;
+    justify-items: center;
+    background-color:var(--ink4-blueblack);
+    font-weight:bold;
+    border-radius:10px 10px;
+    box-shadow: -1px 1px 1px rgb(107,196,255),
+    -1px 2px 1px rgb(107,196,255),
+    -1px 3px 1px rgb(107,196,255),
+    
+    -1px 12px 4px rgba(0,189,255,0.2),
+    -1px 24px 24px rgba(0,189,255,0.3);
+    
+    cursor: pointer;
+}
 
 #e-wallet {
-        fill:var(--ink6-LED2OFF);
-    }
+    fill:var(--ink6-LED2ON);
+}
+
+i, .bi, h4, .fas {
+    color:var(--ink6-LED2ON);
+}
+
+.miner-btn-row {
+    display:flex;
+    justify-content:space-between;
+}
+
+.btn {
+    display:inline-block;
+    margin-top:2vh;
+    box-shadow: -1px 1px 1px rgb(145,145,145),
+    -1px 2px 1px rgb(145,145,145),
+    -1px 3px 1px rgb(145,145,145),
+    -1px 12px 4px rgba(0,189,255,0.4),
+    -1px 16px 8px rgba(0,189,255,0.2),
+    -1px 24px 24px rgba(0,189,255,0.4);
+    width:30%;
+}
+
+.bi-toggle-off {
+    color:red;
+    font-size:;
+}
+
+
+.card-body {
+    width:100%;
+    height:100%;
+}
+
+.pwr-rate {
+    display:inline-block;
+}
+
+.pwr-rate > * {
+    display:inline;
+}
+
+.card-header {
+    padding-left:0;
+    display:inline-block;
+    width:100%;
     
+}
+
+.card-header > * {
+    display:inline;
+    padding-left:2rem;
+}
+
+.card-header > h3 {
+    padding-right:2rem;
+}
+
+.card-icon {
+    margin-left:0;
+    margin-right:1rem;
+    text-align:center; 
+}
+
+.card-label {
+    margin-left:0;
+    margin-right:1rem; 
+}
+
+.val {
+    display:inline-block;
+    flex-wrap:no-wrap;
+    height:100%;
+    width:12vw;    
+}
+
+.val > * {
+    display:inline-block;
+
+}
+
+.box {
+    display:inline-block;
+    flex-wrap:nowrap;
+    width:0.5rem;
+    height:0.5rem;
+    background-color:var(--ink6-LED2OFF);
+}
 
 
-    .card-body {
-        width:100%;
-        height:100%;
-    }
-
-    .pwr-rate {
-        display:inline-block;
-    }
-
-    .pwr-rate > * {
-        display:inline;
-    }
-
-    .card-header {
-        padding-left:0;
-        display:inline-block;
-        width:100%;
-        height:100%;
-    }
-
-    .card-header > * {
-        display:inline;
-        padding-left:2rem;
-    }
-
-    .card-header > h3 {
-        padding-right:2rem;
-    }
-
-    .card-icon {
-        margin-left:0;
-        margin-right:1rem;
-        text-align:center; 
-    }
-
-    .card-label {
-        margin-left:0;
-        margin-right:1rem; 
-    }
-
-    .val {
-        display:inline-block;
-        flex-wrap:no-wrap;
-        height:100%;
-        width:12vw;    
-    }
-
-    .val > * {
-        display:inline-block;
-    
-    }
-
-    .box {
-        display:inline-block;
-        flex-wrap:nowrap;
-        width:0.5rem;
-        height:0.5rem;
-        background-color:var(--ink6-LED2OFF);
-    }
-
-    .card-footer {
-        
-    }
 
 
-    /*--bug - only works when internal text is selected - try mouseenter jquery instead? use aspect below for 'checked' items'--*/
+
+    /*--bug - only works when internal text is selected - try mouseenter jquery instead? use aspect below for 'checked' items'
     .styled-pane-card :hover {
         box-shadow: -2px -2px 3px var(--ink8-glass1),
                      2px  2px 6px var(--ink1-black),
                 inset -2px  -2px 10px var(--ink8-glass1),
                 inset 2px  2px 10px var(--ink1-black);
     }
-
+--*/
    
 
-    /*--use aspect below for 'checked' items'--*/
+    /*--use aspect below for 'checked' items'
     .styled-pane-card :checked {
         color: var(--ink8-glass1);
         box-shadow: 
         inset    -1px -1px 3px var(--ink8-glass1),
         inset     2px  2px 6px var(--ink1-black);
     }
-    
+    --*/
 
 
 
@@ -421,6 +557,7 @@ body, div, p {font-size: clamp(1rem, 16px);font-family: var(--specialfont-light)
     width:25vw;
     height:auto;
 }
+
 
 
 
