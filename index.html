@@ -12,17 +12,15 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100;200;300;400;500&family=Antic&family=Coda&family=Economica&family=Electrolize&family=Encode+Sans:wght@500;600;700&family=Orbitron:wght@400;500&family=Poiret+One&family=Quantico:wght@400;700&family=Syncopate:wght@400;700&family=Turret+Road:wght@400;700;800&display=swap"
         rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
     <!--Add Favicon---->
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>E-Prospector</title>
 
 </head>
@@ -44,44 +42,51 @@
     <div id="full-screen">
         <section id="top-screen" class="container-fluid">
             <div class="row">
-                <div class="col-12 col-md-6" id="zone1images">
-                    <div class="col-12  d-flex align-items-center" id="zone-1a">
-                        <!--create 2 stacked nested cols to create vertical split for image housing - with collective height of 100vh-->
+                <div class="col-12 col-md-6" id="zone1">
+                    <!--left hand images, right hand welcome on MD+ screens -->
+                    <!--create 2 stacked nested cols to create vertical split for image housing - with collective height of 100vh-->
+                    <div class="col-12" id="zone1a">
+                        <!--left hand upper image -->
                         <picture>
                             <source srcset="./assets/images/Hero-v3-small.png 576w,
                                     ./assets/images/Hero-v3-medium.png 768w,
                                     ./assets/images/Hero-v3-large.png 992w,
                                     ./assets/images/Hero-v3-xlarge.png 1200w,
                                     ./assets/images/Hero-v3-xxlarge.png 1920w" sizes="100vw">
-                            <img id="hero-img" class="img-fluid" src="./assets/images/Hero-v3-small.png"
-                                alt="digital block">
+                            <img id="hero-img" class="img-fluid" src="./assets/images/Hero-v3-small.png" alt="digital block">
                         </picture>
                     </div>
-                    <!--close upper part hero col-->
+                    <!--close upper part hero col z1a-->
+                    <!--left hand lower image / contact -->
+                    <div class="col-12" id="zone-1b">
+                        <div id="EZ-grid">
+                            <h2 class="strap" style="display:inline">Electronic Zebra : Make it E-Z!</h2>
+                            <img id="ez-logo" src="assets/images/EZLogov3.png">
+                            <i class="bi bi-discord"></i>
+                            
+                            <i class="bi bi-reddit"></i>
+                            <i class="bi bi-twitter"></i>
+                            <i class="bi bi-github"></i>
+                            <i class="bi bi-youtube"></i>
+                            <i class="bi bi-instagram"></i>
+                            <i class="bi bi-facebook"></i>
+                            <i class="bi bi-envelope-fill"></i>
+                            <h4 class="text">
+                                <span>Design &nbsp; &nbsp;</span> <span> &nbsp; &nbsp; UI / UX</span><span>&nbsp; &nbsp; App Development</span><span>&nbsp; &nbsp; Web Solutions</span><span>&nbsp; &nbsp; Cyber Security</span>
+                            </h4>
 
-
-                    <!--sub-col hidden for devices < md -->
-                    <div class="col-12 d-flex align-items-center d-none d-md-block" id="zone-1b">
-                        <div id="EZ">
-                            <img src="./assets/images/EZLogov2@0.1x.png" alt="developer details">
-                            <div id="strapline">
-                                Design * UI / UX * engaging applications<br>
-                                <br>
-                                E-Z does it!
-                            </div>
                         </div>
+                        <!--close grid-->
                     </div>
                     <!--close lower part hero col-->
                 </div>
-                <!--close hero col-->
+                <!--close left hand image col-->
 
-
-                <div id="mid-screen" class="col-12 col-md-6">
+                <div class="col-12 col-md-6" id="mid-screen">
 
                     <div id="zone2a" class="block-outer1">
                         <h1 id="welcome">
                             Welcome to <br> E-Prospector!
-
                         </h1>
                         <div class="inner-content">
                             A game of strategy and random luck.<br><br>
@@ -128,7 +133,7 @@
                     <h2 id="block-title-play" class="col-12 block-title">
                         <a style="text-decoration:none; color:rgb(10,25,35);" href="#lower-screen">PLAY</a>
                     </h2>
-                </div> <!-- close mid-screen col (zones 2 & 3) -->
+                </div> <!-- close right hand mcol (zones 2 & 3) -->
             </div>
             <!---close section1 row-->
         </section>
@@ -156,6 +161,12 @@
                                     <h4>£1</h4>
                                     <p> per k/w</p>
                                 </div>
+                                <div class="col styled-small pwr-chosen align-items-center">
+                                    <label>
+                                        <input type="radio" name="provider">
+                                        <h3><i id="power-check" class="bi bi-check"></i></h3>
+                                    </label>
+                                </div>
                             </div>
                             <!--close power suplier 1  ---->
 
@@ -169,6 +180,12 @@
                                 <div class="col styled-small pwr-rate">
                                     <h4>£10</h4>
                                     <p> per k/w</p>
+                                </div>
+                                <div class="col styled-small pwr-chosen">
+                                    <label>
+                                        <input type="radio" name="provider">
+                                        <i class="bi bi-check"></i>
+                                    </label>
                                 </div>
                             </div>
                             <!--close power suplier 2  ---->
@@ -219,8 +236,11 @@
                                 <div class="col-4 styled-small card-label">
                                     Bank Balance
                                 </div>
-                                <div class="col styled-small">
-                                    £100
+                                <div class="col styled-small" style="display:inline">
+                                    <h4 style="display:inline;">
+                                        <i class="bi bi-currency-pound" style="display:inline;"></i>
+                                        <p id="GBP-balance-current" style="display:inline;">200</p>
+                                    </h4>
                                 </div>
                             </div>
 
@@ -232,10 +252,12 @@
                                 <div class="col-4 styled-small card-label">
                                     E-Wallet
                                 </div>
-                                <div class="col styled-small" style="display:inline-block;">
-                                    <h4 style="display:inline;"><i class="bi bi-currency-bitcoin"
-                                            style="display:inline;"></i></h4>
-                                    <p style="display:inline;">100</p>
+                                <div class="col styled-small" style="display:inline;">
+                                    <h4 style="display:inline;">
+                                        <i class="bi bi-currency-bitcoin" style="display:inline;"></i>
+                                        <p id="bit-balance-current" style="display:inline;">100</p>
+                                    </h4>
+
                                 </div>
                             </div>
                         </div>
@@ -336,7 +358,8 @@
                                 </div>
                             </div>
                             <div class="miner-btn-row">
-                                <a id="btn-to-modal-actv1" role="button" class="btn btn-warning btn-on" data-bs-toggle="modal" data-bs-target="#modal-activate-miner">Activate
+                                <a id="btn-to-modal-actv1" role="button" class="btn btn-warning btn-on"
+                                    data-bs-toggle="modal" data-bs-target="#modal-activate-miner">Activate
                                     Terminal</a>
                                 <a role="button" href="#" class="btn primary btn-off" disabled>Purchase Upgrade</a>
                                 <a role="button" href="#" class="btn success btn-off" disabled>Start Miner</a>
@@ -437,7 +460,8 @@
                                 </div>
                             </div>
                             <div class="miner-btn-row">
-                                <a id="btn-to-modal-actv2" role="button" class="btn warning btn-off" data-bs-toggle="modal" data-bs-target="#modal-activate-miner">Activate
+                                <a id="btn-to-modal-actv2" role="button" class="btn warning btn-off"
+                                    data-bs-toggle="modal" data-bs-target="#modal-activate-miner">Activate
                                     Terminal</a>
                                 <a role="button" href="#" class="btn primary btn-off" disabled>Purchase Upgrade</a>
                                 <a role="button" href="#" class="btn success btn-off" disabled>Start Miner</a>
@@ -538,7 +562,8 @@
                                 </div>
                             </div>
                             <div class="miner-btn-row">
-                                <a id="btn-to-modal-actv3" role="button" class="btn warning btn-off" data-bs-toggle="modal" data-bs-target="#modal-activate-miner">Activate
+                                <a id="btn-to-modal-actv3" role="button" class="btn warning btn-off"
+                                    data-bs-toggle="modal" data-bs-target="#modal-activate-miner">Activate
                                     Terminal</a>
                                 <a role="button" href="#" class="btn primary btn-off" disabled>Purchase Upgrade</a>
                                 <a role="button" href="#" class="btn success btn-off" disabled>Start Miner</a>
@@ -565,14 +590,15 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="modal-activate-title">Activate Miner</h3>
-                    
+
                 </div>
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
                                 <h4>Terminal #1 is free of charge!</h4>
-                                <p>Activate the device to start mining. Once you have earnt enough, be sure to upgrade the parts for greater chance of success and increased rewards.
+                                <p>Activate the device to start mining. Once you have earnt enough, be sure to upgrade
+                                    the parts for greater chance of success and increased rewards.
                                     <br><br>
                                     You also have 2 further terminal bays to unlock - although these come at a price!
 
@@ -585,15 +611,17 @@
                             <!--close fullwidth col-->
                         </div>
                         <!--close modal intro row col-->
-                        
+
                         <!--close modal-body row 1-->
                     </div>
                     <!--close modal-body container-->
                 </div>
                 <!--close modal-body---->
                 <div class="modal-footer">
-                    <button id="btn-activation1" class="btn btn-success btn-on " data-bs-dismiss="modal" aria-label="Activate Miner">Activate Miner (Cost £0)</button>
-                    <button type="button" class="btn btn-on btn-secondary" data-bs-dismiss="modal" aria-label="Close">Leave without Activating</button>
+                    <button id="btn-activation1" class="btn btn-success btn-on " data-bs-dismiss="modal"
+                        aria-label="Activate Miner">Activate Miner (Cost £0)</button>
+                    <button type="button" class="btn btn-on btn-secondary" data-bs-dismiss="modal"
+                        aria-label="Close">Leave without Activating</button>
                 </div>
                 <!--close modal-body---->
 

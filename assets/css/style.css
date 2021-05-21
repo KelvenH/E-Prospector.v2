@@ -2,8 +2,6 @@
 /*--------------Style libray ----------------------------------------------------*/
 
 
-
-
 /*----------------------------Global Root Variables---------------------------------------*/
 
 :root {
@@ -126,65 +124,222 @@ section {
 
 #top-screen {
     width:100vw;
+    padding-top:1vh;
 }
 
-#zone1images {
+#zone1 {
     height:100vh;
+       
 }
 
 #zone-1a {
-    max-height:80vh;
-    padding-top:5vh;
+    display:flex;
+    max-width:50vw;
 }
 
 #hero-img {
     object-fit:cover;
-       
-    box-shadow: -1px 1px 1px rgb(145,145,145),
-        -1px 2px 1px rgb(145,145,145),
-        -1px 3px 1px rgb(145,145,145),
-        -1px 4px 1px rgb(145,145,145),
-        -1px 5px 1px rgb(145,145,145),
-        -1px 6px 1px rgb(145,145,145),
-        -1px 7px 1px rgb(145,145,145),
-        -1px 8px 1px rgb(145,145,145),
-        -1px 9px 1px rgb(145,145,145),
-        -1px 10px 1px rgb(145,145,145),
-        -1px 18px 6px rgba(0,189,255,0.4),
-        -1px 22px 10px rgba(0,189,255,0.2),
-        -1px 35px 35px rgba(0,189,255,0.2),
-        -1px 60px 60px rgba(0,189,255,0.4);
+    max-height:50vh;
+    border-radius: 5% 5%;   
+    box-shadow:             
+        -2px -2px 3px var(--ink8-glass1),
+        1px 1px 1px rgb(107,196,255),
+        1px 2px 1px rgb(107,196,255),
+        1px 3px 1px rgb(107,196,255),
+        1px 4px 1px rgb(107,196,255),
+        4px 12px 4px rgba(0,189,255,0.2),
+        8px 16px 8px rgba(0,189,255,0.2),
+        16px 28px 28px rgba(0,189,255,0.2); 
 }
-
 
 #zone-1b {
-    margin-top:5vh;
-    
-    width:100%;
-    
-}
-
-#EZ {
-    margin-top:5vh;
     display:flex;
-    flex-wrap:nowrap;
-    justify-content: flex-center;
-    
-    flex: 1;
+    flex:1;
+    justify-content:center;
+    flex-direction:column;
+}
+
+
+#EZ-grid {
+    margin-top:2vh;
+    margin-bottom:1vh;
+    width:auto;
+    height:45vh;
+    align-items:center;
+    justify-items:center;
+    border-radius: 5%;   
+    box-shadow:             
+        -2px -2px 3px var(--ink8-glass1),
+        1px 1px 1px rgb(107,196,255),
+        1px 2px 1px rgb(107,196,255),
+        1px 3px 1px rgb(107,196,255),
+        1px 4px 1px rgb(107,196,255),
+        4px 12px 4px rgba(0,189,255,0.2),
+        8px 16px 8px rgba(0,189,255,0.2),
+        16px 28px 28px rgba(0,189,255,0.2); 
+
+    display:grid; 
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 6;
+        grid-template-areas:
+       
+    "strap    strap    strap    strap    strap    strap"
+    "ez-logo  ez-logo  ez-logo  discord  reddit   youtube"
+    "ez-logo  ez-logo  ez-logo  behance  twitter  fbook"
+    "ez-logo  ez-logo  ez-logo  git      insta    email"
+    "ez-logo  ez-logo  ez-logo  z        z        z"
+    "text     text     text     text     text     text"
+    ;
+}
+
+#EZ-grid i {
+    width:5vw;
+    font-size:2rem;
+    font-family: var(--specialfont1);
+    text-align:center;
+    font-weight:900;
+    box-shadow:             
+        -2px -2px 3px var(--ink8-glass1),
+        1px 1px 1px rgb(107,196,255),
+        1px 2px 1px rgb(107,196,255),
+        1px 3px 1px rgb(107,196,255),
+        1px 4px 1px rgb(107,196,255),
+        4px 12px 4px rgba(0,189,255,0.2),
+        8px 16px 8px rgba(0,189,255,0.2),
+        16px 28px 28px rgba(0,189,255,0.2); 
     
 }
 
-#EZ > img {
-    max-height: 20vh;
-    text-align:right;
-    flex: 1;
+#ez-logo {
+    height:20vh;
+    width:auto;
+    grid-area: ez-logo;
+    object-fit:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    box-shadow:             
+        -2px -2px 3px var(--ink8-glass1),
+        1px 1px 1px rgb(107,196,255),
+        1px 2px 1px rgb(107,196,255),
+        1px 3px 1px rgb(107,196,255),
+        1px 4px 1px rgb(107,196,255),
+        4px 12px 4px rgba(0,189,255,0.2),
+        8px 16px 8px rgba(0,189,255,0.2),
+        16px 28px 28px rgba(0,189,255,0.2); 
 }
 
-#strapline {
-    height:100%;
-    flex: 1;
-    align-self:center;
+.bi-discord {
+    grid-area: discord;
 }
+
+
+    
+}
+
+.bi-reddit {
+    grid-area: reddit;
+    max-height: 5vh;
+    width:auto;
+    max-height: 5vh;
+    width:auto;
+}
+
+.bi-github {
+    grid-area: git;
+    max-height: 5vh;
+    width:auto;
+}
+
+.bi-youtube {
+    grid-area: youtube;
+    max-height: 5vh;
+    width:auto;
+}
+
+
+.bi-instagram {
+    grid-area: insta;
+    max-height: 5vh;
+    width:auto;
+}
+
+
+.bi-facebook {
+    grid-area: fbook;
+    max-height: 5vh;
+    width:auto;
+}
+
+.bi-github {
+    grid-area: git;  
+    max-height: 5vh;
+    width:auto;
+}
+
+.bi-twitter {
+    grid-area: twitter;
+    max-height: 5vh;
+    width:auto;
+
+}
+
+.bi-envelope-fill {
+    grid-area: email;
+    max-height: 5vh;
+    width:auto;
+}
+
+.strap {
+    grid-area: strap;
+    width:100%;
+    text-align:center;
+    border-radius: 5px;
+    box-shadow:             
+    -2px -2px 3px var(--ink8-glass1),
+    1px 1px 1px rgb(107,196,255),
+    1px 2px 1px rgb(107,196,255),
+    1px 3px 1px rgb(107,196,255),
+    
+    4px 12px 4px rgba(0,189,255,0.2),
+    8px 16px 8px rgba(0,189,255,0.2),
+    16px 28px 28px rgba(0,189,255,0.2); 
+}
+
+.text {
+    grid-area: text;
+}
+
+
+
+
+
+/*---
+Make it current
+Make it the 
+Make it EZ 
+                            
+
+
+App Development
+
+
+
+UI / UX
+
+
+
+Design
+
+
+
+Innovative Web Solutions
+
+
+---*/
+
+
+
+
 
 .breaker-line {
     background-image: linear-gradient(to right, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
@@ -297,15 +452,15 @@ section {
     position:relative;
     background:var(--ink4-blueblack);
     border-radius:10px 10px;
-    box-shadow: -1px 1px 1px rgb(145,145,145),
-    -1px 2px 1px rgb(145,145,145),
-    -1px 3px 1px rgb(145,145,145),
-    -1px 4px 1px rgb(145,145,145),
- 
-    -1px 12px 4px rgba(0,189,255,0.4),
-    -1px 16px 8px rgba(0,189,255,0.2),
-    -1px 28px 28px rgba(0,189,255,0.2),
-    -1px 35px 35px rgba(0,189,255,0.4);
+    box-shadow: 
+            -2px -2px 3px var(--ink8-glass1),
+            1px 1px 1px rgb(107,196,255),
+            1px 2px 1px rgb(107,196,255),
+            1px 3px 1px rgb(107,196,255),
+            1px 4px 1px rgb(107,196,255),
+            4px 12px 4px rgba(0,189,255,0.2),
+            8px 16px 8px rgba(0,189,255,0.2),
+            16px 28px 28px rgba(0,189,255,0.2); 
 }
 
 
@@ -336,17 +491,18 @@ section {
     align-items: start;
     justify-items: start;
     background-color:var(--ink4-blueblack);
+    color: var(--ink6-LED2ON);
     font-weight:bold;
     border-radius:10px 10px;
-    box-shadow: -1px 1px 1px rgb(107,196,255),
-    -1px 2px 1px rgb(107,196,255),
-    -1px 3px 1px rgb(107,196,255),
-    -1px 4px 1px rgb(107,196,255),
- 
-    -1px 12px 4px rgba(0,189,255,0.4),
-    -1px 16px 8px rgba(0,189,255,0.2),
-    -1px 28px 28px rgba(0,189,255,0.2),
-    -1px 35px 35px rgba(0,189,255,0.4);
+    box-shadow: 
+            -2px -2px 3px var(--ink8-glass1),
+            1px 1px 1px rgb(107,196,255),
+            1px 2px 1px rgb(107,196,255),
+            1px 3px 1px rgb(107,196,255),
+            1px 4px 1px rgb(107,196,255),
+            4px 12px 4px rgba(0,189,255,0.2),
+            8px 16px 8px rgba(0,189,255,0.2),
+            16px 28px 28px rgba(0,189,255,0.2); 
     cursor: pointer;
 }
 
@@ -364,17 +520,12 @@ section {
     align-items: start;
     justify-items: start;
     background-color:var(--ink4-blueblack);
+    color: var(--ink6-LED2LOW);
     font-weight:bold;
     border-radius:10px 10px;
-    box-shadow: -1px 1px 1px rgba(29,40,49,0.7),
-    -1px 2px 1px rgba(29,40,49,0.7),
-    -1px 3px 1px rgba(29,40,49,0.7),
-    -1px 4px 1px rgba(29,40,49,0.7),
- 
-    -1px 12px 4px rgba(29,40,49,0.7),
-    -1px 16px 8px rgba(29,40,49,0.7),
-    -1px 28px 28px rgba(29,40,49,0.7),
-    -1px 35px 35px rgba(29,40,49,0.7);
+    box-shadow: 
+            -2px -2px 3px var(--ink8-glass1),
+            2px  2px 6px var(--ink1-black);
     cursor: pointer;
 } 
 
@@ -392,13 +543,18 @@ section {
     min-height:100%;
     justify-items: center;
     background-color:var(--ink4-blueblack);
+    color: var(--ink6-LED2ON);
     font-weight:bold;
     border-radius:10px 10px;
-    box-shadow: -1px 1px 1px rgb(107,196,255),
-    -1px 2px 1px rgb(107,196,255),
-    -1px 3px 1px rgb(107,196,255),
-    -1px 12px 4px rgba(0,189,255,0.2),
-    -1px 24px 24px rgba(0,189,255,0.3);
+    box-shadow: 
+            -2px -2px 3px var(--ink8-glass1),
+            1px 1px 1px rgb(107,196,255),
+            1px 2px 1px rgb(107,196,255),
+            1px 3px 1px rgb(107,196,255),
+            1px 4px 1px rgb(107,196,255),
+            4px 12px 4px rgba(0,189,255,0.2),
+            8px 16px 8px rgba(0,189,255,0.2),
+            16px 28px 28px rgba(0,189,255,0.2); 
     cursor: pointer;
 }
 
@@ -414,13 +570,12 @@ section {
     min-height:100%;
     justify-items: center;
     background-color:var(--ink4-blueblack);
+    color: var(--ink6-LED2LOW);
     font-weight:bold;
     border-radius:10px 10px;
-    box-shadow: -1px 1px 1px rgba(29,40,49,0.7),
-    -1px 2px 1px rgba(29,40,49,0.7),
-    -1px 3px 1px rgba(29,40,49,0.7),
-    -1px 12px 4px rgba(29,40,49,0.7),
-    -1px 24px 24px rgba(29,40,49,0.7);
+    box-shadow:
+            -2px -2px 3px var(--ink8-glass1),
+            2px  2px 6px var(--ink1-black);
     cursor: pointer;
 }
 
@@ -446,24 +601,30 @@ i, .bi, h4, .fas {
 }
 
 .btn-on {
-    box-shadow: -1px 1px 1px rgb(145,145,145),
-    -1px 2px 1px rgb(145,145,145),
-    -1px 3px 1px rgb(145,145,145),
-    -1px 12px 4px rgba(0,189,255,0.4),
-    -1px 16px 8px rgba(0,189,255,0.2),
-    -1px 24px 24px rgba(0,189,255,0.4);
+    color: var(--ink4-blueblack);
+    box-shadow: 
+            -2px -2px 3px var(--ink8-glass1),
+            1px 1px 1px rgb(107,196,255),
+            1px 2px 1px rgb(107,196,255),
+            1px 3px 1px rgb(107,196,255),
+            1px 4px 1px rgb(107,196,255),
+            4px 12px 4px rgba(0,189,255,0.2),
+            8px 16px 8px rgba(0,189,255,0.2),
+            16px 28px 28px rgba(0,189,255,0.2); 
+}
+
+.btn-on :hover {
+    color: var(--ink9);
+    font-weight:bold;
 }
 
 .btn-off {
-    color:var(--ink6-LED2OFF);
+    color: var(--ink6-LED2LOW);
     border-radius:10px;
     background-color:var(--ink4-blueblack);
-    box-shadow: -1px 1px 1px rgb(145,145,145),
-    -1px 2px 1px rgb(145,145,145),
-    -1px 3px 1px rgb(145,145,145),
-    -1px 12px 4px rgba(0,189,255,0.2),
-    -1px 16px 8px rgba(0,189,255,0),
-    -1px 24px 24px rgba(0,189,255,0.2);
+    box-shadow: 
+        -2px -2px 3px var(--ink8-glass1),
+        2px  2px 6px var(--ink1-black);
 }
 
 .bi-toggle-off {
@@ -486,11 +647,87 @@ i, .bi, h4, .fas {
     display:inline;
 }
 
+.pwr-chosen {
+    position:relative;
+    display:flex;
+    flex-direction:colum;
+    justify-content:center;
+    align-items:center;
+}
+
+.pwr-chosen label input {
+    appearance: none;
+    cursor: pointer;
+}
+
+#power-check {
+    position:relative;
+    width:100%;
+    height:100%;
+    text-align:center;
+    border-radius: 50%;
+    color: var(--ink6-LED2LOW);
+    box-shadow: -2px -2px 3px var(--ink8-glass1),
+                2px  2px 6px var(--ink1-black);
+}
+
+#power-check:hover  {
+    color: var(--ink6-LED2ON);
+    box-shadow: -2px -2px 3px var(--ink8-glass1),
+        1px 1px 1px rgb(107,196,255),
+        1px 2px 1px rgb(107,196,255),
+        1px 3px 1px rgb(107,196,255),
+        2px 4px 1px rgb(107,196,255),
+        4px 6px 4px rgba(0,189,255,0.4);
+  
+}
+
+#power-check:checked  {
+    color: var(--ink6-LED2ON);
+    box-shadow: -2px -2px 3px var(--ink8-glass1),
+        1px 1px 1px rgb(107,196,255),
+        1px 2px 1px rgb(107,196,255),
+        1px 3px 1px rgb(107,196,255),
+        2px 4px 1px rgb(107,196,255),
+        4px 6px 4px rgba(0,189,255,0.4),
+
+        inset    -1px -1px 3px var(--ink8-glass1),
+        inset     2px  2px 6px var(--ink1-black);
+  
+}
+
+
+
+
+
+    /*--bug - only works when internal text is selected - try mouseenter jquery instead? use aspect below for 'checked' items'
+    .styled-pane-card :hover {
+        box-shadow: -2px -2px 3px var(--ink8-glass1),
+                     2px  2px 6px var(--ink1-black),
+                inset -2px  -2px 10px var(--ink8-glass1),
+                inset 2px  2px 10px var(--ink1-black);
+    }
+--*/
+   
+
+    /*--use aspect below for 'checked' items'
+    .styled-pane-card :checked {
+        color: var(--ink8-glass1);
+        box-shadow: 
+        inset    -1px -1px 3px var(--ink8-glass1),
+        inset     2px  2px 6px var(--ink1-black);
+    }
+    --*/
+
+
+
+
+
+
 .card-header {
     padding-left:0;
     display:inline-block;
     width:100%;
-    
 }
 
 .card-header > * {
@@ -543,53 +780,52 @@ i, .bi, h4, .fas {
     text-align:center;
 }
 
-.modal-header,
-.modal-footer {
-    font-weight:bold;
-    background-color:black;
-    background-image:linear-gradient(to bottom, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
-    color: var(--ink4-blueblack);
-    box-shadow: -1px 1px 1px rgb(107,196,255),
-    -1px 2px 1px rgb(107,196,255),
-    -1px 3px 1px rgb(107,196,255),
-    -1px 4px 1px rgb(107,196,255),
-    -1px 12px 4px rgba(0,189,255,0.4),
-    -1px 16px 8px rgba(0,189,255,0.2),
-    -1px 28px 28px rgba(0,189,255,0.2),
-    -1px 35px 35px rgba(0,189,255,0.4);
+.modal-header {
+    border-bottom:none;
 }
 
+.modal-header,
+.modal-title,
+.modal-content,
+.modal-footer {
+    color: var(--ink6-LED2ON);
+    background-color:var(--ink4-blueblack);
+    padding-left:5%;
+    padding-right:5%;
+}
+
+.modal-content {
+    border-radius:5%;
+    box-shadow: 
+    -2px -2px 3px var(--ink8-glass1),
+    1px 1px 1px rgb(107,196,255),
+    1px 2px 1px rgb(107,196,255),
+    1px 3px 1px rgb(107,196,255),
+    1px 4px 1px rgb(107,196,255),
+    4px 12px 4px rgba(0,189,255,0.2),
+    8px 16px 8px rgba(0,189,255,0.2),
+    16px 28px 28px rgba(0,189,255,0.2); 
+}
 
 .modal-body {
+        
     background-color:var(--ink4-blueblack);
-    box-shadow: -1px 1px 1px rgb(107,196,255),
-    -1px 2px 1px rgb(107,196,255),
-    -1px 3px 1px rgb(107,196,255),
-    -1px 12px 4px rgba(0,189,255,0.2),
-    -1px 24px 24px rgba(0,189,255,0.3);
+    color: var(--ink6-LED2ON);
+    box-shadow: 
+            -2px -2px 3px var(--ink8-glass1),
+            1px 1px 1px rgb(107,196,255),
+            1px 2px 1px rgb(107,196,255),
+            1px 3px 1px rgb(107,196,255),
+            1px 4px 1px rgb(107,196,255),
+            4px 12px 4px rgba(0,189,255,0.2),
+            8px 16px 8px rgba(0,189,255,0.2),
+            16px 28px 28px rgba(0,189,255,0.2); 
     cursor: pointer;
 }
 
-    /*--bug - only works when internal text is selected - try mouseenter jquery instead? use aspect below for 'checked' items'
-    .styled-pane-card :hover {
-        box-shadow: -2px -2px 3px var(--ink8-glass1),
-                     2px  2px 6px var(--ink1-black),
-                inset -2px  -2px 10px var(--ink8-glass1),
-                inset 2px  2px 10px var(--ink1-black);
-    }
---*/
-   
-
-    /*--use aspect below for 'checked' items'
-    .styled-pane-card :checked {
-        color: var(--ink8-glass1);
-        box-shadow: 
-        inset    -1px -1px 3px var(--ink8-glass1),
-        inset     2px  2px 6px var(--ink1-black);
-    }
-    --*/
-
-
+.modal-footer {
+    justify-content:center;
+}
 
 
 /*--
@@ -610,12 +846,7 @@ i, .bi, h4, .fas {
 
 /*---------------------Main Body : Center Panel (Terminal Window)----------
 
-#gameplay-main {
-    
-    margin-left:12px;
-    margin-right:12px;
-    color:var(--ink1);
-}
+
 
 .digital-value {
     background-color:var(--ink1);
