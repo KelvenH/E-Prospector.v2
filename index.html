@@ -249,7 +249,7 @@
                 <!------------MINER CARDS------------->
 
                 <div id="terminal1" class="col-12 col-md-6 col-lg-4 card-grp">
-                    <div class="card styled-pane-card-off">
+                    <div id="term1-card" class="card styled-pane-card-off">
                         <div class="card-body">
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <h3><i class="bi bi-display"></i></h3>
@@ -336,10 +336,10 @@
                                 </div>
                             </div>
                             <div class="miner-btn-row">
-                                <a role="button" class="btn btn-warning btn-on" data-bs-toggle="modal" data-bs-target="#modal-activate-miner">Activate
+                                <a id="btn-to-modal-actv1" role="button" class="btn btn-warning btn-on" data-bs-toggle="modal" data-bs-target="#modal-activate-miner">Activate
                                     Terminal</a>
-                                <a role="button" href="#" class="btn btn-primary btn-off" disabled>Purchase Upgrade</a>
-                                <a role="button" href="#" class="btn btn-success btn-off" disabled>Start Miner</a>
+                                <a role="button" href="#" class="btn primary btn-off" disabled>Purchase Upgrade</a>
+                                <a role="button" href="#" class="btn success btn-off" disabled>Start Miner</a>
                             </div>
                         </div>
                         <!--close card body ---->
@@ -350,7 +350,7 @@
                 <!--close card-col-->
 
                 <div id="terminal2" class="col-12 col-md-6 col-lg-4 card-grp">
-                    <div class="card styled-pane-card">
+                    <div id="term2-card" class="card styled-pane-card-off">
                         <div class="card-body">
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <h3><i class="bi bi-display"></i></h3>
@@ -360,13 +360,13 @@
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small card-icon">
+                                <div class="col-2 styled-small-off card-icon">
                                     <h3 class="bi bi-dice-3-fill"></h3>
                                 </div>
-                                <div class="col-4 styled-small card-label">
+                                <div class="col-4 styled-small-off card-label">
                                     Chance
                                 </div>
-                                <div class="col styled-small val">
+                                <div class="col styled-small-off val">
                                     <div>[<span>0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
@@ -379,13 +379,13 @@
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small card-icon">
+                                <div class="col-2 styled-small-off card-icon">
                                     <h3 class="bi bi-stopwatch-fill"></h3>
                                 </div>
-                                <div class="col-4 styled-small card-label">
+                                <div class="col-4 styled-small-off card-label">
                                     Speed
                                 </div>
-                                <div class="col styled-small val">
+                                <div class="col styled-small-off val">
                                     <div>[<span>0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
@@ -398,14 +398,14 @@
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small card-icon">
+                                <div class="col-2 styled-small-off card-icon">
                                     <h3 class="bi bi-plug-fill"></h3>
 
                                 </div>
-                                <div class="col-4 styled-small card-label">
+                                <div class="col-4 styled-small-off card-label">
                                     Power Usage
                                 </div>
-                                <div class="col styled-small val">
+                                <div class="col styled-small-off val">
                                     <div>[<span>0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
@@ -418,14 +418,14 @@
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small card-icon">
+                                <div class="col-2 styled-small-off card-icon">
                                     <h3 class="bi bi-tools"></h3>
 
                                 </div>
-                                <div class="col-4 styled-small card-label">
+                                <div class="col-4 styled-small-off card-label">
                                     Reliability
                                 </div>
-                                <div class="col styled-small val">
+                                <div class="col styled-small-off val">
                                     <div>[<span>0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
@@ -436,11 +436,11 @@
                                     <div class="box lvl7"></div>
                                 </div>
                             </div>
-
                             <div class="miner-btn-row">
-                                <a href="#" class="btn btn-warning">Activate Terminal</a>
-                                <a href="#" class="btn btn-primary">Purchase Upgrade</a>
-                                <a href="#" class="btn btn-success">Start Miner</a>
+                                <a id="btn-to-modal-actv2" role="button" class="btn warning btn-off" data-bs-toggle="modal" data-bs-target="#modal-activate-miner">Activate
+                                    Terminal</a>
+                                <a role="button" href="#" class="btn primary btn-off" disabled>Purchase Upgrade</a>
+                                <a role="button" href="#" class="btn success btn-off" disabled>Start Miner</a>
                             </div>
                         </div>
                         <!--close card body ---->
@@ -450,9 +450,8 @@
                 </div>
                 <!--close card-col-->
 
-
                 <div id="terminal3" class="col-12 col-md-6 col-lg-4 card-grp">
-                    <div class="card styled-pane-card">
+                    <div id="term3-card" class="card styled-pane-card-off">
                         <div class="card-body">
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <h3><i class="bi bi-display"></i></h3>
@@ -462,13 +461,13 @@
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small card-icon">
+                                <div class="col-2 styled-small-off card-icon">
                                     <h3 class="bi bi-dice-3-fill"></h3>
                                 </div>
-                                <div class="col-4 styled-small card-label">
+                                <div class="col-4 styled-small-off card-label">
                                     Chance
                                 </div>
-                                <div class="col styled-small val">
+                                <div class="col styled-small-off val">
                                     <div>[<span>0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
@@ -481,13 +480,13 @@
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small card-icon">
+                                <div class="col-2 styled-small-off card-icon">
                                     <h3 class="bi bi-stopwatch-fill"></h3>
                                 </div>
-                                <div class="col-4 styled-small card-label">
+                                <div class="col-4 styled-small-off card-label">
                                     Speed
                                 </div>
-                                <div class="col styled-small val">
+                                <div class="col styled-small-off val">
                                     <div>[<span>0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
@@ -500,14 +499,14 @@
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small card-icon">
+                                <div class="col-2 styled-small-off card-icon">
                                     <h3 class="bi bi-plug-fill"></h3>
 
                                 </div>
-                                <div class="col-4 styled-small card-label">
+                                <div class="col-4 styled-small-off card-label">
                                     Power Usage
                                 </div>
-                                <div class="col styled-small val">
+                                <div class="col styled-small-off val">
                                     <div>[<span>0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
@@ -520,14 +519,14 @@
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small card-icon">
+                                <div class="col-2 styled-small-off card-icon">
                                     <h3 class="bi bi-tools"></h3>
 
                                 </div>
-                                <div class="col-4 styled-small card-label">
+                                <div class="col-4 styled-small-off card-label">
                                     Reliability
                                 </div>
-                                <div class="col styled-small val">
+                                <div class="col styled-small-off val">
                                     <div>[<span>0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
@@ -539,13 +538,14 @@
                                 </div>
                             </div>
                             <div class="miner-btn-row">
-                                <a href="#" class="btn btn-warning">Activate Terminal</a>
-                                <a href="#" class="btn btn-primary">Purchase Upgrade</a>
-                                <a href="#" class="btn btn-success">Start Miner</a>
+                                <a id="btn-to-modal-actv3" role="button" class="btn warning btn-off" data-bs-toggle="modal" data-bs-target="#modal-activate-miner">Activate
+                                    Terminal</a>
+                                <a role="button" href="#" class="btn primary btn-off" disabled>Purchase Upgrade</a>
+                                <a role="button" href="#" class="btn success btn-off" disabled>Start Miner</a>
                             </div>
-
                         </div>
                         <!--close card body ---->
+
                     </div>
                     <!--close card  ---->
                 </div>
@@ -592,7 +592,7 @@
                 </div>
                 <!--close modal-body---->
                 <div class="modal-footer">
-                    <button class="btn btn-success btn-on" data-bs-toggle="modal" data-bs-dismiss="modal">Activate Miner (Cost £0)</button>
+                    <button id="btn-activation1" class="btn btn-success btn-on " data-bs-dismiss="modal" aria-label="Activate Miner">Activate Miner (Cost £0)</button>
                     <button type="button" class="btn btn-on btn-secondary" data-bs-dismiss="modal" aria-label="Close">Leave without Activating</button>
                 </div>
                 <!--close modal-body---->

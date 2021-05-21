@@ -8,7 +8,9 @@
 
 1. On Load - miner table loads with default starter device and balance 
 
-2. Upgrade device;
+2a. Activate Miner
+
+2b. Upgrade device;
         a - populate upgrade shop (event = player opening modal)
         b - action player purchase (event = player clicks 'purchase' button);
             i - device status changed (mainDataLibrary) indicating miner now available for selection
@@ -133,69 +135,65 @@ let liveGameData = {availableMiners:[
 
 document.addEventListener("DOMContentLoaded", function () {             // Waits for the DOM to load before executing the initial game prep
 
-$('#btn-play').prop("disabled", true);                                  //BUG FIX: - disables 'play' button on load & re-enabled after selection made (avoids 0 miner ID = 0 block id = 100% win rate!)
-
-//populates drop-down with available miners
-
-let minerDropdown = document.getElementById("miner-list");              //acknowledgement for the code  https://www.youtube.com/watch?v=AqgVLYpBWG8
-
-let arr = liveGameData['availableMiners'];                              // on initial load only the default device will be available for player to select in the device dropdown
-    for (let i=0, len=arr.length; i<len; i++){
-        
-        console.log(arr[i].device);
-        minerDropdown.options.add(new Option(arr[i].device));
-        
-    };
-
-});                                                                     // end of onload function
-
+ 
+        console.log("DOM load complete");                               // end of onload function
+    });
 
 //update miner stats 'in-play' after selection of device (function can be accessed at any time outside of 'mine block'game cycle)
-
-$("#miner-list").change(function(){                                       //using Jquery to identify when change made to miner dropdown selection
-    
-        
-   //let item = {device : 'Level 1'};                                      //CHANGE HARD-CODED VALUE TO VARIABLE MATCHING HTML ID - NEED TO APPEND 'KEY' TO 'VALUE'
-
-   let txt = document.getElementById("miner-list").value;
-   console.log(txt);
-
-   let item = {device : txt};  
-    console.log(item);
- 
-    let resA = 0;                                                          //resA = success likelihood (chance)
-    let resB = 0;                                                          //resB = power consumption (consumption)
-    let resP = 1;                                                          //resP = power cost per unit - fixed @£1 baseline version (hard coded but to be fed from datatable if variable costs added) 
-
-    let matchingItem = liveGameData['availableMiners'].filter( (obj) => {   //acknowledgement for  https://www.youtube.com/watch?v=w84qY9peByk&t=321s
-
-        if(obj.device === item.device){
-            return true;
-        }
-            return false;
-    })
-
-    resA = ( matchingItem[0].chance);
-    resB = ( matchingItem[0].consumption);
-    console.log('chance', resA);
-    console.log('consumption', resB);
-
-    $("#miner-chance").text(resA);                                             //update html fields with the matching value (chance)
-    $("#miner-consumption").text(resB);                                        //update html fields with the matching value (consumption)
-    $("#power-rate").text(resP);                                               //update html fields with the matching value (cost per unit) 
-
-    minerChance = resA;
-    minerPowerConsumption = resB;
-    powerRate = resP;
-
-
-    $('#btn-play').prop("disabled", false);                                     //BUG FIX : enables 'play' button after selection made
-});
 
 
 
 /*---------------------------------------------------------------------------------
-//   2. Upgrade device;
+//   2a. Activate Miner; (player activates via modal handled by Bootstrap modal)
+        i - device status changed (mainDataLibrary) indicating miner now activate
+        ii- action player purchase (update balance script)
+        iii - device status changed (switch status icon / color, change panel classes to apply 'on' styles)
+        iv - activate terminal buttons (upgrade / play) by removing disabled status
+        v - enable 'activate terminal for next terminal) - only applic to term 1 and 2
+//-------------------------------------------------------------------------------*/
+
+
+$("#btn-activation1").click (function () { 
+
+        console.log("terminal 1 activated");                                  //development only - to be removed??
+        //how to travese the dom from a modal button to the source?
+        //add an if statement to match source to response? For now create 3 times for each button
+
+        //update game data - 'update status' and pull all matched fields to live game data
+        //$()
+
+        //update balance function
+
+        //update this. terminals .card .styled-pane-card-off to on
+        $("#term1-card").removeClass('styled-pane-card-off').addClass('styled-pane-card-on');
+
+        //update this. terminals styled-pane-card-off to on (x 12)
+        $("#term1-card").find('.styled-small-off').addClass('styled-small-on').removeClass('styled-small-off');
+
+        //update this. terminals icon to on 
+        $("#term1-card").find('.bi-toggle-off').addClass('bi-toggle-on').removeClass('bi-toggle-off');
+
+        //update this. terminals btns to btn-on (upgrade & start) and btn-off (disable) activate
+        $("#term1-card").find('.primary').removeClass('btn-off primary').addClass('btn-on btn-primary').prop("disabled", false);
+        $("#term1-card").find('.success').removeClass('btn-off success').addClass('btn-on btn-success').prop("disabled", false);
+        $("#btn-to-modal-actv1").removeClass('btn-on btn-warning').addClass('btn-off').prop("disabled", true);
+
+
+        //populate attribute values (fed from live game data refresh)
+        //append to below - low power mode 
+        $("#term1-card").find('.box').css("background-color","var(--ink6-LED2LOW)");
+        
+        //switch activation btn on for next terminal 
+        $("#btn-to-modal-actv2").removeClass('btn-off warning').prop("disabled", false).addClass('btn-on btn-warning');
+
+    });
+
+//bug - diabled attribute does not prevent link from working - look at changing to button instead??
+
+
+
+/*---------------------------------------------------------------------------------
+//   2b. Upgrade device;
         a - populate upgrade shop (event = player opening modal)
         b - action player purchase (event = player clicks 'purchase' button);
             i - device status changed (mainDataLibrary) indicating miner now available for selection
@@ -230,123 +228,36 @@ $("#miner-list").change(function(){                                       //usin
 
 // Run Game - Event listener for run game button (initiate game cycle stages)
 
-let play = document.getElementById('btn-play');
-play.addEventListener('click', mineBlock);
+//let play = document.getElementById('btn-play');
+//play.addEventListener('click', mineBlock);
+
 
 // BUG / DEFECT - if player does not select a miner there is a 1 in 1 chance of 0 = 0 i.e. win evey time!, either add check (with alert) to prevent game from progressing and / or Jquery event on 'play' button so as button deactivated / hidden unt selection made.
-
-    function mineBlock (event) {
-  
-
-    console.log("7. game round started / btn id =", this.id);                   //development only - to be removed??
-    document.getElementById("terminal-status").innerText = "Activated";  
 
     
     // Game stage Ai - generate miner ID / Key and display in Game Panel  
     
-    let minerId = Math.floor(Math.random() * minerChance) + 1;
-    document.getElementById("terminal-key-device1").innerText = minerId;        
-    
-    console.log("8. minerId =", minerId);                                       //development only - to be removed??
-    // console.log(checkifNaN(minerId));                                        //development only - to be removed??
-    console.log("9. minerChance =", minerChance);                               //development only - to be removed??
-    // console.log(checkifNaN(minerChance));                                    //development only - to be removed??
-    
-    // Game stage Aii - generate block ID
-    
-    let blockId = Math.floor(Math.random() * minerChance) + 1;
-    document.getElementById("terminal-key-block1").innerText = blockId;
-    console.log("10. blockId =", blockId);                                      //development only - to be removed??
-    // console.log(checkifNaN(blockId));                                        //development only - to be removed??
 
-    
-    // Game stage B - check if block ID matches miner ID
-   
-    blockSuccess = minerId === blockId;                                        // will return true or false 
-    
-    console.log("11. blockSuccess =", blockSuccess);                           //development only - to be removed??
-    // console.log(checkifNaN(blockSuccess));                                  //development only - to be removed??
-    
 
     // Game Stage C - Calculate Outcome 
 
-    let subTotal = calcSubTotal ();                                           // subTotal hoisted out of code-block so as it can be seen / within scope of function which updates balance (but demoted from global as caused an undefined error - likely due to sequencing?
-    
-            
-    function calcSubTotal (subTotal) {
-     
-        let roundCost = calcRoundCost();  
-        console.log("15. RoundCost[D] =", roundCost);                          //development only - to be removed??
-        // console.log(checkifNaN(roundCost));                                 //development only - to be removed??
 
-        let roundWin = calcRoundWin();
-        console.log("17. RoundWin[D] =", roundWin);                            //development only - to be removed??
-        // console.log(checkifNaN(roundWin));                                  //development only - to be removed??
-
-        let i = roundWin - roundCost;
-        console.log("18. subTotal[D] =", i);                                    //development only - to be removed??
-        // console.log(checkifNaN(i));                                          //development only - to be removed??
-        return subTotal = i;
-    };
-
-    endRoundUpdateBalance ();
 
     
 
    // Game stage D - Update Balance 
         
-function endRoundUpdateBalance () {
 
-        
-    let oldBalance = parseInt(document.getElementById('balance-current').innerText);   
-    console.log("19. oldBalance [E]= ", oldBalance);                        //development only - to be removed??                                                    
-    // console.log(checkifNaN(oldBalance));                                 //development only - to be removed??
-    
-    console.log("20. subTotal [E]", subTotal);                              //development only - to be removed??                        
-    // console.log(checkifNaN(subTotal));                                   //development only - to be removed??
-        
-    let newBalance = 0;
-        newBalance = oldBalance + subTotal;
-        document.getElementById('balance-current').innerText = newBalance;      
-        console.log("21. newBalance [E]", newBalance);                         //development only - to be removed?? 
-    // console.log(checkifNaN(newBalance));                                //development only - to be removed??
-    };
-
-    function endRoundStyling () {                                              // changes to default styling if condition met e.g. negative values displayed in red
-        document.getElementsByClass("field-value").style.color= "red";
- }
-};
 
     //The following functions are called in the above Run Game cycle if condition(s) met
 
     // Game Stage Ci - Calculate costs
 
-function calcRoundCost (roundCost) {
-    roundCost = minerPowerConsumption * powerRate;
-    
-    console.log("12. PowerConsumption[C] =", minerPowerConsumption);            //development only - to be removed??
-    // console.log(checkifNaN(minerPowerConsumption));                          //development only - to be removed??
-    console.log("13. PowerRate[C] =", powerRate);                               //development only - to be removed??
-    // console.log(checkifNaN(powerRate));                                      //development only - to be removed??
-    console.log("14. RoundCost[C] =", roundCost);                               //development only - to be removed??
-    // console.log(checkifNaN(roundCost));                                      //development only - to be removed??
-    
-    return roundCost;
-}
+
         
         
       // Game Stage Cii - Calculate win
 
-function calcRoundWin (roundWin) {
-    if (blockSuccess) {
-    ii = +1000;                        // checks if true (block mined) // reward value fixed at 1000 for baseline
-     } else {
-    ii = 0;                           // checks if false (not mined) remains 0
-    } 
-    console.log("16. RoundWin[C]=", ii);                                        //development only - to be removed??
-    // console.log(checkifNaN(ii));                                             //development only - to be removed??
-    return roundWin = ii;                          
-}
 
 
 /*---------------------------------------------------------------------------------
