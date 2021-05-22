@@ -152,15 +152,43 @@ document.addEventListener("DOMContentLoaded", function () {             // Waits
         v - enable 'activate terminal for next terminal) - only applic to term 1 and 2
 //-------------------------------------------------------------------------------*/
 
+let term1 = document.getElementById("terminal1");
+let term2 = document.getElementById("terminal2");
+let term3 = document.getElementById("terminal3");
 
-$("#btn-activation1").click (function () { 
+let actBtn1 = "btn-activation1";
+let actBtn2 = "btn-activation2";
+let actBtn3 = "btn-activation3";
 
-        console.log("terminal 1 activated");                                  //development only - to be removed??
-        //how to travese the dom from a modal button to the source?
+$(".activate-miner").click (function () { 
+         
+        console.log("terminal activated, id=", this.id);    
+                                                              //development only - to be removed??
+        
+        let activeBtn = this.id;                                                    //how to travese the dom from a modal button to the source?
+        console.log(activeBtn);
+        
+        if (activeBtn === actBtn1) {
+            console.log("terminal1 activated");
+            //terminal 1 actions go here
+        }
+
+
+        else {
+            console.log("alert unrecognised id mapping");
+        } ;
+
         //add an if statement to match source to response? For now create 3 times for each button
 
         //update game data - 'update status' and pull all matched fields to live game data
-        //$()
+        
+        
+        
+        //let txt = document.getElementsByClassName("device-name").value;
+        //console.log(txt);
+
+
+
 
         //update balance function
 
