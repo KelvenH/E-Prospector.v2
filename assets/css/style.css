@@ -53,6 +53,7 @@ body, div, p {font-size: clamp(1rem, 16px);font-family: var(--specialfont-light)
 .schedule-fullScreen {
     color:var(--ink-black);
     background-color: var(--ink-glass1);
+    margin-left:10x;
 }
 
  /*---------------------Media Queries - Portrait-----------------------------------------*/
@@ -163,11 +164,12 @@ section {
 #EZ-grid {
     margin-top:2vh;
     margin-bottom:1vh;
+    margin-left:1vh;
     width:auto;
     height:45vh;
     align-items:center;
     justify-items:center;
-    border-radius: 5%;   
+    border-radius: 10px 10px;   
     box-shadow:             
         -2px -2px 3px var(--ink8-glass1),
         1px 1px 1px rgb(107,196,255),
@@ -179,15 +181,15 @@ section {
         16px 28px 28px rgba(0,189,255,0.2); 
 
     display:grid; 
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 5;
         grid-template-areas:
        
-    "strap    strap    strap    strap    strap    strap"
-    "ez-logo  ez-logo  ez-logo  discord  reddit   youtube"
-    "ez-logo  ez-logo  ez-logo  behance  twitter  fbook"
-    "ez-logo  ez-logo  ez-logo  git      insta    email"
-    "text     text     text     text     text     text"
+    "strap    strap    strap    strap       strap    strap    strap"
+    "ez-logo  ez-logo  ez-logo  ez-logo     discord  reddit   youtube"
+    "ez-logo  ez-logo  ez-logo  ez-logo     behance  twitter  fbook"
+    "ez-logo  ez-logo  ez-logo  ez-logo     git      insta    email"
+    "text     text     text     text        text     text     text"
     ;
 }
 
@@ -198,21 +200,35 @@ section {
     font-family: var(--specialfont1);
     text-align:center;
     font-weight:900;
-    box-shadow:             
-        -2px -2px 3px var(--ink8-glass1),
-        1px 1px 1px rgb(107,196,255),
-        1px 2px 1px rgb(107,196,255),
-        1px 3px 1px rgb(107,196,255),
-        1px 4px 1px rgb(107,196,255),
-        4px 12px 4px rgba(0,189,255,0.2),
-        8px 16px 8px rgba(0,189,255,0.2),
-        16px 28px 28px rgba(0,189,255,0.2); 
+    color: var(--ink6-LED2LOW);
+    box-shadow:
+            -2px -2px 3px var(--ink8-glass1),
+            2px  2px 6px var(--ink1-black);
     
 }
+
+
+#EZ-grid a:hover  {
+    color: var(--ink6-LED2ON);
+    box-shadow:             
+    -2px -2px 3px var(--ink8-glass1),
+    1px 1px 1px rgb(107,196,255),
+    1px 2px 1px rgb(107,196,255),
+    1px 3px 1px rgb(107,196,255),
+    1px 4px 1px rgb(107,196,255),
+    4px 12px 4px rgba(0,189,255,0.2),
+    8px 16px 8px rgba(0,189,255,0.2),
+    16px 28px 28px rgba(0,189,255,0.2); 
+
+
+}
+
+
 
 #ez-logo {
     height:20vh;
     width:auto;
+    margin-left:2vh;
     grid-area: ez-logo;
     object-fit:cover;
     background-position:center;
@@ -290,9 +306,10 @@ section {
 
 .strap {
     grid-area: strap;
+    align-self:start;
     width:100%;
     text-align:center;
-    border-radius: 5px;
+    border-radius: 5px 5px;
     box-shadow:             
     -2px -2px 3px var(--ink8-glass1),
     1px 1px 1px rgb(107,196,255),
@@ -307,34 +324,6 @@ section {
 .text {
     grid-area: text;
 }
-
-
-
-
-
-/*---
-Make it current
-Make it the 
-Make it EZ 
-                            
-
-
-App Development
-
-
-
-UI / UX
-
-
-
-Design
-
-
-
-Innovative Web Solutions
-
-
----*/
 
 
 
