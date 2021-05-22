@@ -25,7 +25,7 @@
    --ink6-LED2LOW:rgba(0,189,255,0.4);       /*--'Lit' Blue LED ------------*/
    --ink6-LED2OFF:rgba(0,189,255,0.2);       /*--'Lit' Blue LED ------------*/
    --ink7-LED3:   rgba(0,255,241,1);         /*--'Lit''Blue----------------*/
-   --ink8-glass1: rgba(107,196,255,0.2);    /*--svg glass fill w high transparency --*/
+   --ink8-glass1: rgba(107,196,255,1);    /*--svg glass fill w high transparency --*/
    --ink9-glass2: rgba(0,0,0,0.3);           /*--black 50% transparency---*/
 
    --ink9:rgb(255,239,213);                 /*-- papayawhip ----------------*/
@@ -629,6 +629,7 @@ i, .bi, h4, .fas {
 
 .pwr-rate {
     display:inline-block;
+    margin-right:1rem;
 }
 
 .pwr-rate > * {
@@ -636,6 +637,7 @@ i, .bi, h4, .fas {
 }
 
 .pwr-chosen {
+    width:;
     position:relative;
     display:flex;
     flex-direction:colum;
@@ -643,12 +645,23 @@ i, .bi, h4, .fas {
     align-items:center;
 }
 
+.pwr-chosen label {
+    width:100%;
+    height:100%;
+    text-align:center;
+}
+
+.pwr-chosen label i {
+    font-size:2.5rem;
+    text-align:center;
+}
+
 .pwr-chosen label input {
     appearance: none;
     cursor: pointer;
 }
 
-#power-check {
+.power-check {
     position:relative;
     width:100%;
     height:100%;
@@ -659,25 +672,25 @@ i, .bi, h4, .fas {
                 2px  2px 6px var(--ink1-black);
 }
 
-#power-check:hover  {
-    color: var(--ink6-LED2ON);
+.power-check:hover  {
+    color: rgba(0,189,255,0.6);
     box-shadow: -2px -2px 3px var(--ink8-glass1),
-        1px 1px 1px rgb(107,196,255),
-        1px 2px 1px rgb(107,196,255),
-        1px 3px 1px rgb(107,196,255),
-        2px 4px 1px rgb(107,196,255),
+        1px 1px 1px rgba(107,196,255,0.4),
+        1px 2px 1px rgba(107,196,255,0.4),
+        1px 3px 1px rgba(107,196,255,0.4),
+        2px 4px 1px rgba(107,196,255,0.4),
         4px 6px 4px rgba(0,189,255,0.4);
   
 }
 
-#power-check:checked  {
+.pwr-chosen label input:checked ~ .power-check {
     color: var(--ink6-LED2ON);
     box-shadow: -2px -2px 3px var(--ink8-glass1),
         1px 1px 1px rgb(107,196,255),
         1px 2px 1px rgb(107,196,255),
         1px 3px 1px rgb(107,196,255),
         2px 4px 1px rgb(107,196,255),
-        4px 6px 4px rgba(0,189,255,0.4),
+        4px 4px 4px rgba(0,189,255,0.4),
 
         inset    -1px -1px 3px var(--ink8-glass1),
         inset     2px  2px 6px var(--ink1-black);
