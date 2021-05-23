@@ -115,9 +115,14 @@ let mainDataLibrary = {
 
 //upon player purchasing terminal upgrades, data from the main table will be passed to the 'live' version which becomes the source data for the player to use (i.e. can't 'use' a device which has not been purchased). it also means retaining a devices original stats should future development enable short term changes to the live data (e.g. temporary performance boost);
 
-let liveGameData = {availableMiners:[
+let liveGameData = {
+    availableMiners:[
     {}
-]};
+    ],
+    finance:[
+    {bankBalance: 200}    
+    ]
+};
 
 
 
@@ -200,6 +205,8 @@ $(".activate-miner").click (function () {
             loadMiner();
 
             refreshDataT1();
+
+            
          
             //run function to update miner attribute values displayed on screen
  
@@ -228,7 +235,9 @@ $(".activate-miner").click (function () {
 
             loadMiner();
         
-            refreshDataT2();   
+            refreshDataT2();  
+            
+            updateBalance();
                         
                     } else if (activeBtn === actBtn3) {
                     console.log("terminal3 activated");
@@ -246,6 +255,8 @@ $(".activate-miner").click (function () {
                     loadMiner();
         
                     refreshDataT3();
+
+                    updateBalance();
         
                     } else {
                     alert("Oops, something's gone wrong! Error : activating terminal");    
@@ -286,6 +297,7 @@ $(".activate-miner").click (function () {
         
             let newStats = {
                 device : (matchingItem[0].device),
+                purchaseCost: (matchingItem[0].purchaseCost),       //note: purchase cost is not feb back to HTML directly, but used in subsequent upgrade balance calc
                 consumption : (matchingItem[0].consumption),
                 chance : (matchingItem[0].chance),
                 speed : (matchingItem[0].speed),
@@ -321,7 +333,7 @@ $(".activate-miner").click (function () {
         let t = liveGameData['availableMiners'];
         let t2Chance = t[2].chance;
         $("#T2chance").text(t2Chance);
-        console.log(t2Chance);
+       
      
         let t2Speed = t[2].speed;
         $("#T2speed").text(t2Speed);
@@ -348,14 +360,36 @@ $(".activate-miner").click (function () {
         let t3reliab = t[3].reliability;
         $("#T3reliability").text(t3reliab);
         }
+        
+        //update balance function - starter balance loaded in HTML be default (no action for T1 activation) but debits balance (purchase cost) for T2 and T3
 
-});
+        function updateBalance(updateBalance) {
+        
+            let currentBal = liveGameData['finance'].bankBalance;
+
+            if (activeBtn === actBtn2) {   
+                let unlockCost = liveGameData['availableMiners'][2].purchaseCost;
+                console.log(unlockCost);
+                console.log(currentBal); 
+                let newBal = currentBal - unlockCost;
+                console.log(newBal); 
+                liveGameData['finance'].bankBalance = newBal;
+                $("#GBP-balance-current").text(newBal);
+                console.log(liveGameData['finance'].bankBalance); 
+
+                } else if  (activeBtn === actBtn2) {
+                    let unlockCost = liveGameData['availableMiners'][3].purchaseCost;
+                    console.log(unlockCost);
+                    let newBal = currentBal - unlockCost; 
+                    console.log(newBal); 
+                    liveGameData['finance'].bankBalance = newBal;
+                    $("#GBP-balance-current").text(newBal);
+                    console.log(liveGameData['finance'].bankBalance); 
+        }}});
 
 
-        //update balance function
 
-        //function updateBalanceAfterPurchase();
-        //);
+        
 
  
 
