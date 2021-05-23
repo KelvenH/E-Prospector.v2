@@ -298,7 +298,7 @@
                                     Chance
                                 </div>
                                 <div class="col styled-small-off val">
-                                    <div>[<span>0</span>]</div>
+                                    <div>[<span id="T1chance">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
@@ -317,7 +317,7 @@
                                     Speed
                                 </div>
                                 <div class="col styled-small-off val">
-                                    <div>[<span>0</span>]</div>
+                                    <div>[<span id="T1speed">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
@@ -337,7 +337,7 @@
                                     Power Usage
                                 </div>
                                 <div class="col styled-small-off val">
-                                    <div>[<span>0</span>]</div>
+                                    <div>[<span id="T1consump">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
@@ -357,7 +357,7 @@
                                     Reliability
                                 </div>
                                 <div class="col styled-small-off val">
-                                    <div>[<span>0</span>]</div>
+                                    <div>[<span id="T1reliability">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
@@ -471,7 +471,7 @@
                             </div>
                             <div class="miner-btn-row">
                                 <a id="btn-to-modal-actv2" role="button" class="btn warning btn-off"
-                                    data-bs-toggle="modal" data-bs-target="#modal-activate-miner2">Activate
+                                    data-bs-toggle="modal" data-bs-target="#">Activate
                                     Terminal</a>
                                 <a role="button" href="#" class="btn primary btn-off" disabled>Purchase Upgrade</a>
                                 <a role="button" href="#" class="btn success btn-off" disabled>Start Miner</a>
@@ -573,7 +573,7 @@
                             </div>
                             <div class="miner-btn-row">
                                 <a id="btn-to-modal-actv3" role="button" class="btn warning btn-off"
-                                    data-bs-toggle="modal" data-bs-target="#modal-activate-miner3">Activate
+                                    data-bs-toggle="modal" data-bs-target="#">Activate
                                     Terminal</a>
                                 <a role="button" href="#" class="btn primary btn-off" disabled>Purchase Upgrade</a>
                                 <a role="button" href="#" class="btn success btn-off" disabled>Start Miner</a>
@@ -657,7 +657,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <h4>Terminal #2</h4>
-                                <p>Ready to start expanding your operations. It costs £1k to unlock. This terminal will start with slighty increased performance but that does mean it will be slightly more expensive to run! 
+                                <p>Ready to start expanding your operations. It costs £10k to unlock. This terminal will start with slighty increased performance but that does mean it will be slightly more expensive to run! 
                                     <br><br>
                                     You also have 1 further terminal bay to unlock.
 
@@ -678,7 +678,7 @@
                 <!--close modal-body---->
                 <div class="modal-footer">
                     <button id="btn-activation2" class="activate-miner btn btn-success btn-on " type="submit"
-                        data-bs-dismiss="modal" aria-label="Activate Miner">Activate Miner (Cost £1k)</button>
+                        data-bs-dismiss="modal" aria-label="Activate Miner">Activate Miner (Cost £10k)</button>
                     <button type="button" class="btn btn-on btn-secondary" data-bs-dismiss="modal"
                         aria-label="Close">Leave without Activating</button>
                 </div>
@@ -690,10 +690,98 @@
     </div>
     <!--close modal---->
 
+    <!--terminal 3-->
+    <div class="modal fade" id="modal-activate-miner3" aria-hidden="true" aria-labelledby="UpgradeModalToggleLabel"
+        tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modal-activate-title3">Activate Terminal 3</h3>
 
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <h4>Terminal #3</h4>
+                                <p>That's some serious E-Prospectoring there! So you're ready to join the big time. Well this third terminal is going to set you back a cool £1m to unlock - oh it's thirsty one - careful this doesn't drink your balance dry! 
+                                    <br><br>
+                                    
+                                    Time to give up the day job?!.....
 
+                                    <br>
 
+                                </p>
+                            </div>
+                            <!--close fullwidth col-->
+                        </div>
+                        <!--close modal intro row col-->
 
+                        <!--close modal-body row 1-->
+                    </div>
+                    <!--close modal-body container-->
+                </div>
+                <!--close modal-body---->
+                <div class="modal-footer">
+                    <button id="btn-activation3" class="activate-miner btn btn-success btn-on " type="submit"
+                        data-bs-dismiss="modal" aria-label="Activate Miner">Activate Miner (Cost £1m)</button>
+                    <button type="button" class="btn btn-on btn-secondary" data-bs-dismiss="modal"
+                        aria-label="Close">Leave without Activating</button>
+                </div>
+                <!--close modal-body---->
+            </div>
+            <!--close modal-content---->
+        </div>
+        <!--close modal-dialog---->
+    </div>
+    <!--close modal---->
+
+<!--no terminal skippin message--> 
+    <div class="modal fade" id="term-skip" aria-hidden="true" aria-labelledby="UpgradeModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-activate-title2">Activate Terminal 2</h3>
+
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>Terminal #2</h4>
+                            <p>Ready to start expanding your operations. It costs £10k to unlock. This terminal will start with slighty increased performance but that does mean it will be slightly more expensive to run! 
+                                <br><br>
+                                You also have 1 further terminal bay to unlock.
+
+                                Keep up the good work E-Prospector!
+
+                                <br>
+
+                            </p>
+                        </div>
+                        <!--close fullwidth col-->
+                    </div>
+                    <!--close modal intro row col-->
+
+                    <!--close modal-body row 1-->
+                </div>
+                <!--close modal-body container-->
+            </div>
+            <!--close modal-body---->
+            <div class="modal-footer">
+                <button id="btn-activation2" class="activate-miner btn btn-success btn-on " type="submit"
+                    data-bs-dismiss="modal" aria-label="Activate Miner">Activate Miner (Cost £10k)</button>
+                <button type="button" class="btn btn-on btn-secondary" data-bs-dismiss="modal"
+                    aria-label="Close">Leave without Activating</button>
+            </div>
+            <!--close modal-body---->
+        </div>
+        <!--close modal-content---->
+    </div>
+    <!--close modal-dialog---->
+</div>
+<!--close modal---->
 
 
 
