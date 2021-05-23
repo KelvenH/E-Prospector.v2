@@ -173,7 +173,7 @@
                                 </div>
                                 <div class="col styled-small pwr-chosen align-items-center">
                                     <label>
-                                        <input type="radio" name="provider" id="renewable">
+                                        <input type="radio" name="provider" id="renewable" checked>
                                         <i class="bi bi-check power-check"></i>
                                     </label>
                                 </div>
@@ -217,9 +217,14 @@
 
                             <div class="row d-flex g-0 justify-content-between">
                                 <div id="message-screen" class="col styled-small">
-                                    <div>
-
-                                    </div>
+                                    <h3 id="TermIcon"><i class="bi bi-display"></i></h3>
+                                    <h3 id="TermKeyIcon"><i class="bi bi-key-fill"></i></h3>
+                                    <h3 id="BlockIcon"><i class="bi bi-lock"></i></h3>
+                                    <h3 id="OutcomeIcon"><i class="bi bi-currency-bitcoin"></i></h3>
+                                    <h3 id="TermID"> N/A  </h3>
+                                    <h3 id="TermKey"> N/A  </h3>
+                                    <h3 id="BlockKey">N/A  </h3>
+                                    <h3 id="Result">  N/A  </h3>
 
                                 </div>
                             </div>
@@ -265,7 +270,7 @@
                                 <div class="col styled-small" style="display:inline;">
                                     <h4 style="display:inline;">
                                         <i class="bi bi-currency-bitcoin" style="display:inline;"></i>
-                                        <p id="bit-balance-current" style="display:inline;">100</p>
+                                        <p id="bit-balance-current" style="display:inline;">0</p>
                                     </h4>
 
                                 </div>
@@ -281,9 +286,9 @@
                 <!------------MINER CARDS------------->
 
                 <div id="terminal1" class="col-12 col-md-6 col-lg-4 card-grp">
-                    <div id="term1-card" class="card styled-pane-card-off">
+                    <div id="term1-card" class="t1-act card styled-pane-card-off">
                         <div class="card-body">
-                            <div class="card-header d-flex justify-content-between align-items-center">
+                            <div class="card-header d-flex justify-content-between align-middle">
                                 <h3><i class="bi bi-display"></i></h3>
                                 <h4 class="device-name">Terminal #1</h4>
                                 <h5 class="card-text">Status</h5>
@@ -291,80 +296,75 @@
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small-off card-icon">
+                                <div  class="col-2 styled-small-off t1-act card-icon">
                                     <h3 class="bi bi-dice-3-fill"></h3>
                                 </div>
-                                <div class="col-4 styled-small-off card-label">
+                                <div class="col-4 styled-small-off t1-act card-label">
                                     Chance
                                 </div>
-                                <div class="col styled-small-off val">
+                                <div class="col styled-small-off t1-act val justify-content-evenly align-text-bottom">
                                     <div>[<span id="T1chance">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
                                     <div class="box lvl4"></div>
                                     <div class="box lvl5"></div>
-                                    <div class="box lvl6"></div>
-                                    <div class="box lvl7"></div>
-                                </div>
+                                  
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small-off card-icon">
+                                <div class="col-2 styled-small-off t1-act card-icon">
                                     <h3 class="bi bi-stopwatch-fill"></h3>
                                 </div>
-                                <div class="col-4 styled-small-off card-label">
+                                <div class="col-4 styled-small-off t1-act card-label">
                                     Speed
                                 </div>
-                                <div class="col styled-small-off val">
+                                <div class="col styled-small-off t1-act val justify-content-evenly">
                                     <div>[<span id="T1speed">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
                                     <div class="box lvl4"></div>
                                     <div class="box lvl5"></div>
-                                    <div class="box lvl6"></div>
-                                    <div class="box lvl7"></div>
+                                   
                                 </div>
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small-off card-icon">
+                                <div class="col-2 styled-small-off t1-act card-icon">
                                     <h3 class="bi bi-plug-fill"></h3>
 
                                 </div>
-                                <div class="col-4 styled-small-off card-label">
+                                <div class="col-4 styled-small-off t1-act card-label">
                                     Power Usage
                                 </div>
-                                <div class="col styled-small-off val">
+                                <div class="col styled-small-off t1-act val justify-content-evenly">
                                     <div>[<span id="T1consump">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
                                     <div class="box lvl4"></div>
                                     <div class="box lvl5"></div>
-                                    <div class="box lvl6"></div>
-                                    <div class="box lvl7"></div>
+                                  
                                 </div>
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small-off card-icon">
+                                <div class="col-2 styled-small-off t1-act card-icon">
                                     <h3 class="bi bi-tools"></h3>
 
                                 </div>
-                                <div class="col-4 styled-small-off card-label">
-                                    Reliability
+                                <div class="col-4 styled-small-off t1-act card-label">
+                                    Processor
                                 </div>
-                                <div class="col styled-small-off val">
+                                <div class="col styled-small-off t1-act val justify-content-evenly">
                                     <div>[<span id="T1reliability">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
                                     <div class="box lvl4"></div>
                                     <div class="box lvl5"></div>
-                                    <div class="box lvl6"></div>
-                                    <div class="box lvl7"></div>
+                                   
                                 </div>
                             </div>
                             <div class="miner-btn-row">
@@ -393,80 +393,76 @@
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small-off card-icon">
+                                <div class="col-2 styled-small-off t2-act card-icon">
                                     <h3 class="bi bi-dice-3-fill"></h3>
                                 </div>
-                                <div class="col-4 styled-small-off card-label">
+                                <div class="col-4 styled-small-off t2-act card-label">
                                     Chance
                                 </div>
-                                <div class="col styled-small-off val">
+                                <div class="col styled-small-off t2-act val justify-content-evenly">
                                     <div>[<span id="T2chance">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
                                     <div class="box lvl4"></div>
                                     <div class="box lvl5"></div>
-                                    <div class="box lvl6"></div>
-                                    <div class="box lvl7"></div>
+                                  
                                 </div>
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small-off card-icon">
+                                <div class="col-2 styled-small-off t2-act card-icon">
                                     <h3 class="bi bi-stopwatch-fill"></h3>
                                 </div>
-                                <div class="col-4 styled-small-off card-label">
+                                <div class="col-4 styled-small-off t2-act card-label">
                                     Speed
                                 </div>
-                                <div class="col styled-small-off val">
+                                <div class="col styled-small-off t2-act val justify-content-evenly">
                                     <div>[<span id="T2speed">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
                                     <div class="box lvl4"></div>
                                     <div class="box lvl5"></div>
-                                    <div class="box lvl6"></div>
-                                    <div class="box lvl7"></div>
+                                  
                                 </div>
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small-off card-icon">
+                                <div class="col-2 styled-small-off t2-act card-icon">
                                     <h3 class="bi bi-plug-fill"></h3>
 
                                 </div>
-                                <div class="col-4 styled-small-off card-label">
+                                <div class="col-4 styled-small-off t2-act card-label">
                                     Power Usage
                                 </div>
-                                <div class="col styled-small-off val">
+                                <div class="col styled-small-off t2-act val justify-content-evenly">
                                     <div>[<span id="T2consump">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
                                     <div class="box lvl4"></div>
                                     <div class="box lvl5"></div>
-                                    <div class="box lvl6"></div>
-                                    <div class="box lvl7"></div>
+                                    
                                 </div>
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small-off card-icon">
+                                <div class="col-2 styled-small-off t2-act card-icon">
                                     <h3 class="bi bi-tools"></h3>
 
                                 </div>
-                                <div class="col-4 styled-small-off card-label">
-                                    Reliability
+                                <div class="col-4 styled-small-off t2-act card-label">
+                                    Processor
                                 </div>
-                                <div class="col styled-small-off val">
+                                <div class="col styled-small-off t2-act val justify-content-evenly">
                                     <div>[<span id="T2reliability">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
                                     <div class="box lvl4"></div>
                                     <div class="box lvl5"></div>
-                                    <div class="box lvl6"></div>
-                                    <div class="box lvl7"></div>
+                                    
                                 </div>
                             </div>
                             <div class="miner-btn-row">
@@ -474,7 +470,7 @@
                                     data-bs-toggle="modal" data-bs-target="#">Activate
                                     Terminal</a>
                                 <a role="button" href="#" class="btn primary btn-off" disabled>Purchase Upgrade</a>
-                                <a role="button" id ="term2-play" class="btn success btn-off" disabled>Start Miner</a>
+                                <a role="button" id ="term2-play" class="btn-play btn success btn-off" disabled>Start Miner</a>
                             </div>
                         </div>
                         <!--close card body ---->
@@ -495,80 +491,76 @@
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small-off card-icon">
+                                <div id="t3-smallpane" class="col-2 styled-small-off t3-act card-icon">
                                     <h3 class="bi bi-dice-3-fill"></h3>
                                 </div>
-                                <div class="col-4 styled-small-off card-label">
+                                <div class="col-4 styled-small-off t3-act card-label">
                                     Chance
                                 </div>
-                                <div class="col styled-small-off val">
+                                <div class="col styled-small-off t3-act val justify-content-evenly">
                                     <div>[<span id="T3chance">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
                                     <div class="box lvl4"></div>
                                     <div class="box lvl5"></div>
-                                    <div class="box lvl6"></div>
-                                    <div class="box lvl7"></div>
+                                  
                                 </div>
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small-off card-icon">
+                                <div class="col-2 styled-small-off t3-act card-icon">
                                     <h3 class="bi bi-stopwatch-fill"></h3>
                                 </div>
-                                <div class="col-4 styled-small-off card-label">
+                                <div class="col-4 styled-small-off t3-act card-label">
                                     Speed
                                 </div>
-                                <div class="col styled-small-off val">
+                                <div class="col styled-small-off t3-act val justify-content-evenly">
                                     <div>[<span id="T3speed">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
                                     <div class="box lvl4"></div>
                                     <div class="box lvl5"></div>
-                                    <div class="box lvl6"></div>
-                                    <div class="box lvl7"></div>
+                                    
                                 </div>
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small-off card-icon">
+                                <div class="col-2 styled-small-off t3-act card-icon">
                                     <h3 class="bi bi-plug-fill"></h3>
 
                                 </div>
-                                <div class="col-4 styled-small-off card-label">
+                                <div class="col-4 styled-small-off t3-act card-label">
                                     Power Usage
                                 </div>
-                                <div class="col styled-small-off val">
+                                <div class="col styled-small-off t3-act val justify-content-evenly">
                                     <div>[<span id="T3consump">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
                                     <div class="box lvl4"></div>
                                     <div class="box lvl5"></div>
-                                    <div class="box lvl6"></div>
-                                    <div class="box lvl7"></div>
+                                    
                                 </div>
                             </div>
 
                             <div class="row d-flex g-0 justify-content-between">
-                                <div class="col-2 styled-small-off card-icon">
+                                <div class="col-2 styled-small-off t3-act card-icon">
                                     <h3 class="bi bi-tools"></h3>
 
                                 </div>
-                                <div class="col-4 styled-small-off card-label">
-                                    Reliability
+                                <div class="col-4 styled-small-off t3-act card-label">
+                                    Processor
                                 </div>
-                                <div class="col styled-small-off val">
+                                <div class="col styled-small-off t3-act val justify-content-evenly">
                                     <div>[<span id="T3reliability">0</span>]</div>
                                     <div class="box lvl1"></div>
                                     <div class="box lvl2"></div>
                                     <div class="box lvl3"></div>
                                     <div class="box lvl4"></div>
                                     <div class="box lvl5"></div>
-                                    <div class="box lvl6"></div>
-                                    <div class="box lvl7"></div>
+                                    
                                 </div>
                             </div>
                             <div class="miner-btn-row">
@@ -576,7 +568,7 @@
                                     data-bs-toggle="modal" data-bs-target="#">Activate
                                     Terminal</a>
                                 <a role="button" href="#" class="btn primary btn-off" disabled>Purchase Upgrade</a>
-                                <a role="button" id ="term3-play" class="btn success btn-off" disabled>Start Miner</a>
+                                <a role="button" id ="term3-play" class="btn-play btn success btn-off" disabled>Start Miner</a>
                             </div>
                         </div>
                         <!--close card body ---->
@@ -735,118 +727,6 @@
         <!--close modal-dialog---->
     </div>
     <!--close modal---->
-
-<!--no terminal skippin message--> 
-    <div class="modal fade" id="term-skip" aria-hidden="true" aria-labelledby="UpgradeModalToggleLabel"
-    tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modal-activate-title2">Activate Terminal 2</h3>
-
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <h4>Terminal #2</h4>
-                            <p>Ready to start expanding your operations. It costs £10k to unlock. This terminal will start with slighty increased performance but that does mean it will be slightly more expensive to run! 
-                                <br><br>
-                                You also have 1 further terminal bay to unlock.
-
-                                Keep up the good work E-Prospector!
-
-                                <br>
-
-                            </p>
-                        </div>
-                        <!--close fullwidth col-->
-                    </div>
-                    <!--close modal intro row col-->
-
-                    <!--close modal-body row 1-->
-                </div>
-                <!--close modal-body container-->
-            </div>
-            <!--close modal-body---->
-            <div class="modal-footer">
-                <button id="btn-activation2" class="activate-miner btn btn-success btn-on " type="submit"
-                    data-bs-dismiss="modal" aria-label="Activate Miner">Activate Miner (Cost £10k)</button>
-                <button type="button" class="btn btn-on btn-secondary" data-bs-dismiss="modal"
-                    aria-label="Close">Leave without Activating</button>
-            </div>
-            <!--close modal-body---->
-        </div>
-        <!--close modal-content---->
-    </div>
-    <!--close modal-dialog---->
-</div>
-<!--close modal---->
-
-
-
-
-
-
-
-
-
-    <!--purchase upgrade - below from baseline version to be reviewed and updated-->
-    <!--
- <div class="modal fade" id="modal-upgrade-miner" aria-hidden="true"
- aria-labelledby="UpgradeModalToggleLabel" tabindex="-1">
- <div class="modal-dialog modal-lg modal-dialog-centered">
-     
-     <div class="modal-content">
-         <div class="modal-header">
-             <h5 class="modal-title" id="modal-upgrade-title">Upgrade Shop</h5>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-         </div>
-         <div class="modal-body">
-             <div class="container">
-                 <div class="row">
-                     <div class="col-12">
-                         <h4>Welcome to Byte I.T. - here for all your crypto-mining needs!</h4>
-                         <p>All of our upgrades offer an improved chance of success out in them there
-                             digital goldmines.... our prices aren't very competitive (well there's no
-                             Amazon to contest here!)</p>
-                     </div>   
-                     --close fullwidth col--
-                 </div>
-                 !--close modal intro row col--
-                 <div class="row row-cols-5">
-                     <div class="col">
-                         <h6>Tier</h6>
-                     </div>
-                     <div class="col">
-                         <h6>£ Price</h6>
-                     </div>
-                     <div class="col">
-                         <h6>Power Consumption</h6>
-                     </div>
-                     <div class="col">
-                         <h6>Success Rate (1 in ?)</h6>
-                     </div>
-                     <div class="col">
-                         <h6>Reliability (0 - 20)</h6>
-                     </div>
-                 </div>
-                 !--close modal-body row 1--
-             </div>
-             !--close modal-body container--
-         </div>
-         !--close modal-body----
-         <div class="modal-footer">
-             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-dismiss="modal">Leave
-                 shop</button>
-         </div>
-         !--close modal-body----
-     </div>
- </div>
-</div>-->
-
-
-    <!--events-->
 
 
 

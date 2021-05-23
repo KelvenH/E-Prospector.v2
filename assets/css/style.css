@@ -461,8 +461,52 @@ section {
 #message-screen {
     height:16vh;
     background-image: repeating-linear-gradient(var(--ink3-offblacksemi), black 1%); 
+    display:grid;
+    align-items:center;
+    justify-items:center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 2;
+    grid-template-areas:
+                "TermIcon   TermKeyIcon    BlockIcon      OutcomeIcon"
+                "TermID     TermKey         BlockKey      Result"
 
+;
 }
+
+#TermIcon {
+    grid-area:TermIcon;                                    
+}       
+
+#TermKeyIcon {
+    grid-area:TermKeyIcon;
+}
+
+#BlockIcon {
+    grid-area:BlockIcon;
+} 
+
+#OutcomeIcon {
+    grid-area:OutcomeIcon;
+}
+
+#TermID {
+    grid-area:TermID;
+}   
+
+#TermKey {
+    grid-area:TermKey;
+}    
+
+#BlockKey {
+    grid-area:BlockKey;
+}
+
+#Result {
+    grid-area:Result;
+}
+
+
+
 
 
 .styled-pane-card,
@@ -517,6 +561,9 @@ section {
     cursor: pointer;
 } 
 
+.progress {
+    background
+}
 
 .styled-small,
 .styled-small-on {
@@ -546,12 +593,29 @@ section {
     cursor: pointer;
 }
 
+.styled-active {
+   
+    background-color:var(--ink4-blueblack);
+    color: var(--ink6-LED2ON);
+ 
+ box-shadow: 
+-2px -2px 3px var(--ink8-glass1),
+1px 1px 1px rgb(239,164,75),
+1px 2px 1px rgb(239,164,75),
+1px 3px 1px rgb(239,164,75),
+1px 4px 1px rgb(239,164,75),
+4px 12px 4px rgba(255,145,0,0.2),
+8px 16px 8px rgba(255,145,0,0.2),
+16px 28px 28px rgba(255,145,0,0.2); 
+}
+
+
 .styled-small-off {
     margin-left:0;
     margin-right:0;
     margin-top:0.5vh;
     margin-bottom:0;
-    padding: 1rem;
+    padding: 0.75rem;
     display:flex;
     flex-direction:column;
     flex-wrap:wrap;
@@ -754,7 +818,7 @@ i, .bi, h4, .fas {
 .val {
     display:inline-block;
     flex-wrap:no-wrap;
-    height:100%;
+    
     width:12vw;    
 }
 
@@ -766,8 +830,9 @@ i, .bi, h4, .fas {
 .box {
     display:inline-block;
     flex-wrap:nowrap;
-    width:0.5rem;
-    height:0.5rem;
+    margin-left:0.5rem;
+    width:1.5rem;
+    height:1.5rem;
     background-color:var(--ink6-LED2OFF);
 }
 
@@ -855,12 +920,7 @@ i, .bi, h4, .fas {
     padding-right:2vw;
 }
 
-#terminal-window {
-    border: solid 2px var(--ink3);
-    padding:2vh 1vw;
-    margin-bottom:5vh;
-    
-}
+
 
 
 /*---------------------Main Body : Right Panel (Game Stats)-----------------------

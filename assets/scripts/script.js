@@ -1,4 +1,4 @@
-
+/jshint esversion:8, jquery:true/
 /*--- Key Steps & Sequence -----------------------------------------------------//
 0.0 - Utilities (temp to be removed!!)
 0.1 - Global variables initiated
@@ -68,25 +68,11 @@ let blockSuccess;
 -------*/
 
 /*---------------------------------------------------------------------------------
-//   0.2 - Game data tables / library;
+//   0.2 - Game data tables / library; 
+        i - mainDataLibrary are hard-coded and represent starting attributes
+        ii - liveGameData is initiated from main data but adjusts to respond to player's decisions (e.g. when terminal activated, upgrades purchased, etc)
+        iii -  additional 'short term' data arrays constructed (fed from liveGameData) which drive round by round calculations
 //-------------------------------------------------------------------------------*/
-
-//Mining devices;
-
-/*---
-[1]name            [2]purchaseCost   [3]minerPowerConsumption    [4]minerChance   [5*]speed (timer) [6*]reliability  [7i]status
-Level 0 (Default)       0                10                         25              0               100             1
-Level 1                 50               25                         20              0               100             0
-Level 2                 250              50                         15              0               100             0
-Level 3                 500              150                        10              0               100             0  
-Level 4                 1000             250                        2               0               100             0
-
-[1] - [6] : displayed to user in device information   +   upgrade shop
-[7] : hidden from user 
-[**] - not invoked for baseline version but planned for future enhancement
-[i] - status, 0 = not available (i.e. not purchased), 1 = available (default or purchased) 
-----*/
-
 
 let mainDataLibrary = {
     miningDevices:[                      
@@ -94,22 +80,22 @@ let mainDataLibrary = {
         purchaseCost: 0,
         chance: 50,
         speed: 1,
-        consumption: 10,
-        reliability: 100,
+        consumption: 5,
+        processor: 1,
         status: 0},
     {   device:'Terminal #2',
         purchaseCost: 10000,
         chance: 40,
         speed: 10,
-        consumption: 100,
-        reliability: 80,
+        consumption: 15,
+        processor: 80,
         status: 0},
     {   device:'Terminal #3',
         purchaseCost: 1000000,
         chance: 25,
         speed: 30,
         consumption: 500,
-        reliability: 70,
+        processor: 70,
         status: 0}],
     finance:[
     {   bankBalance: 200}],
@@ -144,6 +130,9 @@ let liveGameData = {
         };
 
    
+
+
+
 /*---------------------------------------------------------------------------------
 //  1.0 Prepare Game On DOM Load;
 //      Wait until DOM loaded then obtain miner details from 'liveGameData' (default only available at start)
@@ -153,7 +142,7 @@ let liveGameData = {
 
 document.addEventListener("DOMContentLoaded", function () {             // Waits for the DOM to load before executing the initial game prep
  
-        console.log("DOM load complete");                               // end of onload function
+        console.log("1.DOM load complete");                               // end of onload function
     });
 
 //update miner stats 'in-play' after selection of device (function can be accessed at any time outside of 'mine block'game cycle)
@@ -184,14 +173,14 @@ let actBtn3 = "btn-activation3";
 
 $(".activate-miner").click (function () { 
          
-        console.log("terminal activated, id=", this.id);    
+        console.log("2. terminal activated, id=", this.id);    
                                                              
         
         let activeBtn = this.id;                                                    //how to travese the dom from a modal button to the source?
         console.log(activeBtn);
         
         if (activeBtn === actBtn1) {
-            console.log("terminal1 activated");
+            console.log("3a. terminal1 activated");
             //terminal 1 actions go here
                 
             //update this. terminals .card .styled-pane-card-off to on
@@ -235,7 +224,7 @@ $(".activate-miner").click (function () {
                 // repeat activation sequence for terminals 2 & 3
 
                 } else if (activeBtn === actBtn2) {
-                console.log("terminal2 activated");
+                console.log("3b. terminal2 activated");
             
                            
             $("#term2-card").removeClass('styled-pane-card-off').addClass('styled-pane-card-on');
@@ -256,7 +245,7 @@ $(".activate-miner").click (function () {
             updateBalance();
                         
                     } else if (activeBtn === actBtn3) {
-                    console.log("terminal3 activated");
+                    console.log("3c. terminal3 activated");
         
         
                     $("#term3-card").removeClass('styled-pane-card-off').addClass('styled-pane-card-on');
@@ -276,7 +265,7 @@ $(".activate-miner").click (function () {
         
                     } else {
                     alert("Oops, something's gone wrong! Error : activating terminal");    
-                    console.log("alert unrecognised id mapping");
+                    console.log("3d. alert unrecognised id mapping");
                     } ;
         
         //run function to feed base data from static mainDataLibrary to liveGameData (fluid version which adjusts according to player actions). 
@@ -287,16 +276,16 @@ $(".activate-miner").click (function () {
                 
                 if (activeBtn === actBtn1) {
                     findTerminal = "Terminal #1";
-                    console.log(findTerminal, "found")
+                    console.log(findTerminal, "found.4a")
                     } else if (activeBtn === actBtn2) {
                         findTerminal = "Terminal #2";
-                        console.log(findTerminal, "found")
+                        console.log(findTerminal, "found.4b")
                         } else if (activeBtn === actBtn3) {
                             findTerminal = "Terminal #3";
-                            console.log(findTerminal, "found")
+                            console.log(findTerminal, "found.4c")
                         } else {
                             alert("Oops, something's gone wrong! Error : refreshing terminal stats");    
-                            console.log("alert unrecognised id mapping");
+                            console.log("4d. alert unrecognised id mapping");
                             } ;
 
         let item = {device : findTerminal};  
@@ -323,12 +312,12 @@ $(".activate-miner").click (function () {
         
         
         liveGameData['availableMiners'].push(newStats);
-        console.log(liveGameData);        
+        console.log("5 liveGameData", liveGameData);        
 
         }
     
        function refreshDataT1(refreshDataT1) {
-        console.log(refreshDataT1, "started");
+        console.log(refreshDataT1, "6a. started");
        let t = liveGameData['availableMiners'];
        let t1Chance = t[1].chance;
        $("#T1chance").text(t1Chance);
@@ -345,7 +334,7 @@ $(".activate-miner").click (function () {
 
 
         function refreshDataT2(refreshDataT2) {
-        console.log(refreshDataT2, "started");
+        console.log(refreshDataT2, "6b. started");
         let t = liveGameData['availableMiners'];
         let t2Chance = t[2].chance;
         $("#T2chance").text(t2Chance);
@@ -362,7 +351,7 @@ $(".activate-miner").click (function () {
         }
 
         function refreshDataT3(refreshDataT3) {
-        console.log(refreshDataT3, "started");
+        console.log(refreshDataT3, "6c. started");
         let t = liveGameData['availableMiners'];
         let t3Chance = t[3].chance;
         $("#T3chance").text(t3Chance);
@@ -378,6 +367,7 @@ $(".activate-miner").click (function () {
         }
         
         //update balance function - starter balance loaded in HTML by default & no initial unlock cost (i.e. no action for T1 activation) but debits balance (purchase cost) for T2 and T3
+        updateBalance ();
 
         function updateBalance(updateBalance) {
         
@@ -385,23 +375,23 @@ $(".activate-miner").click (function () {
 
             if (activeBtn === actBtn2) {   
                 let unlockCost = liveGameData['availableMiners'][2].purchaseCost;
-                console.log(unlockCost);
-                console.log(currentBal); 
+                console.log("7a.unlock cost", unlockCost);
+                console.log("8a current bal", currentBal); 
                 let newBal = currentBal - unlockCost;
-                console.log(newBal); 
+                console.log("9a.new bal", newBal); 
                 liveGameData['finance'].bankBalance = newBal;
                 $("#GBP-balance-current").text(newBal);
-                console.log(liveGameData['finance'].bankBalance); 
+                console.log("10.a bank balance", liveGameData['finance'].bankBalance); 
 
                 } else if  (activeBtn === actBtn3) {
                     let unlockCost = liveGameData['availableMiners'][3].purchaseCost;
-                    console.log(unlockCost);
-                    console.log(currentBal); 
+                    console.log("7b.unlock cost", unlockCost);
+                    console.log("8b current bal", currentBal); 
                     let newBal = currentBal - unlockCost;
-                    console.log(newBal); 
+                    console.log("9b.new bal",newBal); 
                     liveGameData['finance'].bankBalance = newBal;
                     $("#GBP-balance-current").text(newBal);
-                    console.log(liveGameData['finance'].bankBalance); 
+                    console.log("10.b bank balance",liveGameData['finance'].bankBalance); 
 
         }}});
 
@@ -435,6 +425,7 @@ $(".activate-miner").click (function () {
 
 /*---------------------------------------------------------------------------------
 //   4. Run Game (event = player clicks to run new round);
+        - pre-check to ensure power supplier slected (alert blocks play wihtout selection)
         a - game generates device and block keys (linked to active device probability range) 
         b - checks if match 
         c - calc outcome,subTotal (last balance + winnings - costs); 
@@ -445,6 +436,17 @@ $(".activate-miner").click (function () {
 
 // Run Game - Event listener for run game button (initiate game cycle stages)
 
+let gameData = new Array();              // 'Temporary' data arrays created for the lifespan of a single game round. These are hoisted to a level within the over-arching game cycle function so that they can be fed into and feed out to other stages within the round's gameplay, but also not need to be 'reset' as they would if they resided at a global level 
+let gamePowerData = new Array();        
+let termKeyId; 
+let blockId;
+let outCome;
+let outComeTxt;
+let newBalance;
+let roundCoin;
+let newBitCoins;
+let activeTarget;
+
 let play = document.getElementsByClassName('btn-play');
 
 $(".btn-play").click (function () { 
@@ -453,7 +455,7 @@ $(".btn-play").click (function () {
   
     //check performed to ensure power provider selected - at same time, related power stats pulled for the game cycle
 
-    console.log("terminal started mining, id=", this.id);    
+    console.log("11. terminal started mining, id=", this.id);    
     
     let chosenProvider;                                                               
         
@@ -477,7 +479,7 @@ $(".btn-play").click (function () {
     
        function calcGamePowerData (calcGamePowerData) {
 
-            console.log("supplier", chosenProvider); 
+            console.log("13. supplier", chosenProvider); 
         
             let suppliermatch = {provider : chosenProvider};
 
@@ -491,14 +493,14 @@ $(".btn-play").click (function () {
                 return false;
                 })
         
-    let gamePowerData = {
+    gamePowerData = {
         provider : (matchingPower[0].provider),
         costPerKw : (matchingPower[0].costPerKw),
         reliability : (matchingPower[0].reliability),
         toxicity : (matchingPower[0].toxicity),
         }
 
-        console.log(gamePowerData);
+        console.log("14.", gamePowerData);
     }
 
     
@@ -509,19 +511,22 @@ $(".btn-play").click (function () {
         let t1 = 'term1-play';
         let t2 = 'term2-play';
         let t3 = 'term3-play';    
-        console.log(t1);
+        console.log("15a.", t1);
 
     if (terminalInPlay === t1) {
 
-        terminal = 'Terminal #1'
+        terminal = 'Terminal #1';
+        activeTarget = document.getElementsByClassName('t1-act');
 
     } else if (terminalInPlay === t2) {
 
-        terminal = 'Terminal #2'
+        terminal = 'Terminal #2';
+        activeTarget = document.getElementsByClassName('t2-act');
 
     } else if (terminalInPlay === t3) {
 
-        terminal = 'Terminal #3'
+        terminal = 'Terminal #3';
+        activeTarget = document.getElementsByClassName('t3-act');
     
     }  else {
         alert("Oops, something's gone wrong! Error : run game error");    
@@ -542,45 +547,113 @@ $(".btn-play").click (function () {
          })
 
       
-        let gameData = {
+        gameData = {
             device : (matchingItem[0].device),
             consumption : (matchingItem[0].consumption),
             chance : (matchingItem[0].chance),
             speed : (matchingItem[0].speed),
             reliability : (matchingItem[0].reliability),
              }
-        console.log(gameData);     
-    }});
+        console.log("16", gameData);     
+    }
+
+    generateTerminalKey ();
+    generateBlockID ();
+    result();
+  
 
 
-//play.addEventListener('click', mineBlock);
+    function generateTerminalKey (generateTerminalKey) {
 
+        let terminalprobability = gameData.chance;
+        console.log("17. terminl prob", terminalprobability);
 
-// BUG / DEFECT - if player does not select a miner there is a 1 in 1 chance of 0 = 0 i.e. win evey time!, either add check (with alert) to prevent game from progressing and / or Jquery event on 'play' button so as button deactivated / hidden unt selection made.
+        let terminalkey = Math.floor(Math.random() * terminalprobability) + 1;
+        termKeyId = terminalkey;
+        console.log("18.termkey", terminalkey);        
+    };
 
+    function generateBlockID (generateBlockID) {
+        let terminalprobability = gameData.chance;        
+        let blockLock = Math.floor(Math.random() * terminalprobability) + 1;
+        blockId = blockLock;
+        console.log("19.blockID", blockId);      
+    };
+
+    function result(result) {
+        if (termKeyId===blockId) {
+            outCome = 1;
+            outComeTxt = 'Y';
+            newBitCoins = parseInt(document.getElementById('bit-balance-current')) + 1;
+             
+
+        } else {
+            outCome = 0;
+            outComeTxt = 'N';
+        }
+        console.log("20.", outCome);
+    }
     
-    // Game stage Ai - generate miner ID / Key and display in Game Panel  
-    
-
-
     // Game Stage C - Calculate Outcome 
 
+    calcSubTotal();
+
+     function calcSubTotal (calcSubTotal) {
+        let roundCost = gameData.consumption * gamePowerData.costPerKw;
+        console.log("21. PowerConsumption", gameData.consumption);          
+        console.log("22. consumption", gamePowerData.costPerKw);                             
+        console.log("23. RoundCost", roundCost);                               
+        let oldBalance = parseInt(document.getElementById('GBP-balance-current').innerText);
+        newBalance = oldBalance - roundCost;
+        console.log("24. new balance", newBalance);
+         
+    }
+
+  // Game stage D - Update DashBoard -time delay added into the write-back - relates to speed factor of terminal. Write-back held out to avoid issues with functions being performed for other devices. 
+   
+   let targetClass = activeTarget                                       //add styling to indicate mining in progress
+    $(targetClass).addClass('styled-active');                           // bugs encountered if same / other terminal activated whilst a previous terminal is still operating. Additional logic applied to remove the ability to activate 'start miner' button until game cycle has fully completed.
+    $(".btn-play").removeClass(".btn-play").addClass(".miner-paused");
+    
+    let i = 30000 / gameData.speed;                     //  max time delay of 30s divided by terminal (i.e. higher speed rating equals quicker outcome) 
+      
+    setTimeout (updateDashboard, i); 
+    console.log("25. timer started to run for", i)      
+
+   
+
+    function updateDashboard () {
+    $("#TermID").text(gameData.device);
+    $("#TermKey").text(termKeyId);
+    $("#BlockKey").text(blockId);
+    $("#Result").text(outComeTxt);
+    $("#bit-balance-current").text(newBitCoins);
+    $("#GBP-balance-current").text(newBalance);   
+    console.log("round timer completed, dashboard updated")
+    $(targetClass).removeClass('styled-active');
+    $(".miner-paused").removeClass(".miner-paused").addClass(".btn-play");
+    }; 
+
+      
+
+  });
+
+
+
 
 
     
 
-   // Game stage D - Update Balance 
-        
+
+    
 
 
-    //The following functions are called in the above Run Game cycle if condition(s) met
 
-    // Game Stage Ci - Calculate costs
+    
 
+ 
 
-        
-        
-      // Game Stage Cii - Calculate win
+    
 
 
 
@@ -591,3 +664,10 @@ $(".btn-play").click (function () {
 /*---------------------------------------------------------------------------------
 //   6. X-change (not in baseline)
 //-------------------------------------------------------------------------------*/
+
+
+/*---------------------------------------------------------------------------------
+//   7. Additional Styling
+//-------------------------------------------------------------------------------*/
+
+
