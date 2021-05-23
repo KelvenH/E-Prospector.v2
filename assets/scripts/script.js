@@ -110,19 +110,38 @@ let mainDataLibrary = {
         speed: 30,
         consumption: 500,
         reliability: 70,
-        status: 0}
-]};
+        status: 0}],
+    finance:[
+    {   bankBalance: 200}],
+    power:[
+    {   provider: 'Renewable Energy Co.',
+        costPerKw: '1',
+        reliability: '6',
+        toxicity: '2'},
+    {   provider: 'GAZMORE Inc.',
+        costPerKw: '10',
+        reliability: '9',
+        toxicity: '8'}]
+    };
 
 //upon player purchasing terminal upgrades, data from the main table will be passed to the 'live' version which becomes the source data for the player to use (i.e. can't 'use' a device which has not been purchased). it also means retaining a devices original stats should future development enable short term changes to the live data (e.g. temporary performance boost);
 
 let liveGameData = {
     availableMiners:[
-    {}
-    ],
+    {}],
     finance:[
     {bankBalance: 200}    
-    ]
-};
+    ],
+    power:[
+    {   provider: 'Renewable Energy Co.',
+        costPerKw: '1',
+        reliability: '6',
+        toxicity: '2'},
+    {   provider: 'GAZMORE Inc.',
+        costPerKw: '10',
+        reliability: '9',
+        toxicity: '8'}]
+        };
 
    
 /*---------------------------------------------------------------------------------
@@ -166,7 +185,7 @@ let actBtn3 = "btn-activation3";
 $(".activate-miner").click (function () { 
          
         console.log("terminal activated, id=", this.id);    
-                                                              //development only - to be removed??
+                                                             
         
         let activeBtn = this.id;                                                    //how to travese the dom from a modal button to the source?
         console.log(activeBtn);
@@ -294,7 +313,7 @@ $(".activate-miner").click (function () {
         
             let newStats = {
                 device : (matchingItem[0].device),
-                purchaseCost: (matchingItem[0].purchaseCost),       //note: purchase cost is not feb back to HTML directly, but used in subsequent upgrade balance calc
+                purchaseCost: (matchingItem[0].purchaseCost),       //note: purchase cost is not fed back to HTML directly, but used in subsequent upgrade balance calc
                 consumption : (matchingItem[0].consumption),
                 chance : (matchingItem[0].chance),
                 speed : (matchingItem[0].speed),
@@ -388,22 +407,6 @@ $(".activate-miner").click (function () {
 
 
 
-        
-
- 
-
-
- 
-
-
-
-
-
-
-
-
-
-
 
 /*---------------------------------------------------------------------------------
 //   2b. Upgrade device;
@@ -425,8 +428,9 @@ $(".activate-miner").click (function () {
 
 
 /*---------------------------------------------------------------------------------
-//   3. (not in baseline) changes to power source / cost rate 
+//   3. Power Provider  (not in baseline) changes to power source / cost rate 
 //-------------------------------------------------------------------------------*/
+
 
 
 /*---------------------------------------------------------------------------------
@@ -441,7 +445,114 @@ $(".activate-miner").click (function () {
 
 // Run Game - Event listener for run game button (initiate game cycle stages)
 
-//let play = document.getElementById('btn-play');
+let play = document.getElementsByClassName('btn-play');
+
+$(".btn-play").click (function () { 
+    
+    let terminalInPlay = this.id;            // captured up front after button selection and held for use after power data compiled
+  
+    //check performed to ensure power provider selected - at same time, related power stats pulled for the game cycle
+
+    console.log("terminal started mining, id=", this.id);    
+    
+    let chosenProvider;                                                               
+        
+    checkPowerSupplied();
+    
+        function checkPowerSupplied (checkPowerSupplied) {
+        
+            if (document.getElementById('renewable').checked) {
+                chosenProvider = 'Renewable Energy Co.';
+
+                } else if (document.getElementById('gazmore').checked) {
+                    chosenProvider = 'GAZMORE Inc.';
+                    } else {
+                        alert ("Please select your choice of power provider - no power = no play!")
+                        } 
+                    }
+         
+      
+
+    calcGamePowerData ();
+    
+       function calcGamePowerData (calcGamePowerData) {
+
+            console.log("supplier", chosenProvider); 
+        
+            let suppliermatch = {provider : chosenProvider};
+
+            let matchingPower = liveGameData['power'].filter( (obj) => {   
+     
+                if(obj.provider === suppliermatch.provider){
+               
+                return true            
+                                          
+                    }
+                return false;
+                })
+        
+    let gamePowerData = {
+        provider : (matchingPower[0].provider),
+        costPerKw : (matchingPower[0].costPerKw),
+        reliability : (matchingPower[0].reliability),
+        toxicity : (matchingPower[0].toxicity),
+        }
+
+        console.log(gamePowerData);
+    }
+
+    
+    calcGameTerminalData ();
+
+    function calcGameTerminalData (calcGameTerminalData) {
+
+        let t1 = 'term1-play';
+        let t2 = 'term2-play';
+        let t3 = 'term3-play';    
+        console.log(t1);
+
+    if (terminalInPlay === t1) {
+
+        terminal = 'Terminal #1'
+
+    } else if (terminalInPlay === t2) {
+
+        terminal = 'Terminal #2'
+
+    } else if (terminalInPlay === t3) {
+
+        terminal = 'Terminal #3'
+    
+    }  else {
+        alert("Oops, something's gone wrong! Error : run game error");    
+        console.log("alert unrecognised terminal play mapping");
+        } ;
+
+    console.log(terminal);    
+    let item = {device : terminal};  
+        
+        let matchingItem = liveGameData['availableMiners'].filter( (obj) => {   
+     
+        if(obj.device === item.device){
+               
+                return true            
+                                          
+                }
+                 return false;
+         })
+
+      
+        let gameData = {
+            device : (matchingItem[0].device),
+            consumption : (matchingItem[0].consumption),
+            chance : (matchingItem[0].chance),
+            speed : (matchingItem[0].speed),
+            reliability : (matchingItem[0].reliability),
+             }
+        console.log(gameData);     
+    }});
+
+
 //play.addEventListener('click', mineBlock);
 
 

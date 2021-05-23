@@ -122,6 +122,12 @@ let liveGameData = {availableMiners:[
         speed : 0,
         reliability : 100,
         status : 1},
+        {device : 'Terminal #2',
+        consumption : 10,
+        chance : 25,
+        speed : 0,
+        reliability : 100,
+        status : 1},
 ]};
 
    
