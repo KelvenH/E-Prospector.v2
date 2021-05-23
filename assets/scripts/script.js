@@ -198,6 +198,8 @@ $(".activate-miner").click (function () {
             //run function to feed base data from static mainDataLibrary to liveGameData (fluid version which adjusts according to player actions). 
         
             loadMiner();
+
+            refreshDataT1();
          
             //run function to update miner attribute values displayed on screen
  
@@ -212,17 +214,38 @@ $(".activate-miner").click (function () {
                 } else if (activeBtn === actBtn2) {
                 console.log("terminal2 activated");
             
-                loadMiner();
+                           
+            $("#term2-card").removeClass('styled-pane-card-off').addClass('styled-pane-card-on');
+            $("#term2-card").find('.styled-small-off').addClass('styled-small-on').removeClass('styled-small-off');
+            $("#term2-card").find('.box').css("background-color","var(--ink6-LED2LOW)");
+            $("#term2-card").find('.bi-toggle-off').addClass('bi-toggle-on').removeClass('bi-toggle-off');
+            $("#term2-card").find('.primary').removeClass('btn-off primary').addClass('btn-on btn-primary').prop("disabled", false);
+            $("#term2-card").find('.success').removeClass('btn-off success').addClass('btn-on btn-success').prop("disabled", false);
+            $("#btn-to-modal-actv2").removeClass('btn-on btn-warning').addClass('btn-off').prop("disabled", true);
+            $("#btn-to-modal-actv2").attr('data-bs-target','#');
+            $("#btn-to-modal-actv3").attr('data-bs-target','#modal-activate-miner3');
+            $("#btn-to-modal-actv3").removeClass('btn-off warning').prop("disabled", false).addClass('btn-on btn-warning');
+
+            loadMiner();
         
-                //terminal 2 actions go here
+            refreshDataT2();   
                         
                     } else if (activeBtn === actBtn3) {
                     console.log("terminal3 activated");
         
         
-                    //terminal 3 actions go here
-       
+                    $("#term3-card").removeClass('styled-pane-card-off').addClass('styled-pane-card-on');
+                    $("#term3-card").find('.styled-small-off').addClass('styled-small-on').removeClass('styled-small-off');
+                    $("#term3-card").find('.box').css("background-color","var(--ink6-LED2LOW)");
+                    $("#term3-card").find('.bi-toggle-off').addClass('bi-toggle-on').removeClass('bi-toggle-off');
+                    $("#term3-card").find('.primary').removeClass('btn-off primary').addClass('btn-on btn-primary').prop("disabled", false);
+                    $("#term3-card").find('.success').removeClass('btn-off success').addClass('btn-on btn-success').prop("disabled", false);
+                    $("#btn-to-modal-actv3").removeClass('btn-on btn-warning').addClass('btn-off').prop("disabled", true);
+                    $("#btn-to-modal-actv3").attr('data-bs-target','#');
+
+                    loadMiner();
         
+                    refreshDataT3();
         
                     } else {
                     alert("Oops, something's gone wrong! Error : activating terminal");    
@@ -237,10 +260,13 @@ $(".activate-miner").click (function () {
                 
                 if (activeBtn === actBtn1) {
                     findTerminal = "Terminal #1";
+                    console.log(findTerminal, "found")
                     } else if (activeBtn === actBtn2) {
                         findTerminal = "Terminal #2";
+                        console.log(findTerminal, "found")
                         } else if (activeBtn === actBtn3) {
                             findTerminal = "Terminal #3";
+                            console.log(findTerminal, "found")
                         } else {
                             alert("Oops, something's gone wrong! Error : refreshing terminal stats");    
                             console.log("alert unrecognised id mapping");
@@ -258,11 +284,7 @@ $(".activate-miner").click (function () {
                  return false;
          })
         
-
-                 
-
-                 
-        let newStats = {
+            let newStats = {
                 device : (matchingItem[0].device),
                 consumption : (matchingItem[0].consumption),
                 chance : (matchingItem[0].chance),
@@ -273,39 +295,61 @@ $(".activate-miner").click (function () {
         
         
         liveGameData['availableMiners'].push(newStats);
-        console.log(liveGameData);
-        refreshData();
+        console.log(liveGameData);        
 
         }
     
-       function refreshData() {
+       function refreshDataT1(refreshDataT1) {
+        console.log(refreshDataT1, "started");
        let t = liveGameData['availableMiners'];
-       console.log("t=", t);
-       let t1 = t[1].device;
-       console.log("t1=", t1);
        let t1Chance = t[1].chance;
-       console.log("t1 chance=", t1Chance);
        $("#T1chance").text(t1Chance);
+
+       let t1Speed = t[1].speed;
+       $("#T1speed").text(t1Speed);
+       
+       let t1Consump = t[1].consumption;
+       $("#T1consump").text(t1Consump);
+       
+       let t1reliab = t[1].reliability;
+       $("#T1reliability").text(t1reliab);
         }
+
+
+        function refreshDataT2(refreshDataT2) {
+        console.log(refreshDataT2, "started");
+        let t = liveGameData['availableMiners'];
+        let t2Chance = t[2].chance;
+        $("#T2chance").text(t2Chance);
+        console.log(t2Chance);
+     
+        let t2Speed = t[2].speed;
+        $("#T2speed").text(t2Speed);
+            
+        let t2Consump = t[2].consumption;
+        $("#T2consump").text(t2Consump);
+            
+        let t2reliab = t[2].reliability;
+        $("#T2reliability").text(t2reliab);
+        }
+
+        function refreshDataT3(refreshDataT3) {
+        console.log(refreshDataT3, "started");
+        let t = liveGameData['availableMiners'];
+        let t3Chance = t[3].chance;
+        $("#T3chance").text(t3Chance);
+         
+        let t3Speed = t[3].speed;
+        $("#T3speed").text(t3Speed);
+                
+        let t3Consump = t[3].consumption;
+        $("#T3consump").text(t3Consump);
+                
+        let t3reliab = t[3].reliability;
+        $("#T3reliability").text(t3reliab);
+        }
+
 });
-
-
-
-
-    //let resA = (matchingItem[0].device);
-    //let resB = (matchingItem[0].consumption);
-    //let resC = (matchingItem[0].chance);
-    //let resD = (matchingItem[0].speed);
-    //let resE = (matchingItem[0].reliability);
-    //let resF = (matchingItem[0].status);
-       
-       //run function to update miner attribute values displayed on screen      
-       
-        //function refreshPlayerDashboard() {
-       // let t1a = liveGameData.availableMiners[0].chance;
-       // console.log(t1a);
-      //  }
-
 
 
         //update balance function
@@ -318,61 +362,7 @@ $(".activate-miner").click (function () {
 
  
 
-/*- function refreshPlayerDashboard() {
-       let term1PurchaseCost = liveGameData.availableMiners[0].purchaseCost;
-       let term1Chance = liveGameData.availableMiners[0].chance; 
-       let term1Speed = liveGameData.availableMiners[0].speed;
-       let term1Consumption = liveGameData.availableMiners[0].consumption;
-       let term1Reliability = liveGameData.availableMiners[0].reliability;
-       let term1Status = liveGameData.availableMiners[0].status;
-       let term2PurchaseCost = liveGameData.availableMiners[1].purchaseCost;
-       let term2Chance = liveGameData.availableMiners[1].chance; 
-       let term2Speed = liveGameData.availableMiners[1].speed;
-       let term2Consumption = liveGameData.availableMiners[1].consumption;
-       let term2Reliability = liveGameData.availableMiners[1].reliability;
-       let term2Status = liveGameData.availableMiners[1].status;
-       let term3PurchaseCost = liveGameData.availableMiners[2].purchaseCost;
-       let term3Chance = liveGameData.availableMiners[2].chance; 
-       let term3Speed = liveGameData.availableMiners[2].speed;
-       let term3Consumption = liveGameData.availableMiners[2].consumption;
-       let term3Reliability = liveGameData.availableMiners[2].reliability;
-       let term3Status = liveGameData.availableMiners[2].status;
-        $("#T1chance").text(term1Chance);
 
-function updateFigs(updateFigs) {
-        
-        let term1Chance = liveGameData.availableMiners[0].chance; 
-        console.log("T1 chance =", term1Chance)
-        $("#T1chance").parseInt(term1Chance);
-        
-        };
-       for (
-
-       ) 
-
-       let test1 = liveGameData.availableMiners[0].device;
-       console.log(test1);
-
-
-       let item = {device : Terminal #1};  
-        
-       let matchingItem = mainDataLibrary['miningDevices'].filter( (obj) => {   
-
-
-
-            if(obj.device === item.device){
-              
-               return true            
-                                         
-               }
-                return false;
-        })
-       
-
-
-       let resA = (matchingItem[0].device);
-       let resB = (matchingItem[0].consumption);
-       --*/
 
 
 
