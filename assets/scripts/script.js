@@ -124,9 +124,6 @@ let liveGameData = {
     ]
 };
 
-
-
-
    
 /*---------------------------------------------------------------------------------
 //  1.0 Prepare Game On DOM Load;
@@ -361,11 +358,11 @@ $(".activate-miner").click (function () {
         $("#T3reliability").text(t3reliab);
         }
         
-        //update balance function - starter balance loaded in HTML be default (no action for T1 activation) but debits balance (purchase cost) for T2 and T3
+        //update balance function - starter balance loaded in HTML by default & no initial unlock cost (i.e. no action for T1 activation) but debits balance (purchase cost) for T2 and T3
 
         function updateBalance(updateBalance) {
         
-            let currentBal = liveGameData['finance'].bankBalance;
+            let currentBal = liveGameData.finance[0].bankBalance;
 
             if (activeBtn === actBtn2) {   
                 let unlockCost = liveGameData['availableMiners'][2].purchaseCost;
@@ -377,14 +374,16 @@ $(".activate-miner").click (function () {
                 $("#GBP-balance-current").text(newBal);
                 console.log(liveGameData['finance'].bankBalance); 
 
-                } else if  (activeBtn === actBtn2) {
+                } else if  (activeBtn === actBtn3) {
                     let unlockCost = liveGameData['availableMiners'][3].purchaseCost;
                     console.log(unlockCost);
-                    let newBal = currentBal - unlockCost; 
+                    console.log(currentBal); 
+                    let newBal = currentBal - unlockCost;
                     console.log(newBal); 
                     liveGameData['finance'].bankBalance = newBal;
                     $("#GBP-balance-current").text(newBal);
                     console.log(liveGameData['finance'].bankBalance); 
+
         }}});
 
 
