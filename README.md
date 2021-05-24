@@ -1,5 +1,5 @@
 # E-Prospector - a Cybercurrency Mining Game
-[Hero image](README-Files/Hero-v3-1920x1080.png)
+![Hero image](README-Files/Hero-v3-1920x1080.png)
 
 
 ## Links to;
