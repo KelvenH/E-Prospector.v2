@@ -41,11 +41,13 @@ During initial development, all workings were documented i
 
 
 ### Business Requirements 
-- Business owners would;
+-    Business owners would;
       * look to produce a game which is informative and fun to play
       * generate brand awarenesss
       * potential source of revenue if game was monetised (e.g. enhanced attributes)
       * potentially create a community for example - player league 
+
+
  
 
 ### Client Goals 
