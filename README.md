@@ -20,8 +20,7 @@
 5. [Content and Key Features](#Content-and-Key-Features)
 6. [Future Enhancements](#Future-Enhancements)
 7. [Technologies Used](#Technologies-Used)
-8. [Testing](#Testing)
-9. [Bugs and Defects](#Bugs-and-Defects)
+8. [Bugs and Defects](#Bugs-and-Defects)
 10. [Deployment](#Deployment)
 11. [Acknowledgements](#Acknowledgements)
 
@@ -42,7 +41,7 @@ During initial development, all workings were documented i
 
 
 ### Business Requirements 
-Business owners would;
+- Business owners would;
       * look to produce a game which is informative and fun to play
       * generate brand awarenesss
       * potential source of revenue if game was monetised (e.g. enhanced attributes)
@@ -133,35 +132,34 @@ Build and deployment was delivered through GitHub, GitPod, GitPages and to a les
 Day to day development is performed through GitPod which is used to interact with the repository on GitHub.
 The terminal console within GitPod is used to synchronise changes between the two. Key commands are;
 
-### Git Status 
+## Git Status 
 - overview of current files in GitPod which are either waiting to be committed (unsent changes), untracked (new) or files deleted in GitPod but still held in current repo.
 
-###Git add <file / folder name> 
+## Git add <file / folder name> 
 - adds the new / updated file to a staging area ready to be committed. Where files share similarity in path and naming convention (e.g. multiple sized versions of same image) an asterick can be added against part of the name (such as assets/images/landscape* would add multiple versions of the image which started with the same name.
 
-### Git add .  
+## Git add .  
 - will add all files and folders to be committed including those where no changes are pending for upload. Note that early on this was misunderstood for meanining this was a shortcut for adding all files waiting to be committed. It was not until around mid-way through development that this was realised and whilst it has no adverse affect on the files content, it has meant that the same accompanying comments are loaded against all files where they have no relevance.
 
-### Git commit -m "<comments>"
+## Git commit -m "<comments>"
 sends all files in the staging area to the GitHub repo.   
 
-### Git rm <file / folder name> 
+## Git rm <file / folder name> 
 - removes any files currently staged (changes are not lost, just not held in the staging area)
 
-### Git restore <file / folder name>  
+## Git restore <file / folder name>  
 - restores uncomitted files back to align with the version held in the main branch. For example, this could be used to 'undo' changes which have been saved locally but not yet committed or restore a file which has been deleted in GitPod (but remains available to retrieve from GitHub).
 
-### Git push
+## Git push
 - after changes have been comitted, this command will synchronise the changes with the main branch, bringing workspace, local repository and main (remote repository) in alignment.
 
-##Forking 
+## Forking 
 Is the process by which versions of the files can be made. Whilst this is normal practice for web / app / software development, it enables mutiple users to work on aspects of the files at the same time. This was not something i needed to do as part of this project. However, GitHub allows forks to be created of any users repos (if made public) so a couple of other users repos were made to understand how this worked.
 
-##Cloning 
+## Cloning 
 This enables a complete clone of a repo to be made. Having installed GitDesktop i made a clone so as i could manage updates without having to pull from GitHub. However, this is an area to explore further as I failed to realise what benefit this was providing and feared risk of creating conflicts / multiple versions.
 
-##Deployment 
-Admittedly not found to be so intuitive and found there to be a lack of clear steps (early confusion as Git documentation switches referrences between GitHub, GitPages and GitDesktop without clarryfing specific roles. Ultimately the steps are quite forward once known.
+## Deployment 
 
 - User starts from Github repository
 - go to repo settings - cog icon displayed above repo information (not settings cog displayed slightly to the side of the repo which is general Github settings)
