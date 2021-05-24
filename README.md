@@ -44,6 +44,9 @@ E-Prospector is a digital block mining game. The purpose of the game is to gener
 ---
 
 ## UX
+# Approach
+During initial development, all workings were documented i
+
 
 ### User Stories 
 
@@ -96,6 +99,7 @@ Site visitors ;
    * expand from single crypto-currency to multiple currencies
    * were back-end functionality possible, this could lead to the creation of leagues
    * upgrade shop (out of time!)
+   * improved script - number of if / else statements could be made more efficient if able to work through as loops 
 
 ---
 
@@ -107,15 +111,13 @@ Site visitors ;
 
 ### Bugs and Defects
 
-   Issue                                |  Description                    |                                       
---------------------------------------- |---------------------------------|
-Exchange rate - API                     | Unable to implement             |
-Exchange rate - Random Generation       | A random factor to increase / decrease rates has been introduced but is not updating the actual rae (issue with 'NaN / not a number) unable to resolve|
+Development of this game was through a modular style and as such bugs encountered along the way were resolved as part fo the next build, or in some cases re-designed. Excluding game elements which were unable to implement due to time (see Future Enhancements), a few issues remain in the game as tabled below. 
 
-
-
-
-
+   Issue                                |  Description                                                                                                   |       
+--------------------------------------- |----------------------------------------------------------------------------------------------------------------|
+Exchange rate - Random Generation       | A random factor to increase / decrease rates is not feeding through (issue with 'NaN / not a number) unable to resolve|
+Level indicators not operating          | Unable to work through a looped script which would apply conditional formatting to adjust the color based on another fields value|  
+Script error                            | A bug is encountered periodically whereby part of the script is flagged as 'not defined' (relates to gamePowerData), but this is not consistent and is encountered approxiamtely every 1 in 20 attempts. The order (and layering) of this part of the code was adapted which did see a noticeable improvement (previously was around 1 in 10). 
 
 ---
 ## Technologies Used
