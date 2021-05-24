@@ -8,9 +8,6 @@
 
 [GitHub Repo](https://github.com/KelvenH/E-Prospector)
 
-[Wireframes - v.Balsamiq](README-docs/Wireframe-Astrofly-Full-v.Balsamiq.bmpr)
-
-[Wireframes - v.PDF](README-docs/Wireframe-Astrofly-Full.pdf)
 
 ***
 
