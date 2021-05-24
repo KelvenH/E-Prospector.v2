@@ -64,8 +64,11 @@ Development was documented and is available [here] (/README-Files/Working E-Prop
 * Modular Build - rather than attempt to build out the complete 'end design' go through iterative stages and build on / add to / improve
 * Enjoyable - produce something that has a sleek look and is enjoyable to play.
 
+![5 principles](README-Files/5-principles.png)
+
+
 Example from working file of the initial game concept
-![5 principles](README-Files/1-proof of concept-design.png)
+![initial concept](README-Files/1-proof of concept-design.png)
 
 
 Mapping out core game mechanics 
@@ -76,7 +79,7 @@ Expanded to deomonstrate possible further enhancements
 ![Enhanced](README-Files/gamedesign-enhanced.png)
  
 End Result - player dashboard
-![Dashboard](README-Files/Game Dashboard)
+![Dashboard](README-Files/Game_Dashboard.png)
 
 A ficiticious design studio behind the game was also developed!
 ![Electric Zebra](README-Files/EZLogov3.png)
