@@ -14,11 +14,11 @@
 ## Contents
 
 1. [Overview](#Overview)
-2. [UX;](#UX)
+2. [UX](#UX)
 3. [User Stories](#User-Stories)
-4. [Content & Design Features](#Content-and-Design-Features)
-5. [Styles](#Styles)
-6. [Images](#Images)
+4. [Design](#Design)
+5. [Content and Key Features](#Content-and-Key-Features)
+6. [Future Enhancements](#Future-Enhancements)
 7. [Technologies Used](#Technologies-Used)
 8. [Testing](#Testing)
 9. [Bugs and Defects](#Bugs-and-Defects)
