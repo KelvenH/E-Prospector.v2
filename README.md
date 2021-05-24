@@ -109,15 +109,6 @@ Site visitors ;
 
 
 
-### Bugs and Defects
-
-Development of this game was through a modular style and as such bugs encountered along the way were resolved as part fo the next build, or in some cases re-designed. Excluding game elements which were unable to implement due to time (see Future Enhancements), a few issues remain in the game as tabled below. 
-
-   Issue                                |  Description                                                                                                   |       
---------------------------------------- |----------------------------------------------------------------------------------------------------------------|
-Exchange rate - Random Generation       | A random factor to increase / decrease rates is not feeding through (issue with 'NaN / not a number) unable to resolve|
-Level indicators not operating          | Unable to work through a looped script which would apply conditional formatting to adjust the color based on another fields value|  
-Script error                            | A bug is encountered periodically whereby part of the script is flagged as 'not defined' (relates to gamePowerData), but this is not consistent and is encountered approxiamtely every 1 in 20 attempts. The order (and layering) of this part of the code was adapted which did see a noticeable improvement (previously was around 1 in 10). 
 
 ---
 ## Technologies Used
@@ -138,18 +129,17 @@ Font Awesome
 
 Adobe Illustrator
 
-
-
-
----
-## Testing
-
-
-
 ---
 
-## Bugs and Defects
+### Bugs and Defects
 
+Development of this game was through a modular style and as such bugs encountered along the way were resolved as part fo the next build, or in some cases re-designed. Excluding game elements which were unable to implement due to time (see Future Enhancements), a few issues remain in the game as tabled below. 
+
+   Issue                                |  Description                                                                                                   |       
+--------------------------------------- |----------------------------------------------------------------------------------------------------------------|
+Exchange rate - Random Generation       | A random factor to increase / decrease rates is not feeding through (issue with 'NaN / not a number) unable to resolve|
+Level indicators not operating          | Unable to work through a looped script which would apply conditional formatting to adjust the color based on another fields value|  
+Script error                            | A bug is encountered periodically whereby part of the script is flagged as 'not defined' (relates to gamePowerData), but this is not consistent and is encountered approxiamtely every 1 in 20 attempts. The order (and layering) of this part of the code was adapted which did see a noticeable improvement (previously was around 1 in 10). 
 
 
 
