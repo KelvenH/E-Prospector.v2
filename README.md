@@ -17,6 +17,13 @@
 2. [UX;](#UX)
 
    [- User Stories](#User-Stories)
+   Users want to;
+      * navigate the site easily
+      * easily understand how to play the game
+      * understand what the game is doing
+      * see what ‘score’ they have
+      * be able to manage any inputs / actions easily
+      * have fun!
    
    [- Personal Goals](#Personal-Goals)
    
