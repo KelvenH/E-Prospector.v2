@@ -34,7 +34,7 @@ E-Prospector is a digital block mining game. The purpose of the game is to gener
 
 ## UX
 # Approach
-During initial development, all workings were documented i
+During initial development, all workings were documented [available here](README-Files/Working E-Proposector Development File.pdf)
 
 
 ### User Stories 
