@@ -56,7 +56,7 @@ Site visitors ;
 
 
 ### Approach
-Development was documented and is available [here] (/README-Files/Working E-Proposector Development File.pdf)
+Development was documented and is available [here] (/README-Files/WorkingE-ProposectorDevelopmentFile.pdf)
 5 key principles were identified to underpin the decisions from the inital design through to the build. These were;
 * Simplicity - design should not look to be over ambitious given this is first attempt with JavaScript!
 * Focus on core elements learnt on the module - reduce need to seek external referrences
@@ -68,18 +68,18 @@ Development was documented and is available [here] (/README-Files/Working E-Prop
 
 
 Example from working file of the initial game concept
-![initial concept](README-Files/1-proof of concept-design.png)
+![initial concept](README-Files/1-proof_of_concept_design.png)
 
 
 Mapping out core game mechanics 
-![Gameplay design](README-Files/2-gameplay design.png)
+![Gameplay design](README-Files/2-gameplay_design.png)
 
 
 Expanded to deomonstrate possible further enhancements
 ![Enhanced](README-Files/gamedesign-enhanced.png)
  
 End Result - player dashboard
-![Dashboard](README-Files/Game_Dashboard.png)
+![Dashboard](README-Files/GameDashboard.png)
 
 A ficiticious design studio behind the game was also developed!
 ![Electric Zebra](README-Files/EZLogov3.png)
