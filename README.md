@@ -15,25 +15,15 @@
 
 1. [Overview](#Overview)
 2. [UX;](#UX)
-
-   [- User Stories](#User-Stories)
-   
-   [- Personal Goals](#Personal-Goals)
-   
-   [- Structure](#Structure)
-   
-   [- Skeleton](#Skeleton)
-   
-   [- Surface](#Surface)
-   
-3. [Content & Design Features](#Content-and-Design-Features)
-4. [Styles](#Styles)
-5. [Images](#Images)
-6. [Technologies Used](#Technologies-Used)
-7. [Testing](#Testing)
-8. [Bugs and Defects](#Bugs-and-Defects)
-9. [Deployment](#Deployment)
-10. [Acknowledgements](#Acknowledgements)
+3. [User Stories](#User-Stories)
+4. [Content & Design Features](#Content-and-Design-Features)
+5. [Styles](#Styles)
+6. [Images](#Images)
+7. [Technologies Used](#Technologies-Used)
+8. [Testing](#Testing)
+9. [Bugs and Defects](#Bugs-and-Defects)
+10. [Deployment](#Deployment)
+11. [Acknowledgements](#Acknowledgements)
 
 
 
@@ -51,7 +41,7 @@ During initial development, all workings were documented i
 ### User Stories 
 
 
-#### Business Requirements 
+### Business Requirements 
 Business owners would;
       * look to produce a game which is informative and fun to play
       * generate brand awarenesss
@@ -59,7 +49,7 @@ Business owners would;
       * potentially create a community for example - player league 
  
 
-#### Client Goals 
+### Client Goals 
 Site visitors ;
 -    Users want to;
       * navigate the site easily
@@ -80,7 +70,7 @@ Site visitors ;
 
 
 ---
-## Content and Key Features
+### Content and Key Features
 
 * Single page with scroll function between written material (i.e. how to play) vs. gaming area.
 * The game area will consist of a single full page dashboard.
@@ -90,7 +80,7 @@ Site visitors ;
 * Upgradeable elements to improve player likelihoods
 
 
-#  Future Enhancements
+###  Future Enhancements
    There were a number of features which have not yet been implemented as intended. These include;
    * use of API to track real world exchange rates (see bugs / defects)
    * embedded ' How do i play' tutorial
@@ -102,16 +92,7 @@ Site visitors ;
    * improved script - number of if / else statements could be made more efficient if able to work through as loops 
 
 ---
-
-### Color palette 
-
-
-
-
-
-
----
-## Technologies Used
+### Technologies Used
 
 Languages:
 
@@ -145,7 +126,7 @@ Script error                            | A bug is encountered periodically wher
 
 ---
 
-## Git and Deployment
+### Git and Deployment
 
 Build and deployment was delivered through GitHub, GitPod, GitPages and to a lesser extent GitDektop.
 
