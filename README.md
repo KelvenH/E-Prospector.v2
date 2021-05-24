@@ -33,12 +33,8 @@ E-Prospector is a digital block mining game. The purpose of the game is to gener
 ---
 
 ## UX
-# Approach
-Development was documented and is available [here] (README-Files/Working E-Proposector Development File.pdf)
-
 
 ### User Stories 
-
 
 ### Business Requirements 
 -    Business owners would;
@@ -47,8 +43,6 @@ Development was documented and is available [here] (README-Files/Working E-Propo
       * potential source of revenue if game was monetised (e.g. enhanced attributes)
       * potentially create a community for example - player league 
 
-
- 
 
 ### Client Goals 
 Site visitors ;
@@ -59,6 +53,25 @@ Site visitors ;
       * see what ‘score’ they have
       * be able to manage any inputs / actions easily
       * have fun! 
+
+
+### Approach
+Development was documented and is available [here] (/README-Files/Working E-Proposector Development File.pdf)
+5 key principles were identified to underpin the decisions from the inital design through to the build. These were;
+* Simplicity - design should not look to be over ambitious given this is first attempt with JavaScript!
+* Focus on core elements learnt on the module - reduce need to seek external referrences
+* Randomised Ouctomes - game should have differing ouctomes but player has some influence 
+* Modular Build - rather than attempt to build out the complete 'end design' go through iterative stages and build on / add to / improve
+* Enjoyable - produce something that has a sleek look and is enjoyable to play.
+Example from working file of the initial game concept
+![5 principles](README-Files/5-principles.png)
+
+
+How this started as a baseline 
+
+
+
+How this resulted in end build after 
  
  
 ### Design
