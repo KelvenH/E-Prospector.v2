@@ -4,7 +4,7 @@
 
 ## Links to;
 
-[Astro:Fly - Live Site](https://kelvenh.github.io/E-Prospector/)
+[E-Prospector - Live Site](https://kelvenh.github.io/E-Prospector/)
 
 [GitHub Repo](https://github.com/KelvenH/E-Prospector)
 
