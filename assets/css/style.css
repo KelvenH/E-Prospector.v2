@@ -139,9 +139,10 @@ section {
 }
 
 #hero-img {
-    -o-object-fit:cover;
-       object-fit:cover;
-    max-height:50vh;
+    -o-object-fit:contain;
+       object-fit:contain;
+    height:auto;
+    width:50vw;
     border-radius: 5% 5%;   
     box-shadow:             
         -2px -2px 3px var(--ink8-glass1),
@@ -159,6 +160,28 @@ section {
     flex:1;
     justify-content:center;
     flex-direction:column;
+}
+
+/*--media query - hide section on smaller screens and increase upper image-*/
+
+@media (max-width: 767px){
+
+
+    #zone-1a {
+        display:flex;
+        min-width:100vw;
+    }
+
+    #hero-img {
+        -o-object-fit:cover;
+           object-fit:cover;
+        height:auto;
+        width:100vw;
+    }
+
+    #zone-1b {
+    display: none;
+    }
 }
 
 
@@ -182,15 +205,15 @@ section {
         16px 28px 28px rgba(0,189,255,0.2); 
 
     display:grid; 
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 5;
         grid-template-areas:
        
-    "strap    strap    strap    strap       strap    strap    strap"
-    "ez-logo  ez-logo  ez-logo  ez-logo     discord  reddit   youtube"
-    "ez-logo  ez-logo  ez-logo  ez-logo     behance  twitter  fbook"
-    "ez-logo  ez-logo  ez-logo  ez-logo     git      insta    email"
-    "text     text     text     text        text     text     text"
+    "strap    strap      strap       strap    strap    strap"
+    "ez-logo  ez-logo    ez-logo     discord  reddit   youtube"
+    "ez-logo  ez-logo    ez-logo     behance  twitter  fbook"
+    "ez-logo  ez-logo    ez-logo     git      insta    email"
+    "text     text       text        text     text     text"
     ;
 }
 
@@ -227,12 +250,12 @@ section {
 
 
 #ez-logo {
-    height:50%;
-    width:50%;
+    height:auto;
+    width:75%;
     margin-left:2vh;
     grid-area: ez-logo;
-    -o-object-fit:cover;
-       object-fit:cover;
+    -o-object-fit:contain;
+       object-fit:tontain;
     background-position:center;
     background-repeat:no-repeat;
     box-shadow:             
@@ -246,21 +269,22 @@ section {
         16px 28px 28px rgba(0,189,255,0.2); 
 }
 
-.bi-discord {
-    grid-area: discord;
-}
-
 .on {
     background-color: var(--ink6-LED2ON);
 }
 
+.bi-discord {
+    grid-area: discord;
+    max-height: 5vh;
+    width:auto;
+  
+}
 
 .bi-reddit {
     grid-area: reddit;
     max-height: 5vh;
     width:auto;
-    max-height: 5vh;
-    width:auto;
+ 
 }
 
 .bi-github {
@@ -346,6 +370,8 @@ section {
     color: var(--ink4-blueblack);
     background-image: linear-gradient(to right, var(--ink3-offblacksemi), var(--ink5-LED1), var(--ink3-offblacksemi)); 
 }
+
+
 
 
 /*---------------------Middle Screen (zones 2 & 3) : How to Play and Additional Info) -----------------------------------------*/
@@ -437,7 +463,7 @@ section {
 
 #main-game-wrapper {
     margin-top:2vh;
-    height:95vh;
+    
     padding:1em;
     position:relative;
     background:var(--ink4-blueblack);
