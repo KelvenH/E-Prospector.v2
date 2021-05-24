@@ -17,13 +17,6 @@
 2. [UX;](#UX)
 
    [- User Stories](#User-Stories)
-   Users want to;
-      * navigate the site easily
-      * easily understand how to play the game
-      * understand what the game is doing
-      * see what ‘score’ they have
-      * be able to manage any inputs / actions easily
-      * have fun!
    
    [- Personal Goals](#Personal-Goals)
    
@@ -46,7 +39,7 @@
 
 ---
 ## Overview
-  
+E-Prospector is a digital block mining game. The purpose of the game is to generate Bit coins which can be exchanged for currency which in turn is used to 'pay' for power costs and upgrade elements. The game has a dashboard style layout to prevent 'lose of scrore' which would be encountered if the page were to be re-loaded. Note that all content including the brand name Electronic Zebra is entirely ficticious and there is no link or intended relationship to real world crypto performance / valuations.       
 
 ---
 
@@ -56,46 +49,69 @@
 
 
 #### Business Requirements 
-EZ;
-- 
-- 
-- 
+Business owners would;
+      * look to produce a game which is informative and fun to play
+      * generate brand awarenesss
+      * potential source of revenue if game was monetised (e.g. enhanced attributes)
+      * potentially create a community for example - player league 
+ 
 
 #### Client Goals 
 Site visitors ;
-- .  
+-    Users want to;
+      * navigate the site easily
+      * easily understand how to play the game
+      * understand what the game is doing
+      * see what ‘score’ they have
+      * be able to manage any inputs / actions easily
+      * have fun! 
+ 
  
 ### Design
-(how is i
+* Site should have a clean crisp look and feel.
+* Have a styling which is in keeping with the 'digital' topic.
+* Single page is crucial - as there is no back end / save game capability any page loas / refreshes would lose current progress. 
+* Pop-up modals / accordion sections where additional screen estate is needed
+* Scrolling section between landing area and the game area.
+* The game area will have a 'dashboard' style layout with minimal text (make use of icons and other visual aids).
+
 
 ---
 ## Content and Key Features
 
-Page | Features | In Build | Comments |
------|----------|----------|----------|
+* Single page with scroll function between written material (i.e. how to play) vs. gaming area.
+* The game area will consist of a single full page dashboard.
+* JavaScript handling the game mechanics.
+* Players 'earn' rewards in BitCoins and opt when to exchange for £GBP 
+* Fluid exchange rate
+* Upgradeable elements to improve player likelihoods
 
 
-
+#  Future Enhancements
+   There were a number of features which have not yet been implemented as intended. These include;
+   * use of API to track real world exchange rates (see bugs / defects)
+   * embedded ' How do i play' tutorial
+   * responsive 'level' indicators (i.e. static blocks which appear alongside device attributes) (see bugs / defects)
+   * events - these would be linked to player decisions, for example, increased likelihood that using the cheaper renewable energy provider carries a risk of power failure / loss of turn. Option to purchase cyber security tools with scenarios whereby e-wallet balance could be attacked, or other forms of maliscious acivity which could result in costs to repair / replace the players game terminals.
+   * expand from single crypto-currency to multiple currencies
+   * were back-end functionality possible, this could lead to the creation of leagues
+   * upgrade shop (out of time!)
 
 ---
-## Styles
-
-### Site Theme
-
 
 ### Color palette 
 
 
-### Fonts and Typography
 
 
-### Images
 
- Page    | Image - Description                    |                             Filename |                   Source |                               Notes |
----------|----------------------------------------|--------------------------------------|--------------------------|-------------------------------------|
-Multiple | hex tiled pattern                      | tiled-hex_black.svg                  | stock.Adobe.com          |                                     |
-Home     | Globe (hero img)                       |planet_earth.jpeg                     | stock.Adobe.com          |                                     |
- 
+### Bugs and Defects
+
+   Issue                                |  Description                    |                                       
+--------------------------------------- |---------------------------------|
+Exchange rate - API                     | Unable to implement             |
+Exchange rate - Random Generation       | A random factor to increase / decrease rates has been introduced but is not updating the actual rae (issue with 'NaN / not a number) unable to resolve|
+
 
 
 
