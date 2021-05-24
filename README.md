@@ -63,16 +63,25 @@ Development was documented and is available [here] (/README-Files/Working E-Prop
 * Randomised Ouctomes - game should have differing ouctomes but player has some influence 
 * Modular Build - rather than attempt to build out the complete 'end design' go through iterative stages and build on / add to / improve
 * Enjoyable - produce something that has a sleek look and is enjoyable to play.
+
 Example from working file of the initial game concept
-![5 principles](README-Files/5-principles.png)
+![5 principles](README-Files/1-proof of concept-design.png)
 
 
-How this started as a baseline 
+Mapping out core game mechanics 
+![Gameplay design](README-Files/2-gameplay design.png)
 
 
-
-How this resulted in end build after 
+Expanded to deomonstrate possible further enhancements
+![Enhanced](README-Files/gamedesign-enhanced.png)
  
+End Result - player dashboard
+![Dashboard](README-Files/Game Dashboard)
+
+A ficiticious design studio behind the game was also developed!
+![Electric Zebra](README-Files/EZLogov3.png)
+ 
+
  
 ### Design
 * Site should have a clean crisp look and feel.
