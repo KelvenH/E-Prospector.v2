@@ -79,7 +79,7 @@ Expanded to deomonstrate possible further enhancements
 ![Enhanced](README-Files/gamedesign-enhanced.png)
  
 End Result - player dashboard
-![Dashboard](README-Files/Game Dashboard.png)
+![Dashboard](README-Files/Game_Dashboard.png)
 
 A ficiticious design studio behind the game was also developed!
 ![Electric Zebra](README-Files/EZLogov3.png)
