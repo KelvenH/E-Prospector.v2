@@ -64,6 +64,9 @@ Development was documented and is available [here] (/README-Files/Working E-Prop
 * Modular Build - rather than attempt to build out the complete 'end design' go through iterative stages and build on / add to / improve
 * Enjoyable - produce something that has a sleek look and is enjoyable to play.
 
+![Electric Zebra](README-Files/5-principles.png)
+
+
 Example from working file of the initial game concept
 ![5 principles](README-Files/1-proof of concept-design.png)
 
