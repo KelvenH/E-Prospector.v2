@@ -133,6 +133,8 @@ section {
        
 }
 
+
+
 #zone-1a {
     display:flex;
     max-width:50vw;
@@ -143,16 +145,7 @@ section {
        object-fit:contain;
     height:auto;
     width:50vw;
-    border-radius: 5% 5%;   
-    box-shadow:             
-        -2px -2px 3px var(--ink8-glass1),
-        1px 1px 1px rgb(107,196,255),
-        1px 2px 1px rgb(107,196,255),
-        1px 3px 1px rgb(107,196,255),
-        1px 4px 1px rgb(107,196,255),
-        4px 12px 4px rgba(0,189,255,0.2),
-        8px 16px 8px rgba(0,189,255,0.2),
-        16px 28px 28px rgba(0,189,255,0.2); 
+    
 }
 
 #zone-1b {

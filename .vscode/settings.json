@@ -28,4 +28,7 @@
    "[javascript]": {
       "editor.defaultFormatter": "vscode.typescript-language-features"
    },
+   "[css]": {
+      "editor.defaultFormatter": "lonefy.vscode-JS-CSS-HTML-formatter"
+   },
 }
