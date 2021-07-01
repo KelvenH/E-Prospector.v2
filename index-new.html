@@ -56,16 +56,126 @@
                         </picture>
                     </div>
                     <div class="col-6" id="title-menu">
-                        <button class="btn">Play</button>
-                        <button class="btn">How to Play</button>
-                        <button class="btn">Crypto Mining 101</button>
+                        <button class="btn"><a href="/play.html">Play</a></button>
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal-objective">Game
+                            Objective</button>
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal-how-to-play">How
+                            to Play</button>
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal-101">Crypto
+                            Mining 101</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!--pop-up modal : game objective-->
+    <div class="modal fade" id="modal-objective" tabindex="-1" role="dialog" aria-labelledby="modal displaying more information about Cryptomining" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Game Objective</h3>
+                    <button type="button" class="btn-closed" data-bs-dismiss="modal" aria-label="Close">&times;</button>
 
+                </div>
+                <div class="modal-body">
+                    <h4>What is the objective of E-Prospector?</h4>
+                    <h5>This is a modern day equivalent of the proposectors mining the western frontier in search of gold, but now in the ditigal age of mining crypto-blocks! </br>
+                        </br>
+                        See 'How to Play' for an explanaition of the player dashboard and controls, but put simply;</h5>
+                    </br>
+                    <h4>Invest / Mine / Collect! </br>
+                    </h4>
+                    </br>
+                    <ul id="modal-list">
+                        <li>
+                            Invest -
+                            <span>make decisions such as upgrading your mining PC (terminal), or opt for cheaper renewable energy over traditional supplier. These decisions may improve your odds of success but come with their own risks (e.g. reliability, increased running costs).
+                            </span>
+                        </li>
+                        <li>
+                            Mine -
+                            <span>once you've made your selections, activate your mining terminal - the likelihood of success is linked directly to the decisions you made.
+                            </span>
+                        </li>
+                        <li>
+                            Collect -
+                            <span>should you succeed in mining a block and discovering a crypto coin, this will be added to your Crypto-wallet. But (like most places) you can't sepnd them so you will need to convert into £ to pay the electric or invest in your operation further. However the crypto
+                            to £ x-change rate fluctuates!
+                            </span>
+                        </li>
+                        </br>
+
+                    </ul>
+                    <h4>
+                        Good luck mining e-prospector!
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn modal-btn" data-bs-target="#modal-how-to-play" data-bs-toggle="modal" data-bs-dismiss="modal">How
+                        to Play</button>
+                    <button type="button" class="btn btn-secondary btn-close2" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--pop-up modal : how to play-->
+    <div class="modal fade" id="modal-how-to-play" tabindex="-1" role="dialog" aria-labelledby="modal displaying more information about Cryptomining" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">How To Play</h3>
+                    <button type="button" class="btn-closed" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+
+                </div>
+                <div class="modal-body">
+                    <h4>How to Play</h4>
+                    <h5>
+                        Content
+                    </h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn modal-btn" data-bs-target="#modal-101" data-bs-toggle="modal" data-bs-dismiss="modal">Crypto Mining 101</button>
+                    <button type="button" class="btn btn-secondary btn-close2" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--pop-up modal for more info about crypto-mining-->
+    <div class="modal fade" id="modal-101" tabindex="-1" role="dialog" aria-labelledby="modal displaying more information about Cryptomining" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Crypto Mining 101</h3>
+                    <button type="button" class="btn-closed" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+
+                </div>
+                <div class="modal-body">
+                    <h4>The following is not needed to know to be able to play the game, but provides further background information on crypto-mining.</br>
+                        </br> So what is crypto-mining.......blockchain.......Bitcoin? </h4>
+                    <h5>Crypto-currencies are digital assets which effectively act as a modern day alternative to cold hard cash! The first (and most widely recognised) is BitCoin which was released in 2009 - the following year the first transaction was undertaken
+                        involving physical goods when someone accepted an offer of 10k BitCoins to purchase 2 pizzas. At the time, those BitCoins were worth about $30..... at their peak (in January 2021) those coins were worth over $400m!! Aside from
+                        the obvious non-physical existence, crypto-currencies have many unique features to standard currencies. For a start, they are decentralised - so central banks and governments have no control - as opposed to traditional (or Fiat
+                        currencies) where supply is managed (fancy a slice quantitative easing with that pizza?). The principle notion of crypto-currencies are that they are essentially complex algorithms which are encrypted via digital ledgers (known
+                        as blocks).</br>
+                        </br>
+                    </h5>
+                    <h4>Ah, so block mining then.....</h4>
+                    <h5>Block mining is the process through which the algorithms are validated, thus adding a new block to the ledger (hence creation of the block chain). There are many advantages to digital currencies, primarily that each coin can be easily
+                        validated by the publicly available registers. This also limits the opportunity for fraud as it is far more complex (almost impossible) to 'fake' and append to an existing chain. There have been high profile criticisms and concerns,
+                        one being the ability for organised crime to 'hide' wealth or as seen with ransomware attacks be a form of payments which is mor difficult to track. Valuations are also far more volatile so whilst there is a huge market looking
+                        to profit from mining, validating or trading, they are more akin to the risks associated with stocks and other tradeable instruments than their more stable counterparts.
+                    </h5>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary btn-close2" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

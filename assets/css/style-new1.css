@@ -63,19 +63,19 @@ h3 {
 }
 
 h4 {
-    font-size: clamp(2rem, 32px);
+    font-size: 1.5vw;
     color: var(--iink6-LED2)
 }
 
 h5 {
-    font-size: clamp(1.5rem);
+    font-size: 1.25vw;
     color: var(--iink6-LED2)
 }
 
 body,
 div,
 p {
-    font-size: clamp(1rem, 16px);
+    font-size: 1vw;
     font-family: var(--specialfont-light);
     color: var(--ink6-LED2);
 }
@@ -135,6 +135,7 @@ p {
 /*---------------------Full Page -----------------------------------------*/
 
 #full-screen {
+    position: relative;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -181,8 +182,62 @@ p {
     margin: 3rem 0;
 }
 
+#title-menu button a {
+    color: inherit;
+    text-decoration: none;
+}
+
 #title-menu button:hover {
-    color: var(--ink6-LED2ON);
-    background-color: var(--ink6-LED2LOW);
+    background-color: var(--ink6-LED2ON);
+    color: var(--ink1-black);
     box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
+}
+
+.modal-btn {
+    color: var(--ink4-blueblack);
+    background: var(--ink8-glass1);
+    text-decoration: none;
+    font-size: 1.25vw;
+}
+
+.btn-close2 {
+    font-size: 1.25vw;
+}
+
+.btn-closed {
+    font-size: 1.75vw;
+    color: var(--ink8-glass1);
+    background-color: var(--ink4-blueblack);
+}
+
+.modal {
+    color: var(--ink8-glass1);
+    background-color: var(--ink3-offblacksemi);
+    font-size: 2vw;
+}
+
+.modal-header,
+.modal-footer,
+.modal-title {
+    background: var(--ink4-blueblack);
+    color: var(--ink6-LED2ON);
+}
+
+.modal-title {
+    font-size: 2vw;
+}
+
+.modal-body {
+    background: var(--ink8-glass1);
+    color: var(--ink4-blueblack);
+}
+
+#modal-list,
+li {
+    font-size: 1.5vw;
+}
+
+#modal-list,
+li>span {
+    font-size: 1.25vw;
 }
