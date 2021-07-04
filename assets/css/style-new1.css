@@ -151,6 +151,7 @@ p {
 #title {
     font-size: 7vw;
     text-align: center;
+    color: var(--ink7-LED3);
 }
 
 #title-strap {
@@ -166,7 +167,7 @@ p {
 #hero-img {
     -o-object-fit: contain;
     object-fit: contain;
-    height: 50vh;
+    height: 100%;
     width: 100%;
 }
 
@@ -189,7 +190,7 @@ p {
 
 #title-menu button:hover {
     background-color: var(--ink6-LED2ON);
-    color: var(--ink1-black);
+    color: var(--ink7-LED3);
     box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
 }
 
