@@ -297,7 +297,10 @@ li>span {
 }
 
 
-/*--finance panel constructed of a 'master' grid, with nested grids for individual panels (bank, e-wallet and exchange fields)--*/
+/*----Finance Panel--------*/
+
+
+/*--constructed of a 'master' grid, with nested grids for individual panels (bank, e-wallet and exchange fields)--*/
 
 #game-finances {
     margin: 2vh 0;
@@ -425,21 +428,26 @@ li>span {
 /*----Mid Section (contents: energy, message window & achievements)--------*/
 
 #game-dashboard {
-    border: 5px solid green;
+    border: 0.2vw solid var(--ink6-LED2LOW);
+    border-radius: 0.4vw;
+    margin-top: 1vh;
+    padding-top: 1vh;
+    margin-bottom: 1vh;
 }
 
 #game-mid-section {
-    border: 5px solid orange;
     height: 34vh;
 }
 
-#energy {
-    margin: 2vh 0;
-    height: auto;
+.mid-row-pane {
+    height: 32vh;
     padding: 1vh 1vw;
     border-radius: 0.5vw;
     box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
 }
+
+
+/*----Energy Panel--------*/
 
 #energy-grid {
     align-items: center;
@@ -511,20 +519,87 @@ li>span {
     text-align: center;
 }
 
-#terminal-window {
-    margin: 2vh 0;
-    height: auto;
-    padding: 1vh 1vw;
-    border-radius: 0.5vw;
-    box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
+
+/*----Message Panel--------*/
+
+#message-logo {
+    font-size: 2rem;
+    width: 2vw;
+    display: inline;
 }
 
-#achievements {
-    margin: 2vh 0;
-    height: auto;
-    padding: 1vh 1vw;
-    border-radius: 0.5vw;
-    box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
+#message-title {
+    font-size: 2rem;
+    display: inline;
+}
+
+#message-screen {
+    background-image: repeating-linear-gradient(var(--ink3-offblacksemi), black 1%);
+    border-radius: 0.4vw;
+    height: 25vh;
+    padding: 0.5vh 1vw;
+    display: grid;
+    grid-template-columns: 10vw 25vw;
+    grid-template-rows: 5;
+    row-gap: 1vh;
+    /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
+    grid-template-areas: "msg-symbol  msg-title" "msg-event   msg-event" "msg-optA    msg-optA-txt" "msg-optB    msg-optB-txt" "response-txt    response-txt" "btn-optA       btn-optB"
+}
+
+#msg-symbol {
+    grid-area: msg-symbol;
+}
+
+#msg-title {
+    grid-area: msg-title;
+}
+
+#msg-event {
+    grid-area: msg-event;
+}
+
+#msg-optA {
+    grid-area: msg-optA;
+}
+
+#msg-optA-txt {
+    grid-area: msg-optA-txt;
+}
+
+#msg-optB {
+    grid-area: msg-optB;
+}
+
+#msg-optB-txt {
+    grid-area: msg-optB-txt;
+}
+
+#response-txt {
+    grid-area: response-txt;
+}
+
+#btn-optA {
+    grid-area: btn-optA;
+    text-align: center;
+}
+
+#btn-optB {
+    grid-area: btn-optB;
+    text-align: center;
+}
+
+
+/*----Achievements Panel--------*/
+
+#awards-logo {
+    font-size: 2rem;
+    width: 2vw;
+    display: inline;
+}
+
+#awards-title {
+    font-size: 2rem;
+    display: inline;
 }
 
 
