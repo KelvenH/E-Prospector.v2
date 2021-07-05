@@ -250,8 +250,10 @@ li>span {
 
 /*---------------------Game Screen (game.html) -----------------------------------------*/
 
+
+/*----Top Section (contents: menu, title and Finance panel)--------*/
+
 #full-screen-game {
-    border: 5px solid red;
     position: relative;
     height: 100vh;
     align-items: center;
@@ -261,10 +263,6 @@ li>span {
 }
 
 #game-header {}
-
-#game-dashboard {
-    border: 5px solid green;
-}
 
 #game-menu {
     min-height: 16vh;
@@ -290,40 +288,54 @@ li>span {
 }
 
 #dashboard-title {
-    font-size: 5rem;
+    font-size: 5vw;
     color: var(--ink6-LED2ON);
     text-align: center;
+    vertical-align: center;
     text-shadow: -1px 1px 1px rgb(145, 145, 145), -1px 2px 1px rgb(145, 145, 145), -1px 3px 1px rgb(145, 145, 145), -1px 4px 1px rgb(145, 145, 145), -1px 5px 1px rgb(145, 145, 145), -1px 6px 1px rgb(145, 145, 145), -1px 7px 1px rgb(145, 145, 145), -1px 8px 1px rgb(145, 145, 145), -1px 9px 1px rgb(145, 145, 145), -1px 10px 1px rgb(145, 145, 145), -1px 18px 6px rgba(0, 189, 255, 0.4), -1px 22px 10px rgba(0, 189, 255, 0.2), -1px 35px 35px rgba(0, 189, 255, 0.2), -1px 60px 60px rgba(0, 189, 255, 0.4);
     position: relative;
 }
 
+
+/*--finance panel constructed of a 'master' grid, with nested grids for individual panels (bank, e-wallet and exchange fields)--*/
+
 #game-finances {
-    /*--margin-top:2vh;
-    margin-bottom:1vh;
-    margin-left:1vh;
-    width:auto;
-    height:45vh;
-    align-items:center;
-    justify-items:center;
-    border-radius: 10px 10px;   
-     
-    --*/
+    margin: 2vh 0;
+    height: auto;
+    align-items: center;
     box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
     display: inline-grid;
     grid-template-columns: 5vw 10vw 10vw;
     grid-template-rows: 3;
     /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
-    grid-template-areas: "finance-logo       finance-title   .               .               .               ." "finance-bank      finance-bank      finance-bank      finance-ewallet    finance-ewallet    finance-ewallet" "finance-exchange  finance-exchange  finance-exchange  finance-exchange    finance-exchange    finance-exchange";
+    grid-template-areas: "finance-logo       finance-title   .               .               .               ." "finance-bank      finance-bank      finance-bank      finance-ewallet    finance-ewallet    finance-ewallet" "finance-exchange  finance-exchange  finance-exchange  exchange-btn    exchange-btn    exchange-btn";
 }
+
+.finance-sub-grid {
+    border: 2px solid var(--ink6-LED2LOW);
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+
+/*-- finance icon / label / value classes apply consistent styling aross 'master and sub grids---*/
 
 .finance-icon {
     width: 2vw;
     text-align: center;
 }
 
-.finance-label {}
+.finance-label {
+    text-align: center;
+}
 
-.finance-value {}
+.finance-value {
+    background: black;
+    padding-left: 0.5vw;
+}
+
+
+/*-- IDs applied to individual items to map grid placement and further 'sub grid' styles (e.g. border to distinguish bank vs. e-wallet sections) --*/
 
 #finance-logo {
     grid-area: finance-logo;
@@ -338,6 +350,7 @@ li>span {
     grid-area: finance-bank;
     display: inline-grid;
     grid-template-columns: 2vw 10vw 10vw;
+    width: 22.5vw;
     grid-template-rows: 1;
     grid-template-areas: "bank-icon  bank-label bank-value"
 }
@@ -358,6 +371,7 @@ li>span {
     grid-area: finance-ewallet;
     display: inline-grid;
     grid-template-columns: 2vw 10vw 10vw;
+    width: 22.5vw;
     grid-template-rows: 1;
     grid-template-areas: "ewallet-icon  ewallet-label ewallet-value"
 }
@@ -378,8 +392,9 @@ li>span {
     grid-area: finance-exchange;
     display: inline-grid;
     grid-template-columns: 2vw 10vw 10vw 2vw 10vw 10vw;
+    width: 22.5vw;
     grid-template-rows: 1;
-    grid-template-areas: "exchange-icon  exchange-label exchange-value exchange-btn exchange-btn ."
+    grid-template-areas: "exchange-icon  exchange-label exchange-value"
 }
 
 #exchange-icon {
@@ -400,4 +415,22 @@ li>span {
 
 #exchange-btn {
     grid-area: exchange-btn;
+    width: 22.5vw;
+}
+
+
+/*----Mid Section (contents: energy, message window & achievements)--------*/
+
+#game-dashboard {
+    border: 5px solid green;
+}
+
+#game-mid-section {
+    border: 5px solid orange;
+    height: 34vh;
+}
+
+#game-lower-section {
+    border: 5px solid purple;
+    height: 45vh;
 }

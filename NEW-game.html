@@ -28,7 +28,7 @@
         <div class="container-fluid" id="game-header">
 
             <div class="row justify-content-between">
-                <div class="col-2" id="game-menu">
+                <div class="col-1" id="game-menu">
                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal-how-to-play">How
                         to Play</button>
                     <a role="button" class="btn" href="/NEW-index.html">Exit to Main Menu</a>
@@ -36,30 +36,30 @@
                 </div>
                 <!--close menu col-->
 
-                <div class="col-4">
-                    <h1 id="dashboard-title" refl="E-Prospector">E-Prospector</h1>
+                <div class="col-5">
+                    <div id="dashboard-title" refl="E-Prospector">E-Prospector</div>
                 </div>
                 <!--close title col-->
 
                 <div class="col-6" id="game-finances">
                     <i id="finance-logo" class="finance-icon bi bi-cash-stack"></i>
                     <h2 id="finance-title">FINANCES</h2>
-                    <div id="finance-bank">
+                    <div id="finance-bank" class="finance-sub-grid">
                         <i id="bank-icon" class="finance-icon bi bi-bank2"></i>
                         <div id="bank-label" class="finance-label">Bank Balance:</div>
                         <div id="bank-value" class="finance-value"><span>£ </span>1000</div>
                     </div>
-                    <div id="finance-ewallet">
+                    <div id="finance-ewallet" class="finance-sub-grid">
                         <i id="ewallet-icon d-flex" class="finance-icon fas fa-wallet"></i>
                         <div id="ewallet-label" class="finance-label">E-Wallet Balance:</div>
-                        <div id="ewallet-value" class="finance-value">ewallet value</div>
+                        <div id="ewallet-value" class="finance-value">25</div>
                     </div>
-                    <div id="finance-exchange">
+                    <div id="finance-exchange" class="finance-sub-grid">
                         <i id="exchange-icon" class="finance-icon bi bi-graph-up"></i>
-                        <div id="exchange-label" class="finance-label">Exchange Rate</div>
+                        <div id="exchange-label" class="finance-label">Exchange Rate:</div>
                         <div id="exchange-value" class="finance-value"><span>£ </span> 100 <span id="exchange-value-sub">(per coin)</span></div>
-                        <button id="exchange-btn" class="btn exchange-btn btn-outline-warning">Exchange Now</button>
                     </div>
+                    <button id="exchange-btn" class="btn exchange-btn btn-outline-warning">Exchange Now</button>
                 </div>
                 <!--close finances col-->
 
@@ -73,7 +73,7 @@
         <!--game info and gameplay container-->
         <div class="container-fluid" id="game-dashboard">
             <!--game info row (contents: energy, message window & achievements)-->
-            <div class="row">
+            <div class="row" id="game-mid-section">
 
                 <div class="col-4">
                     energy
@@ -94,7 +94,7 @@
 
 
             <!--game play row (contents: terminal / settings & security)-->
-            <div class="row">
+            <div class="row" id="game-lower-section">
                 <div class="col-8">
                     terminal
                     <div class="row">
