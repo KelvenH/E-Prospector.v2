@@ -250,12 +250,35 @@ li>span {
 /*---------------------Game Screen (game.html) -----------------------------------------*/
 
 #full-screen-game {
+    border: 5px solid red;
     position: relative;
-    width: 100vw;
     height: 100vh;
-    display: flex;
     align-items: center;
     justify-content: center;
     /*-background-color: var(--ink2-offblacksolid);--*/
     background: linear-gradient(217deg, rgba(42, 46, 51), rgba(29, 43, 53) 70.71%), linear-gradient(127deg, rgba(42, 46, 51), rgba(24, 42, 56) 70.71%), linear-gradient(336deg, rgba(042, 46, 51), rgba(24, 42, 56) 70.71%);
+}
+
+#game-header {
+    border: 5px solid blue;
+}
+
+#game-dashboard {
+    border: 5px solid green;
+}
+
+#game-menu {
+    background: grey;
+}
+
+#dashboard-title {
+    font-size: 5rem;
+    color: var(--ink6-LED2ON);
+    text-align: center;
+    text-shadow: -1px 1px 1px rgb(145, 145, 145), -1px 2px 1px rgb(145, 145, 145), -1px 3px 1px rgb(145, 145, 145), -1px 4px 1px rgb(145, 145, 145), -1px 5px 1px rgb(145, 145, 145), -1px 6px 1px rgb(145, 145, 145), -1px 7px 1px rgb(145, 145, 145), -1px 8px 1px rgb(145, 145, 145), -1px 9px 1px rgb(145, 145, 145), -1px 10px 1px rgb(145, 145, 145), -1px 18px 6px rgba(0, 189, 255, 0.4), -1px 22px 10px rgba(0, 189, 255, 0.2), -1px 35px 35px rgba(0, 189, 255, 0.2), -1px 60px 60px rgba(0, 189, 255, 0.4);
+    position: relative;
+}
+
+#game-finances {
+    background: lightskyblue;
 }
