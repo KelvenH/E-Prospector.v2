@@ -303,6 +303,7 @@ li>span {
     margin: 2vh 0;
     height: auto;
     align-items: center;
+    border-radius: 0.5vw;
     box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
     display: inline-grid;
     grid-template-columns: 5vw 10vw 10vw;
@@ -313,6 +314,7 @@ li>span {
 
 .finance-sub-grid {
     border: 2px solid var(--ink6-LED2LOW);
+    border-radius: 0.4vw;
     margin-top: 1vh;
     margin-bottom: 1vh;
 }
@@ -331,6 +333,7 @@ li>span {
 
 .finance-value {
     background: black;
+    border-radius: 0.4vw;
     padding-left: 0.5vw;
 }
 
@@ -429,6 +432,103 @@ li>span {
     border: 5px solid orange;
     height: 34vh;
 }
+
+#energy {
+    margin: 2vh 0;
+    height: auto;
+    padding: 1vh 1vw;
+    border-radius: 0.5vw;
+    box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
+}
+
+#energy-grid {
+    align-items: center;
+    display: grid;
+    margin-bottom: 2vh;
+    grid-template-columns: 10vw 10vw;
+    grid-template-rows: 5;
+    row-gap: 1vh;
+    /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
+    grid-template-areas: "provider       provider-response" "type           type-response" "cost           cost-response" "reliability    reliability-response" "statement      statement"
+}
+
+#energy-logo {
+    font-size: 2rem;
+    width: 2vw;
+    display: inline;
+}
+
+#energy-title {
+    font-size: 2rem;
+    display: inline;
+}
+
+.energy-response {
+    background: black;
+    padding-left: 0.5vw;
+    border-radius: 0.4vw;
+    border-bottom: 2px solid var(--ink6-LED2LOW);
+}
+
+#provider {
+    grid-area: provider;
+}
+
+#provider-response {
+    grid-area: provider-response;
+}
+
+#type {
+    grid-area: type;
+}
+
+#type-response {
+    grid-area: type-response;
+}
+
+#cost {
+    grid-area: cost;
+}
+
+#cost-response {
+    grid-area: cost-response;
+}
+
+#reliability {
+    grid-area: reliability;
+}
+
+#reliability-response {
+    grid-area: reliability-response;
+}
+
+#statement {
+    grid-area: statement;
+    font-style: italic;
+}
+
+#energy-btn {
+    text-align: center;
+}
+
+#terminal-window {
+    margin: 2vh 0;
+    height: auto;
+    padding: 1vh 1vw;
+    border-radius: 0.5vw;
+    box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
+}
+
+#achievements {
+    margin: 2vh 0;
+    height: auto;
+    padding: 1vh 1vw;
+    border-radius: 0.5vw;
+    box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
+}
+
+
+/*----Lower Section (contents: terminal (mining / validation) & security--------*/
 
 #game-lower-section {
     border: 5px solid purple;

@@ -75,18 +75,39 @@
             <!--game info row (contents: energy, message window & achievements)-->
             <div class="row" id="game-mid-section">
 
-                <div class="col-4">
-                    energy
+                <div class="col-3">
+                    <div id="energy">
+                        <i id="energy-logo" class="bi bi-lightning-charge"></i>
+                        <h2 id="energy-title">ENERGY</h2>
+                        <div id="energy-grid">
+                            <div id="provider">Provider:</div>
+                            <div id="provider-response" class="energy-response">(Name)</div>
+                            <div id="type">Type:</div>
+                            <div id="type-response" class="energy-response">(Type)</div>
+                            <div id="cost">Cost<span> (per k/w):</span></div>
+                            <div id="cost-response" class="energy-response">(£)</div>
+                            <div id="reliability">Reliability:</div>
+                            <div id="reliability-response" class="energy-response">(Reliability)</div>
+                            <div id="statement">"Statement here relates to energy type"</div>
+                        </div>
+                        <button id="energy-btn" class="btn btn-info d-flex mx-auto">Change Energy Provider</button>
+                    </div>
                 </div>
                 <!--close energy col-->
 
-                <div class="col-4">
-                    messages
+                <div class="col-5">
+                    <div id="terminal-window">
+                        <i id="energy-logo" class="bi bi-lightning-charge"></i>
+                        <h2 id="energy-title">TERMINAL WINDOW : MESSAGES</h2>
+                    </div>
                 </div>
                 <!--close messages col-->
 
                 <div class="col-4">
-                    achievements
+                    <div id="achievements">
+                        <i id="energy-logo" class="bi bi-lightning-charge"></i>
+                        <h2 id="energy-title">ACHIEVEMENTS</h2>
+                    </div>
                 </div>
                 <!--close achievements col-->
             </div>
