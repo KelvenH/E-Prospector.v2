@@ -260,15 +260,15 @@ li>span {
     background: linear-gradient(217deg, rgba(42, 46, 51), rgba(29, 43, 53) 70.71%), linear-gradient(127deg, rgba(42, 46, 51), rgba(24, 42, 56) 70.71%), linear-gradient(336deg, rgba(042, 46, 51), rgba(24, 42, 56) 70.71%);
 }
 
-#game-header {
-    border: 5px solid blue;
-}
+#game-header {}
 
 #game-dashboard {
     border: 5px solid green;
 }
 
-#game-menu {}
+#game-menu {
+    min-height: 16vh;
+}
 
 #game-menu .btn {
     font-size: 1vw;
@@ -306,36 +306,40 @@ li>span {
     align-items:center;
     justify-items:center;
     border-radius: 10px 10px;   
-    box-shadow:             
-        -2px -2px 3px var(--ink8-glass1),
-        1px 1px 1px rgb(107,196,255),
-        1px 2px 1px rgb(107,196,255),
-        1px 3px 1px rgb(107,196,255),
-        1px 4px 1px rgb(107,196,255),
-        4px 12px 4px rgba(0,189,255,0.2),
-        8px 16px 8px rgba(0,189,255,0.2),
-        16px 28px 28px rgba(0,189,255,0.2); 
+     
     --*/
     box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
-    display: grid;
-    grid-template-columns: 6;
+    display: inline-grid;
+    grid-template-columns: 5vw 10vw 10vw;
     grid-template-rows: 3;
     /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
-    grid-template-areas: "finance-icon   finance-title   .               .               .               ." "bank-icon      bank-label      bank-value      ewallet-icon    ewallet-label    ewallet-value" "exchange-icon  exchange-label   exchange-value  exchange-btn    exchange-btn    exchange-btn";
+    grid-template-areas: "finance-logo       finance-title   .               .               .               ." "finance-bank      finance-bank      finance-bank      finance-ewallet    finance-ewallet    finance-ewallet" "finance-exchange  finance-exchange  finance-exchange  finance-exchange    finance-exchange    finance-exchange";
 }
 
-.finance-icon {}
+.finance-icon {
+    width: 2vw;
+    text-align: center;
+}
 
 .finance-label {}
 
 .finance-value {}
 
-#finance-icon {
-    grid-area: finance-icon;
+#finance-logo {
+    grid-area: finance-logo;
+    font-size: 2rem;
 }
 
 #finance-title {
     grid-area: finance-title;
+}
+
+#finance-bank {
+    grid-area: finance-bank;
+    display: inline-grid;
+    grid-template-columns: 2vw 10vw 10vw;
+    grid-template-rows: 1;
+    grid-template-areas: "bank-icon  bank-label bank-value"
 }
 
 #bank-icon {
@@ -350,6 +354,14 @@ li>span {
     grid-area: bank-value;
 }
 
+#finance-ewallet {
+    grid-area: finance-ewallet;
+    display: inline-grid;
+    grid-template-columns: 2vw 10vw 10vw;
+    grid-template-rows: 1;
+    grid-template-areas: "ewallet-icon  ewallet-label ewallet-value"
+}
+
 #ewallet-icon {
     grid-area: ewallet-icon;
 }
@@ -362,6 +374,14 @@ li>span {
     grid-area: ewallet-value;
 }
 
+#finance-exchange {
+    grid-area: finance-exchange;
+    display: inline-grid;
+    grid-template-columns: 2vw 10vw 10vw 2vw 10vw 10vw;
+    grid-template-rows: 1;
+    grid-template-areas: "exchange-icon  exchange-label exchange-value exchange-btn exchange-btn ."
+}
+
 #exchange-icon {
     grid-area: exchange-icon;
 }
@@ -372,6 +392,10 @@ li>span {
 
 #exchange-value {
     grid-area: exchange-value;
+}
+
+#exchange-value-sub {
+    font-size: 1rem;
 }
 
 #exchange-btn {
