@@ -298,5 +298,82 @@ li>span {
 }
 
 #game-finances {
-    background: lightskyblue;
+    /*--margin-top:2vh;
+    margin-bottom:1vh;
+    margin-left:1vh;
+    width:auto;
+    height:45vh;
+    align-items:center;
+    justify-items:center;
+    border-radius: 10px 10px;   
+    box-shadow:             
+        -2px -2px 3px var(--ink8-glass1),
+        1px 1px 1px rgb(107,196,255),
+        1px 2px 1px rgb(107,196,255),
+        1px 3px 1px rgb(107,196,255),
+        1px 4px 1px rgb(107,196,255),
+        4px 12px 4px rgba(0,189,255,0.2),
+        8px 16px 8px rgba(0,189,255,0.2),
+        16px 28px 28px rgba(0,189,255,0.2); 
+    --*/
+    box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
+    display: grid;
+    grid-template-columns: 6;
+    grid-template-rows: 3;
+    /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
+    grid-template-areas: "finance-icon   finance-title   .               .               .               ." "bank-icon      bank-label      bank-value      ewallet-icon    ewallet-label    ewallet-value" "exchange-icon  exchange-label   exchange-value  exchange-btn    exchange-btn    exchange-btn";
+}
+
+.finance-icon {}
+
+.finance-label {}
+
+.finance-value {}
+
+#finance-icon {
+    grid-area: finance-icon;
+}
+
+#finance-title {
+    grid-area: finance-title;
+}
+
+#bank-icon {
+    grid-area: bank-icon;
+}
+
+#bank-label {
+    grid-area: bank-label;
+}
+
+#bank-value {
+    grid-area: bank-value;
+}
+
+#ewallet-icon {
+    grid-area: ewallet-icon;
+}
+
+#ewallet-label {
+    grid-area: ewallet-label;
+}
+
+#ewallet-value {
+    grid-area: ewallet-value;
+}
+
+#exchange-icon {
+    grid-area: exchange-icon;
+}
+
+#exchange-label {
+    grid-area: exchange-label;
+}
+
+#exchange-value {
+    grid-area: exchange-value;
+}
+
+#exchange-btn {
+    grid-area: exchange-btn;
 }
