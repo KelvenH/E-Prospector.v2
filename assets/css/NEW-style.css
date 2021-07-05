@@ -134,7 +134,7 @@ p {
 
 /*---------------------Full Page -----------------------------------------*/
 
-#full-screen {
+#full-screen-menu {
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -146,7 +146,7 @@ p {
 }
 
 
-/*---------------------Top Screen (zone 1 : Landing Screen) -----------------------------------------*/
+/*---------------------Landing Screen (index.html) -----------------------------------------*/
 
 #title {
     font-size: 7vw;
@@ -241,4 +241,21 @@ li {
 #modal-list,
 li>span {
     font-size: 1.25vw;
+}
+
+
+/****************************************************************************************/
+
+
+/*---------------------Game Screen (game.html) -----------------------------------------*/
+
+#full-screen-game {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*-background-color: var(--ink2-offblacksolid);--*/
+    background: linear-gradient(217deg, rgba(42, 46, 51), rgba(29, 43, 53) 70.71%), linear-gradient(127deg, rgba(42, 46, 51), rgba(24, 42, 56) 70.71%), linear-gradient(336deg, rgba(042, 46, 51), rgba(24, 42, 56) 70.71%);
 }
