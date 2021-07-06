@@ -49,34 +49,34 @@
 /*---------------------Responsive Font Groups -----------------------------*/
 
 h1 {
-    font-size: clamp(5rem);
+    /*--font-size: clamp(5rem);---*/
     color: var(--ink6-LED2)
 }
 
 h2 {
-    font-size: clamp(3rem, 32px);
+    /*--font-size: clamp(3rem, 32px);---*/
     color: var(--ink6-LED2)
 }
 
 h3 {
-    font-size: clamp(2.5rem, 28px);
+    /*--font-size: clamp(2.5rem, 28px);---*/
     color: var(--ink6-LED2)
 }
 
 h4 {
-    font-size: 1.5vw;
+    /*--font-size: 1.5vw;---*/
     color: var(--iink6-LED2)
 }
 
 h5 {
-    font-size: 1.25vw;
+    /*--font-size: 1.25vw;---*/
     color: var(--iink6-LED2)
 }
 
 body,
 div,
 p {
-    font-size: 1vw;
+    /*--font-size: 1vw;---*/
     font-family: var(--specialfont-light);
     color: var(--ink6-LED2);
 }
@@ -288,6 +288,7 @@ li>span {
 }
 
 #dashboard-title {
+    padding-top: 2vh;
     font-size: 5vw;
     color: var(--ink6-LED2ON);
     text-align: center;
@@ -303,9 +304,11 @@ li>span {
 /*--constructed of a 'master' grid, with nested grids for individual panels (bank, e-wallet and exchange fields)--*/
 
 #game-finances {
-    margin: 2vh 0;
+    margin: 2vh 0 1vh 0;
+    padding-bottom: 2vh;
     height: auto;
     align-items: center;
+    overflow: hidden;
     border-radius: 0.5vw;
     box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
     display: inline-grid;
@@ -425,25 +428,294 @@ li>span {
 }
 
 
-/*----Mid Section (contents: energy, message window & achievements)--------*/
+/*---- Main Dashboard (contents: left panel, mid row and lower row)--------*/
 
 #game-dashboard {
-    border: 0.2vw solid var(--ink6-LED2LOW);
+    /*--border: 0.2vw solid var(--ink6-LED2LOW);--*/
     border-radius: 0.4vw;
+    height: 80vh;
     margin-top: 1vh;
     padding-top: 1vh;
     margin-bottom: 1vh;
 }
 
-#game-mid-section {
-    height: 34vh;
-}
 
-.mid-row-pane {
-    height: 32vh;
+/*---- Left Pane Main Terminal (contents: validation & miner)--------*/
+
+#main-terminal {
+    /*--height: 32vh;--*/
     padding: 1vh 1vw;
     border-radius: 0.5vw;
     box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
+    overflow: hidden;
+}
+
+#terminal-logo {
+    font-size: 2rem;
+    width: 2vw;
+    display: inline;
+}
+
+#terminal-title {
+    font-size: 2rem;
+    display: inline;
+}
+
+#terminal-valid-pane {
+    background: var(--ink6-LED2OFF);
+    padding: 1vh 2vw;
+    border-radius: 0.4vw;
+    margin-bottom: 1vh;
+    height: 30vh;
+    overflow: hidden;
+}
+
+#terminal-valid-title {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 1vh 0;
+    background: var(--ink6-LED2OFF);
+    border-radius: 0.4vw;
+}
+
+#terminal-valid-grid {
+    align-items: center;
+    display: grid;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    grid-template-columns: 10vw 10vw;
+    grid-template-rows: 5;
+    row-gap: 1vh;
+    /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
+    grid-template-areas: "terminal-quality   terminal-quality-response" "terminal-synd      terminal-synd-response" "terminal-member-tier    terminal-tier-response" "terminal-upgrade-requirements terminal-upgrade-requirements-task" "terminal-upgrade-progress terminal-upgrade-progress"
+}
+
+#terminal-valid-field {
+    background: var(--ink6-LED2OFF);
+    border-radius: 0.4vw;
+    position: relative;
+    margin-left: 0.25vw;
+    /*--relative position to enable absolute positioning of validation button from top panel border---*/
+}
+
+.radio-val {
+    background-color: inherit;
+    border-color: rgba(0, 0, 0, 0);
+    color: var(--ink6-LED2);
+}
+
+.radio-val:hover {
+    background-color: var(--ink6-LED2LOW);
+    border-color: var(--ink6-LED2LOW);
+    color: var(--ink6-LED2ON);
+}
+
+input[type="radio"]:checked+label {
+    background-color: inherit;
+    border-color: var(--ink6-LED2ON);
+    color: var(--ink6-LED2ON);
+}
+
+#tier-comment {
+    font-size: 80%;
+}
+
+#terminal-valid-btn {
+    display: block;
+    border-radius: 50%;
+    height: 10vw;
+    width: 10vw;
+    align-items: center;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+}
+
+#terminal-miner-pane {
+    background: var(--ink6-LED2OFF);
+    border-radius: 0.4vw;
+    padding: 2vh 2vw;
+    height: 40vh;
+    overflow: hidden;
+}
+
+#terminal-miner-header {
+    display: inline-block;
+}
+
+#terminal-miner-title {
+    display: inline-block;
+}
+
+#terminal-miner-status {
+    display: inline-block;
+    padding-left: 10vw;
+}
+
+#terminal-miner-btn {
+    display: inline-block;
+}
+
+.meter-off {
+    border: 0.2vw solid var(--ink6-LED2LOW);
+}
+
+.meter-on {
+    border: 0.2vw solid var(--ink6-LED2LOW);
+}
+
+#terminal-miner-stats-grid {
+    display: grid;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 4;
+    row-gap: 1vh;
+    grid-template-areas: "a1   a2" "b1   b2" "c1  c2" "d1  d2"
+}
+
+#miner-chance {
+    grid-area: a1;
+}
+
+#miner-speed {
+    grid-area: b1;
+}
+
+#miner-power {
+    grid-area: c1;
+}
+
+#miner-condition {
+    grid-area: d1;
+}
+
+#terminal-miner-parts-grid {
+    display: grid;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 4;
+    row-gap: 1vh;
+    grid-template-areas: "e1   e2" "f1   f2" "g1  g2" "h1  h2"
+}
+
+#parts-rig {
+    grid-area: e1;
+}
+
+#parts-processor {
+    grid-area: f1;
+}
+
+#parts-cooling {
+    grid-area: g1;
+}
+
+#parts-software {
+    grid-area: h1;
+}
+
+#rig-name {
+    grid-area: e2;
+}
+
+#processor-name {
+    grid-area: f2;
+}
+
+#cooling-name {
+    grid-area: g2;
+}
+
+#software-name {
+    grid-area: h2;
+}
+
+
+/*---- Mid Row (nested) (contents: energy, message window & achievements)--------*/
+
+.mid-row-pane {
+    height: 35vh;
+    margin-bottom: 1vh;
+    padding: 1vh 1vw;
+    border-radius: 0.5vw;
+    box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
+    overflow: hidden;
+}
+
+
+/*----Message Panel--------*/
+
+#message-logo {
+    font-size: 2rem;
+    width: 2vw;
+    display: inline;
+}
+
+#message-title {
+    font-size: 2rem;
+    display: inline;
+}
+
+#message-screen {
+    background-image: repeating-linear-gradient(var(--ink3-offblacksemi), black 1%);
+    border-radius: 0.4vw;
+    height: 25vh;
+    padding: 0.5vh 1vw;
+    display: grid;
+    grid-template-columns: 10vw 25vw;
+    grid-template-rows: 5;
+    row-gap: 1vh;
+    /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
+    grid-template-areas: "msg-symbol  msg-title" "msg-event   msg-event" "msg-optA    msg-optA-txt" "msg-optB    msg-optB-txt" "response-txt    response-txt" "btn-optA       btn-optB"
+}
+
+#msg-symbol {
+    grid-area: msg-symbol;
+}
+
+#msg-title {
+    grid-area: msg-title;
+}
+
+#msg-event {
+    grid-area: msg-event;
+}
+
+#msg-optA {
+    grid-area: msg-optA;
+}
+
+#msg-optA-txt {
+    grid-area: msg-optA-txt;
+}
+
+#msg-optB {
+    grid-area: msg-optB;
+}
+
+#msg-optB-txt {
+    grid-area: msg-optB-txt;
+}
+
+#response-txt {
+    grid-area: response-txt;
+}
+
+#btn-optA {
+    grid-area: btn-optA;
+    text-align: center;
+}
+
+#btn-optB {
+    grid-area: btn-optB;
+    text-align: center;
 }
 
 
@@ -520,72 +792,15 @@ li>span {
 }
 
 
-/*----Message Panel--------*/
+/*----Lower Section (contents: terminal (mining / validation) & security--------*/
 
-#message-logo {
-    font-size: 2rem;
-    width: 2vw;
-    display: inline;
-}
-
-#message-title {
-    font-size: 2rem;
-    display: inline;
-}
-
-#message-screen {
-    background-image: repeating-linear-gradient(var(--ink3-offblacksemi), black 1%);
-    border-radius: 0.4vw;
-    height: 25vh;
-    padding: 0.5vh 1vw;
-    display: grid;
-    grid-template-columns: 10vw 25vw;
-    grid-template-rows: 5;
-    row-gap: 1vh;
-    /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
-    grid-template-areas: "msg-symbol  msg-title" "msg-event   msg-event" "msg-optA    msg-optA-txt" "msg-optB    msg-optB-txt" "response-txt    response-txt" "btn-optA       btn-optB"
-}
-
-#msg-symbol {
-    grid-area: msg-symbol;
-}
-
-#msg-title {
-    grid-area: msg-title;
-}
-
-#msg-event {
-    grid-area: msg-event;
-}
-
-#msg-optA {
-    grid-area: msg-optA;
-}
-
-#msg-optA-txt {
-    grid-area: msg-optA-txt;
-}
-
-#msg-optB {
-    grid-area: msg-optB;
-}
-
-#msg-optB-txt {
-    grid-area: msg-optB-txt;
-}
-
-#response-txt {
-    grid-area: response-txt;
-}
-
-#btn-optA {
-    grid-area: btn-optA;
-    text-align: center;
-}
-
-#btn-optB {
-    grid-area: btn-optB;
-    text-align: center;
+.lower-row-pane {
+    height: 40vh;
+    margin-top: 1vh;
+    padding: 1vh 1vw;
+    border-radius: 0.5vw;
+    box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
+    overflow: hidden;
 }
 
 
@@ -603,9 +818,4 @@ li>span {
 }
 
 
-/*----Lower Section (contents: terminal (mining / validation) & security--------*/
-
-#game-lower-section {
-    border: 5px solid purple;
-    height: 45vh;
-}
+/*----Security Panel--------*/
