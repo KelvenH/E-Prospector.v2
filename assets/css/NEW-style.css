@@ -266,7 +266,7 @@ li>span {
 
 #dashboard-title {
     margin-right: 5vw;
-    padding-top: 2vh;
+    padding: 1vh;
     font-size: 4vw;
     color: var(--ink6-LED2ON);
     text-align: right;
@@ -275,7 +275,7 @@ li>span {
 }
 
 #game-menu {
-    height: 10vh;
+    height: 8vh;
     margin: 2vh 1vw 2vh 0;
     padding: 1vh 1vw;
     border-radius: 0.5vw;
@@ -308,9 +308,8 @@ li>span {
 #game-dashboard {
     /*--border: 0.2vw solid var(--ink6-LED2LOW);--*/
     border-radius: 0.4vw;
-    height: 80vh;
+    height: 85vh;
     margin-top: 1vh;
-    padding-top: 1vh;
     margin-bottom: 1vh;
 }
 
@@ -346,10 +345,10 @@ li>span {
 
 #terminal-valid-pane {
     background: var(--ink6-LED2OFF);
-    padding: 1vh 2vw;
+    padding: 1vh 1vw;
     border-radius: 0.4vw;
     margin-bottom: 1vh;
-    height: 30vh;
+    height: 32vh;
     overflow: hidden;
 }
 
@@ -373,11 +372,17 @@ li>span {
     margin-left: 2vw;
 }
 
+#terminal-valid-settings {
+    margin-bottom: 0;
+}
+
 #terminal-valid-grid {
     align-items: center;
+    border-radius: 0.5vw;
     display: grid;
-    margin-top: 1vh;
+    background: linear-gradient(217deg, rgba(42, 46, 51), rgba(29, 43, 53) 70.71%), linear-gradient(127deg, rgba(42, 46, 51), rgba(24, 42, 56) 70.71%), linear-gradient(336deg, rgba(042, 46, 51), rgba(24, 42, 56) 70.71%);
     margin-bottom: 1vh;
+    padding: 1vh 1vw;
     grid-template-columns: 10vw 10vw;
     grid-template-rows: 5;
     row-gap: 1vh;
@@ -472,8 +477,8 @@ input[type="radio"]:checked+label {
 #terminal-miner-pane {
     background: var(--ink6-LED2OFF);
     border-radius: 0.4vw;
-    padding: 2vh 2vw;
-    height: 40vh;
+    padding: 2vh 1vw;
+    height: 45vh;
     overflow: hidden;
 }
 
@@ -506,9 +511,15 @@ input[type="radio"]:checked+label {
     border: 0.2vw solid var(--ink6-LED2LOW);
 }
 
+#terminal-miner-perf-stats {
+    margin-bottom: 0;
+}
+
 #terminal-miner-stats-grid {
     display: grid;
-    margin-top: 2vh;
+    padding: 1vh 1vw;
+    border-radius: 0.5vw;
+    background: linear-gradient(217deg, rgba(42, 46, 51), rgba(29, 43, 53) 70.71%), linear-gradient(127deg, rgba(42, 46, 51), rgba(24, 42, 56) 70.71%), linear-gradient(336deg, rgba(042, 46, 51), rgba(24, 42, 56) 70.71%);
     margin-bottom: 2vh;
     grid-template-columns: 50% 50%;
     grid-template-rows: 4;
@@ -535,7 +546,7 @@ input[type="radio"]:checked+label {
 #terminal-miner-parts-grid {
     display: grid;
     margin-top: 2vh;
-    margin-bottom: 2vh;
+    padding: 1vh 1vw;
     grid-template-columns: 50% 50%;
     grid-template-rows: 4;
     row-gap: 1vh;
@@ -574,11 +585,18 @@ input[type="radio"]:checked+label {
     grid-area: h2;
 }
 
+#terminal-btn1,
+#terminal-btn2 {
+    display: inline-block;
+    width: 40%;
+    margin: 0 1vw;
+}
+
 
 /*---- Mid Row (nested) (contents: message window & finances)--------*/
 
 .mid-row-pane {
-    height: 35vh;
+    height: 36vh;
     margin-bottom: 1vh;
     padding: 1vh 1vw;
     border-radius: 0.5vw;
@@ -784,7 +802,7 @@ input[type="radio"]:checked+label {
 /*----Lower Section (contents: Achievements & Energy--------*/
 
 .lower-row-pane {
-    height: 40vh;
+    height: 46vh;
     margin-top: 1vh;
     padding: 1vh 1vw;
     border-radius: 0.5vw;
