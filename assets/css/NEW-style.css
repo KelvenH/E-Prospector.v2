@@ -251,7 +251,7 @@ li>span {
 /*---------------------Game Screen (game.html) -----------------------------------------*/
 
 
-/*----Top Section (contents: menu, title and Finance panel)--------*/
+/*----Top Section (contents: title and game-menu)--------*/
 
 #full-screen-game {
     position: relative;
@@ -264,16 +264,31 @@ li>span {
 
 #game-header {}
 
+#dashboard-title {
+    margin-right: 5vw;
+    padding-top: 2vh;
+    font-size: 4vw;
+    color: var(--ink6-LED2ON);
+    text-align: right;
+    vertical-align: center;
+    text-shadow: -1px 1px 1px rgb(145, 145, 145), -1px 2px 1px rgb(145, 145, 145), -1px 3px 1px rgb(145, 145, 145), -1px 4px 1px rgb(145, 145, 145), -1px 5px 1px rgb(145, 145, 145), -1px 6px 1px rgb(145, 145, 145), -1px 7px 1px rgb(145, 145, 145), -1px 8px 1px rgb(145, 145, 145), -1px 9px 1px rgb(145, 145, 145), -1px 10px 1px rgb(145, 145, 145), -1px 18px 6px rgba(0, 189, 255, 0.4), -1px 22px 10px rgba(0, 189, 255, 0.2), -1px 35px 35px rgba(0, 189, 255, 0.2), -1px 60px 60px rgba(0, 189, 255, 0.4);
+}
+
 #game-menu {
-    min-height: 16vh;
+    height: 10vh;
+    margin: 2vh 1vw 2vh 0;
+    padding: 1vh 1vw;
+    border-radius: 0.5vw;
+    box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
+    overflow: hidden;
 }
 
 #game-menu .btn {
     font-size: 1vw;
-    display: block;
+    display: inline-block;
     width: 10vw;
     background-color: var(--ink6-LED2LOW);
-    margin: 1rem 0;
+    margin: 2vh 0;
 }
 
 #game-menu .btn:hover {
@@ -287,146 +302,6 @@ li>span {
     text-decoration: none;
 }
 
-#dashboard-title {
-    padding-top: 2vh;
-    font-size: 5vw;
-    color: var(--ink6-LED2ON);
-    text-align: center;
-    vertical-align: center;
-    text-shadow: -1px 1px 1px rgb(145, 145, 145), -1px 2px 1px rgb(145, 145, 145), -1px 3px 1px rgb(145, 145, 145), -1px 4px 1px rgb(145, 145, 145), -1px 5px 1px rgb(145, 145, 145), -1px 6px 1px rgb(145, 145, 145), -1px 7px 1px rgb(145, 145, 145), -1px 8px 1px rgb(145, 145, 145), -1px 9px 1px rgb(145, 145, 145), -1px 10px 1px rgb(145, 145, 145), -1px 18px 6px rgba(0, 189, 255, 0.4), -1px 22px 10px rgba(0, 189, 255, 0.2), -1px 35px 35px rgba(0, 189, 255, 0.2), -1px 60px 60px rgba(0, 189, 255, 0.4);
-    position: relative;
-}
-
-
-/*----Finance Panel--------*/
-
-
-/*--constructed of a 'master' grid, with nested grids for individual panels (bank, e-wallet and exchange fields)--*/
-
-#game-finances {
-    margin: 2vh 0 1vh 0;
-    padding-bottom: 2vh;
-    height: auto;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 0.5vw;
-    box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
-    display: inline-grid;
-    grid-template-columns: 5vw 10vw 10vw;
-    grid-template-rows: 3;
-    /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
-    grid-template-areas: "finance-logo       finance-title   .               .               .               ." "finance-bank      finance-bank      finance-bank      finance-ewallet    finance-ewallet    finance-ewallet" "finance-exchange  finance-exchange  finance-exchange  exchange-btn    exchange-btn    exchange-btn";
-}
-
-.finance-sub-grid {
-    border: 2px solid var(--ink6-LED2LOW);
-    border-radius: 0.4vw;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
-}
-
-
-/*-- finance icon / label / value classes apply consistent styling aross 'master and sub grids---*/
-
-.finance-icon {
-    width: 2vw;
-    text-align: center;
-}
-
-.finance-label {
-    text-align: center;
-}
-
-.finance-value {
-    background: black;
-    border-radius: 0.4vw;
-    padding-left: 0.5vw;
-}
-
-
-/*-- IDs applied to individual items to map grid placement and further 'sub grid' styles (e.g. border to distinguish bank vs. e-wallet sections) --*/
-
-#finance-logo {
-    grid-area: finance-logo;
-    font-size: 2rem;
-}
-
-#finance-title {
-    grid-area: finance-title;
-}
-
-#finance-bank {
-    grid-area: finance-bank;
-    display: inline-grid;
-    grid-template-columns: 2vw 10vw 10vw;
-    width: 22.5vw;
-    grid-template-rows: 1;
-    grid-template-areas: "bank-icon  bank-label bank-value"
-}
-
-#bank-icon {
-    grid-area: bank-icon;
-}
-
-#bank-label {
-    grid-area: bank-label;
-}
-
-#bank-value {
-    grid-area: bank-value;
-}
-
-#finance-ewallet {
-    grid-area: finance-ewallet;
-    display: inline-grid;
-    grid-template-columns: 2vw 10vw 10vw;
-    width: 22.5vw;
-    grid-template-rows: 1;
-    grid-template-areas: "ewallet-icon  ewallet-label ewallet-value"
-}
-
-#ewallet-icon {
-    grid-area: ewallet-icon;
-}
-
-#ewallet-label {
-    grid-area: ewallet-label;
-}
-
-#ewallet-value {
-    grid-area: ewallet-value;
-}
-
-#finance-exchange {
-    grid-area: finance-exchange;
-    display: inline-grid;
-    grid-template-columns: 2vw 10vw 10vw 2vw 10vw 10vw;
-    width: 22.5vw;
-    grid-template-rows: 1;
-    grid-template-areas: "exchange-icon  exchange-label exchange-value"
-}
-
-#exchange-icon {
-    grid-area: exchange-icon;
-}
-
-#exchange-label {
-    grid-area: exchange-label;
-}
-
-#exchange-value {
-    grid-area: exchange-value;
-}
-
-#exchange-value-sub {
-    font-size: 1rem;
-}
-
-#exchange-btn {
-    grid-area: exchange-btn;
-    width: 22.5vw;
-}
-
 
 /*---- Main Dashboard (contents: left panel, mid row and lower row)--------*/
 
@@ -437,6 +312,14 @@ li>span {
     margin-top: 1vh;
     padding-top: 1vh;
     margin-bottom: 1vh;
+}
+
+.center-panel {
+    width: 100%;
+}
+
+.right-panel {
+    width: 100%;
 }
 
 
@@ -470,13 +353,24 @@ li>span {
     overflow: hidden;
 }
 
-#terminal-valid-title {
+#terminal-valid-title,
+#terminal-miner-title {
     display: inline-block;
-    width: 100%;
+    padding: 1vh 0;
+    border-radius: 0.4vw;
+}
+
+#terminal-valid-title {
+    width: 50%;
+}
+
+#terminal-valid-open-modal {
+    display: inline-block;
+    width: 40%;
     text-align: center;
     padding: 1vh 0;
-    background: var(--ink6-LED2OFF);
     border-radius: 0.4vw;
+    margin-left: 2vw;
 }
 
 #terminal-valid-grid {
@@ -488,16 +382,70 @@ li>span {
     grid-template-rows: 5;
     row-gap: 1vh;
     /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
-    grid-template-areas: "terminal-quality   terminal-quality-response" "terminal-synd      terminal-synd-response" "terminal-member-tier    terminal-tier-response" "terminal-upgrade-requirements terminal-upgrade-requirements-task" "terminal-upgrade-progress terminal-upgrade-progress"
+    grid-template-areas: "terminal-quality   terminal-quality-response" "terminal-pool      terminal-pool-response" "terminal-member-tier    terminal-tier-response" "terminal-upgrade-requirements terminal-upgrade-requirements-task" "terminal-upgrade-progress terminal-upgrade-progress"
 }
+
+#terminal-quality {
+    grid-area: terminal-quality;
+}
+
+#terminal-quality-response {
+    grid-area: terminal-quality-response;
+}
+
+#terminal-pool {
+    grid-area: terminal-pool;
+}
+
+#terminal-pool-response {
+    grid-area: terminal-pool-response;
+}
+
+#terminal-member-tier {
+    grid-area: terminal-member-tier;
+}
+
+#terminal-tier-response {
+    grid-area: terminal-tier-response;
+}
+
+#terminal-upgrade-requirements {
+    grid-area: terminal-upgrade-requirements;
+}
+
+#terminal-upgrade-requirements-task {
+    grid-area: terminal-upgrade-requirements-task;
+}
+
+#terminal-upgrade-progress {
+    grid-area: terminal-upgrade-progress;
+}
+
+
+/*--not currently in use - move to validation screen
 
 #terminal-valid-field {
     background: var(--ink6-LED2OFF);
     border-radius: 0.4vw;
     position: relative;
     margin-left: 0.25vw;
-    /*--relative position to enable absolute positioning of validation button from top panel border---*/
 }
+
+#terminal-valid-btn {
+    display: block;
+    border-radius: 50%;
+    height: 5vw;
+    width: 5vw;
+    align-items: center;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+}
+--*/
 
 .radio-val {
     background-color: inherit;
@@ -521,21 +469,6 @@ input[type="radio"]:checked+label {
     font-size: 80%;
 }
 
-#terminal-valid-btn {
-    display: block;
-    border-radius: 50%;
-    height: 10vw;
-    width: 10vw;
-    align-items: center;
-    margin: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    padding: 0;
-}
-
 #terminal-miner-pane {
     background: var(--ink6-LED2OFF);
     border-radius: 0.4vw;
@@ -544,21 +477,25 @@ input[type="radio"]:checked+label {
     overflow: hidden;
 }
 
-#terminal-miner-header {
-    display: inline-block;
-}
-
 #terminal-miner-title {
-    display: inline-block;
+    width: 40%;
 }
 
 #terminal-miner-status {
     display: inline-block;
-    padding-left: 10vw;
+    padding-left: 1vw;
 }
 
-#terminal-miner-btn {
+#terminal-miner-status-response {
     display: inline-block;
+    text-align: center;
+    border: solid 1px var(--ink6-LED2ON);
+    background: var(--ink6-LED2LOW);
+    color: var(--ink6-LED2ON);
+    width: 30%;
+    padding: 1vh 0;
+    border-radius: 0.4vw;
+    margin-left: 2vw;
 }
 
 .meter-off {
@@ -638,7 +575,7 @@ input[type="radio"]:checked+label {
 }
 
 
-/*---- Mid Row (nested) (contents: energy, message window & achievements)--------*/
+/*---- Mid Row (nested) (contents: message window & finances)--------*/
 
 .mid-row-pane {
     height: 35vh;
@@ -719,6 +656,256 @@ input[type="radio"]:checked+label {
 }
 
 
+/*----Finance Panel--------*/
+
+#finance-logo {
+    font-size: 2rem;
+    width: 2vw;
+    display: inline;
+}
+
+#finance-title {
+    font-size: 2rem;
+    display: inline;
+}
+
+
+/*--constructed of a 'master' grid, with nested grids for individual panels (bank, e-wallet and exchange fields)--*/
+
+#finance-grid {
+    display: inline-grid;
+    grid-template-columns: 3;
+    grid-template-rows: 5;
+    /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
+    grid-template-areas: "finance-bank      finance-bank      finance-bank" "finance-ewallet    finance-ewallet    finance-ewallet" "finance-exchange  finance-exchange  finance-exchange" "exchange-btn    exchange-btn    exchange-btn";
+}
+
+.finance-sub-grid {
+    border: 2px solid var(--ink6-LED2LOW);
+    border-radius: 0.4vw;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+
+/*-- finance icon / label / value classes apply consistent styling aross 'master and sub grids---*/
+
+.finance-icon {
+    width: 2vw;
+    text-align: center;
+}
+
+.finance-label {
+    text-align: center;
+}
+
+.finance-value {
+    background: black;
+    border-radius: 0.4vw;
+    padding-left: 0.5vw;
+}
+
+
+/*-- IDs applied to individual items to map grid placement and further 'sub grid' styles (e.g. border to distinguish bank vs. e-wallet sections) --*/
+
+#finance-bank {
+    grid-area: finance-bank;
+    display: inline-grid;
+    grid-template-columns: 2vw 10vw 10vw;
+    width: 22.5vw;
+    grid-template-rows: 1;
+    grid-template-areas: "bank-icon  bank-label bank-value"
+}
+
+#bank-icon {
+    grid-area: bank-icon;
+}
+
+#bank-label {
+    grid-area: bank-label;
+}
+
+#bank-value {
+    grid-area: bank-value;
+}
+
+#finance-ewallet {
+    grid-area: finance-ewallet;
+    display: inline-grid;
+    grid-template-columns: 2vw 10vw 10vw;
+    width: 22.5vw;
+    grid-template-rows: 1;
+    grid-template-areas: "ewallet-icon  ewallet-label ewallet-value"
+}
+
+#ewallet-icon {
+    grid-area: ewallet-icon;
+}
+
+#ewallet-label {
+    grid-area: ewallet-label;
+}
+
+#ewallet-value {
+    grid-area: ewallet-value;
+}
+
+#finance-exchange {
+    grid-area: finance-exchange;
+    display: inline-grid;
+    grid-template-columns: 2vw 10vw 10vw 2vw 10vw 10vw;
+    width: 22.5vw;
+    grid-template-rows: 1;
+    grid-template-areas: "exchange-icon  exchange-label exchange-value"
+}
+
+#exchange-icon {
+    grid-area: exchange-icon;
+}
+
+#exchange-label {
+    grid-area: exchange-label;
+}
+
+#exchange-value {
+    grid-area: exchange-value;
+}
+
+#exchange-value-sub {
+    font-size: 1rem;
+}
+
+#exchange-btn {
+    grid-area: exchange-btn;
+    width: 22.5vw;
+}
+
+
+/*----Lower Section (contents: Achievements & Energy--------*/
+
+.lower-row-pane {
+    height: 40vh;
+    margin-top: 1vh;
+    padding: 1vh 1vw;
+    border-radius: 0.5vw;
+    box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
+    overflow: hidden;
+}
+
+
+/*----Achievements Panel--------*/
+
+#awards-logo {
+    font-size: 2rem;
+    width: 2vw;
+    display: inline;
+}
+
+#awards-title {
+    font-size: 2rem;
+    display: inline;
+}
+
+.awards-sub-title {
+    margin-top: 1vh;
+    padding-left: 2vw;
+}
+
+#awards-grid {
+    align-items: center;
+    padding-left: 2vw;
+    display: grid;
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+    grid-template-columns: 30% 20% 5%;
+    grid-template-rows: 5;
+    row-gap: 1vh;
+    grid-template-areas: "award-1-label  award-1-txt     ." "award-2-label  award-2-txt     ." "award-3-label  award-3-txt     ." "award-4-label  award-4-txt     ." "award-5-label  award-5-txt     ." "award-6-label  award-6-txt     ." "award-7-label  award-7-txt     ." "award-8-label  award-8-txt     ." "award-9-label  award-9-txt     ." "award-10-label  award-10-txt   ."
+}
+
+.award-val {}
+
+#award-1-label {
+    grid-area: award-1-label;
+}
+
+#award-1-txt {
+    grid-area: award-1-txt;
+}
+
+#award-2-label {
+    grid-area: award-2-label;
+}
+
+#award-2-txt {
+    grid-area: award-2-txt;
+}
+
+#award-3-label {
+    grid-area: award-3-label;
+}
+
+#award-3-txt {
+    grid-area: award-3-txt;
+}
+
+#award-4-label {
+    grid-area: award-4-label;
+}
+
+#award-4-txt {
+    grid-area: award-4-txt;
+}
+
+#award-5-label {
+    grid-area: award-5-label;
+}
+
+#award-5-txt {
+    grid-area: award-5-txt;
+}
+
+#award-6-label {
+    grid-area: award-6-label;
+}
+
+#award-6-txt {
+    grid-area: award-6-txt;
+}
+
+#award-7-label {
+    grid-area: award-7-label;
+}
+
+#award-7-txt {
+    grid-area: award-7-txt;
+}
+
+#award-8-label {
+    grid-area: award-8-label;
+}
+
+#award-8-txt {
+    grid-area: award-8-txt;
+}
+
+#award-9-label {
+    grid-area: award-9-label;
+}
+
+#award-9-txt {
+    grid-area: award-9-txt;
+}
+
+#award-10-label {
+    grid-area: award-10-label;
+}
+
+#award-10-txt {
+    grid-area: award-10-txt;
+}
+
+
 /*----Energy Panel--------*/
 
 #energy-grid {
@@ -790,32 +977,3 @@ input[type="radio"]:checked+label {
 #energy-btn {
     text-align: center;
 }
-
-
-/*----Lower Section (contents: terminal (mining / validation) & security--------*/
-
-.lower-row-pane {
-    height: 40vh;
-    margin-top: 1vh;
-    padding: 1vh 1vw;
-    border-radius: 0.5vw;
-    box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
-    overflow: hidden;
-}
-
-
-/*----Achievements Panel--------*/
-
-#awards-logo {
-    font-size: 2rem;
-    width: 2vw;
-    display: inline;
-}
-
-#awards-title {
-    font-size: 2rem;
-    display: inline;
-}
-
-
-/*----Security Panel--------*/
