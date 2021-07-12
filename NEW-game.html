@@ -37,7 +37,7 @@
                 <div class="col-4" id="game-menu">
                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal-how-to-play">How
                         to Play</button>
-                    <a role="button" class="btn" href="">Game Mode</a>
+                    <a role="button" class="btn" href="">New Game</a>
                     <a role="button" class="btn" href="/NEW-index.html">Exit to Main Menu</a>
 
 
@@ -66,7 +66,7 @@
 
                         <div id="terminal-valid-pane">
                             <h3 id="terminal-valid-title">BLOCK VALIDATION</h3>
-                            <button id="terminal-valid-open-modal" class="btn btn-info float-right">Click to initiate
+                            <button id="terminal-valid-open-modal" class="btn btn-info float-end">Click to initiate
                                 Validation</button>
                             <p id="terminal-valid-settings">Validation Settings:</p>
                             <div id="terminal-valid-grid">
@@ -106,17 +106,8 @@
                         <div id="terminal-miner-pane">
                             <div id="terminal-miner-header">
                                 <h3 id="terminal-miner-title">MINING</h3>
-                                <div id="terminal-miner-status">STATUS:</div>
-                                <select id="terminal-miner-status-response" class="custom-select" name="miner-status-dropdown">
-
-                                    <option value="0">OFF</option>
-                                    <option value="1">ON</option>
-                                    <option value="2">PAUSED</option>
-                                    <option value="3">DISABLED</option>
-
-                                </select>
-
-
+                                <p id="terminal-miner-status">STATUS : OFF</p>
+                                <button id="terminal-miner-activatebtn" class="btn btn-info float-end">Mine Block</button>
 
                             </div>
                             <!--close terminal-miner header-->
@@ -126,6 +117,10 @@
                                 <div id="miner-speed">HASH RATE</div>
                                 <div id="miner-power">POWER USEAGE</div>
                                 <div id="miner-condition">CONDITION</div>
+                                <div id="chance-value">0</div>
+                                <div id="speed-value">0</div>
+                                <div id="power-value">0</div>
+                                <div id="condition-value">0</div>
                                 <div id="chance-meter" class="meter-off"></div>
                                 <div id="speed-meter" class="meter-off"></div>
                                 <div id="power-meter" class="meter-off"></div>
@@ -137,7 +132,7 @@
                                 <div id="parts-rig">RIG</div>
                                 <div id="parts-processor">PROCESSOR</div>
                                 <div id="parts-cooling">COOLING SYSTEM</div>
-                                <div id="parts-software">SOFTWARE</div>
+                                <div id="parts-software">OPERATING SYSTEM</div>
                                 <div id="rig-name">[RIG NAME]</div>
                                 <div id="processor-name">[PROCESSOR]</div>
                                 <div id="cooling-name">[COOLING]</div>
@@ -226,34 +221,69 @@
                         <!--achievements pane-->
                         <div class="col-7">
                             <div id="achievements" class="lower-row-pane center-panel">
-                                <i id="awards-logo" class="bi bi-award"></i>
-                                <h2 id="awards-title">ACHIEVEMENTS</h2>
-                                <h4 class="awards-sub-title">Game Stats</h4>
-                                <div id="awards-grid">
+                                <i id="achievements-logo" class="bi bi-award"></i>
+                                <h2 id="achievements-title">ACHIEVEMENTS</h2>
+                                <div id="grid-divider">
+                                    <div id="achievements-left">
+                                        <h4 id="game-stats-title" class="awards-sub-title">Game Stats</h4>
+                                        <div id="stats-grid">
 
-                                    <div id="award-1-label">Current Rank</div>
-                                    <div id="award-1-txt" class="award-val">Beginner</div>
-                                    <div id="award-2-label">Blocks Mined</div>
-                                    <div id="award-2-txt" class="award-val">0</div>
-                                    <div id="award-3-label">Blocks Validated</div>
-                                    <div id="award-3-txt" class="award-val">0</div>
-                                    <div id="award-4-label">Mine Success Rate</div>
-                                    <div id="award-4-txt" class="award-val">0%</div>
-                                    <div id="award-5-label">Power Consumed</div>
-                                    <div id="award-5-txt" class="award-val">0</div>
-                                    <div id="award-6-label">Clean Power Sourced</div>
-                                    <div id="award-6-txt" class="award-val">%</div>
-                                    <div id="award-7-label">Upgrades Purchased</div>
-                                    <div id="award-7-txt" class="award-val">0</div>
-                                    <div id="award-8-label">Cyber Threats Thwarted</div>
-                                    <div id="award-8-txt" class="award-val">0</div>
-                                    <div id="award-9-label">another</div>
-                                    <div id="award-9-txt" class="award-val">0</div>
-                                    <div id="award-10-label">Another</div>
-                                    <div id="award-10-txt" class="award-val">0</div>
+                                            <div id="stats-1-label">Current Rank</div>
+                                            <div id="stats-1-txt" class="stats-val">Beginner</div>
+                                            <div id="stats-2-label">Blocks Mined</div>
+                                            <div id="stats-2-txt" class="stats-val">0</div>
+                                            <div id="stats-3-label">Blocks Validated</div>
+                                            <div id="stats-3-txt" class="stats-val">0</div>
+                                            <div id="stats-4-label">Mine Success Rate</div>
+                                            <div id="stats-4-txt" class="stats-val">0%</div>
+                                            <div id="stats-5-label">Power Consumed</div>
+                                            <div id="stats-5-txt" class="stats-val">0</div>
+                                            <div id="stats-6-label">Clean Power Sourced</div>
+                                            <div id="stats-6-txt" class="stats-val">%</div>
+                                            <div id="stats-7-label">Upgrades Purchased</div>
+                                            <div id="stats-7-txt" class="stats-val">0</div>
+                                            <div id="stats-8-label">Cyber Threats Thwarted</div>
+                                            <div id="stats-8-txt" class="stats-val">0</div>
+                                            <div id="stats-9-label">another</div>
+                                            <div id="stats-9-txt" class="stats-val">0</div>
+                                            <div id="stats-10-label">Another</div>
+                                            <div id="stats-10-txt" class="stats-val">0</div>
+                                        </div>
+                                        <!--close achievements stats-->
+                                    </div>
+                                    <!--close achievements left-->
+                                    <div id="achievements-right">
+                                        <h4 id="game-awards-title" class="awards-sub-title">Awards</h4>
+                                        <div id="awards-grid">
+
+                                            <i id="award-1-img" class="bi bi-trophy"></i>
+
+                                            <i id="award-2-img" class="bi bi-trophy-fill"></i>
+
+                                            <i id="award-3-img" class="bi bi-award"></i>
+
+                                            <i id="award-4-img" class="bi bi-award-fill"></i>
+
+                                            <i id="award-5-img" class="bi bi-bookmark-star"></i>
+
+                                            <i id="award-6-img" class="bi bi-bookmark-star-fill"></i>
+
+                                            <i id="award-7-img" class="bi bi-cash-coin"></i>
+
+                                            <i id="award-8-img" class="bi bi-gem"></i>
+
+                                            <i id="award-9-img" class="bi bi-gift"></i>
+
+                                            <i id="award-10-img" class="bi bi-gift-fill"></i>
+
+                                            <i id="award-11-img" class="bi bi-joystick"></i>
+
+                                            <i id="award-12-img" class="bi bi-speedometer"></i>
+                                        </div>
+                                        <!--close awards grid-->
+                                    </div>
+                                    <!--close achievements right-->
                                 </div>
-                                <!--close achievements stats-->
-
                             </div>
                         </div>
                         <!--close achievements pane / col-->

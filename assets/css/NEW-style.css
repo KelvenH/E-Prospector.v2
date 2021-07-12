@@ -483,24 +483,28 @@ input[type="radio"]:checked+label {
 }
 
 #terminal-miner-title {
+    width: 25%;
+}
+
+#terminal-miner-activatebtn {
+    display: inline-block;
     width: 40%;
+    text-align: center;
+    padding: 1vh 0;
+    border-radius: 0.4vw;
+    margin-left: 0.5vw;
 }
 
 #terminal-miner-status {
-    display: inline-block;
-    padding-left: 1vw;
-}
-
-#terminal-miner-status-response {
     display: inline-block;
     text-align: center;
     border: solid 1px var(--ink6-LED2ON);
     background: var(--ink6-LED2LOW);
     color: var(--ink6-LED2ON);
-    width: 30%;
+    width: 20%;
     padding: 1vh 0;
     border-radius: 0.4vw;
-    margin-left: 2vw;
+    margin-left: 0.5vw;
 }
 
 .meter-off {
@@ -521,10 +525,10 @@ input[type="radio"]:checked+label {
     border-radius: 0.5vw;
     background: linear-gradient(217deg, rgba(42, 46, 51), rgba(29, 43, 53) 70.71%), linear-gradient(127deg, rgba(42, 46, 51), rgba(24, 42, 56) 70.71%), linear-gradient(336deg, rgba(042, 46, 51), rgba(24, 42, 56) 70.71%);
     margin-bottom: 2vh;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 40% 10% 50%;
     grid-template-rows: 4;
     row-gap: 1vh;
-    grid-template-areas: "a1   a2" "b1   b2" "c1  c2" "d1  d2"
+    grid-template-areas: "a1   a2   a3" "b1   b2    b3" "c1  c2 c3" "d1  d2 d3"
 }
 
 #miner-chance {
@@ -541,6 +545,38 @@ input[type="radio"]:checked+label {
 
 #miner-condition {
     grid-area: d1;
+}
+
+#chance-value {
+    grid-area: a2;
+}
+
+#speed-value {
+    grid-area: b2;
+}
+
+#power-value {
+    grid-area: c2;
+}
+
+#condition-value {
+    grid-area: d2;
+}
+
+#chance-meter {
+    grid-area: a3;
+}
+
+#speed-meter {
+    grid-area: b3;
+}
+
+#power-meter {
+    grid-area: c3;
+}
+
+#condition-meter {
+    grid-area: d3;
 }
 
 #terminal-miner-parts-grid {
@@ -813,114 +849,201 @@ input[type="radio"]:checked+label {
 
 /*----Achievements Panel--------*/
 
-#awards-logo {
+#achievements-logo {
     font-size: 2rem;
     width: 2vw;
     display: inline;
 }
 
-#awards-title {
+#achievements-title {
     font-size: 2rem;
     display: inline;
 }
 
-.awards-sub-title {
+#grid-divider {
+    align-text: top;
+}
+
+#achievements-left,
+#achievements-right {
     margin-top: 1vh;
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
+}
+
+.awards-sub-title {
     padding-left: 2vw;
+    width: 100%;
+}
+
+#stats-grid {
+    width: 100%;
+    height: 100%;
+    padding-left: 2vw;
+    display: grid;
+    margin-bottom: 2vh;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 5;
+    row-gap: 1vh;
+    grid-template-areas: "stats-1-label  stats-1-txt" "stats-2-label  stats-2-txt" "stats-3-label  stats-3-txt" "stats-4-label  stats-4-txt" "stats-5-label  stats-5-txt" "stats-6-label  stats-6-txt" "stats-7-label  stats-7-txt" "stats-8-label  stats-8-txt" "stats-9-label  stats-9-txt" "stats-10-label  stats-10-txt"
+}
+
+.stats-val {
+    text-align: center;
+}
+
+#stats-1-label {
+    grid-area: stats-1-label;
+}
+
+#stats-1-txt {
+    grid-area: stats-1-txt;
+}
+
+#stats-2-label {
+    grid-area: stats-2-label;
+}
+
+#stats-2-txt {
+    grid-area: stats-2-txt;
+}
+
+#stats-3-label {
+    grid-area: stats-3-label;
+}
+
+#stats-3-txt {
+    grid-area: stats-3-txt;
+}
+
+#stats-4-label {
+    grid-area: stats-4-label;
+}
+
+#stats-4-txt {
+    grid-area: stats-4-txt;
+}
+
+#stats-5-label {
+    grid-area: stats-5-label;
+}
+
+#stats-5-txt {
+    grid-area: stats-5-txt;
+}
+
+#stats-6-label {
+    grid-area: stats-6-label;
+}
+
+#stats-6-txt {
+    grid-area: stats-6-txt;
+}
+
+#stats-7-label {
+    grid-area: stats-7-label;
+}
+
+#stats-7-txt {
+    grid-area: stats-7-txt;
+}
+
+#stats-8-label {
+    grid-area: stats-8-label;
+}
+
+#stats-8-txt {
+    grid-area: stats-8-txt;
+}
+
+#stats-9-label {
+    grid-area: stats-9-label;
+}
+
+#stats-9-txt {
+    grid-area: stats-9-txt;
+}
+
+#stats-10-label {
+    grid-area: stats-10-label;
+}
+
+#stats-10-txt {
+    grid-area: stats-10-txt;
+}
+
+#game-awards-title {
+    padding-left: 4vw;
 }
 
 #awards-grid {
-    align-items: center;
-    padding-left: 2vw;
+    width: 100%;
+    height: 100%;
+    padding-left: 4vw;
     display: grid;
     margin-top: 1vh;
     margin-bottom: 2vh;
-    grid-template-columns: 30% 20% 5%;
-    grid-template-rows: 5;
+    grid-template-columns: 3;
+    grid-template-rows: 4;
     row-gap: 1vh;
-    grid-template-areas: "award-1-label  award-1-txt     ." "award-2-label  award-2-txt     ." "award-3-label  award-3-txt     ." "award-4-label  award-4-txt     ." "award-5-label  award-5-txt     ." "award-6-label  award-6-txt     ." "award-7-label  award-7-txt     ." "award-8-label  award-8-txt     ." "award-9-label  award-9-txt     ." "award-10-label  award-10-txt   ."
+    grid-template-areas: "award-1-img   award-2-img  award-3-img" "award-4-img   award-5-img  award-6-img" "award-7-img   award-8-img  award-9-img" "award-10-img   award-11-img  award-12-img"
 }
 
-.award-val {}
-
-#award-1-label {
-    grid-area: award-1-label;
+#awards-grid>i {
+    font-size: 2.5rem;
 }
 
-#award-1-txt {
-    grid-area: award-1-txt;
+.award-val {
+    text-align: center;
 }
 
-#award-2-label {
-    grid-area: award-2-label;
+#award-1-img {
+    grid-area: award-1-img;
 }
 
-#award-2-txt {
-    grid-area: award-2-txt;
+#award-2-img {
+    grid-area: award-2-img;
 }
 
-#award-3-label {
-    grid-area: award-3-label;
+#award-3-img {
+    grid-area: award-3-img;
 }
 
-#award-3-txt {
-    grid-area: award-3-txt;
+#award-4-img {
+    grid-area: award-4-img;
 }
 
-#award-4-label {
-    grid-area: award-4-label;
+#award-5-img {
+    grid-area: award-5-img;
 }
 
-#award-4-txt {
-    grid-area: award-4-txt;
+#award-6-img {
+    grid-area: award-6-img;
 }
 
-#award-5-label {
-    grid-area: award-5-label;
+#award-7-img {
+    grid-area: award-7-img;
 }
 
-#award-5-txt {
-    grid-area: award-5-txt;
+#award-8-img {
+    grid-area: award-8-img;
 }
 
-#award-6-label {
-    grid-area: award-6-label;
+#award-9-img {
+    grid-area: award-9-img;
 }
 
-#award-6-txt {
-    grid-area: award-6-txt;
+#award-10-img {
+    grid-area: award-10-img;
 }
 
-#award-7-label {
-    grid-area: award-7-label;
+#award-11-img {
+    grid-area: award-11-img;
 }
 
-#award-7-txt {
-    grid-area: award-7-txt;
-}
-
-#award-8-label {
-    grid-area: award-8-label;
-}
-
-#award-8-txt {
-    grid-area: award-8-txt;
-}
-
-#award-9-label {
-    grid-area: award-9-label;
-}
-
-#award-9-txt {
-    grid-area: award-9-txt;
-}
-
-#award-10-label {
-    grid-area: award-10-label;
-}
-
-#award-10-txt {
-    grid-area: award-10-txt;
+#award-12-img {
+    grid-area: award-12-img;
 }
 
 
