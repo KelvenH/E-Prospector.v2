@@ -229,7 +229,7 @@
             }
         ],
         "coolingSystem": [{
-                "name": "deskfan",
+                "name": "Deskfan",
                 "cost": 0,
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
@@ -237,7 +237,7 @@
                 "conditionBuff": 0.05
             },
             {
-                "name": "Fan-Fare Storm",
+                "name": "Fan-Fare Double Bladed Case Fan",
                 "cost": 1500,
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
@@ -245,7 +245,7 @@
                 "conditionBuff": 0.1
             },
             {
-                "name": "Oxy-Blast Master",
+                "name": "Oxy-Blast Master CPU Fan",
                 "cost": 2500,
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
@@ -253,7 +253,7 @@
                 "conditionBuff": 0.35
             },
             {
-                "name": "Wind-E MKI",
+                "name": "Wind-E MKI CPU Fan",
                 "cost": 5000,
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
@@ -261,7 +261,7 @@
                 "conditionBuff": 0.4
             },
             {
-                "name": "Wind-E MKII",
+                "name": "Wind-E MKII Heatsink Fan",
                 "cost": 100000,
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
@@ -269,7 +269,7 @@
                 "conditionBuff": 0.45
             },
             {
-                "name": "Fan-Fare Typhoon",
+                "name": "Fan-Fare Typhoon Heatsink and CPU Fan",
                 "cost": 20000,
                 "chanceBuff": 0,
                 "hashPowerBufff": 0,
@@ -277,7 +277,7 @@
                 "conditionBuff": 0.5
             },
             {
-                "name": "Ice-Blaster",
+                "name": "Ice-Blaster Heatsink and CPU Fan",
                 "cost": 50000,
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
@@ -285,7 +285,7 @@
                 "conditionBuff": 0.75
             },
             {
-                "name": "Liquid-ice",
+                "name": "Liquid-ice Intergrated Cooling Tech",
                 "cost": 100000,
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,

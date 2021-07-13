@@ -97,7 +97,7 @@ let liveGameData = {
             conditionBuff: 0
         },
         coolingSystem: {
-            name: "deskfan",
+            name: "Deskfan",
             cost: 0,
             chanceBuff: 0,
             hashPowerBuff: 0,
@@ -235,6 +235,26 @@ function calcTotalActiveStats() {
 
 function refreshPerformanceBars() {
 
+    let maxValue = 1000;
+    let total = totalActiveStats;
+
+    let chanceProgress = total.totalChance;
+    let w = (chanceProgress / maxValue) * 100;
+    console.log("chance Progress value", chanceProgress);
+    console.log("chance Progress %", w);
+    $("#chance-meter-bar").css("width", w + '%');
+
+    let speedProgress = total.totalHash;
+    let x = (speedProgress / maxValue) * 100;
+    $("#speed-meter-bar").css("width", x + '%');
+
+    let powerProgress = total.totalPower;
+    let y = (powerProgress / maxValue) * 100;
+    $("#power-meter-bar").css("width", y + '%');
+
+    let conditionProgress = total.totalCondition;
+    let z = (conditionProgress / maxValue) * 100;
+    $("#condition-meter-bar").css("width", z + '%');
 };
 
 

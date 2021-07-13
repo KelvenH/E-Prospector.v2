@@ -86,6 +86,10 @@ p {
     color: var(--ink6-LED2);
 }
 
+.LED-ON {
+    color: var(--ink6-LED2ON);
+}
+
 
 /*---------------------Media Queries - Portrait-----------------------------------------*/
 
@@ -508,11 +512,13 @@ input[type="radio"]:checked+label {
 }
 
 .meter-off {
-    border: 0.2vw solid var(--ink6-LED2LOW);
+    border: 0.1vw solid var(--ink6-LED2LOW);
+    background-color: var(--ink6-LED2LOW);
 }
 
 .meter-on {
-    border: 0.2vw solid var(--ink6-LED2LOW);
+    border: 0.2vw solid var(--ink6-LED2ON);
+    background-color: var(--ink6-LED2ON);
 }
 
 #terminal-miner-perf-stats {
@@ -529,6 +535,11 @@ input[type="radio"]:checked+label {
     grid-template-rows: 4;
     row-gap: 1vh;
     grid-template-areas: "a1   a2   a3" "b1   b2    b3" "c1  c2 c3" "d1  d2 d3"
+}
+
+.key-value {
+    color: var(--ink6-LED2ON);
+    font-weight: bold;
 }
 
 #miner-chance {
