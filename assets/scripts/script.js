@@ -283,4 +283,229 @@ function refreshPerformanceBars() {
         e - calc subTotal (i.e. balance + winnings - cost)
         f - update balance -----------------------------------------------------*/
 
+/*-- Step A - generate miner and block keys ---*/
+
+// 'Temporary' data arrays created for the lifespan of a single game round. These are hoisted to a level within the over-arching game cycle function so that they can be fed into and feed out to other stages within the round's gameplay, but also not need to be 'reset' as they would if they resided at a global level 
+
+let gameData = new Array();
+let gamePowerData = new Array();
+let termKeyId;
+let blockId;
+let outCome;
+let outComeTxt;
+let newBalance;
+let roundCoin;
+let newBitCoins;
+let activeTarget;
+
+let play = document.getElementById("#terminal-miner-activatebtn");
+
+$(".terminal-miner-activatebtn").click(function() {
+
+    //initials checks must pass all prior to being able to proceed//
+
+    /*-- list of items to check;
+
+        Finances
+        - balance not negative (must be able to afford electricity costs. Redirect to block validation and / or exchange crypto-coin)
+
+        Miner
+        - status not Paused (event-in play) /  Disabled (repair needed or due to event)
+        - miner selected 
+
+        Energy
+        - provider selected
+    --*/
+
+
+
+    console.log("11. terminal started mining, id=", this.id);
+
+    let chosenProvider;
+
+    checkPowerSupplied();
+
+    function checkPowerSupplied(checkPowerSupplied) {
+
+        if (document.getElementById('renewable').checked) {
+            chosenProvider = 'Renewable Energy Co.';
+
+        } else if (document.getElementById('gazmore').checked) {
+            chosenProvider = 'GAZMORE Inc.';
+        } else {
+            alert("Please select your choice of power provider - no power = no play!")
+        }
+    }
+
+
+
+    calcGamePowerData();
+
+    function calcGamePowerData(calcGamePowerData) {
+
+        console.log("13. supplier", chosenProvider);
+
+        let suppliermatch = { provider: chosenProvider };
+
+        let matchingPower = liveGameData['power'].filter((obj) => {
+
+            if (obj.provider === suppliermatch.provider) {
+
+                return true
+
+            }
+            return false;
+        })
+
+        gamePowerData = {
+            provider: (matchingPower[0].provider),
+            costPerKw: (matchingPower[0].costPerKw),
+            reliability: (matchingPower[0].reliability),
+            toxicity: (matchingPower[0].toxicity),
+        }
+
+        console.log("14.", gamePowerData);
+    }
+
+
+    calcGameTerminalData();
+
+    function calcGameTerminalData(calcGameTerminalData) {
+
+        let t1 = 'term1-play';
+        let t2 = 'term2-play';
+        let t3 = 'term3-play';
+        console.log("15a.", t1);
+
+        if (terminalInPlay === t1) {
+
+            terminal = 'Terminal #1';
+            activeTarget = document.getElementsByClassName('t1-act');
+
+        } else if (terminalInPlay === t2) {
+
+            terminal = 'Terminal #2';
+            activeTarget = document.getElementsByClassName('t2-act');
+
+        } else if (terminalInPlay === t3) {
+
+            terminal = 'Terminal #3';
+            activeTarget = document.getElementsByClassName('t3-act');
+
+        } else {
+            alert("Oops, something's gone wrong! Error : run game error");
+            console.log("alert unrecognised terminal play mapping");
+        };
+
+        console.log(terminal);
+        let item = { device: terminal };
+
+        let matchingItem = liveGameData['availableMiners'].filter((obj) => {
+
+            if (obj.device === item.device) {
+
+                return true
+
+            }
+            return false;
+        })
+
+
+        gameData = {
+            device: (matchingItem[0].device),
+            consumption: (matchingItem[0].consumption),
+            chance: (matchingItem[0].chance),
+            speed: (matchingItem[0].speed),
+            reliability: (matchingItem[0].reliability),
+        }
+        console.log("16", gameData);
+    }
+
+    generateTerminalKey();
+    generateBlockID();
+    result();
+
+
+
+    function generateTerminalKey(generateTerminalKey) {
+
+        let terminalprobability = gameData.chance;
+        console.log("17. terminl prob", terminalprobability);
+
+        let terminalkey = Math.floor(Math.random() * terminalprobability) + 1;
+        termKeyId = terminalkey;
+        console.log("18.termkey", terminalkey);
+    };
+
+    function generateBlockID(generateBlockID) {
+        let terminalprobability = gameData.chance;
+        let blockLock = Math.floor(Math.random() * terminalprobability) + 1;
+        blockId = blockLock;
+        console.log("19.blockID", blockId);
+    };
+
+    function result(result) {
+        if (termKeyId === blockId) {
+            outCome = 1;
+            outComeTxt = 'Y';
+            newBitCoins = parseInt(document.getElementById('bit-balance-current')) + 1;
+
+
+        } else {
+            outCome = 0;
+            outComeTxt = 'N';
+        }
+        console.log("20.", outCome);
+    }
+
+    // Game Stage C - Calculate Outcome 
+
+    calcSubTotal();
+
+    function calcSubTotal(calcSubTotal) {
+        let roundCost = gameData.consumption * gamePowerData.costPerKw;
+        console.log("21. PowerConsumption", gameData.consumption);
+        console.log("22. consumption", gamePowerData.costPerKw);
+        console.log("23. RoundCost", roundCost);
+        let oldBalance = parseInt(document.getElementById('GBP-balance-current').innerText);
+        newBalance = oldBalance - roundCost;
+        console.log("24. new balance", newBalance);
+
+    }
+
+    // Game stage D - Update DashBoard -time delay added into the write-back - relates to speed factor of terminal. Write-back held out to avoid issues with functions being performed for other devices. 
+
+    let targetClass = activeTarget //add styling to indicate mining in progress
+    $(targetClass).addClass('styled-active'); // bugs encountered if same / other terminal activated whilst a previous terminal is still operating. Additional logic applied to remove the ability to activate 'start miner' button until game cycle has fully completed.
+    $(".btn-play").removeClass(".btn-play").addClass(".miner-paused");
+
+    let i = 30000 / gameData.speed; //  max time delay of 30s divided by terminal (i.e. higher speed rating equals quicker outcome) 
+
+    setTimeout(updateDashboard, i);
+    console.log("25. timer started to run for", i)
+
+
+
+    function updateDashboard() {
+        $("#TermID").text(gameData.device);
+        $("#TermKey").text(termKeyId);
+        $("#BlockKey").text(blockId);
+        $("#Result").text(outComeTxt);
+        $("#bit-balance-current").text(newBitCoins);
+        $("#GBP-balance-current").text(newBalance);
+        console.log("round timer completed, dashboard updated")
+        $(targetClass).removeClass('styled-active');
+        $(".miner-paused").removeClass(".miner-paused").addClass(".btn-play");
+    };
+
+
+
+});
+
+
+
+
+
+
+
 /*--- 9. Game Stats and Achivements -----------------------------------------------------*/
