@@ -1065,10 +1065,10 @@ input[type="radio"]:checked+label {
     display: grid;
     margin-bottom: 2vh;
     grid-template-columns: 10vw 10vw;
-    grid-template-rows: 5;
+    grid-template-rows: 6;
     row-gap: 1vh;
     /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
-    grid-template-areas: "provider       provider-response" "type           type-response" "cost           cost-response" "reliability    reliability-response" "statement      statement"
+    grid-template-areas: "provider       provider-response" "type           type-response" "cost           cost-response" "reliability    reliability-response" "pollution-rating      pollution-rating-response" "statement      statement"
 }
 
 #energy-logo {
@@ -1119,6 +1119,14 @@ input[type="radio"]:checked+label {
 
 #reliability-response {
     grid-area: reliability-response;
+}
+
+#pollution-rating {
+    grid-area: pollution-rating;
+}
+
+#pollution-rating-response {
+    grid-area: pollution-rating-response;
 }
 
 #statement {

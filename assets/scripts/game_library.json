@@ -362,19 +362,19 @@
     }],
     "energy": [{
             "provider": "Home Solar Panels",
-            "upfrontCost": "5000",
+            "upfrontCost": 5000,
             "type": "Renewable",
             "usageCostPerKw": 0,
-            "reliability": 0.5,
+            "reliability": "Poor",
             "pollutionRating": "A",
             "comments": "Be good to the planet, a one-off installation cost and then you're good to go….. unless the weather has a say!"
         },
         {
             "provider": "Hay-Bred Dairy Yard",
-            "upfrontCost": 0,
+            "upfrontCost": 1000,
             "type": "Renewable",
             "usageCostPerKw": 0.5,
-            "reliability": 0.5,
+            "reliability": "Average",
             "pollutionRating": "B",
             "comments": "This dairy farm has one hoof in the future. Simultaneous milking and manure liquidisation generates spare power for the local community. Not completely Co2 free option (you have smelt a farm right?)"
         },
@@ -383,7 +383,7 @@
             "upfrontCost": 500,
             "type": "Renewable",
             "usageCostPerKw": 0.75,
-            "reliability": 0.5,
+            "reliability": "Average",
             "pollutionRating": "B",
             "comments": "UK's leading renewable energy provider. The less than ideal geographical location means reliability can be patchy at best (then you may find yourself shouting the companies name)."
         },
@@ -392,16 +392,16 @@
             "upfrontCost": 250,
             "type": "Renewable off-set",
             "usageCostPerKw": 0.5,
-            "reliability": 0.85,
+            "reliability": "Good",
             "pollutionRating": "A",
             "comments": "This hybrid power supplier sources energy primarily through renewable sources, but generates additional power through the disposal of waste. All Co2 emmissions are off-set through tree and planting programmes - to ensure these folks come out smelling of roses!"
         },
         {
             "provider": "Gas-tricity",
-            "upfrontCost": "125",
+            "upfrontCost": 0,
             "type": "Fossil Fuel",
             "usageCostPerKw": 0.25,
-            "reliability": 0.99,
+            "reliability": "Great",
             "pollutionRating": "C",
             "comments": "Good to the wallet, great reliability but awful to the environment. The choice for those who care for today and not tomorrow"
         }

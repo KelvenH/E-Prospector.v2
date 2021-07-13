@@ -119,12 +119,13 @@ let liveGameData = {
         fxRate: 100
     },
     energy: {
-        provider: "Please Select An Energy Provider",
-        type: "",
-        costPerKw: "",
-        reliability: "",
-        pollutionRating: "",
-        comments: ""
+        provider: "Gas-tricity",
+        upfrontCost: 0,
+        type: "Fossil Fuel",
+        usageCostPerKw: 0.25,
+        reliability: "Great",
+        pollutionRating: "C",
+        comments: "Good to the wallet, great reliability but awful to the environment. The choice for those who care for today and not tomorrow"
     },
     messages: {
         /*---TBC--*/
@@ -171,20 +172,23 @@ function newGame() {
     console.log("Stage 2: running newGame function");
     let miner = liveGameData['rig'];
     let parts = liveGameData['parts'];
+    let minerProcessor = parts[0].processor;
+    let minerCoolSys = parts[0].coolingSystem;
+    let minerOpSys = parts[0].operatingSystem;
 
-    let minerRig = miner.name;
-    $("#rig-name").text(minerRig);
-
-    let minerProcessor = parts[0].processor.name;
-    $("#processor-name").text(minerProcessor);
-
-    let minerCoolSys = parts[0].coolingSystem.name;
-    $("#cooling-name").text(minerCoolSys);
-
-    let minerOpSys = parts[0].operatingSystem.name;
-    $("#software-name").text(minerOpSys);
+    $("#rig-name").text(miner.name);
+    $("#processor-name").text(minerProcessor.name);
+    $("#cooling-name").text(minerCoolSys.name);
+    $("#software-name").text(minerOpSys.name);
     console.log("Stage 3: base miner loaded");
 
+    let energy = liveGameData['energy'];
+    $("#provider-response").text(energy.provider);
+    $("#type-response").text(energy.type);
+    $("#cost-response").text(energy.usageCostPerKw);
+    $("#reliability-response").text(energy.reliability);
+    $("#pollution-rating-response").text(energy.pollutionRating);
+    $("#statement").text(energy.comments);
 
     calcTotalActiveStats();
 
