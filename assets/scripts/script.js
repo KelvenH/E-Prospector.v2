@@ -77,36 +77,38 @@ let liveGameData = {
         upgradeRequirements: "",
         upgradeProgress: ""
     },
-    miningDevice: {
-        rig: "Comm-Atari-ZX",
+    rig: {
+        name: "Comm-Atari-ZX",
+        cost: 0,
+        multiCore: "N",
         baseChance: 1,
-        baseHash: 2,
-        basePower: 3,
-        baseCondition: 4,
-        multiCore: "N"
+        baseHash: 1,
+        basePower: 1,
+        baseCondition: 20,
+        rigComments: "Self-built from re-purposed parts from 1980's tech - hey, it's free?!"
     },
     parts: [{
         processor: {
             name: "A&D Zipper",
             cost: 0,
             chanceBuff: 0.1,
-            hashBuff: 0.1,
+            hashPowerBuff: 0.1,
             powerBuff: 0.25,
             conditionBuff: 0
         },
         coolingSystem: {
-            name: "Deskfan",
+            name: "deskfan",
             cost: 0,
-            chanceBuff: 0.15,
-            hashBuff: 0,
+            chanceBuff: 0,
+            hashPowerBuff: 0,
             powerBuff: 0,
             conditionBuff: 0.05
         },
         operatingSystem: {
             name: "Simply Open Source",
             cost: 0,
-            chanceBuff: 0.2,
-            hashBuff: 0,
+            chanceBuff: 0,
+            hashPowerBuff: 0,
             powerBuff: 0,
             conditionBuff: 2
         }
@@ -135,16 +137,16 @@ let liveGameData = {
     }
 };
 
-/*-- 1.2 -- Temporary Stats (the temp stats table is used to capture short-term pos / neg impacts to performace typically as a result of events)--*/
+/*-- temp stats is used to capture temp pos / neg effects from events --*/
 
 let tempStats = {
-    chanceBuff: 0.05,
-    hashBuff: 0,
-    pwrUsage: 0,
-    condition: 0.5
+    chanceTemp: 0,
+    hashPowerTemp: 0,
+    pwrUsageTemp: 0,
+    conditionTemp: 0
 };
 
-/*-- 1.3 -- Miner Stats (calc the base stat x buff / nerf multipliers (from parts and temp event effects--*/
+/*--totalActiveStats is used to calculate the combined ratings of the base + parts + temp impacts --*/
 
 let totalActiveStats = {
     totalChance: 0,
@@ -153,15 +155,24 @@ let totalActiveStats = {
     totalCondition: 0
 };
 
+console.log("chance", liveGameData.rig.baseChance);
+console.log("hash", liveGameData.rig.baseHash);
+console.log("power", liveGameData.rig.basePower);
+console.log("condition", liveGameData.rig.baseCondition);
 
-/*--- 1.2 - Load Base Game data  -----------------------------------------------------*/
+
+/*-- 1.2 -- Temporary Stats (the temp stats table is used to capture short-term pos / neg impacts to performace typically as a result of events) --*/
+
+
+
+/*--- 1.3 - Load Base Game data and update initial values on html page (note: some values are updated via a seperate function as this is re-used outside of the 'new game'stage ----------------------------------------------------*/
 
 function newGame() {
     console.log("Stage 2: running newGame function");
-    let miner = liveGameData['miningDevice'];
+    let miner = liveGameData['rig'];
     let parts = liveGameData['parts'];
 
-    let minerRig = miner.rig;
+    let minerRig = miner.name;
     $("#rig-name").text(minerRig);
 
     let minerProcessor = parts[0].processor.name;
@@ -174,38 +185,56 @@ function newGame() {
     $("#software-name").text(minerOpSys);
     console.log("Stage 3: base miner loaded");
 
-    /*---refreshMinerStats();--*/
+
     calcTotalActiveStats();
 
 }
 
-/*--- 1.3 - Update Miner Perfprmance Stats (i.e. base stats + / - buffs / nerfs from parts and events)  -----------------------------------------------------*/
+/*-- 1.4 -- Calc Total Stats & update html (calcs base stat x buff / nerf multipliers (i.e. impacts of parts and temp event effects) --*/
+
+
+
 
 function calcTotalActiveStats() {
 
-    let base = liveGameData['miningDevice'];
+    let total = totalActiveStats;
+    let base = liveGameData['rig'];
     let proBuff = liveGameData.parts[0].processor;
     let coolBuff = liveGameData.parts[0].coolingSystem;
     let osBuff = liveGameData.parts[0].operatingSystem;
-    let tempBuff = tempStats;
+    let temp = tempStats;
 
-    totalActiveStats.totalChance = base.baseChance += (base.baseChance *= (proBuff.chanceBuff += coolBuff.chanceBuff += osBuff.chanceBuff += tempBuff.chanceBuff));
-    totalActiveStats.totalHash = base.baseHash += (base.baseHash *= (proBuff.hashBuff += coolBuff.hashBuff += osBuff.hashBuff += tempBuff.hashBuff));
-    totalActiveStats.totalPower = base.basePower += (base.basePower *= (proBuff.powerBuff += coolBuff.powerBuff += osBuff.powerBuff += tempBuff.powerBuff));
-    totalActiveStats.totalCondition = base.baseCondition += (base.baseCondition *= (proBuff.conditionBuff += coolBuff.conditionBuff += osBuff.conditionBuff += tempBuff.conditionBuff));
+    total.totalChance = base.baseChance + (base.baseChance * (proBuff.chanceBuff + coolBuff.chanceBuff + osBuff.chanceBuff + temp.chanceTemp));
+    $("#chance-value").text(total.totalChance);
+    total.totalHash = base.baseHash + (base.baseHash * (proBuff.hashPowerBuff + coolBuff.hashPowerBuff + osBuff.hashPowerBuff + temp.hashPowerTemp));
+    $("#speed-value").text(total.totalHash);
+    total.totalPower = base.basePower + (base.basePower * (proBuff.powerBuff + coolBuff.powerBuff + osBuff.powerBuff + temp.pwrUsageTemp));
+    $("#power-value").text(total.totalPower);
+    total.totalCondition = base.baseCondition + (base.baseCondition * (proBuff.conditionBuff + coolBuff.conditionBuff + osBuff.conditionBuff + temp.conditionTemp));
+    $("#condition-value").text(total.totalCondition);
+
+    /*--temp console logging to remove from final version--*/
+    console.log("base chance", base.baseChance);
+    console.log("base hash", base.baseHash);
+    console.log("base power", base.basePower);
+    console.log("base condition", base.baseCondition);
+    console.log("total chance", total.totalChance);
+    console.log("total hash", total.totalHash);
+    console.log("total power", total.totalPower);
+    console.log("total condition", total.totalCondition);
+    console.log("total data", total);
+
+    refreshPerformanceBars();
+
+};
 
 
-    console.log(base.baseChance);
-    console.log(base.baseHash);
-    console.log(base.basePower);
-    console.log(base.baseCondition);
 
 
-    $("#chance-value").text(totalActiveStats.totalChance);
-    $("#speed-value").text(totalActiveStats.totalHash);
-    $("#power-value").text(totalActiveStats.totalPower);
-    $("#condition-value").text(totalActiveStats.totalCondition);
-    console.log(totalActiveStats);
+/*--- 1.5 - Refresh Performance Bars  ---------------------------------------------------*/
+
+function refreshPerformanceBars() {
+
 };
 
 
