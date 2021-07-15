@@ -552,6 +552,7 @@ $(".btn-play").click(function() {
         };
 
         console.log(terminal);
+
         let item = { device: terminal };
 
         let matchingItem = liveGameData['availableMiners'].filter((obj) => {

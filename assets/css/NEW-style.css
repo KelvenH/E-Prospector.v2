@@ -43,6 +43,7 @@
     --ink12: rgb(250, 250, 250);
     /*-- XXXXX --------------------*/
     --ink13: rgb(184, 201, 211);
+    --ink14: rgb(223, 242, 255);
 }
 
 
@@ -73,7 +74,6 @@ h5 {
     color: var(--iink6-LED2)
 }
 
-body,
 div,
 p {
     /*--font-size: 1vw;---*/
@@ -199,6 +199,9 @@ p {
     box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
 }
 
+
+/*--Modals---*/
+
 .modal-btn {
     color: var(--ink4-blueblack);
     background: var(--ink8-glass1);
@@ -234,7 +237,7 @@ p {
 }
 
 .modal-body {
-    background: var(--ink8-glass1);
+    background: var(--ink14);
     color: var(--ink4-blueblack);
 }
 
@@ -247,6 +250,126 @@ li {
 li>span {
     font-size: 1.25vw;
 }
+
+#modal-mine-block-body-grid {
+    color: var(--ink2-offblacksolid);
+    font-size: 1.5rem;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 6;
+    row-gap: 1vh;
+    grid-template-areas: "mml1 mmr1" "mml2   mmr2" "mml3   mmr3" "mml4   mmr4" "mml5   mmr5" "mmi1 mmi1";
+}
+
+#modal-block-mining-line1 {
+    grid-area: mml1;
+}
+
+#modal-block-mining-line2 {
+    grid-area: mml2;
+}
+
+#modal-block-mining-line3 {
+    grid-area: mml3;
+}
+
+#modal-block-mining-line4 {
+    grid-area: mml4;
+}
+
+#modal-block-mining-line5 {
+    grid-area: mml5;
+    visibility: hidden;
+}
+
+#modal-block-mining-response1 {
+    grid-area: mmr1;
+}
+
+#modal-block-mining-response2 {
+    grid-area: mmr2;
+}
+
+#modal-block-mining-response3 {
+    grid-area: mmr3;
+}
+
+#modal-block-mining-response4 {
+    grid-area: mmr4;
+}
+
+#modal-block-mining-response5 {
+    grid-area: mmr5;
+    visibility: hidden;
+}
+
+#modal-block-mining-img {
+    grid-area: mmi1;
+    visibility: hidden;
+}
+
+#block-anim {
+    -webkit-transform-style: preserve-3d;
+    -webkit-animation: spin 3s infinite ease-out;
+    position: relative;
+    width: 20vh;
+    height: 20vh;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+}
+
+#block-anim div {
+    width: 150px;
+    height: 150px;
+    line-height: 100px;
+    text-align: center;
+    box-shadow: inset 0px 0px 0px 1px rgba(10, 0, 0, 0.8);
+    background: var(--ink6-LED2LOW);
+    display: block;
+    position: absolute;
+}
+
+#block-anim div.top {
+    -webkit-transform: rotateX(90deg);
+    margin-top: -50px;
+}
+
+#block-anim div.right {
+    -webkit-transform: rotateY(90deg);
+    margin-left: 50px;
+}
+
+#block-anim div.bottom {
+    -webkit-transform: rotateX(-90deg);
+    margin-top: 50px;
+}
+
+#block-anim div.left {
+    -webkit-transform: rotateY(-90deg);
+    margin-left: -50px;
+}
+
+#block-anim div.front {
+    -webkit-transform: translateZ(50px);
+}
+
+#block-anim div.back {
+    -webkit-transform: translateZ(-50px) rotateX(180deg);
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotateX(-20deg) rotateY(20deg);
+    }
+    100% {
+        -webkit-transform: rotateX(-20deg) rotateY(740deg);
+    }
+}
+
+
+/*-- animated spinning block -- credit to: https://codepen.io/JTParrett/pen/hktzu */
 
 
 /****************************************************************************************/

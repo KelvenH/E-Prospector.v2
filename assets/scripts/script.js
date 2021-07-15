@@ -285,10 +285,10 @@ function refreshPerformanceBars() {
 
 //called from 'on-click' added inline to miner play button (html)
 
-function play() {
+$("#terminal-miner-activatebtn").click(function() {
     //variables hoisted to enable usage across play functions//
 
-    let blockKey = new Array(5);
+
 
     /*-- Step A - Run pre-game checks -----OUTSTANDING!!! - Consider adding checks which must pass prior to being able to run game//
 
@@ -305,29 +305,130 @@ function play() {
                     - provider selected--*/
 
 
-    //-- Step B - generate block key ---*/
-    console.log("creating block key");
+    //-- Step B - function to set range of all keys with volume reduced to reflect 'chance'---*/
+    console.log("mine block initiated");
 
-    //create empty / temp array which can be referrenced by multiple functions to save repeating code 
+    //runs function to ensure all changes to miner including performnce buffs / events are reflected
+    calcTotalActiveStats();
+
+    //set probability ceiling 
+    const probability = totalActiveStats.totalChance / 100; //to convert to percentage
+    const maxValue = 1000;
+    const keyRange = maxValue - (maxValue * probability); //reduces the maxValue according to the total 'chance' rating
+    console.log("probability", probability);
+    console.log("maxValue", maxValue);
+    console.log("keyRange", keyRange);
+
+    //create array with all values within the keyRange - purpose is to cross referrence after minerKey checked and prevent re-selecting the same ID
+    let keyStart = 1;
+    let keyMax = keyRange;
+    let allKeys = [];
+
+    while (keyStart <= keyMax) {
+        allKeys.push(keyStart++);
+    }
+    console.log("allKeys:", allKeys);
+
+    //--Step C - generate blockKey which is limited to the pre-defined keyRange
+    let blockKey = 0;
+    generateBlockKey(blockKey);
+
+    function generateBlockKey() {
+        blockKey = Math.floor(Math.random() * keyRange) + 1;
+        if (blockKey > keyRange) {
+            alert("Error: BlockKey is out of range, please re-click to mine block!");
+            console.log("blockKey:", blockKey);
+        } else {
+            console.log("blockKey:", blockKey);
+        };
+        return blockKey;
+    };
+
+    //--Step D - generate minerKey which is limited to the pre-defined keyRange
+    let minerKey = 0;
+    generateMinerKey(minerKey);
+
+    function generateMinerKey() {
+
+        let minerKey = Math.floor(Math.random() * keyRange) + 1;
+        if (minerKey > keyRange) {
+            alert("Error: MinerKey is out of range, please re-click to mine block!");
+            console.log("minerKey:", minerKey);
+        } else {
+            console.log("minerKey:", minerKey);
+        };
+        return minerKey;
+    };
+
+    //--Step E - display modal and populate semi 'static' fields (semi static, meaning they do not change during the individual game round, but can display different values in other game rounds depending on user actions)
+
+    $('#modal-mine-block').modal('show'); // display modal
+    $('#modal-block-mining-response1').text(liveGameData.rig.name);
+    $('#modal-block-mining-response2').text(keyRange);
+    $('#modal-block-mining-response3').text("TBD");
+
+    //--Step F - 'run' programme (within same modal) covers time (10 second cycle less hashSpeed buffs), displays animation whilst running, returns text to indicate when cycle complete, runs match (block vs. miney keys) and animation whilst cycle in play
+
+    //Cycle timer : length = 10secs (10,000millisecs) less % hash speed bonus
+    let hashSpeed = totalActiveStats.totalHash / 100; //to convert to percentage;
+    console.log("hashspeed", hashSpeed);
+    let maxCounter = 10; // maximum (unbuffed) speed of 10secs to mine block
+    let buffedSpeed = maxCounter - (maxCounter * hashSpeed) //reduces the maxValue according to the total hashSpeed buff
+    console.log("buffedSpeed", buffedSpeed);
+    var timeleft = buffedSpeed;
+    var timer = setInterval(function() {
+        if (timeleft < 0.9) {
+            clearInterval(timer);
+            $('#modal-block-mining-response4').text("Check Completed");
+            $('#modal-block-mining-img').css('visibility', 'hidden');
+            $('#modal-block-mining-line5').css('visibility', 'visible');
+            $('#modal-block-mining-response5').css('visibility', 'visible');
+
+            checkResult(minerKey, blockKey);
+
+        } else {
+            console.log(timeleft);
+            $('#modal-block-mining-response4').text("Check in Operation");
+            $('#modal-block-mining-img').css('visibility', 'visible');
+        }
+        timeleft -= 1;
+    }, 1000);
+
+    function checkResult(minerKey, blockKey) {
+        console.log("minerKey vs blockKey", minerKey, "v", blockKey);
+        if (minerKey === blockKey) {
+
+            $('#modal-block-mining-response5').text('Key Accepted - Congratulations, block mined');
+            // display message confirming success
+            // run end of cycle function to update ewallet, calc and deduct energy costs, update game stats (blocks mined / keys checked, success rate, coins mined), miner performance (deterioration)
+        } else {
+            $('#modal-block-mining-response5').text('Key Not Accepted');
+            //display button to rn again / quit?
+        };
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*create empty / temp array which can be referrenced by multiple functions to save repeating code 
 
     let tempArray = ["*", "*", "*", "*", "*"];
-    console.log(tempArray);
-
-
-    generateBlockKey(
-        let blockKey = new.array.from generateTempKeys();
-        return blockKey;
-    );
-
-    generateMinerKey(
-        let minerKey = new.array.from generateTempKeys();
-    );
-
-
+    console.log("prior to running generate keys function", tempArray);
 
     // create bank of characters to limit max. combinations to 1,000
     // (special char) x 5 (alpha) x 4 (digit) x 2 (special char) x 5 (alpha) - version 2 also results in 1000 combos but restriction on individual char range allows for longer key (5 vs 3 in version 1)
 
+    
     function generateTempKeys() {
         const key1 = ["$", "#", "-", "!", "@"];
         const key2 = ["A", "E", "I", "O", "U"];
@@ -337,20 +438,16 @@ function play() {
 
         //create empty / temp array and populate with 5 entries each being random selection per key position   
 
-
         tempArray[0] = key1[Math.floor(Math.random() * key1.length)];
         tempArray[1] = key2[Math.floor(Math.random() * key2.length)];
         tempArray[2] = key3[Math.floor(Math.random() * key3.length)];
         tempArray[3] = key4[Math.floor(Math.random() * key4.length)];
         tempArray[4] = key5[Math.floor(Math.random() * key5.length)];
         //temporary logging of output
-        console.log(tempArray);
-
-        return tempArray
+        console.log("inside generateTempKeys function", tempArray);
     }
 
-
-    //--Step C - generate miner keys---*/
+    //--Step C - generate miner keys---
 
 
 
