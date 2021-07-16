@@ -346,7 +346,7 @@ $("#terminal-miner-activatebtn").click(function() {
 
     //--Step D - generate minerKey which is limited to the pre-defined keyRange
     let minerKey = 0;
-    generateMinerKey(minerKey);
+
 
     function generateMinerKey() {
         minerKey = Math.floor(Math.random() * keyRange) + 1;
@@ -384,6 +384,7 @@ $("#terminal-miner-activatebtn").click(function() {
     gameCycle();
 
     function gameCycle() {
+        generateMinerKey(minerKey);
         var timeleft = buffedSpeed;
         var timer = setInterval(function() {
             if (timeleft <= 0) {
