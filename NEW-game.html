@@ -348,26 +348,26 @@
     <!--pop-up modals-->
     <!--Modal : Mining Block-->
 
-    <div class="modal fade" id="modal-mine-block" tabindex="-1" role="dialog" aria-labelledby="modal displaying block mining activity" aria-hidden="true">
+    <div class="modal fade" id="modal-mine-block" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modal displaying block mining activity" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title">Block Mining : Activated</h3>
-                    <button type="button" class="btn-closed" data-bs-dismiss="modal" aria-label="Close">&times;</button>
 
                 </div>
                 <div class="modal-body">
                     <div id="modal-mine-block-body-grid">
                         <div id="modal-block-mining-line1"> Mining Device:</div>
                         <div id="modal-block-mining-line2"> Potential Key Combinations:</div>
-                        <div id="modal-block-mining-line3"> Attempt #:</div>
+                        <div id="modal-block-mining-line3"> # Attempts Completed:</div>
                         <div id="modal-block-mining-line4"> Analysing Key.....</div>
                         <div id="modal-block-mining-line5"> Result:</div>
+                        <btn id="repeat-mine-btn" class="btn btn-info">Re-attempt</btn>
 
-                        <div id="modal-block-mining-response1"> </div>
-                        <div id="modal-block-mining-response2"> </div>
-                        <div id="modal-block-mining-response3"> </div>
-                        <div id="modal-block-mining-response4"> </div>
+                        <div id="modal-block-mining-response1"></div>
+                        <div id="modal-block-mining-response2"></div>
+                        <div id="modal-block-mining-response3" type="number" value="0"></div>
+                        <div id="modal-block-mining-response4"></div>
                         <div id="modal-block-mining-response5">Pending</div>
 
                         <div id="modal-block-mining-img">
@@ -380,14 +380,22 @@
                                 <div class="back"></div>
                             </div>
                         </div>
+                        <!-- close modal img -->
                     </div>
+                    <!-- close modal grid -->
+
+                    <btn id="mine-block-exit-btn" class="btn btn-info">Cancel & Return to Dashboard</btn>
+
+                    <p id="mine-block-exit-footnote">Note: when cancelling mining you will still be charged for the power usage on all completed attempts</p>
                 </div>
+                <!-- close modal body -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-close2" data-bs-dismiss="modal">Close</button>
+
                 </div>
             </div>
         </div>
     </div>
+    <!-- close mine block modal -->
 
     <script src="./assets/scripts/script.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js " integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8 " crossorigin="anonymous "></script>

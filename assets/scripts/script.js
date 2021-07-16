@@ -365,7 +365,8 @@ $("#terminal-miner-activatebtn").click(function() {
     $('#modal-mine-block').modal('show'); // display modal
     $('#modal-block-mining-response1').text(liveGameData.rig.name);
     $('#modal-block-mining-response2').text(keyRange);
-    $('#modal-block-mining-response3').text("TBD");
+    $('#modal-block-mining-response3').html(0); //Resets number of completed attempts to 0
+
 
     //--Step F - 'run' programme (within same modal) covers time (10 second cycle less hashSpeed buffs), displays animation whilst running, returns text to indicate when cycle complete, runs match (block vs. miney keys) and animation whilst cycle in play
 
@@ -376,13 +377,24 @@ $("#terminal-miner-activatebtn").click(function() {
     let buffedSpeed = maxCounter - (maxCounter * hashSpeed) //reduces the maxValue according to the total hashSpeed buff
     console.log("buffedSpeed", buffedSpeed);
     var timeleft = buffedSpeed;
+
+
+    let count = document.getElementById('modal-block-mining-response3').innerHTML; //increment count of attempts
+
     var timer = setInterval(function() {
-        if (timeleft < 0.9) {
+        if (timeleft <= 0) {
             clearInterval(timer);
             $('#modal-block-mining-response4').text("Check Completed");
             $('#modal-block-mining-img').css('visibility', 'hidden');
             $('#modal-block-mining-line5').css('visibility', 'visible');
             $('#modal-block-mining-response5').css('visibility', 'visible');
+
+            console.log("count=", count);
+            ++count;
+            console.log("count=", count);
+            $('#modal-block-mining-response3').html(count);
+            console.log("count=", count);
+
 
             checkResult(minerKey, blockKey);
 
@@ -403,9 +415,29 @@ $("#terminal-miner-activatebtn").click(function() {
             // run end of cycle function to update ewallet, calc and deduct energy costs, update game stats (blocks mined / keys checked, success rate, coins mined), miner performance (deterioration)
         } else {
             $('#modal-block-mining-response5').text('Key Not Accepted');
-            //display button to rn again / quit?
+            $('#repeat-mine-btn').css('visibility', 'visible'); //display button to rn again / quit?
         };
     }
+
+
+
+
+    function resetMineModal() {}
+
+
+
+
+
+
+    $("#mine-block-exit-btn").click(function() {
+        $('#modal-mine-block').modal('hide');
+        resetMineModal();
+        //--OUTSTANDING - ADD LINK TO FUNCTION TO STILL CALCULATE AND PASS ENERGY COSTS AND UPDATE STATS
+    });
+
+
+
+
 });
 
 
@@ -420,7 +452,7 @@ $("#terminal-miner-activatebtn").click(function() {
 
 
 
-/*create empty / temp array which can be referrenced by multiple functions to save repeating code 
+/*create empty / temp array which can be referrenced by multiple functions to save repeating code
 
     let tempArray = ["*", "*", "*", "*", "*"];
     console.log("prior to running generate keys function", tempArray);
@@ -428,7 +460,7 @@ $("#terminal-miner-activatebtn").click(function() {
     // create bank of characters to limit max. combinations to 1,000
     // (special char) x 5 (alpha) x 4 (digit) x 2 (special char) x 5 (alpha) - version 2 also results in 1000 combos but restriction on individual char range allows for longer key (5 vs 3 in version 1)
 
-    
+
     function generateTempKeys() {
         const key1 = ["$", "#", "-", "!", "@"];
         const key2 = ["A", "E", "I", "O", "U"];
@@ -436,7 +468,7 @@ $("#terminal-miner-activatebtn").click(function() {
         const key4 = ["0", "1"];
         const key5 = ["V", "W", "X", "Y", "Z"];
 
-        //create empty / temp array and populate with 5 entries each being random selection per key position   
+        //create empty / temp array and populate with 5 entries each being random selection per key position
 
         tempArray[0] = key1[Math.floor(Math.random() * key1.length)];
         tempArray[1] = key2[Math.floor(Math.random() * key2.length)];
@@ -494,7 +526,7 @@ $("#terminal-miner-activatebtn").click(function() {
 
 
 
-// 'Temporary' data arrays created for the lifespan of a single game round. These are hoisted to a level within the over-arching game cycle function so that they can be fed into and feed out to other stages within the round's gameplay, but also not need to be 'reset' as they would if they resided at a global level 
+// 'Temporary' data arrays created for the lifespan of a single game round. These are hoisted to a level within the over-arching game cycle function so that they can be fed into and feed out to other stages within the round's gameplay, but also not need to be 'reset' as they would if they resided at a global level
 
 /*--
 let gameData = new Array();
@@ -508,7 +540,7 @@ let roundCoin;
 let newBitCoins;
 let activeTarget;
 
-            
+
                 let chosenProvider;
 
                 checkPowerSupplied();
@@ -526,7 +558,7 @@ let activeTarget;
                 }
 
 
-            original functions 
+            original functions
                 calcGamePowerData();
 
                 function calcGamePowerData(calcGamePowerData) {
@@ -646,7 +678,7 @@ let activeTarget;
                     console.log("20.", outCome);
                 }
 
-                // Game Stage C - Calculate Outcome 
+                // Game Stage C - Calculate Outcome
 
                 calcSubTotal();
 
@@ -661,13 +693,13 @@ let activeTarget;
 
                 }
 
-                // Game stage D - Update DashBoard -time delay added into the write-back - relates to speed factor of terminal. Write-back held out to avoid issues with functions being performed for other devices. 
+                // Game stage D - Update DashBoard -time delay added into the write-back - relates to speed factor of terminal. Write-back held out to avoid issues with functions being performed for other devices.
 
                 let targetClass = activeTarget //add styling to indicate mining in progress
                 $(targetClass).addClass('styled-active'); // bugs encountered if same / other terminal activated whilst a previous terminal is still operating. Additional logic applied to remove the ability to activate 'start miner' button until game cycle has fully completed.
                 $(".btn-play").removeClass(".btn-play").addClass(".miner-paused");
 
-                let i = 30000 / gameData.speed; //  max time delay of 30s divided by terminal (i.e. higher speed rating equals quicker outcome) 
+                let i = 30000 / gameData.speed; //  max time delay of 30s divided by terminal (i.e. higher speed rating equals quicker outcome)
 
                 setTimeout(updateDashboard, i);
                 console.log("25. timer started to run for", i)
