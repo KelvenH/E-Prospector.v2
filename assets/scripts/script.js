@@ -349,8 +349,7 @@ $("#terminal-miner-activatebtn").click(function() {
     generateMinerKey(minerKey);
 
     function generateMinerKey() {
-
-        let minerKey = Math.floor(Math.random() * keyRange) + 1;
+        minerKey = Math.floor(Math.random() * keyRange) + 1;
         if (minerKey > keyRange) {
             alert("Error: MinerKey is out of range, please re-click to mine block!");
             console.log("minerKey:", minerKey);
@@ -376,35 +375,41 @@ $("#terminal-miner-activatebtn").click(function() {
     let maxCounter = 10; // maximum (unbuffed) speed of 10secs to mine block
     let buffedSpeed = maxCounter - (maxCounter * hashSpeed) //reduces the maxValue according to the total hashSpeed buff
     console.log("buffedSpeed", buffedSpeed);
-    var timeleft = buffedSpeed;
+
 
 
     let count = document.getElementById('modal-block-mining-response3').innerHTML; //increment count of attempts
 
-    var timer = setInterval(function() {
-        if (timeleft <= 0) {
-            clearInterval(timer);
-            $('#modal-block-mining-response4').text("Check Completed");
-            $('#modal-block-mining-img').css('visibility', 'hidden');
-            $('#modal-block-mining-line5').css('visibility', 'visible');
-            $('#modal-block-mining-response5').css('visibility', 'visible');
 
-            console.log("count=", count);
-            ++count;
-            console.log("count=", count);
-            $('#modal-block-mining-response3').html(count);
-            console.log("count=", count);
+    gameCycle();
 
+    function gameCycle() {
+        var timeleft = buffedSpeed;
+        var timer = setInterval(function() {
+            if (timeleft <= 0) {
+                clearInterval(timer);
+                $('#modal-block-mining-response4').text("Check Completed");
+                $('#modal-block-mining-img').css('visibility', 'hidden'); //hide animation
+                $('#modal-block-mining-line5').css('visibility', 'visible');
+                $('#modal-block-mining-response5').css('visibility', 'visible'); //display result line
 
-            checkResult(minerKey, blockKey);
+                console.log("count=", count); //increment attempt count
+                ++count;
+                console.log("count=", count);
+                $('#modal-block-mining-response3').html(count);
+                console.log("count=", count);
 
-        } else {
-            console.log(timeleft);
-            $('#modal-block-mining-response4').text("Check in Operation");
-            $('#modal-block-mining-img').css('visibility', 'visible');
-        }
-        timeleft -= 1;
-    }, 1000);
+                checkResult(minerKey, blockKey);
+
+            } else {
+                console.log(timeleft);
+                $('#modal-block-mining-response4').text("Check in Operation");
+                $('#modal-block-mining-img').css('visibility', 'visible');
+            }
+            timeleft -= 1;
+        }, 1000);
+    };
+
 
     function checkResult(minerKey, blockKey) {
         console.log("minerKey vs blockKey", minerKey, "v", blockKey);
@@ -415,18 +420,17 @@ $("#terminal-miner-activatebtn").click(function() {
             // run end of cycle function to update ewallet, calc and deduct energy costs, update game stats (blocks mined / keys checked, success rate, coins mined), miner performance (deterioration)
         } else {
             $('#modal-block-mining-response5').text('Key Not Accepted');
-            $('#repeat-mine-btn').css('visibility', 'visible'); //display button to rn again / quit?
+            $('#repeat-mine-btn').css('visibility', 'visible'); //display button to run again
         };
+
     }
 
 
+    $("#repeat-mine-btn").click(function() {
+        gameCycle();
+        //need to reset some fields - status, but not count
 
-
-    function resetMineModal() {}
-
-
-
-
+    });
 
 
     $("#mine-block-exit-btn").click(function() {
