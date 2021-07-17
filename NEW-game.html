@@ -204,7 +204,7 @@
                                     <div id="finance-ewallet" class="finance-sub-grid">
                                         <i id="ewallet-icon d-flex" class="finance-icon fas fa-wallet"></i>
                                         <div id="ewallet-label" class="finance-label">E-Wallet Balance:</div>
-                                        <div id="ewallet-value" class="finance-value key-value"><i class="bi bi-currency-bitcoin" style="display:inline;"></i>25</div>
+                                        <div id="ewallet-value" class="finance-value key-value">0</div>
                                     </div>
                                     <div id="finance-exchange" class="finance-sub-grid">
                                         <i id="exchange-icon" class="finance-icon bi bi-graph-up"></i>
@@ -362,13 +362,16 @@
                         <div id="modal-block-mining-line3"> # Attempts Completed:</div>
                         <div id="modal-block-mining-line4"> Analysing Key.....</div>
                         <div id="modal-block-mining-line5"> Result:</div>
-                        <btn id="repeat-mine-btn" class="btn btn-info">Re-attempt</btn>
+                        <btn id="repeat-mine-btn" class="btn btn-info">Try Again</btn>
 
                         <div id="modal-block-mining-response1"></div>
                         <div id="modal-block-mining-response2"></div>
                         <div id="modal-block-mining-response3" type="number" value="0"></div>
                         <div id="modal-block-mining-response4"></div>
                         <div id="modal-block-mining-response5">Pending</div>
+
+                        <i id='mine-success-img' class="bi bi-currency-bitcoin"></i>
+                        <btn id="exit-success-mine-btn" class="btn btn-info">Return to Dashboard</btn>
 
                         <div id="modal-block-mining-img">
                             <div id="block-anim">
@@ -381,6 +384,7 @@
                             </div>
                         </div>
                         <!-- close modal img -->
+
                     </div>
                     <!-- close modal grid -->
 

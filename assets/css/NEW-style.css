@@ -257,9 +257,9 @@ li>span {
     font-size: 1.5rem;
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 7;
+    grid-template-rows: 9;
     row-gap: 1vh;
-    grid-template-areas: "mml1 mmr1" "mml2   mmr2" "mml3   mmr3" "mml4   mmr4" "mml5   mmr5" "repeat-mine-btn repeat-mine-btn" "mmi1 mmi1";
+    grid-template-areas: "mml1 mmr1" "mml2   mmr2" "mml3   mmr3" "mml4   mmr4" "mml5   mmr5" "repeat-mine-btn repeat-mine-btn" "win-img win-img" "win-btn  win-btn" "mmi1 mmi1";
 }
 
 #modal-block-mining-line1 {
@@ -313,10 +313,21 @@ li>span {
     margin-top: 1vh;
 }
 
-#modal-block-mining-img {
-    grid-area: mmi1;
-    visibility: hidden;
+#mine-success-img {
+    grid-area: win-img;
+    display: none;
+    font-size: 5rem;
+    color: var(--ink6-LED2ON);
+    text-align: center;
 }
+
+#exit-success-mine-btn {
+    grid-area: win-btn;
+    display: none;
+}
+
+
+/*-- animated spinning block -- credit to: https://codepen.io/JTParrett/pen/hktzu */
 
 #block-anim {
     -webkit-transform-style: preserve-3d;
@@ -377,9 +388,6 @@ li>span {
         -webkit-transform: rotateX(-20deg) rotateY(740deg);
     }
 }
-
-
-/*-- animated spinning block -- credit to: https://codepen.io/JTParrett/pen/hktzu */
 
 
 /****************************************************************************************/

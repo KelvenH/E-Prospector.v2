@@ -91,8 +91,8 @@ const liveGameData = {
         processor: {
             name: "A&D Zipper",
             cost: 0,
-            chanceBuff: 0.1,
-            hashPowerBuff: 0.1,
+            chanceBuff: 98.5, //temp increase to increase speed during testing
+            hashPowerBuff: 80.0, //temp increase to increase speed during testing
             powerBuff: 0.25,
             conditionBuff: 0
         },
@@ -384,8 +384,13 @@ $("#terminal-miner-activatebtn").click(function() {
     gameCycle();
 
     function gameCycle() {
+
+        $('#repeat-mine-btn').css('visibility', 'hidden'); //re-hides button to prevent repeated clicks before cycle completes
         generateMinerKey(minerKey);
         var timeleft = buffedSpeed;
+        $('#modal-block-mining-response4').text("");
+        $('#modal-block-mining-line5').css('visibility', 'hidden');
+        $('#modal-block-mining-response5').css('visibility', 'hidden');
         var timer = setInterval(function() {
             if (timeleft <= 0) {
                 clearInterval(timer);
@@ -411,37 +416,77 @@ $("#terminal-miner-activatebtn").click(function() {
         }, 1000);
     };
 
+    let outcome = "";
 
     function checkResult(minerKey, blockKey) {
         console.log("minerKey vs blockKey", minerKey, "v", blockKey);
         if (minerKey === blockKey) {
 
-            $('#modal-block-mining-response5').text('Key Accepted - Congratulations, block mined');
-            // display message confirming success
+            $('#modal-block-mining-response5').text('Key Accepted - Congratulations, block mined!'); // displays message confirming success
+            $('#repeat-mine-btn').css('visibility', 'hidden'); //re-hides button to prevent running again
+            $('#mine-success-img').css('display', 'block'); //reveal success image
+            $('#exit-success-mine-btn').css('display', 'block'); //show success exit button
+            $('#mine-block-exit-btn').css('visibility', 'hidden');
+            $('#mine-block-exit-footnote').css('visibility', 'hidden');
+
+            // add coin to ewallet balance
+            let newCoinBalance = document.getElementById('ewallet-value').innerHTML;
+            ++newCoinBalance;
+            $('#ewallet-value').html(newCoinBalance);
+            console.log("newCoinBalance", newCoinBalance);
+
+            //adds 1 to stats 'blocks mined'           
+            let newBlockMined = document.getElementById('stats-3-txt').innerHTML;
+            ++newBlockMined;
+            $('#stats-3-txt').html(newBlockMined);
+            console.log("newBlockMined", newBlockMined);
+
+            outcome = "win";
+            return outcome;
             // run end of cycle function to update ewallet, calc and deduct energy costs, update game stats (blocks mined / keys checked, success rate, coins mined), miner performance (deterioration)
+
         } else {
             $('#modal-block-mining-response5').text('Key Not Accepted');
-            $('#repeat-mine-btn').css('visibility', 'visible'); //display button to run again
+            $('#repeat-mine-btn').css('visibility', 'visible'); //display button to run again (note, btn rehidden after next cycle commences to prevent multi-clicks / attempts)
+
         };
 
     }
 
 
-    $("#repeat-mine-btn").click(function() {
-        gameCycle();
-        //need to reset some fields - status, but not count
-
-    });
-
 
     $("#mine-block-exit-btn").click(function() {
         $('#modal-mine-block').modal('hide');
-        resetMineModal();
-        //--OUTSTANDING - ADD LINK TO FUNCTION TO STILL CALCULATE AND PASS ENERGY COSTS AND UPDATE STATS
+        calcResult();
+
     });
 
+    $('#exit-success-mine-btn').click(function() {
+        $('#mine-success-img').css('display', 'none');
+        $('#exit-success-mine-btn').css('display', 'none');
+        $('#modal-mine-block').modal('hide');
+        $('#mine-block-exit-btn').css('visibility', 'visible');
+        $('#mine-block-exit-footnote').css('visibility', 'visible');
+        calcResult();
+    })
 
 
+    function calcResult() {
+
+        //calc and deduct power usage
+        //calc and update stats
+
+        if (outcome = "win") {
+
+        };
+        console.log("calcResult complete");
+    };
+
+
+    $("#repeat-mine-btn").click(function() {
+        gameCycle();
+
+    });
 
 });
 
@@ -484,26 +529,7 @@ $("#terminal-miner-activatebtn").click(function() {
         console.log("inside generateTempKeys function", tempArray);
     }
 
-    //--Step C - generate miner keys---
-
-
-
-    function generateTerminalKey(generateTerminalKey) {
-
-        let terminalprobability = gameData.chance;
-        console.log("17. terminl prob", terminalprobability);
-
-        let terminalkey = Math.floor(Math.random() * terminalprobability) + 1;
-        termKeyId = terminalkey;
-        console.log("18.termkey", terminalkey);
-    };
-
-    function generateBlockID(generateBlockID) {
-        let terminalprobability = gameData.chance;
-        let blockLock = Math.floor(Math.random() * terminalprobability) + 1;
-        blockId = blockLock;
-        console.log("19.blockID", blockId);
-    };
+    
 
     function result(result) {
         if (termKeyId === blockId) {
@@ -534,10 +560,7 @@ $("#terminal-miner-activatebtn").click(function() {
 // 'Temporary' data arrays created for the lifespan of a single game round. These are hoisted to a level within the over-arching game cycle function so that they can be fed into and feed out to other stages within the round's gameplay, but also not need to be 'reset' as they would if they resided at a global level
 
 /*--
-let gameData = new Array();
-let gamePowerData = new Array();
-let termKeyId;
-let blockId;
+
 let outCome;
 let outComeTxt;
 let newBalance;
