@@ -732,8 +732,11 @@ input[type="radio"]:checked+label {
 }
 
 #terminal-miner-parts-grid {
+    border: 2px solid var(--ink6-LED2LOW);
+    border-radius: 0.4vw;
     display: grid;
-    margin-top: 2vh;
+    margin-top: 1vh;
+    margin-bottom:1vh;
     padding: 1vh 1vw;
     grid-template-columns: 50% 50%;
     grid-template-rows: 4;

@@ -64,46 +64,9 @@
                         <i id="terminal-logo" class="bi bi-display"></i>
                         <h2 id="terminal-title">TERMINAL</h2>
 
-                        <div id="terminal-valid-pane">
-                            <h3 id="terminal-valid-title">BLOCK VALIDATION</h3>
-                            <button id="terminal-valid-open-modal" class="btn btn-info float-end">Click to initiate
-                                Validation</button>
-                            <p id="terminal-valid-settings">Validation Settings:</p>
-                            <div id="terminal-valid-grid">
-                                <div id="terminal-quality">Difficulty:</div>
-                                <div id="terminal-quality-response" class="quality-response">
-
-                                    <input type="radio" class="btn-check" name="valid-level" id="option1" autocomplete="off">
-                                    <label class="btn  radio-val" for="option1">LOW</label>
-                                    <input type="radio" class="btn-check" name="valid-level" id="option2" autocomplete="off">
-                                    <label class="btn  radio-val" for="option2">MED</label>
-                                    <input type="radio" class="btn-check" name="valid-level" id="option3" autocomplete="off">
-                                    <label class="btn  radio-val" for="option3">HIGH</label>
-                                </div>
-
-                                <div id="terminal-pool">Join Pool:</div>
-                                <div id="terminal-pool-response">
-
-                                    <input type="radio" class="btn-check" name="pool-on" id="option4" autocomplete="off">
-                                    <label class="btn  radio-val" for="option1">YES</label>
-                                    <input type="radio" class="btn-check" name="pool-on" id="option5" autocomplete="off">
-                                    <label class="btn  radio-val" for="option2">NO</label>
-
-                                </div>
-                                <div id="terminal-member-tier">Membership Tier:</div>
-                                <div id="terminal-tier-response">SILVER</div>
-                                <div id="terminal-upgrade-requirements">Upgrade Requirements:</div>
-                                <div id="terminal-upgrade-requirements-task">Validate 150 coins</div>
-                                <div id="terminal-upgrade-progress">Progress bar here</div>
-                            </div>
-                            <!--close terminal-validation grid-->
-
-                        </div>
-                        <!--close terminal-validation pane-->
-
-
-
                         <div id="terminal-miner-pane">
+
+                            <!--Block Mining Pane-->
                             <div id="terminal-miner-header">
                                 <h3 id="terminal-miner-title">MINING</h3>
                                 <p id="terminal-miner-status">STATUS : OFF</p>
@@ -112,6 +75,8 @@
 
                             </div>
                             <!--close terminal-miner header-->
+
+                            <!--performance stats--->                            
                             <p id="terminal-miner-perf-stats">Performance Stats:</p>
                             <div id="terminal-miner-stats-grid">
                                 <div id="miner-chance">CHANCE</div>
@@ -138,8 +103,9 @@
                                     <div id="condition-meter-bar" class=" meter-on progress-bar" role="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
-                            <!--close terminal-miner grid-->
+                            <!--close performance stats-->
 
+                            <!--terminal parts-->
                             <div id="terminal-miner-parts-grid">
                                 <div id="parts-rig">RIG</div>
                                 <div id="parts-processor">PROCESSOR</div>
@@ -150,13 +116,48 @@
                                 <div id="cooling-name" class="key-value">[COOLING]</div>
                                 <div id="software-name" class="key-value">[SOFTWARE]</div>
                             </div>
-
+                            <!-- close terminal parts-->
 
                             <button id="terminal-btn1" class="btn btn-danger">Repair Parts</button>
                             <button id="terminal-btn2" class="btn btn-warning">Upgrade Parts</button>
-                        </div>
-                        <!--close terminal-miner pane-->
 
+                            <div id="terminal-valid-pane">
+                                <h3 id="terminal-valid-title">BLOCK VALIDATION</h3>
+                                <button id="terminal-valid-open-modal" class="btn btn-info float-end">Click to initiate
+                                    Validation</button>
+                                <p id="terminal-valid-settings">Validation Settings:</p>
+                                <div id="terminal-valid-grid">
+                                    <div id="terminal-quality">Difficulty:</div>
+                                    <div id="terminal-quality-response" class="quality-response">
+
+                                        <input type="radio" class="btn-check" name="valid-level" id="option1" autocomplete="off">
+                                        <label class="btn  radio-val" for="option1">LOW</label>
+                                        <input type="radio" class="btn-check" name="valid-level" id="option2" autocomplete="off">
+                                        <label class="btn  radio-val" for="option2">MED</label>
+                                        <input type="radio" class="btn-check" name="valid-level" id="option3" autocomplete="off">
+                                        <label class="btn  radio-val" for="option3">HIGH</label>
+                                    </div>
+
+                                    <div id="terminal-pool">Join Pool:</div>
+                                    <div id="terminal-pool-response">
+
+                                        <input type="radio" class="btn-check" name="pool-on" id="option4" autocomplete="off">
+                                        <label class="btn  radio-val" for="option1">YES</label>
+                                        <input type="radio" class="btn-check" name="pool-on" id="option5" autocomplete="off">
+                                        <label class="btn  radio-val" for="option2">NO</label>
+
+                                    </div>
+                                    <div id="terminal-member-tier">Membership Tier:</div>
+                                    <div id="terminal-tier-response">SILVER</div>
+                                    <div id="terminal-upgrade-requirements">Upgrade Requirements:</div>
+                                    <div id="terminal-upgrade-requirements-task">Validate 150 coins</div>
+                                    <div id="terminal-upgrade-progress">Progress bar here</div>
+                                </div>
+                                <!--close terminal-validation grid-->
+                            </div>
+                            <!--close validation pane-->
+                        </div>
+                        <!--close terminal pane-->
                     </div>
                     <!--close main terminal / left pane-->
                 </div>
