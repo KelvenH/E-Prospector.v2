@@ -469,7 +469,7 @@ li>span {
 /*---- Left Pane Main Terminal (contents: validation & miner)--------*/
 
 #main-terminal {
-    /*--height: 32vh;--*/
+    height: 84vh;
     padding: 1vh 1vw;
     border-radius: 0.5vw;
     box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
@@ -487,114 +487,6 @@ li>span {
     display: inline;
 }
 
-#terminal-valid-pane {
-    background: var(--ink6-LED2OFF);
-    padding: 1vh 1vw;
-    border-radius: 0.4vw;
-    
-    height: 32vh;
-    overflow: hidden;
-}
-
-#terminal-valid-title,
-#terminal-miner-title {
-    display: inline-block;
-    padding: 1vh 0;
-    border-radius: 0.4vw;
-}
-
-#terminal-valid-title {
-    width: 50%;
-}
-
-#terminal-valid-open-modal {
-    display: inline-block;
-    width: 40%;
-    text-align: center;
-    padding: 1vh 0;
-    border-radius: 0.4vw;
-    margin-left: 2vw;
-}
-
-#terminal-valid-settings {
-    margin-bottom: 0;
-}
-
-#terminal-valid-grid {
-    align-items: center;
-    border-radius: 0.5vw;
-    display: grid;
-    background: linear-gradient(217deg, rgba(42, 46, 51), rgba(29, 43, 53) 70.71%), linear-gradient(127deg, rgba(42, 46, 51), rgba(24, 42, 56) 70.71%), linear-gradient(336deg, rgba(042, 46, 51), rgba(24, 42, 56) 70.71%);
-    margin-bottom: 1vh;
-    padding: 1vh 1vw;
-    grid-template-columns: 10vw 10vw;
-    grid-template-rows: 5;
-    row-gap: 1vh;
-    /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
-    grid-template-areas: "terminal-quality   terminal-quality-response" "terminal-pool      terminal-pool-response" "terminal-member-tier    terminal-tier-response" "terminal-upgrade-requirements terminal-upgrade-requirements-task" "terminal-upgrade-progress terminal-upgrade-progress"
-}
-
-#terminal-quality {
-    grid-area: terminal-quality;
-}
-
-#terminal-quality-response {
-    grid-area: terminal-quality-response;
-}
-
-#terminal-pool {
-    grid-area: terminal-pool;
-}
-
-#terminal-pool-response {
-    grid-area: terminal-pool-response;
-}
-
-#terminal-member-tier {
-    grid-area: terminal-member-tier;
-}
-
-#terminal-tier-response {
-    grid-area: terminal-tier-response;
-}
-
-#terminal-upgrade-requirements {
-    grid-area: terminal-upgrade-requirements;
-}
-
-#terminal-upgrade-requirements-task {
-    grid-area: terminal-upgrade-requirements-task;
-}
-
-#terminal-upgrade-progress {
-    grid-area: terminal-upgrade-progress;
-}
-
-
-/*--not currently in use - move to validation screen
-
-#terminal-valid-field {
-    background: var(--ink6-LED2OFF);
-    border-radius: 0.4vw;
-    position: relative;
-    margin-left: 0.25vw;
-}
-
-#terminal-valid-btn {
-    display: block;
-    border-radius: 50%;
-    height: 5vw;
-    width: 5vw;
-    align-items: center;
-    margin: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    padding: 0;
-}
---*/
 
 .radio-val {
     background-color: inherit;
@@ -622,34 +514,57 @@ input[type="radio"]:checked+label {
     background: var(--ink6-LED2OFF);
     border-radius: 0.4vw;
     padding: 2vh 1vw;
-    height: 45vh; 
+    
     overflow: hidden;
     margin-bottom: 1vh;
 }
 
 #terminal-miner-title {
-    width: 25%;
+    margin-bottom :1vh;
+}
+
+#terminal-miner-status-label,
+#terminal-miner-stats-label,
+#terminal-miner-parts-label,
+#terminal-valid-label {
+    margin-top:2vh;
+    margin-bottom:0;
+}
+
+#terminal-miner-top-section {
+    padding: 1vh 1vw;
+    border-radius: 0.5vw;
+    background: linear-gradient(217deg, rgba(42, 46, 51), rgba(29, 43, 53) 70.71%), linear-gradient(127deg, rgba(42, 46, 51), rgba(24, 42, 56) 70.71%), linear-gradient(336deg, rgba(042, 46, 51), rgba(24, 42, 56) 70.71%);
+    margin-bottom: 2vh;
+    display: flex;
+    justify-content:space-evenly;
+}
+
+#terminal-miner-status-response,
+#terminal-miner-activatebtn,
+#terminal-miner-repairbtn {
+    display: inline-block;
+    text-align: center;
+    padding: 1vh 1vw;
+    border-radius: 0.4vw;
+    margin:0.5vh 0.5vw;
+    min-width:6vw;
+}
+
+#terminal-miner-status-response {
+    border: solid 1px var(--ink11-green);
+    color: var(--ink11-green);   
 }
 
 #terminal-miner-activatebtn {
-    display: inline-block;
-    width: 40%;
-    text-align: center;
-    padding: 1vh 0;
-    border-radius: 0.4vw;
-    margin-left: 0.5vw;
+    
 }
 
-#terminal-miner-status {
-    display: inline-block;
-    text-align: center;
-    border: solid 1px var(--ink6-LED2ON);
-    background: var(--ink6-LED2LOW);
-    color: var(--ink6-LED2ON);
-    width: 20%;
-    padding: 1vh 0;
-    border-radius: 0.4vw;
-    margin-left: 0.5vw;
+#terminal-miner-repairbtn {
+    border: solid 1px rgba(209, 17, 17,0.5);
+    background: none;
+    color: rgba(209, 17, 17,0.5);  
+    
 }
 
 .meter-off {
@@ -662,9 +577,7 @@ input[type="radio"]:checked+label {
     background-color: var(--ink6-LED2ON);
 }
 
-#terminal-miner-perf-stats {
-    margin-bottom: 0;
-}
+
 
 #terminal-miner-stats-grid {
     display: grid;
@@ -735,13 +648,17 @@ input[type="radio"]:checked+label {
     border: 2px solid var(--ink6-LED2LOW);
     border-radius: 0.4vw;
     display: grid;
-    margin-top: 1vh;
     margin-bottom:1vh;
     padding: 1vh 1vw;
     grid-template-columns: 50% 50%;
     grid-template-rows: 4;
     row-gap: 1vh;
-    grid-template-areas: "e1   e2" "f1   f2" "g1  g2" "h1  h2"
+    grid-template-areas: 
+    "e1   e2" 
+    "f1   f2" 
+    "g1  g2" 
+    "h1  h2"
+    "i1  i1"
 }
 
 #parts-rig {
@@ -776,13 +693,15 @@ input[type="radio"]:checked+label {
     grid-area: h2;
 }
 
-#terminal-btn1,
-#terminal-btn2 {
+#terminal-miner-upgradebtn {
     display: inline-block;
-    width: 40%;
+    grid-area: i1;
     margin: 0 1vw;
 }
 
+#terminal-valid-pane {
+    border: 2px solid var(--ink6-LED2LOW);
+}
 
 /*---- Mid Row (nested) (contents: message window & finances)--------*/
 
