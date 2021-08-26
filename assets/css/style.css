@@ -407,7 +407,6 @@ li>span {
     background: linear-gradient(217deg, rgba(42, 46, 51), rgba(29, 43, 53) 70.71%), linear-gradient(127deg, rgba(42, 46, 51), rgba(24, 42, 56) 70.71%), linear-gradient(336deg, rgba(042, 46, 51), rgba(24, 42, 56) 70.71%);
 }
 
-#game-header {}
 
 #dashboard-title {
     margin-right: 5vw;
@@ -492,7 +491,7 @@ li>span {
     background: var(--ink6-LED2OFF);
     padding: 1vh 1vw;
     border-radius: 0.4vw;
-    margin-bottom: 1vh;
+    
     height: 32vh;
     overflow: hidden;
 }
@@ -623,8 +622,9 @@ input[type="radio"]:checked+label {
     background: var(--ink6-LED2OFF);
     border-radius: 0.4vw;
     padding: 2vh 1vw;
-    height: 45vh;
+    height: 45vh; 
     overflow: hidden;
+    margin-bottom: 1vh;
 }
 
 #terminal-miner-title {
