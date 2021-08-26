@@ -400,8 +400,9 @@ li>span {
 
 #full-screen-game {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     align-items: center;
+    overflow:scroll;
     justify-content: center;
     /*-background-color: var(--ink2-offblacksolid);--*/
     background: linear-gradient(217deg, rgba(42, 46, 51), rgba(29, 43, 53) 70.71%), linear-gradient(127deg, rgba(42, 46, 51), rgba(24, 42, 56) 70.71%), linear-gradient(336deg, rgba(042, 46, 51), rgba(24, 42, 56) 70.71%);
@@ -409,19 +410,22 @@ li>span {
 
 
 #dashboard-title {
-    margin-right: 5vw;
+    
     padding: 1vh;
     font-size: 4vw;
     color: var(--ink6-LED2ON);
-    text-align: right;
+    text-align: center;
     vertical-align: center;
     text-shadow: -1px 1px 1px rgb(145, 145, 145), -1px 2px 1px rgb(145, 145, 145), -1px 3px 1px rgb(145, 145, 145), -1px 4px 1px rgb(145, 145, 145), -1px 5px 1px rgb(145, 145, 145), -1px 6px 1px rgb(145, 145, 145), -1px 7px 1px rgb(145, 145, 145), -1px 8px 1px rgb(145, 145, 145), -1px 9px 1px rgb(145, 145, 145), -1px 10px 1px rgb(145, 145, 145), -1px 18px 6px rgba(0, 189, 255, 0.4), -1px 22px 10px rgba(0, 189, 255, 0.2), -1px 35px 35px rgba(0, 189, 255, 0.2), -1px 60px 60px rgba(0, 189, 255, 0.4);
 }
 
 #game-menu {
+    display:flex;
+    align-self: end;
+    justify-content: space-evenly;
     height: 8vh;
-    margin: 2vh 1vw 2vh 0;
-    padding: 1vh 1vw;
+    margin: 2vh 0 2vh 0;
+    width:90%;
     border-radius: 0.5vw;
     box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
     overflow: hidden;
@@ -430,7 +434,7 @@ li>span {
 #game-menu .btn {
     font-size: 1vw;
     display: inline-block;
-    width: 10vw;
+    min-width: 10vw;
     background-color: var(--ink6-LED2LOW);
     margin: 2vh 0;
 }
@@ -701,7 +705,43 @@ input[type="radio"]:checked+label {
 
 #terminal-valid-pane {
     border: 2px solid var(--ink6-LED2LOW);
+    background: linear-gradient(217deg, rgba(42, 46, 51), rgba(29, 43, 53) 70.71%), linear-gradient(127deg, rgba(42, 46, 51), rgba(24, 42, 56) 70.71%), linear-gradient(336deg, rgba(042, 46, 51), rgba(24, 42, 56) 70.71%);
+    border-radius: 0.4vw;
+    margin-bottom:1vh;
+    padding: 1vh 1vw;
+    height:10vh;
 }
+
+#terminal-quality {
+    display:inline-block;
+}
+
+.radio-val {
+    display:inline-block;
+    background-color: inherit;
+    border-color: rgba(0, 0, 0, 0);
+    color: var(--ink6-LED2);
+    font-weight:800;
+}
+
+.radio-val:hover {
+    background-color: var(--ink6-LED2LOW);
+    border-color: var(--ink6-LED2LOW);
+    color: var(--ink6-LED2ON);
+}
+
+input[type="radio"]:checked+label {
+    background-color: inherit;
+    border-color: var(--ink6-LED2ON);
+    color: var(--ink6-LED2ON);
+}
+
+#terminal-miner-upgradebtn {
+    margin-top:2vh;
+    width: 10vw;
+}
+
+
 
 /*---- Mid Row (nested) (contents: message window & finances)--------*/
 

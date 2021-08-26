@@ -27,19 +27,20 @@
         <!--header row (contents: menu, title & game finances)-->
         <div class="container-fluid" id="game-header">
 
-            <div class="row justify-content-end">
+            <div class="row">
 
                 <div class="col-7">
                     <div id="dashboard-title" refl="E-Prospector">E-Prospector</div>
                 </div>
                 <!--close title col-->
 
-                <div class="col-4" id="game-menu">
-                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal-how-to-play">How
-                        to Play</button>
-                    <a role="button" class="btn" href="">New Game</a>
-                    <a role="button" class="btn" href="/index.html">Exit to Main Menu</a>
-
+                <div class="col-5"> 
+                    <div id="game-menu">
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal-how-to-play">How
+                            to Play</button>
+                        <a role="button" class="btn" href="">New Game</a>
+                        <a role="button" class="btn" href="/index.html">Quit</a>
+                    </div>
 
                 </div>
 
@@ -80,7 +81,7 @@
                             </div>
                                                
                             <!--Performance stats--->                            
-                            <h5 id="terminal-miner-stats-label">PERFORMANCE STATS:</h5>
+                            <h5 id="terminal-miner-stats-label">PERFORMANCE:</h5>
                             <div id="terminal-miner-stats-grid">
                                 <div id="miner-chance">CHANCE</div>
                                 <div id="miner-speed">HASH RATE</div>
@@ -122,21 +123,17 @@
                                 <button id="terminal-miner-upgradebtn" class="btn btn-warning float-end">Upgrade Parts</button>
                             </div>
                             <!-- close terminal parts-->
-                            <h5 id="terminal-valid-label">BLOCK VALIDATION:</h5>
+                            <h5 id="terminal-valid-label">VALIDATE BLOCK:</h5>
                             <div id="terminal-valid-pane">
-                                <button id="terminal-valid-open-modal" class="btn btn-info float-end">Validate Block</button>
-                                <p id="terminal-valid-settings">Validation Settings:</p>
                                 <div id="terminal-quality">Difficulty:</div>
                                 <input type="radio" class="btn-check" name="valid-level" id="option1" autocomplete="off">
-                                    <label class="btn  radio-val" for="option1">LOW</label>
-                                    <input type="radio" class="btn-check" name="valid-level" id="option2" autocomplete="off">
-                                    <label class="btn  radio-val" for="option2">MED</label>
-                                    <input type="radio" class="btn-check" name="valid-level" id="option3" autocomplete="off">
-                                    <label class="btn  radio-val" for="option3">HIGH</label>
+                                <label class="btn  radio-val" for="option1">LOW</label>
+                                <input type="radio" class="btn-check" name="valid-level" id="option2" autocomplete="off">
+                                <label class="btn  radio-val" for="option2">MED</label>
+                                <input type="radio" class="btn-check" name="valid-level" id="option3" autocomplete="off">
+                                <label class="btn  radio-val" for="option3">HIGH</label>
+                                <button id="terminal-miner-validatebtn" class="btn btn-info float-end">Validate Block</button>
                             </div>
-
-                            
-
 
                         </div> <!--close terminal pane-->
 
