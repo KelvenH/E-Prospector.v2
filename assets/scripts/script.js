@@ -287,6 +287,17 @@ function refreshPerformanceBars() {
 $("#terminal-miner-upgradebtn").click(function() {
     $('#modal-upgrades').modal('show');
     
+    /*--display rigs table --*/
+    $.getJSON("/assets/scripts/game.library.json");
+    
+    /*--display processors table --*/
+
+    /*--display cooling sys table --*/
+
+    /*--display op sys table --*/
+
+
+
     $("#upgrade-exit-btn").click(function() {
         $('#modal-upgrades').modal('hide');
     });

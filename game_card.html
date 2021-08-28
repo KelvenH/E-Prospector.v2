@@ -419,8 +419,9 @@
                     <!--Nav tabs -->
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="shop-tab" data-bs-toggle="tab" data-bs-target="#upgrade-shop"
-                                type="button" role="tab" aria-controls="upgrade-shop" aria-selected="true">Upgrade Shop</button>
+                            <button class="nav-link active" id="shop-tab" data-bs-toggle="tab"
+                                data-bs-target="#upgrade-shop" type="button" role="tab" aria-controls="upgrade-shop"
+                                aria-selected="true">Upgrade Shop</button>
                         </li>
 
                         <li class="nav-item" role="presentation">
@@ -429,17 +430,21 @@
                         </li>
 
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="processors-tab" data-bs-toggle="tab" data-bs-target="#upgrade-processors" type="button" role="tab" aria-controls="processors" aria-selected="false">Processors</button>
+                            <button class="nav-link" id="processors-tab" data-bs-toggle="tab"
+                                data-bs-target="#upgrade-processors" type="button" role="tab" aria-controls="processors"
+                                aria-selected="false">Processors</button>
                         </li>
 
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="cooling-tab" data-bs-toggle="tab" data-bs-target="#upgrade-cooling"
-                                type="button" role="tab" aria-controls="cooling" aria-selected="false">Cooling Sys.</button>
+                            <button class="nav-link" id="cooling-tab" data-bs-toggle="tab"
+                                data-bs-target="#upgrade-cooling" type="button" role="tab" aria-controls="cooling"
+                                aria-selected="false">Cooling Sys.</button>
                         </li>
 
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="cooling-tab" data-bs-toggle="tab" data-bs-target="#upgrade-os"
-                                type="button" role="tab" aria-controls="os" aria-selected="false">Operating Sys.</button>
+                                type="button" role="tab" aria-controls="os" aria-selected="false">Operating
+                                Sys.</button>
                         </li>
 
                     </ul>
@@ -447,19 +452,36 @@
                     <!-- Nav Tabs Content-->
                     <div class="tab-content" id="myTabContent">
                         <!--Shop / Landing-->
-                        <div class="tab-pane fade show active" id="upgrade-shop" role="tabpanel" aria-labelledby="shop-tab">Upgrade Shop Content</div>
+                        <div class="tab-pane fade show active" id="upgrade-shop" role="tabpanel"
+                            aria-labelledby="shop-tab">Upgrade Shop Content</div>
 
                         <!--Rigs-->
-                        <div class="tab-pane fade" id="upgrade-rigs" role="tabpanel" aria-labelledby="rigs-tab">Rigs content</div>
+                        <div class="tab-pane fade" id="upgrade-rigs" role="tabpanel" aria-labelledby="rigs-tab">
+                            <table class="table table-striped table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th data-field="rig-name">
+                                            <h4>Rig Name:</h4>
+                                        </th>
+                                        <th data-field="rig-cost">
+                                            <h4>Cost:</h4>                                          
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
 
                         <!--Processors-->
-                        <div class="tab-pane fade" id="upgrade-processors" role="tabpanel" aria-labelledby="processors-tab">Processors Content</div>
+                        <div class="tab-pane fade" id="upgrade-processors" role="tabpanel"
+                            aria-labelledby="processors-tab">Processors Content</div>
 
                         <!--Cooling-->
-                        <div class="tab-pane fade" id="upgrade-cooling" role="tabpanel" aria-labelledby="cooling-tab">Cooling Content</div>
+                        <div class="tab-pane fade" id="upgrade-cooling" role="tabpanel" aria-labelledby="cooling-tab">
+                            Cooling Content</div>
 
                         <!--OS-->
-                        <div class="tab-pane fade" id="upgrade-os" role="tabpanel" aria-labelledby="os-tab">OS Content</div>
+                        <div class="tab-pane fade" id="upgrade-os" role="tabpanel" aria-labelledby="os-tab">OS Content
+                        </div>
 
 
                     </div>
