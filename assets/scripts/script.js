@@ -284,6 +284,14 @@ function refreshPerformanceBars() {
 
 /*--- 2. Upgrade Parts -----------------------------------------------------*/
 
+$("#terminal-miner-upgradebtn").click(function() {
+    $('#modal-upgrades').modal('show');
+    
+    $("#upgrade-exit-btn").click(function() {
+        $('#modal-upgrades').modal('hide');
+    });
+});
+
 /*--- 3. Repair Parts -----------------------------------------------------*/
 
 /*--- 4. Energy -----------------------------------------------------*/
