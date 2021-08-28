@@ -1,7 +1,7 @@
 /jshint esversion:8, jquery:true/
 
 /*--- Key Steps & Sequencing -----------------------------------------------------/
-0.0 - Utilities (import JSON)
+
 0.1 - Global variables initiated
 
 1. Load New Game Data - miner table loads with default starter device and balance 
@@ -47,9 +47,6 @@
 
 
 
-/*--import base game library--*/
-/*import json--*/
-
 
 /*--- 0.2 - Global Variables -----------------------------------------------------*/
 
@@ -69,6 +66,385 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 /*--- 1.1 - Game data tables -----------------------------------------------------*/
+//note: unable to import gamelibray as a local JSON file, so retained on main js file
+
+const gameLibrary = {
+    rigs: [{
+        name: "Comm-Atari-ZX",
+        cost: 0,
+        multiCore: "N",
+        baseChance: 1,
+        baseHash: 1,
+        basePower: 1,
+        baseCondition: 20,
+        rigComments: "Self-built from re-purposed parts from 1980's tech - hey, it's free?!"
+    },
+    {
+        name: "Bell 200",
+        cost: 100,
+        multiCore: "N",
+        baseChance: 2,
+        baseHash: 2,
+        basePower: 2,
+        baseCondition: 22,
+        rigComments: "Upgrade to twice the power (well, 2 x peanuts is still peanuts!)"
+    },
+    {
+        name: "Macro-hard 350+",
+        cost: 500,
+        multiCore: "N",
+        baseChance: 3,
+        baseHash: 3,
+        basePower: 3,
+        baseCondition: 17,
+        rigComments: "Not a popular choice - that's for a reason!"
+    },
+    {
+        name: "Dwell Junior",
+        cost: 1000,
+        multiCore: "N",
+        baseChance: 5,
+        baseHash: 4,
+        basePower: 5,
+        baseCondition: 25,
+        rigComments: "Once-upon-a-time this was considered a good machine ….once-upon-a-time"
+    },
+    {
+        name: "Orange i-plop",
+        cost: 1250,
+        multiCore: "N",
+        baseChance: 5,
+        baseHash: 8,
+        basePower: 7,
+        baseCondition: 40,
+        rigComments: "Unfortunate translation of the model name, but 8-core processor makes this a worthy early consideration"
+    },
+    {
+        name: "Blackbox F-Series",
+        cost: 1500,
+        multiCore: "Y",
+        baseChance: 15,
+        baseHash: 4,
+        basePower: 25,
+        baseCondition: 15,
+        rigComments: "Not one knows why, but there seems to be some secret magic with this thing…. when it's not on fire that is!"
+    },
+    {
+        name: "Bell Runner S",
+        cost: 1500,
+        multiCore: "N",
+        baseChance: 10,
+        baseHash: 6,
+        basePower: 25,
+        baseCondition: 35,
+        rigComments: "More mid-pack than race winner, but reasonable effort for the top end of the low budget series!"
+    },
+    {
+        name: "Bell Runner S+",
+        cost: 1900,
+        multiCore: "N",
+        baseChance: 10,
+        baseHash: 6,
+        basePower: 22,
+        baseCondition: 35,
+        rigComments: "Exactly the same machine, rolled out the following year with a shiny '+' added to the name tag… and a minor power saving"
+    },
+    {
+        name: "Orange i-poop",
+        cost: 2500,
+        multiCore: "N",
+        baseChance: 15,
+        baseHash: 8,
+        basePower: 25,
+        baseCondition: 40,
+        rigComments: "Ok, let's forget the model-name, performance exceeds its mid-budget price tag (and with the spare cash you can paint over the name!)"
+    },
+    {
+        name: "Dwell Expert",
+        cost: 3000,
+        multiCore: "N",
+        baseChance: 15,
+        baseHash: 4,
+        basePower: 20,
+        baseCondition: 35,
+        rigComments: "Sacrfices speed for power savings. Save the planet or make some money - this Expert thinks you can’t have it both ways."
+    },
+    {
+        name: "Majic My-k",
+        cost: 3500,
+        multiCore: "N",
+        baseChance: 20,
+        baseHash: 10,
+        basePower: 35,
+        baseCondition: 35,
+        rigComments: "The sales material reads 'Stripped back for raw, hardcore performance' (not my words, not my words!)"
+    },
+    {
+        name: "Majic My-k Extreme",
+        cost: 3900,
+        multiCore: "N",
+        baseChance: 20,
+        baseHash: 15,
+        basePower: 40,
+        baseCondition: 35,
+        rigComments: "Perhaps don’t go google searching this one, let’s just say it comes with a bit more beefed up power and speed."
+    },
+    {
+        name: "Dwell Professional",
+        cost: 4500,
+        multiCore: "N",
+        baseChance: 25,
+        baseHash: 20,
+        basePower: 40,
+        baseCondition: 40,
+        rigComments: "Solid machine, solid performance, solid condition…... a solid choice!"
+    },
+    {
+        name: "Orange i-pop",
+        cost: 5000,
+        multiCore: "N",
+        baseChance: 35,
+        baseHash: 20,
+        basePower: 50,
+        baseCondition: -25,
+        rigComments: "Ironically for the i-pop this one runs a dream….before well, she 'pops'! Rewards should cover the repairs and keep you in the black."
+    },
+    {
+        name: "Coin - Ripper",
+        cost: 7000,
+        multiCore: "Y",
+        baseChance: 50,
+        baseHash: 50,
+        basePower: 1500,
+        baseCondition: 50,
+        rigComments: "More expensive, but the cheapest of the terminals purpose built for crypto-mining. Things are getting serious now!"
+    },
+    {
+        name: "Blackbox X-Series",
+        cost: 10000,
+        multiCore: "Y",
+        baseChance: 60,
+        baseHash: 50,
+        basePower: 2000,
+        baseCondition: 50,
+        rigComments: "Blackbox are back again with an improved secret box….. it's black.… ad the rest, well its a secret!"
+    },
+    {
+        name: "Terminus",
+        cost: 2000,
+        multiCore: "Y",
+        baseChance: 75,
+        baseHash: 65,
+        basePower: 5000,
+        baseCondition: 75,
+        rigComments: "The top-end performer - and needs to be to pay off the running costs!"
+        }
+    ],
+    parts: [{
+        processor: [{
+                name: "A&D Zipper",
+                cost: 0,
+                chanceBuff: 10,
+                hashPowerBuff: 10,
+                powerBuff: 25,
+                conditionBuff: 0
+            },
+            {
+                name: "Eye-Bee-Em Silver",
+                cost: 750,
+                chanceBuff: 15,
+                hashPowerBuff: 15,
+                powerBuff: 50,
+                conditionBuff: 0
+            },
+            {
+                name: "Eye-Bee-Em Gold",
+                cost: 900,
+                chanceBuff: 20,
+                hashPowerBuff: 50,
+                powerBuff: 100,
+                conditionBuff: 0
+            },
+            {
+                name: "A&D Zipper+",
+                cost: 1250,
+                chanceBuff: 20,
+                hashPowerBuff: 100,
+                powerBuff: 100,
+                conditionBuff: 0
+            },
+            {
+                name: "Eye-Bee-Em Platinum",
+                cost: 1500,
+                chanceBuff: 25,
+                hashPowerBuff: 200,
+                powerBuff: 200,
+                conditionBuff: -25
+            },
+            {
+                name: "Eye-Bee-Em Diamond",
+                cost: 2000,
+                chanceBuff: 30,
+                hashPowerBuff: 30,
+                powerBuff: 30,
+                conditionBuff: -50
+            },
+            {
+                name: "A&D Zipper++",
+                cost: 5000,
+                chanceBuff: 35,
+                hashPowerBuff: 35,
+                powerBuff: 500,
+                conditionBuff: -100
+            }
+        ],
+        coolingSystem: [{
+                name: "Deskfan",
+                cost: 0,
+                chanceBuff: 0,
+                hashPowerBuff: 0,
+                powerBuff: 0,
+                conditionBuff: 5
+            },
+            {
+                name: "Fan-Fare Double Bladed Case Fan",
+                cost: 1500,
+                chanceBuff: 0,
+                hashPowerBuff: 0,
+                powerBuff: 0,
+                conditionBuff: 10
+            },
+            {
+                name: "Oxy-Blast Master CPU Fan",
+                cost: 2500,
+                chanceBuff: 0,
+                hashPowerBuff: 0,
+                powerBuff: 0,
+                conditionBuff: 35
+            },
+            {
+                name: "Wind-E MKI CPU Fan",
+                cost: 5000,
+                chanceBuff: 0,
+                hashPowerBuff: 0,
+                powerBuff: 0,
+                conditionBuff: 40
+            },
+            {
+                name: "Wind-E MKII Heatsink Fan",
+                cost: 10000,
+                chanceBuff: 0,
+                hashPowerBuff: 0,
+                powerBuff: 0,
+                conditionBuff: 45
+            },
+            {
+                name: "Fan-Fare Typhoon Heatsink and CPU Fan",
+                cost: 20000,
+                chanceBuff: 0,
+                "hashPowerBufff": 0,
+                powerBuff: 0,
+                conditionBuff: 50
+            },
+            {
+                name: "Ice-Blaster Heatsink and CPU Fan",
+                cost: 50000,
+                chanceBuff: 0,
+                hashPowerBuff: 0,
+                powerBuff: 0,
+                conditionBuff: 75
+            },
+            {
+                name: "Liquid-ice Intergrated Cooling Tech",
+                cost: 100000,
+                chanceBuff: 0,
+                hashPowerBuff: 0,
+                powerBuff: 0,
+                conditionBuff: 200
+            }
+        ],
+        operatingSystem: [{
+                name: "Simply Open Source",
+                cost: 0,
+                chanceBuff: 0,
+                hashPowerBuff: 0,
+                powerBuff: 0,
+                conditionBuff: 25
+            },
+            {
+                name: "Macro-hard 15",
+                cost: 2000,
+                chanceBuff: 0,
+                hashPowerBuff: 0,
+                powerBuff: 0,
+                conditionBuff: 50
+            },
+            {
+                name: "Orange OS",
+                cost: 4000,
+                chanceBuff: 0,
+                hashPowerBuff: 0,
+                powerBuff: 0,
+                conditionBuff: 75
+            },
+            {
+                name: "Blackbox .IO",
+                cost: 50000,
+                chanceBuff: 0,
+                hashPowerBuff: 0,
+                powerBuff: 100,
+                conditionBuff: 100
+            }
+        ]
+    }],
+    energy: [{
+        provider: "Home Solar Panels",
+        upfrontCost: 5000,
+        type: "Renewable",
+        usageCostPerKw: 0,
+        reliability: "Poor",
+        pollutionRating: "A",
+        comments: "Be good to the planet, a one-off installation cost and then you're good to go….. unless the weather has a say!"
+    },
+    {
+        provider: "Hay-Bred Dairy Yard",
+        upfrontCost: 1000,
+        type: "Renewable",
+        usageCostPerKw: 0.5,
+        reliability: "Average",
+        pollutionRating: "B",
+        comments: "This dairy farm has one hoof in the future. Simultaneous milking and manure liquidisation generates spare power for the local community. Not completely Co2 free option (you have smelt a farm right?)"
+    },
+    {
+        provider: "Fossil-free UK Industries Tech",
+        upfrontCost: 500,
+        type: "Renewable",
+        usageCostPerKw: 0.75,
+        reliability: "Average",
+        pollutionRating: "B",
+        comments: "UK's leading renewable energy provider. The less than ideal geographical location means reliability can be patchy at best (then you may find yourself shouting the companies name)."
+    },
+    {
+        provider: "Flower Power Ltd",
+        upfrontCost: 250,
+        type: "Renewable off-set",
+        usageCostPerKw: 0.5,
+        reliability: "Good",
+        pollutionRating: "A",
+        comments: "This hybrid power supplier sources energy primarily through renewable sources, but generates additional power through the disposal of waste. All Co2 emmissions are off-set through tree and planting programmes - to ensure these folks come out smelling of roses!"
+    },
+    {
+        provider: "Gas-tricity",
+        upfrontCost: 0,
+        type: "Fossil Fuel",
+        usageCostPerKw: 0.25,
+        reliability: "Great",
+        pollutionRating: "C",
+        comments: "Good to the wallet, great reliability but awful to the environment. The choice for those who care for today and not tomorrow"
+    }
+]};
+
+
 const liveGameData = {
     validationDevice: {
         difficulty: "",
@@ -288,54 +664,53 @@ $("#terminal-miner-upgradebtn").click(function() {
     $('#modal-upgrades').modal('show');
     
     /*--display rigs table --*/
-    let rigs = [
-        {
-         name: 'name 1',
-         cost: 'cost 1',
-         baseChance: 'chance 1',
-         rigComments: 'comment 1',
-        },
-        {
-            name: 'name 2',
-            cost: 'cost 2',
-            baseChance: 'chance 2',
-            rigComments: 'comment 2',
-           },
-    ];
-    let html = `
-        <table class="table table-striped table-hover table-bordered">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Cost</th>
-                    <th>Chance</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-        <tbody>
-        `;
+    
+    let rigs = gameLibrary['rigs'];
+    console.log("rigs", rigs);
 
-    for (rig of rigs) {
-        let rowHTML = `
-        <tr class="rig-row">
-            <td>${rigs.name}</td>
-            <td>${rigs.cost}</td>
-            <td>${rigs.baseChance}</td>
-            <td>${rigs.rigComments}</td>
-        </tr>
+    let rigHtml = `
+        <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Cost</th>
+                        <th>Chance</th>
+                        <th>Speed</th>
+                        <th>Power</th>
+                        <th>Condition</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
         `;
-        html += rowHTML;
+       
+    for (rig of rigs) {
+        let rowHtml = `
+                <tr class="rig-row">
+                    <td>${rig.name}</td>
+                    <td>${rig.cost}</td>
+                    <td>${rig.baseChance}</td>
+                    <td>${rig.baseHash}</td>
+                    <td>${rig.basePower}</td>
+                    <td>${rig.baseCondition}</td>
+                    <td>${rig.rigComments}</td>
+                </tr>
+                `;
+        rigHtml += rowHtml;
     }
-    html += `
-        </tbody>
-    </table>
+    rigHtml += `
+            </tbody>
+        </table>
     `;
 
-    document.getElementById('rigs-table').innerHTML = html;
-   
+    document.getElementById('rigs-table').innerHTML = rigHtml; 
+       
+
     /*--display processors table --*/
 
+
     /*--display cooling sys table --*/
+
 
     /*--display op sys table --*/
 
