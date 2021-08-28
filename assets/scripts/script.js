@@ -288,8 +288,51 @@ $("#terminal-miner-upgradebtn").click(function() {
     $('#modal-upgrades').modal('show');
     
     /*--display rigs table --*/
-    $.getJSON("/assets/scripts/game.library.json");
-    
+    let rigs = [
+        {
+         name: 'name 1',
+         cost: 'cost 1',
+         baseChance: 'chance 1',
+         rigComments: 'comment 1',
+        },
+        {
+            name: 'name 2',
+            cost: 'cost 2',
+            baseChance: 'chance 2',
+            rigComments: 'comment 2',
+           },
+    ];
+    let html = `
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Cost</th>
+                    <th>Chance</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+        <tbody>
+        `;
+
+    for (rig of rigs) {
+        let rowHTML = `
+        <tr class="rig-row">
+            <td>${rigs.name}</td>
+            <td>${rigs.cost}</td>
+            <td>${rigs.baseChance}</td>
+            <td>${rigs.rigComments}</td>
+        </tr>
+        `;
+        html += rowHTML;
+    }
+    html += `
+        </tbody>
+    </table>
+    `;
+
+    document.getElementById('rigs-table').innerHTML = html;
+   
     /*--display processors table --*/
 
     /*--display cooling sys table --*/
