@@ -91,9 +91,9 @@ const liveGameData = {
         processor: {
             name: "A&D Zipper",
             cost: 0,
-            chanceBuff: 98.5, //temp increase to increase speed during testing
-            hashPowerBuff: 80.0, //temp increase to increase speed during testing
-            powerBuff: 0.25,
+            chanceBuff: 10, 
+            hashPowerBuff: 10, 
+            powerBuff: 25,
             conditionBuff: 0
         },
         coolingSystem: {
@@ -102,7 +102,7 @@ const liveGameData = {
             chanceBuff: 0,
             hashPowerBuff: 0,
             powerBuff: 0,
-            conditionBuff: 0.05
+            conditionBuff: 5
         },
         operatingSystem: {
             name: "Simply Open Source",
@@ -110,7 +110,7 @@ const liveGameData = {
             chanceBuff: 0,
             hashPowerBuff: 0,
             powerBuff: 0,
-            conditionBuff: 2
+            conditionBuff: 25
         }
     }],
     finance: {
@@ -125,7 +125,7 @@ const liveGameData = {
         usageCostPerKw: 0.25,
         reliability: "Great",
         pollutionRating: "C",
-        comments: "Good to the wallet, great reliability but awful to the environment. The choice for those who care for today and not tomorrow"
+        comments: "Good to the wallet, great reliability but awful to the environment. The choice for those who care for today and not for tomorrow"
     },
     messages: {
         /*---TBC--*/
@@ -138,16 +138,16 @@ const liveGameData = {
     }
 };
 
-/*-- temp stats is used to capture temp pos / neg effects from events --*/
+/*-- 1.2 -- Temporary Stats (the temp stats table is used to capture short-term pos / neg impacts to performace typically as a result of events) --*/
 
 const tempStats = {
-    chanceTemp: 0,
-    hashPowerTemp: 0,
+    chanceTemp: 0,      //temp increase to increase speed during testing
+    hashPowerTemp: 0,   //temp increase to increase speed during testing
     pwrUsageTemp: 0,
     conditionTemp: 0
 };
 
-/*--totalActiveStats is used to calculate the combined ratings of the base + parts + temp impacts --*/
+/*--1.3 TotalActiveStats - calculates the combined ratings of the base + parts + temp impacts --*/
 
 const totalActiveStats = {
     totalChance: 0,
@@ -162,11 +162,8 @@ console.log("power", liveGameData.rig.basePower);
 console.log("condition", liveGameData.rig.baseCondition);
 
 
-/*-- 1.2 -- Temporary Stats (the temp stats table is used to capture short-term pos / neg impacts to performace typically as a result of events) --*/
 
-
-
-/*--- 1.3 - Load Base Game data and update initial values on html page (note: some values are updated via a seperate function as this is re-used outside of the 'new game'stage ----------------------------------------------------*/
+/*--- 1.4 - Load Base Game data and update initial values on html page (note: some values are updated via a seperate function as this is re-used outside of the 'new game'stage ----------------------------------------------------*/
 
 function newGame() {
     console.log("Stage 2: running newGame function");
@@ -194,9 +191,7 @@ function newGame() {
 
 }
 
-/*-- 1.4 -- Calc Total Stats & update html (calcs base stat x buff / nerf multipliers (i.e. impacts of parts and temp event effects) --*/
-
-
+/*-- 1.5 -- Calc Total Stats & update html (calcs base stat x buff / nerf multipliers (i.e. impacts of parts and temp event effects) --*/
 
 
 function calcTotalActiveStats() {
@@ -208,13 +203,13 @@ function calcTotalActiveStats() {
     const osBuff = liveGameData.parts[0].operatingSystem;
     const temp = tempStats;
 
-    total.totalChance = base.baseChance + (base.baseChance * (proBuff.chanceBuff + coolBuff.chanceBuff + osBuff.chanceBuff + temp.chanceTemp));
+    total.totalChance = base.baseChance + (base.baseChance / 100 * (proBuff.chanceBuff + coolBuff.chanceBuff + osBuff.chanceBuff + temp.chanceTemp));
     $("#chance-value").text(total.totalChance);
-    total.totalHash = base.baseHash + (base.baseHash * (proBuff.hashPowerBuff + coolBuff.hashPowerBuff + osBuff.hashPowerBuff + temp.hashPowerTemp));
+    total.totalHash = base.baseHash + (base.baseHash / 100 * (proBuff.hashPowerBuff + coolBuff.hashPowerBuff + osBuff.hashPowerBuff + temp.hashPowerTemp));
     $("#speed-value").text(total.totalHash);
-    total.totalPower = base.basePower + (base.basePower * (proBuff.powerBuff + coolBuff.powerBuff + osBuff.powerBuff + temp.pwrUsageTemp));
+    total.totalPower = base.basePower + (base.basePower / 100 * (proBuff.powerBuff + coolBuff.powerBuff + osBuff.powerBuff + temp.pwrUsageTemp));
     $("#power-value").text(total.totalPower);
-    total.totalCondition = base.baseCondition + (base.baseCondition * (proBuff.conditionBuff + coolBuff.conditionBuff + osBuff.conditionBuff + temp.conditionTemp));
+    total.totalCondition = base.baseCondition + (base.baseCondition / 100 * (proBuff.conditionBuff + coolBuff.conditionBuff + osBuff.conditionBuff + temp.conditionTemp));
     $("#condition-value").text(total.totalCondition);
 
     /*--temp console logging to remove from final version--*/
@@ -235,11 +230,11 @@ function calcTotalActiveStats() {
 
 
 
-/*--- 1.5 - Refresh Performance Bars  ---------------------------------------------------*/
+/*--- 1.6 - Refresh Performance Bars  ---------------------------------------------------*/
 
 function refreshPerformanceBars() {
 
-    const maxValue = 1000;
+    const maxValue = 100;
     const total = totalActiveStats;
 
     const chanceProgress = total.totalChance;
@@ -367,7 +362,7 @@ $("#terminal-miner-activatebtn").click(function() {
     $('#modal-block-mining-response3').html(0); //Resets number of completed attempts to 0
 
 
-    //--Step F - 'run' programme (within same modal) covers time (10 second cycle less hashSpeed buffs), displays animation whilst running, returns text to indicate when cycle complete, runs match (block vs. miney keys) and animation whilst cycle in play
+    //--Step F - 'run' programme (within same modal) covers time (10 second cycle less hashSpeed buffs), displays animation whilst running, returns text to indicate when cycle complete, runs match (block vs. miner keys) and animation whilst cycle in play
 
     //Cycle timer : length = 10secs (10,000millisecs) less % hash speed bonus
     let hashSpeed = totalActiveStats.totalHash / 100; //to convert to percentage;

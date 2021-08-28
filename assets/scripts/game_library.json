@@ -166,7 +166,7 @@
             "baseChance": 75,
             "baseHash": 65,
             "basePower": 5000,
-            "baseCondition": 45,
+            "baseCondition": 75,
             "rigComments": "The top-end performer - and needs to be to pay off the running costs!"
         }
     ],
@@ -174,58 +174,58 @@
         "processor": [{
                 "name": "A&D Zipper",
                 "cost": 0,
-                "chanceBuff": 0.1,
-                "hashPowerBuff": 0.1,
-                "powerBuff": 0.25,
+                "chanceBuff": 10,
+                "hashPowerBuff": 10,
+                "powerBuff": 25,
                 "conditionBuff": 0
             },
             {
                 "name": "Eye-Bee-Em Silver",
                 "cost": 750,
-                "chanceBuff": 0.15,
-                "hashPowerBuff": 0.15,
-                "powerBuff": 0.5,
+                "chanceBuff": 15,
+                "hashPowerBuff": 15,
+                "powerBuff": 50,
                 "conditionBuff": 0
             },
             {
                 "name": "Eye-Bee-Em Gold",
                 "cost": 900,
-                "chanceBuff": 0.2,
-                "hashPowerBuff": 0.5,
-                "powerBuff": 1,
+                "chanceBuff": 20,
+                "hashPowerBuff": 50,
+                "powerBuff": 100,
                 "conditionBuff": 0
             },
             {
                 "name": "A&D Zipper+",
                 "cost": 1250,
-                "chanceBuff": 0.2,
-                "hashPowerBuff": 1,
-                "powerBuff": 1,
+                "chanceBuff": 20,
+                "hashPowerBuff": 100,
+                "powerBuff": 100,
                 "conditionBuff": 0
             },
             {
                 "name": "Eye-Bee-Em Platinum",
                 "cost": 1500,
-                "chanceBuff": 0.25,
-                "hashPowerBuff ": 2,
-                "powerBuff": 2,
-                "conditionBuff": -0.25
+                "chanceBuff": 25,
+                "hashPowerBuff ": 200,
+                "powerBuff": 200,
+                "conditionBuff": -25
             },
             {
                 "name": "Eye-Bee-Em Diamond",
                 "cost": 2000,
-                "chanceBuff": 0.3,
-                "hashPowerBuff": 3,
-                "powerBuff": 3,
-                "conditionBuff": -0.5
+                "chanceBuff": 30,
+                "hashPowerBuff": 30,
+                "powerBuff": 30,
+                "conditionBuff": -50
             },
             {
                 "name": "A&D Zipper++",
                 "cost": 5000,
-                "chanceBuff": 0.35,
-                "hashPowerBuff": 3.5,
-                "powerBuff": 5,
-                "conditionBuff": -1
+                "chanceBuff": 35,
+                "hashPowerBuff": 35,
+                "powerBuff": 500,
+                "conditionBuff": -100
             }
         ],
         "coolingSystem": [{
@@ -234,7 +234,7 @@
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
                 "powerBuff": 0,
-                "conditionBuff": 0.05
+                "conditionBuff": 5
             },
             {
                 "name": "Fan-Fare Double Bladed Case Fan",
@@ -242,7 +242,7 @@
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
                 "powerBuff": 0,
-                "conditionBuff": 0.1
+                "conditionBuff": 10
             },
             {
                 "name": "Oxy-Blast Master CPU Fan",
@@ -250,7 +250,7 @@
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
                 "powerBuff": 0,
-                "conditionBuff": 0.35
+                "conditionBuff": 35
             },
             {
                 "name": "Wind-E MKI CPU Fan",
@@ -258,15 +258,15 @@
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
                 "powerBuff": 0,
-                "conditionBuff": 0.4
+                "conditionBuff": 40
             },
             {
                 "name": "Wind-E MKII Heatsink Fan",
-                "cost": 100000,
+                "cost": 10000,
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
                 "powerBuff": 0,
-                "conditionBuff": 0.45
+                "conditionBuff": 45
             },
             {
                 "name": "Fan-Fare Typhoon Heatsink and CPU Fan",
@@ -274,7 +274,7 @@
                 "chanceBuff": 0,
                 "hashPowerBufff": 0,
                 "powerBuff": 0,
-                "conditionBuff": 0.5
+                "conditionBuff": 50
             },
             {
                 "name": "Ice-Blaster Heatsink and CPU Fan",
@@ -282,7 +282,7 @@
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
                 "powerBuff": 0,
-                "conditionBuff": 0.75
+                "conditionBuff": 75
             },
             {
                 "name": "Liquid-ice Intergrated Cooling Tech",
@@ -290,7 +290,7 @@
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
                 "powerBuff": 0,
-                "conditionBuff": 2
+                "conditionBuff": 200
             }
         ],
         "Operating System": [{
@@ -299,64 +299,31 @@
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
                 "powerBuff": 0,
-                "conditionBuff": 2
+                "conditionBuff": 25
             },
             {
                 "name": "Macro-hard 15",
-                "cost": 0,
+                "cost": 2000,
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
                 "powerBuff": 0,
-                "conditionBuff": 2
+                "conditionBuff": 50
             },
             {
                 "name": "Orange OS",
-                "cost": 0,
+                "cost": 4000,
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
                 "powerBuff": 0,
-                "conditionBuff": 2
+                "conditionBuff": 75
             },
             {
                 "name": "Blackbox .IO",
-                "cost": 0,
+                "cost": 50000,
                 "chanceBuff": 0,
                 "hashPowerBuff": 0,
-                "powerBuff": 0,
-                "conditionBuff": 2
-            }
-        ],
-        "Cyber Security": [{
-                "name": "Blackbox .IO",
-                "cost": 0,
-                "chanceBuff": 0,
-                "hashPowerBuff": 0,
-                "powerBuff": 0,
-                "conditionBuff": 2
-            },
-            {
-                "name": "Blackbox .IO",
-                "cost": 0,
-                "chanceBuff": 0,
-                "hashPowerBuff": 0,
-                "powerBuff": 0,
-                "conditionBuff": 2
-            },
-            {
-                "name": "Blackbox .IO",
-                "cost": 0,
-                "chanceBuff": 0,
-                "hashPowerBuff": 0,
-                "powerBuff": 0,
-                "conditionBuff": 2
-            },
-            {
-                "name": "Blackbox .IO",
-                "cost": 0,
-                "chanceBuff": 0,
-                "hashPowerBuff": 0,
-                "powerBuff": 0,
-                "conditionBuff": 2
+                "powerBuff": 100,
+                "conditionBuff": 100
             }
         ]
     }],
