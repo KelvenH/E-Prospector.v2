@@ -545,7 +545,8 @@ input[type="radio"]:checked+label {
     justify-content:space-evenly;
 }
 
-#terminal-miner-status-response,
+#terminal-miner-status-available,
+#terminal-miner-status-unavailable,
 #terminal-miner-activatebtn,
 #terminal-miner-repairbtn {
     display: inline-block;
@@ -556,19 +557,27 @@ input[type="radio"]:checked+label {
     min-width:6vw;
 }
 
-#terminal-miner-status-response {
+#terminal-miner-status-available {
     border: solid 1px var(--ink11-green);
-    color: var(--ink11-green);   
+    color: var(--ink11-green);
+    display:block;   
 }
 
 #terminal-miner-activatebtn {
-    
+    display:block;  
+}
+
+#terminal-miner-status-unavailable {
+    border: solid 1px rgba(209, 17, 17, 1);
+    background: none;
+    color: rgba(209, 17, 17, 1); 
+    display:none;   
 }
 
 #terminal-miner-repairbtn {
-    border: solid 1px rgba(209, 17, 17,0.5);
-    background: none;
-    color: rgba(209, 17, 17,0.5);  
+    background: rgba(209, 17, 17, 1);
+    color: var(--ink14);  
+    display:none;  
     
 }
 

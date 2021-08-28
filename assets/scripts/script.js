@@ -78,14 +78,14 @@ const liveGameData = {
         upgradeProgress: ""
     },
     rig: {
-        name: "Comm-Atari-ZX",
-        cost: 0,
-        multiCore: "N",
-        baseChance: 1,
-        baseHash: 1,
-        basePower: 1,
-        baseCondition: 20,
-        rigComments: "Self-built from re-purposed parts from 1980's tech - hey, it's free?!"
+        name: "Terminus",
+        cost: 2000,
+        multiCore: "Y",
+        baseChance: 75,
+        baseHash: 65,
+        basePower: 5000,
+        baseCondition: 75,
+        rigComments: "The top-end performer - and needs to be to pay off the running costs!"
     },
     parts: [{
         processor: {
@@ -141,8 +141,8 @@ const liveGameData = {
 /*-- 1.2 -- Temporary Stats (the temp stats table is used to capture short-term pos / neg impacts to performace typically as a result of events) --*/
 
 const tempStats = {
-    chanceTemp: 0,      //temp increase to increase speed during testing
-    hashPowerTemp: 0,   //temp increase to increase speed during testing
+    chanceTemp: 50,      //temp increase to increase speed during testing
+    hashPowerTemp: 50,   //temp increase to increase speed during testing
     pwrUsageTemp: 0,
     conditionTemp: 0
 };
@@ -203,14 +203,38 @@ function calcTotalActiveStats() {
     const osBuff = liveGameData.parts[0].operatingSystem;
     const temp = tempStats;
 
-    total.totalChance = base.baseChance + (base.baseChance / 100 * (proBuff.chanceBuff + coolBuff.chanceBuff + osBuff.chanceBuff + temp.chanceTemp));
+    /*--total.totalChance = base.baseChance + (base.baseChance / 100 * (proBuff.chanceBuff + coolBuff.chanceBuff + osBuff.chanceBuff + temp.chanceTemp));--*/
+
+    // caps result to 100 max
+    ChanceTotal = base.baseChance + (base.baseChance / 100 * (proBuff.chanceBuff + coolBuff.chanceBuff + osBuff.chanceBuff + temp.chanceTemp));
+    if (ChanceTotal > 100) {
+        total.totalChance = 100
+    } else {
+        total.totalChance = ChanceTotal
+    }
     $("#chance-value").text(total.totalChance);
-    total.totalHash = base.baseHash + (base.baseHash / 100 * (proBuff.hashPowerBuff + coolBuff.hashPowerBuff + osBuff.hashPowerBuff + temp.hashPowerTemp));
+    
+    HashTotal = base.baseHash + (base.baseHash / 100 * (proBuff.hashPowerBuff + coolBuff.hashPowerBuff + osBuff.hashPowerBuff + temp.hashPowerTemp));
+    if (HashTotal > 100) {
+        total.totalHash = 100
+    } else {
+        total.totalHash = HashTotal
+    }
     $("#speed-value").text(total.totalHash);
+    
+    //no cap on power usage
     total.totalPower = base.basePower + (base.basePower / 100 * (proBuff.powerBuff + coolBuff.powerBuff + osBuff.powerBuff + temp.pwrUsageTemp));
     $("#power-value").text(total.totalPower);
-    total.totalCondition = base.baseCondition + (base.baseCondition / 100 * (proBuff.conditionBuff + coolBuff.conditionBuff + osBuff.conditionBuff + temp.conditionTemp));
+    
+    ConditionTotal = base.baseCondition + (base.baseCondition / 100 * (proBuff.conditionBuff + coolBuff.conditionBuff + osBuff.conditionBuff + temp.conditionTemp));
+    if (ConditionTotal > 100) {
+        total.totalCondition = 100
+    } else {
+        total.totalCondition = ConditionTotal
+    }
     $("#condition-value").text(total.totalCondition);
+
+
 
     /*--temp console logging to remove from final version--*/
     console.log("base chance", base.baseChance);
@@ -271,8 +295,10 @@ function refreshPerformanceBars() {
 /*--- 7. Validate Block -----------------------------------------------------*/
 
 /*--- 8. Mine Block -----------------------------------------------------
-        a -  generate device and block keys (linked to active device probability range) 
-        b - checks if match 
+        a - pregame checks (i.e. finances, miner status, etc)
+        b - generate device and block keys (linked to active device probability range)
+        c - run game cycle (incl. check results)
+         
         c - if win calculate winnings
         d - calc round costs (i.e. active device power consumpation x power unit rate)
         e - calc subTotal (i.e. balance + winnings - cost)
@@ -300,16 +326,24 @@ $("#terminal-miner-activatebtn").click(function() {
                     - provider selected--*/
 
 
-    //-- Step B - function to set range of all keys with volume reduced to reflect 'chance'---*/
+    //-- Step B - generate device and block keys 
+   
     console.log("mine block initiated");
 
     //runs function to ensure all changes to miner including performnce buffs / events are reflected
     calcTotalActiveStats();
 
     //set probability ceiling 
-    const probability = totalActiveStats.totalChance / 100; //to convert to percentage
-    const maxValue = 1000;
-    const keyRange = maxValue - (maxValue * probability); //reduces the maxValue according to the total 'chance' rating
+    const probability = totalActiveStats.totalChance; 
+    const maxValue = 100;
+    const range = maxValue - probability; //reduces the maxValue according to the total 'chance' rating
+    // puts floor on minimum value to prevent a range of 0 (i.e. if 100% probability)
+    if (range < 1) {
+        keyRange = 1
+    } else {
+        keyRange = range
+    }
+
     console.log("probability", probability);
     console.log("maxValue", maxValue);
     console.log("keyRange", keyRange);
@@ -324,7 +358,7 @@ $("#terminal-miner-activatebtn").click(function() {
     }
     console.log("allKeys:", allKeys);
 
-    //--Step C - generate blockKey which is limited to the pre-defined keyRange
+    //generate blockKey which is limited to the pre-defined keyRange
     let blockKey = 0;
     generateBlockKey(blockKey);
 
@@ -339,7 +373,7 @@ $("#terminal-miner-activatebtn").click(function() {
         return blockKey;
     };
 
-    //--Step D - generate minerKey which is limited to the pre-defined keyRange
+    //generate minerKey which is limited to the pre-defined keyRange
     let minerKey = 0;
 
 
@@ -354,7 +388,7 @@ $("#terminal-miner-activatebtn").click(function() {
         return minerKey;
     };
 
-    //--Step E - display modal and populate semi 'static' fields (semi static, meaning they do not change during the individual game round, but can display different values in other game rounds depending on user actions)
+    //display modal and populate semi 'static' fields (semi static, meaning they do not change during the individual game round, but can display different values in other game rounds depending on user actions)
 
     $('#modal-mine-block').modal('show'); // display modal
     $('#modal-block-mining-response1').text(liveGameData.rig.name);
@@ -362,7 +396,7 @@ $("#terminal-miner-activatebtn").click(function() {
     $('#modal-block-mining-response3').html(0); //Resets number of completed attempts to 0
 
 
-    //--Step F - 'run' programme (within same modal) covers time (10 second cycle less hashSpeed buffs), displays animation whilst running, returns text to indicate when cycle complete, runs match (block vs. miner keys) and animation whilst cycle in play
+    //Step C - run game cycle (covers time (10 second cycle less hashSpeed buffs), displays animation whilst running, returns text to indicate when cycle complete, runs match (block vs. miner keys) and animation whilst cycle in play
 
     //Cycle timer : length = 10secs (10,000millisecs) less % hash speed bonus
     let hashSpeed = totalActiveStats.totalHash / 100; //to convert to percentage;
@@ -448,14 +482,20 @@ $("#terminal-miner-activatebtn").click(function() {
 
     }
 
+    // outcome A - no win and repeat 
+    $("#repeat-mine-btn").click(function() {
+        gameCycle();
 
+    });
 
+    // outcome B - no win and exit
     $("#mine-block-exit-btn").click(function() {
         $('#modal-mine-block').modal('hide');
         calcResult();
 
     });
 
+    // ouctome C - win
     $('#exit-success-mine-btn').click(function() {
         $('#mine-success-img').css('display', 'none');
         $('#exit-success-mine-btn').css('display', 'none');
@@ -465,6 +505,7 @@ $("#terminal-miner-activatebtn").click(function() {
         calcResult();
     })
 
+    // deduct costs (outcome B or C) + add winnings (outcome C only)
 
     function calcResult() {
 
@@ -478,10 +519,7 @@ $("#terminal-miner-activatebtn").click(function() {
     };
 
 
-    $("#repeat-mine-btn").click(function() {
-        gameCycle();
-
-    });
+    
 
 });
 
