@@ -473,10 +473,7 @@
                         <div class="tab-pane fade" id="upgrade-os" role="tabpanel" aria-labelledby="os-tab">OS Content
                         </div>
 
-
                     </div>
-
-
 
                 </div><!-- close modal body -->
 
@@ -487,6 +484,40 @@
         </div>
     </div>
     <!-- close upgrade modal -->
+
+
+    <!--Modal : Can't Afford Purchase-->
+    <div class="modal fade" id="modal-unaffordable" data-bs-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="modal displaying message can't afford purchase" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">You Can't Afford!</h3>
+
+            </div>
+            <div class="modal-body">
+               
+                <p>
+                Sorry, but you have insufficient funds for that purchase, please choose something more affordable!
+                </p>
+
+                <p>
+                Your current balance is: £<span id="unaffordable-balance">0</span>
+                </p>
+
+            </div>
+            <!-- close modal body -->
+            <div class="modal-footer">
+                <btn id="unaffordable-exit-btn" class="btn btn-secondary">Close</btn>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- close mine block modal -->
+
+
+
+
 
     <script src="./assets/scripts/script.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js "

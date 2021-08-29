@@ -66,7 +66,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 /*--- 1.1 - Game data tables -----------------------------------------------------*/
-//note: unable to import gamelibray as a local JSON file, so retained on main js file
+
+//Full Game Library note: unable to import gamelibray as a local JSON file, so retained on main js file
 
 const gameLibrary = {
     rigs: [{
@@ -131,7 +132,7 @@ const gameLibrary = {
     },
     {
         name: "Bell Runner S",
-        cost: 1500,
+        cost: 2000,
         multiCore: "N",
         baseChance: 10,
         baseHash: 6,
@@ -141,7 +142,7 @@ const gameLibrary = {
     },
     {
         name: "Bell Runner S+",
-        cost: 1900,
+        cost: 3000,
         multiCore: "N",
         baseChance: 10,
         baseHash: 6,
@@ -151,7 +152,7 @@ const gameLibrary = {
     },
     {
         name: "Orange i-poop",
-        cost: 2500,
+        cost: 4500,
         multiCore: "N",
         baseChance: 15,
         baseHash: 8,
@@ -161,7 +162,7 @@ const gameLibrary = {
     },
     {
         name: "Dwell Expert",
-        cost: 3000,
+        cost: 6000,
         multiCore: "N",
         baseChance: 15,
         baseHash: 4,
@@ -171,7 +172,7 @@ const gameLibrary = {
     },
     {
         name: "Majic My-k",
-        cost: 3500,
+        cost: 7500,
         multiCore: "N",
         baseChance: 20,
         baseHash: 10,
@@ -181,7 +182,7 @@ const gameLibrary = {
     },
     {
         name: "Majic My-k Extreme",
-        cost: 3900,
+        cost: 10000,
         multiCore: "N",
         baseChance: 20,
         baseHash: 15,
@@ -191,7 +192,7 @@ const gameLibrary = {
     },
     {
         name: "Dwell Professional",
-        cost: 4500,
+        cost: 20000,
         multiCore: "N",
         baseChance: 25,
         baseHash: 20,
@@ -201,7 +202,7 @@ const gameLibrary = {
     },
     {
         name: "Orange i-pop",
-        cost: 5000,
+        cost: 50000,
         multiCore: "N",
         baseChance: 35,
         baseHash: 20,
@@ -211,7 +212,7 @@ const gameLibrary = {
     },
     {
         name: "Coin - Ripper",
-        cost: 7000,
+        cost: 70000,
         multiCore: "Y",
         baseChance: 50,
         baseHash: 50,
@@ -221,7 +222,7 @@ const gameLibrary = {
     },
     {
         name: "Blackbox X-Series",
-        cost: 10000,
+        cost: 100000,
         multiCore: "Y",
         baseChance: 60,
         baseHash: 50,
@@ -231,7 +232,7 @@ const gameLibrary = {
     },
     {
         name: "Terminus",
-        cost: 2000,
+        cost: 200000,
         multiCore: "Y",
         baseChance: 75,
         baseHash: 65,
@@ -444,6 +445,7 @@ const gameLibrary = {
     }
 ]};
 
+// Live Game Data - initiated with default starting data and ammended through game actions
 
 const liveGameData = {
     validationDevice: {
@@ -590,7 +592,12 @@ function calcTotalActiveStats() {
     /*--total.totalChance = base.baseChance + (base.baseChance / 100 * (proBuff.chanceBuff + coolBuff.chanceBuff + osBuff.chanceBuff + temp.chanceTemp));--*/
 
     // caps result to 100 max
-    ChanceTotal = base.baseChance + (base.baseChance / 100 * (proBuff.chanceBuff + coolBuff.chanceBuff + osBuff.chanceBuff + temp.chanceTemp));
+    
+    let ChanceTotal = base.baseChance + (base.baseChance / 100 * (proBuff.chanceBuff + coolBuff.chanceBuff + osBuff.chanceBuff + temp.chanceTemp));
+
+    console.log("ChanceTotal", ChanceTotal);
+  
+
     if (ChanceTotal > 100) {
         total.totalChance = 100
     } else {
@@ -718,53 +725,78 @@ $("#terminal-miner-upgradebtn").click(function() {
         
         /*--purchase rig --*/
         $(".purchase-button").click(function(){
-            /*--check able to afford, if unable display message--*/
 
-            /*--create array to hold values of siblings --*/
+            /*--create array to hold values of buttons indirect siblings--*/
+
             let selectedRig = [];
             selectedRig = $(this).parent().siblings();
             console.log(selectedRig[0]);
-            
+
             /*--create temp array to pull innerhtml values--*/
             let name = selectedRig[0].innerHTML;
-            let cost = selectedRig[1].innerHTML;
-            let chance = selectedRig[2].innerHTML;
-            let hash = selectedRig[3].innerHTML;
-            let power = selectedRig[4].innerHTML;
-            let condition = selectedRig[5].innerHTML;
+            let cost = parseFloat(selectedRig[1].innerHTML);
+            let chance = parseFloat(selectedRig[2].innerHTML);
+            let hash = parseFloat(selectedRig[3].innerHTML);
+            let power = parseFloat(selectedRig[4].innerHTML);
+            let condition = parseFloat(selectedRig[5].innerHTML);
             let comments = selectedRig[6].innerHTML;
+            
+            
+            /*--check able to afford, if unable display message--*/
 
-            let tempRig = [name, cost, chance, hash, power, condition, comments];
-            console.log(name);
-            console.log(tempRig);
+            // if able to afford run purchaseRig, else display message
 
-            /*--replace liveGameData with purchased rig & update page--*/
-            liveGameData.rig.name = name;
-            liveGameData.rig.cost = cost;
-            liveGameData.rig.baseChance = chance;
-            liveGameData.rig.baseHash = hash;
-            liveGameData.rig.basePower = power;
-            liveGameData.rig.baseCondition = condition;
-            liveGameData.rig.rigComments = comments;
-                        
-            $("#rig-name").text(liveGameData.rig.name);
+            let price = cost;
+            console.log("price", price);
 
-           
+            let currentBal = liveGameData.finance.bankBalance;
+            console.log("current Balance", currentBal);
+            
+            if (price > currentBal) {
+                $('#modal-unaffordable').modal('show');
+                $('#unaffordable-balance').text(currentBal);
+                console.log("can't afford");
 
-            /*--deduct costs (calculate, update liveGameData and display to page)--*/
-            newBalance = liveGameData.finance.bankBalance - cost;
-            liveGameData.finance.bankBalance = newBalance;
-            $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
-            console.log(newBalance);
+                $("#unaffordable-exit-btn").click(function() {
+                    $('#modal-unaffordable').modal('hide');
+                });
+            
+            }
 
-            /*--run Total Active Stats to update performance values and bars --*/
-            calcTotalActiveStats();
+            else {
+                purchaseRig();
+            };
 
-            /*--redirect after purchase (close modal)--*/
-            $('#modal-upgrades').modal('hide');
+            
+            function purchaseRig() {
+            
+                /*--update liveGameData with purchased rig--*/
+                liveGameData.rig.name = name;
+                liveGameData.rig.cost = cost;
+                liveGameData.rig.baseChance = chance;
+                liveGameData.rig.baseHash = hash;
+                liveGameData.rig.basePower = power;
+                liveGameData.rig.baseCondition = condition;
+                liveGameData.rig.rigComments = comments;
+                
+                /*--update rig name displayed on html. --*/
+                $("#rig-name").text(liveGameData.rig.name);
+
+                /*--deduct costs (calculate, update liveGameData and display to page)--*/
+                newBalance = liveGameData.finance.bankBalance - cost;
+                liveGameData.finance.bankBalance = newBalance;
+                $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
+                console.log(newBalance);
+
+                /*--run Total Active Stats to update performance values and bars --*/
+                calcTotalActiveStats();
+
+                /*--redirect after purchase (close modal)--*/
+                $('#modal-upgrades').modal('hide');
+            } // end of purchase rig function
         });
 
-    });  // end of upgrade rigs function
+    });  // end of upgrade rig function
 
     /*--display processors table --*/
 
