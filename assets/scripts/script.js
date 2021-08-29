@@ -454,14 +454,14 @@ const liveGameData = {
         upgradeProgress: ""
     },
     rig: {
-        name: "Terminus",
-        cost: 2000,
-        multiCore: "Y",
-        baseChance: 75,
-        baseHash: 65,
-        basePower: 5000,
-        baseCondition: 75,
-        rigComments: "The top-end performer - and needs to be to pay off the running costs!"
+        name: "Comm-Atari-ZX",
+        cost: 0,
+        multiCore: "N",
+        baseChance: 1,
+        baseHash: 1,
+        basePower: 1,
+        baseCondition: 20,
+        rigComments: "Self-built from re-purposed parts from 1980's tech - hey, it's free?!"
     },
     parts: [{
         processor: {
@@ -490,7 +490,7 @@ const liveGameData = {
         }
     }],
     finance: {
-        bankBalance: 500,
+        bankBalance: 1000,
         ewalletBalance: 0,
         fxRate: 100
     },
@@ -517,8 +517,8 @@ const liveGameData = {
 /*-- 1.2 -- Temporary Stats (the temp stats table is used to capture short-term pos / neg impacts to performace typically as a result of events) --*/
 
 const tempStats = {
-    chanceTemp: 50,      //temp increase to increase speed during testing
-    hashPowerTemp: 50,   //temp increase to increase speed during testing
+    chanceTemp: 0,      //temp increase to increase speed during testing
+    hashPowerTemp: 0,   //temp increase to increase speed during testing
     pwrUsageTemp: 0,
     conditionTemp: 0
 };
@@ -543,6 +543,7 @@ console.log("condition", liveGameData.rig.baseCondition);
 
 function newGame() {
     console.log("Stage 2: running newGame function");
+    // load default miner //
     const miner = liveGameData['rig'];
     const parts = liveGameData['parts'];
     const minerProcessor = parts[0].processor;
@@ -555,6 +556,7 @@ function newGame() {
     $("#software-name").text(minerOpSys.name);
     console.log("Stage 3: base miner loaded");
 
+    // load default energy //
     const energy = liveGameData['energy'];
     $("#provider-response").text(energy.provider);
     $("#type-response").text(energy.type);
@@ -562,6 +564,12 @@ function newGame() {
     $("#reliability-response").text(energy.reliability);
     $("#pollution-rating-response").text(energy.pollutionRating);
     $("#statement").text(energy.comments);
+
+    // load default finance - note approach to update the second [1] value to prevent overwriting the span (£) //
+    const finance = liveGameData['finance'];
+    console.log("this should be the balance", finance.bankBalance);
+    $("#bank-value").contents()[1].nodeValue = finance.bankBalance;
+    
 
     calcTotalActiveStats();
 
@@ -710,6 +718,7 @@ $("#terminal-miner-upgradebtn").click(function() {
         
         /*--purchase rig --*/
         $(".purchase-button").click(function(){
+            /*--check able to afford, if unable display message--*/
 
             /*--create array to hold values of siblings --*/
             let selectedRig = [];
@@ -729,10 +738,30 @@ $("#terminal-miner-upgradebtn").click(function() {
             console.log(name);
             console.log(tempRig);
 
-            /*--replace liveGameData with purchased rig--*/
-            
-            
+            /*--replace liveGameData with purchased rig & update page--*/
+            liveGameData.rig.name = name;
+            liveGameData.rig.cost = cost;
+            liveGameData.rig.baseChance = chance;
+            liveGameData.rig.baseHash = hash;
+            liveGameData.rig.basePower = power;
+            liveGameData.rig.baseCondition = condition;
+            liveGameData.rig.rigComments = comments;
+                        
+            $("#rig-name").text(liveGameData.rig.name);
 
+           
+
+            /*--deduct costs (calculate, update liveGameData and display to page)--*/
+            newBalance = liveGameData.finance.bankBalance - cost;
+            liveGameData.finance.bankBalance = newBalance;
+            $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
+            console.log(newBalance);
+
+            /*--run Total Active Stats to update performance values and bars --*/
+            calcTotalActiveStats();
+
+            /*--redirect after purchase (close modal)--*/
+            $('#modal-upgrades').modal('hide');
         });
 
     });  // end of upgrade rigs function
