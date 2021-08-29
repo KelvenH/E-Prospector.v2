@@ -516,6 +516,15 @@ const liveGameData = {
     }
 };
 
+
+// Purchase history - use to add purchases to avoid a repeated cost to switch to
+
+const purchasedRigs = [];
+const purchasedProcs = [];
+const purchasedCoolSys = [];
+const purchasedOpSys = [];
+
+
 /*-- 1.2 -- Temporary Stats (the temp stats table is used to capture short-term pos / neg impacts to performace typically as a result of events) --*/
 
 const tempStats = {
@@ -724,9 +733,9 @@ $("#terminal-miner-upgradebtn").click(function() {
         document.getElementById('rigs-table').innerHTML = rigHtml; 
         
         /*--purchase rig --*/
-        $(".purchase-button").click(function(){
+        $(".purchase-button").click(function() {
 
-            /*--create array to hold values of buttons indirect siblings--*/
+            /*--create array to hold values associated to button's indirect siblings--*/
 
             let selectedRig = [];
             selectedRig = $(this).parent().siblings();
@@ -744,7 +753,7 @@ $("#terminal-miner-upgradebtn").click(function() {
             
             /*--check able to afford, if unable display message--*/
 
-            // if able to afford run purchaseRig, else display message
+            // if able to afford run purchaseRig, else display message with current balance
 
             let price = cost;
             console.log("price", price);
@@ -767,10 +776,11 @@ $("#terminal-miner-upgradebtn").click(function() {
                 purchaseRig();
             };
 
-            
+            /*--function to purchase rig---*/
+
             function purchaseRig() {
             
-                /*--update liveGameData with purchased rig--*/
+                /*--update liveGameData with purchased rig details--*/
                 liveGameData.rig.name = name;
                 liveGameData.rig.cost = cost;
                 liveGameData.rig.baseChance = chance;
@@ -781,6 +791,11 @@ $("#terminal-miner-upgradebtn").click(function() {
                 
                 /*--update rig name displayed on html. --*/
                 $("#rig-name").text(liveGameData.rig.name);
+
+                /*--add rig to list of purchased rigs --*/
+                console.log("purchased rigs", purchasedRigs);
+                purchasedRigs.push(name);
+                console.log("purchased rigs", purchasedRigs);
 
                 /*--deduct costs (calculate, update liveGameData and display to page)--*/
                 newBalance = liveGameData.finance.bankBalance - cost;
@@ -794,9 +809,10 @@ $("#terminal-miner-upgradebtn").click(function() {
                 /*--redirect after purchase (close modal)--*/
                 $('#modal-upgrades').modal('hide');
             } // end of purchase rig function
-        });
 
-    });  // end of upgrade rig function
+        }); // end of functions within purchase rig button
+
+    });  // end of rig upgrades function
 
     /*--display processors table --*/
 
