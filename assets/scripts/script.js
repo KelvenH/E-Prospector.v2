@@ -731,7 +731,12 @@ $("#terminal-miner-upgradebtn").click(function() {
             `;
 
         document.getElementById('rigs-table').innerHTML = rigHtml; 
+
+        /*--check if rig already purchased, if yes remove button and replace with text --*/
         
+        
+
+
         /*--purchase rig --*/
         $(".purchase-button").click(function() {
 
