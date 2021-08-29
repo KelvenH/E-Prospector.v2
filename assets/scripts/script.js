@@ -689,25 +689,53 @@ $("#terminal-miner-upgradebtn").click(function() {
         for (rig of rigs) {
             let rowHtml = `
                     <tr class="rig-row">
-                        <td>${rig.name}</td>
-                        <td>${rig.cost}</td>
-                        <td>${rig.baseChance}</td>
-                        <td>${rig.baseHash}</td>
-                        <td>${rig.basePower}</td>
-                        <td>${rig.baseCondition}</td>
-                        <td>${rig.rigComments}</td>
-                        <td><button class="purchase-upgrade">Buy</button></td>
+                        <td class="upgrade-rig-name">${rig.name}</td>
+                        <td class="upgrade-rig-cost">${rig.cost}</td>
+                        <td class="upgrade-rig-chance">${rig.baseChance}</td>
+                        <td class="upgrade-rig-hash">${rig.baseHash}</td>
+                        <td class="upgrade-rig-power">${rig.basePower}</td>
+                        <td class="upgrade-rig-condition">${rig.baseCondition}</td>
+                        <td class="upgrade-rig-comments">${rig.rigComments}</td>
+                        <td><button class="purchase-button">Buy</button></td>
                     </tr>
                     `;
             rigHtml += rowHtml;
-        }
-        rigHtml += `
-                </tbody>
-            </table>
-        `;
+            }
+            rigHtml += `
+                    </tbody>
+                </table>
+            `;
 
         document.getElementById('rigs-table').innerHTML = rigHtml; 
-    });
+        
+        /*--purchase rig --*/
+        $(".purchase-button").click(function(){
+
+            /*--create array to hold values of siblings --*/
+            let selectedRig = [];
+            selectedRig = $(this).parent().siblings();
+            console.log(selectedRig[0]);
+            
+            /*--create temp array to pull innerhtml values--*/
+            let name = selectedRig[0].innerHTML;
+            let cost = selectedRig[1].innerHTML;
+            let chance = selectedRig[2].innerHTML;
+            let hash = selectedRig[3].innerHTML;
+            let power = selectedRig[4].innerHTML;
+            let condition = selectedRig[5].innerHTML;
+            let comments = selectedRig[6].innerHTML;
+
+            let tempRig = [name, cost, chance, hash, power, condition, comments];
+            console.log(name);
+            console.log(tempRig);
+
+            /*--replace liveGameData with purchased rig--*/
+            
+            
+
+        });
+
+    });  // end of upgrade rigs function
 
     /*--display processors table --*/
 
@@ -718,11 +746,15 @@ $("#terminal-miner-upgradebtn").click(function() {
     /*--display op sys table --*/
 
 
+    /*--buttons to exit upgrades --*/
 
     $("#upgrade-exit-btn").click(function() {
         $('#modal-upgrades').modal('hide');
     });
-});
+
+}); //end of upgrade parts function
+
+
 
 /*--- 3. Repair Parts -----------------------------------------------------*/
 
