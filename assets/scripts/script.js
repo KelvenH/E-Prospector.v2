@@ -664,47 +664,50 @@ $("#terminal-miner-upgradebtn").click(function() {
     $('#modal-upgrades').modal('show');
     
     /*--display rigs table --*/
-    
-    let rigs = gameLibrary['rigs'];
-    console.log("rigs", rigs);
+    $("#upgrade-rigs-tab").click(function() {
 
-    let rigHtml = `
-        <table class="table table-striped table-hover table-bordered">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Cost</th>
-                        <th>Chance</th>
-                        <th>Speed</th>
-                        <th>Power</th>
-                        <th>Condition</th>
-                        <th>Notes</th>
+        let rigs = gameLibrary['rigs'];
+        console.log("rigs", rigs);
+
+        let rigHtml = `
+            <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Cost</th>
+                            <th>Chance</th>
+                            <th>Speed</th>
+                            <th>Power</th>
+                            <th>Condition</th>
+                            <th>Notes</th>
+                            <th>Purchase</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+        
+        for (rig of rigs) {
+            let rowHtml = `
+                    <tr class="rig-row">
+                        <td>${rig.name}</td>
+                        <td>${rig.cost}</td>
+                        <td>${rig.baseChance}</td>
+                        <td>${rig.baseHash}</td>
+                        <td>${rig.basePower}</td>
+                        <td>${rig.baseCondition}</td>
+                        <td>${rig.rigComments}</td>
+                        <td><button class="purchase-upgrade">Buy</button></td>
                     </tr>
-                </thead>
-                <tbody>
+                    `;
+            rigHtml += rowHtml;
+        }
+        rigHtml += `
+                </tbody>
+            </table>
         `;
-       
-    for (rig of rigs) {
-        let rowHtml = `
-                <tr class="rig-row">
-                    <td>${rig.name}</td>
-                    <td>${rig.cost}</td>
-                    <td>${rig.baseChance}</td>
-                    <td>${rig.baseHash}</td>
-                    <td>${rig.basePower}</td>
-                    <td>${rig.baseCondition}</td>
-                    <td>${rig.rigComments}</td>
-                </tr>
-                `;
-        rigHtml += rowHtml;
-    }
-    rigHtml += `
-            </tbody>
-        </table>
-    `;
 
-    document.getElementById('rigs-table').innerHTML = rigHtml; 
-       
+        document.getElementById('rigs-table').innerHTML = rigHtml; 
+    });
 
     /*--display processors table --*/
 
