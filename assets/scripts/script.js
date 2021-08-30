@@ -343,7 +343,7 @@ const gameLibrary = {
                 name: "Fan-Fare Typhoon Heatsink and CPU Fan",
                 cost: 20000,
                 chanceBuff: 0,
-                "hashPowerBufff": 0,
+                hashPowerBuff: 0,
                 powerBuff: 0,
                 conditionBuff: 50
             },
@@ -682,7 +682,7 @@ function refreshPerformanceBars() {
 
 
 
-/*--- 2. Upgrade Parts -----------------------------------------------------*/
+/*--- 2. Upgrades  -----------------------------------------------------*/
 
 $("#terminal-miner-upgradebtn").click(function() {
     $('#modal-upgrades').modal('show');
@@ -734,7 +734,7 @@ $("#terminal-miner-upgradebtn").click(function() {
 
         /*--check if rig already purchased, if yes remove button and replace with text --*/
         
-        
+        // feature outstanding
 
 
         /*--purchase rig --*/
@@ -819,11 +819,100 @@ $("#terminal-miner-upgradebtn").click(function() {
 
     });  // end of rig upgrades function
 
+    
     /*--display processors table --*/
+
+    $("#upgrade-processors-tab").click(function() {
+        
+        let processors = gameLibrary.parts[0].processor;
+        console.log("processors", processors);
+
+        let procHtml = `
+            <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Cost</th>
+                            <th>Chance Buff</th>
+                            <th>Speed Buff</th>
+                            <th>Power Buff</th>
+                            <th>Condition Buff</th>
+                            <th>Purchase</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+        
+        for (proc of processors) {
+            let rowHtml = `
+                    <tr class="proc-row">
+                        <td class="upgrade-proc-name">${proc.name}</td>
+                        <td class="upgrade-proc-cost">${proc.cost}</td>
+                        <td class="upgrade-proc-chance">${proc.chanceBuff}</td>
+                        <td class="upgrade-proc-hash">${proc.hashPowerBuff}</td>
+                        <td class="upgrade-proc-power">${proc.powerBuff}</td>
+                        <td class="upgrade-proc-condition">${proc.conditionBuff}</td>
+                        <td><button class="purchase-button">Buy</button></td>
+                    </tr>
+                    `;
+            procHtml += rowHtml;
+            }
+            procHtml += `
+                    </tbody>
+                </table>
+            `;
+
+        document.getElementById('processors-table').innerHTML = procHtml; 
+
+    });
+
+
 
 
     /*--display cooling sys table --*/
+    $("#upgrade-cooling-tab").click(function() {
+        
+        let cooling = gameLibrary.parts[0].coolingSystem;
+        console.log("cooling", cooling);
 
+        let coolHtml = `
+            <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Cost</th>
+                            <th>Chance Buff</th>
+                            <th>Speed Buff</th>
+                            <th>Power Buff</th>
+                            <th>Condition Buff</th>
+                            <th>Purchase</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+        
+        for (cool of cooling) {
+            let rowHtml = `
+                    <tr class="cool-row">
+                        <td class="upgrade-cool-name">${cool.name}</td>
+                        <td class="upgrade-cool-cost">${cool.cost}</td>
+                        <td class="upgrade-cool-chance">${cool.chanceBuff}</td>
+                        <td class="upgrade-cool-hash">${cool.hashPowerBuff}</td>
+                        <td class="upgrade-cool-power">${cool.powerBuff}</td>
+                        <td class="upgrade-cool-condition">${cool.conditionBuff}</td>
+                        <td><button class="purchase-button">Buy</button></td>
+                    </tr>
+                    `;
+            coolHtml += rowHtml;
+            }
+            coolHtml += `
+                    </tbody>
+                </table>
+            `;
+
+        document.getElementById('cooling-table').innerHTML = coolHtml; 
+
+    });
 
     /*--display op sys table --*/
 

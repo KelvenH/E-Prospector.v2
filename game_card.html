@@ -209,8 +209,7 @@
                                             <span id="exchange-value-sub">(per coin)</span>
                                         </div>
                                     </div>
-                                    <button id="exchange-btn" class="btn exchange-btn btn-outline-warning">Exchange
-                                        Now</button>
+                                    <button id="exchange-btn" class="btn exchange-btn btn-outline-warning">Exchange Now</button>
                                 </div>
                                 <!--close finances grid-->
                             </div>
@@ -429,19 +428,19 @@
                         </li>
 
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="processors-tab" data-bs-toggle="tab"
+                            <button class="nav-link" id="upgrade-processors-tab" data-bs-toggle="tab"
                                 data-bs-target="#upgrade-processors" type="button" role="tab" aria-controls="processors"
                                 aria-selected="false">Processors</button>
                         </li>
 
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="cooling-tab" data-bs-toggle="tab"
+                            <button class="nav-link" id="upgrade-cooling-tab" data-bs-toggle="tab"
                                 data-bs-target="#upgrade-cooling" type="button" role="tab" aria-controls="cooling"
                                 aria-selected="false">Cooling Sys.</button>
                         </li>
 
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="cooling-tab" data-bs-toggle="tab" data-bs-target="#upgrade-os"
+                            <button class="nav-link" id="upgrade-os-tab" data-bs-toggle="tab" data-bs-target="#upgrade-os"
                                 type="button" role="tab" aria-controls="os" aria-selected="false">Operating
                                 Sys.</button>
                         </li>
@@ -463,14 +462,25 @@
 
                         <!--Processors-->
                         <div class="tab-pane fade" id="upgrade-processors" role="tabpanel"
-                            aria-labelledby="processors-tab">Processors Content</div>
+                            aria-labelledby="processors-tab">
+                            <div id="processors-table">
+
+                            </div>
+                        </div>
 
                         <!--Cooling-->
                         <div class="tab-pane fade" id="upgrade-cooling" role="tabpanel" aria-labelledby="cooling-tab">
-                            Cooling Content</div>
+                            <div id="cooling-table">
+
+                            </div>
+                        
+                        </div>
 
                         <!--OS-->
-                        <div class="tab-pane fade" id="upgrade-os" role="tabpanel" aria-labelledby="os-tab">OS Content
+                        <div class="tab-pane fade" id="upgrade-os" role="tabpanel" aria-labelledby="os-tab">
+                            <div id="os-table">
+
+                            </div>
                         </div>
 
                     </div>
