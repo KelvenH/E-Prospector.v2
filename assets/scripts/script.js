@@ -18,13 +18,22 @@
     3.2 - Calculate and display performance stats
     3.3 - Refresh Performance Bars
 
-4. Upgrades;
-    4.1 - Display Upgrade Modal
-    4.2 - Upgrade Rig*
-    4.3 - Upgrade Processor*
-    4.4 - Upgrade Cooling System*
-    4.5 - Upgrade Operating System*
-    4.6 - Exit Upgrade Modal
+4. In Game checks;
+    4.1 - Finances;
+        - Game Over (no funds or coins)
+        - No Funds but have Coins (need to exchange)
+    4.2 - Rig Status Unavailable
+    4.3 - 
+    4.4 - 
+    4.5 - 
+
+5. Upgrades;
+    5.1 - Display Upgrade Modal
+    5.2 - Upgrade Rig*
+    5.3 - Upgrade Processor*
+    5.4 - Upgrade Cooling System*
+    5.5 - Upgrade Operating System*
+    5.6 - Exit Upgrade Modal
     * sub-sections to;
         A - Populate modal table
         B - Check if item already purchased (FEATURE OUTSTANDING)
@@ -37,27 +46,27 @@
             - pass costs (deduct bank balance in liveGameData & html) 
             - refresh stats (incl performance bars) to reflect purchase
 
-5. Repairs 
+6. Repairs 
 
-6. Energy
+7. Energy
 
-7. Events 
+8. Events 
 
-8. Crypto-Coin Exchange
+9. Crypto-Coin Exchange
 
-9. Validate Block
+10. Validate Block
 
-10. Mine Block;
-    10.1 - Pre-game checks
-    10.2 - Generate Device and Block Keys
-    10.3 - Display Modal and Populate Semi-Static Fields
-    10.4 - Run Game Cycle
-    10.5 - Check Result
-    10.6 - Calulcate Result & Update liveGameData and HTML Values
+11. Mine Block;
+    11.1 - Pre-game checks
+    11.2 - Generate Device and Block Keys
+    11.3 - Display Modal and Populate Semi-Static Fields
+    11.4 - Run Game Cycle
+    11.5 - Check Result
+    11.6 - Calulcate Result & Update liveGameData and HTML Values
 
-11. Game Stats and Achivements
+12. Game Stats and Achivements
 
-12. Further Styling / Format Related
+13. Further Styling / Format Related
 
 
 --------------------------------------------------------------------------------*/
@@ -474,7 +483,8 @@ const liveGameData = {
         baseHash: 1,
         basePower: 1,
         baseCondition: 20,
-        rigComments: "Self-built from re-purposed parts from 1980's tech - hey, it's free?!"
+        rigComments: "Self-built from re-purposed parts from 1980's tech - hey, it's free?!",
+        status: "Available"
     },
     parts: [{
         processor: {
@@ -710,6 +720,62 @@ function refreshPerformanceBars() {
     }
 };
 
+/*-- 4. In Game Checks  (function called prior to running game cycle and after)--*/
+
+function inGameChecks() {
+    // 4.1 :  Finance checks 
+        
+    // Game Over
+    if ((liveGameData.finance.bankBalance < 1) && (liveGameData.finance.ewalletBalance < 1)) {
+        $('#modal-gameover').modal('show');
+        console.log("game over");
+
+        $("#game-over-btn").unbind('click').click(function() {
+            location.reload();
+        });
+        return; //prevent function from progressing with gamecycle
+
+    // No funds but has crypto-coin to exchange
+    } else if ((liveGameData.finance.bankBalance < 1) && (liveGameData.finance.ewalletBalance > 0)) {
+        $('#modal-no-funds').modal('show');
+        console.log("no funds over");
+
+        $("#no-funds-btn").unbind('click').click(function() {
+            $('#modal-no-funds').modal('hide');
+        });
+        return; //prevent function from progressing with gamecycle
+    };
+
+    // 4.2 : Miner Status
+ 
+    if (liveGameData.rig.status == "Available" ) {
+
+        $("#terminal-miner-status-available").css("display", "block");
+        $("#terminal-miner-activatebtn").css("display", "block");
+        $("#terminal-miner-status-unavailable").css("display", "none");
+        $("#terminal-miner-repairbtn").css("display", "none");
+
+    } else if (liveGameData.rig.status == "Unavailable" ) {
+
+        $("#terminal-miner-status-available").css("display", "none");
+        $("#terminal-miner-activatebtn").css("display", "none");
+        $("#terminal-miner-status-unavailable").css("display", "block");
+        $("#terminal-miner-repairbtn").css("display", "block");
+
+        $('#modal-unavailable').modal('show');
+        console.log("rig unavailable");
+
+        $("#unavailable-btn").unbind('click').click(function() {
+            $('#modal-unavailable').modal('hide');
+        });
+        return; //prevent function from progressing with gamecycle
+    };
+
+    // Energy
+                    
+
+
+} // end game checks
 
 
 /*-- 4. Upgrades  -----------------------------------------------------*/
@@ -1276,38 +1342,9 @@ $("#terminal-miner-upgradebtn").click(function() {
 
 $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
-// 10.1 : Pre-Game Checks (i.e. finances, miner status, etc)    
+// 10.1 : Pre-Game Checks    
 
-    
-    // Finance check - balance not negative 
-    console.log("bank check", liveGameData.finance.bankBalance);
-    console.log("coin check", liveGameData.finance.ewalletBalance);
-
-    if ((liveGameData.finance.bankBalance < 1) && (liveGameData.finance.ewalletBalance < 1)) {
-        $('#modal-gameover').modal('show');
-        console.log("game over");
-
-        $("#game-over-btn").unbind('click').click(function() {
-            location.reload();
-        });
-        return; //prevent function from progressing with gamecycle
-
-    } else if ((liveGameData.finance.bankBalance < 1) && (liveGameData.finance.ewalletBalance > 0)) {
-        $('#modal-no-funds').modal('show');
-        console.log("no funds over");
-
-        $("#no-funds-btn").unbind('click').click(function() {
-            $('#modal-no-funds').modal('hide');
-        });
-        return; //prevent function from progressing with gamecycle
-    }
-
-    // Miner Status
- 
-
-    // Energy
-                    
-
+    inGameChecks();
 
     // 10.2 : Generate Device and Block Keys 
    
@@ -1516,6 +1553,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
  
          } else {
              console.log("no wins to add");
+             inGameChecks();
          }
          console.log("calcResult complete");
      }      
