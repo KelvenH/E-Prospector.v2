@@ -503,7 +503,7 @@ const liveGameData = {
         }
     }],
     finance: {
-        bankBalance: 100000,     //temp buff for development - reduce to £1k for gameplay
+        bankBalance: 0,     //temp buff for development - reduce to £1k for gameplay
         ewalletBalance: 0,
         fxRate: 100
     },
@@ -1278,19 +1278,26 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
 // 10.1 : Pre-Game Checks (i.e. finances, miner status, etc)    
 
-    /*-- OUTSTANDING!!! - Consider adding checks which must pass prior to being able to run game//
+    
+    // Finance check - balance not negative 
+    console.log("bank check", liveGameData.finance.bankBalance);
+    console.log("coin check", liveGameData.finance.ewalletBalance);
 
-    /*-- list of items to check;
+    if ((liveGameData.finance.bankBalance < 1) && (liveGameData.finance.ewalletBalance < 1)) {
+        $('#modal-gameover').modal('show');
+        console.log("game over");
 
-                    Finances
-                    - balance not negative (must be able to afford electricity costs. Redirect to block validation and / or exchange crypto-coin)
+        $("#game-over-btn").unbind('click').click(function() {
+            location.reload();
+        });
+        return; //prevent function from progressing with gamecycle
+    }
 
-                    Miner
-                    - status not Paused (event-in play) /  Disabled (repair needed or due to event)
-                    - miner selected 
+    // Miner Status
+ 
 
-                    Energy
-                    - provider selected--*/
+    // Energy
+                    
 
 
     // 10.2 : Generate Device and Block Keys 
@@ -1478,7 +1485,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
          console.log("update stats here");
 
          /*-- condition deteriorates by 1 per completed cycle via decrement--*/
-         -- liveGameData.rig.baseCondition;
+         --liveGameData.rig.baseCondition;
 
          calcTotalActiveStats(); // run to refresh GameCard incl performnce bars
 

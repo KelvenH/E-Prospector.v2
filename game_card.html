@@ -343,7 +343,7 @@
     <!--Modal : Mining Block-->
 
     <div class="modal fade" id="modal-mine-block" data-bs-backdrop="static" tabindex="-1" role="dialog"
-        aria-labelledby="modal displaying block mining activity" aria-hidden="true">
+        aria-labelledby="modal displaying block mining activity" aria-hidden="false">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -403,7 +403,7 @@
     <!--Modal : Upgrades-->
 
     <div class="modal fade" id="modal-upgrades" data-bs-backdrop="static" tabindex="-1" role="dialog"
-        aria-labelledby="modal to purchase upgrades" aria-hidden="true">
+        aria-labelledby="modal to purchase upgrades" aria-hidden="false">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen" role="document">
             <div class="modal-content">
 
@@ -496,33 +496,57 @@
 
     <!--Modal : Can't Afford Purchase-->
     <div class="modal fade" id="modal-unaffordable" data-bs-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="modal displaying message can't afford purchase" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">You Can't Afford!</h3>
+    aria-labelledby="modal displaying message can't afford purchase" aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">You Can't Afford!</h3>
 
-            </div>
-            <div class="modal-body">
-               
-                <p>
-                Sorry, but you have insufficient funds for that purchase, please choose something more affordable!
-                </p>
+                </div>
+                <div class="modal-body">
+                
+                    <p>
+                    Sorry, but you have insufficient funds for that purchase, please choose something more affordable!
+                    </p>
 
-                <p>
-                Your current balance is: £<span id="unaffordable-balance">0</span>
-                </p>
+                    <p>
+                    Your current balance is: £<span id="unaffordable-balance">0</span>
+                    </p>
 
-            </div>
-            <!-- close modal body -->
-            <div class="modal-footer">
-                <btn id="unaffordable-exit-btn" class="btn btn-secondary">Close</btn>
+                </div><!-- close modal body -->
+                
+                <div class="modal-footer">
+                    <btn id="unaffordable-exit-btn" class="btn btn-secondary">Close</btn>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<!-- close mine block modal -->
+    </div> <!-- close can't afford modal-->
+    
 
+    <!--Modal : Game Over-->
+    <div class="modal fade" id="modal-gameover" data-bs-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="modal displaying message game over" aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Game Over!!</h3>
+
+                </div>
+                <div class="modal-body">
+                
+                    <p>
+                    Unfortunately there's no such thing as a loan here and you're out of funds!
+                    </p>
+
+                    <btn id="game-over-btn" class="btn btn-danger">Try Again!</btn>
+
+                </div> <!-- close modal body -->
+                <div class="modal-footer">
+                    
+                </div>
+            </div>
+        </div>
+    </div> <!-- close game over modal-->
 
 
 
