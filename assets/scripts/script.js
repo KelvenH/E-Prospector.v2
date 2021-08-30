@@ -23,7 +23,7 @@
         - Game Over (no funds or coins)
         - No Funds but have Coins (need to exchange)
     4.2 - Rig Status Unavailable
-    4.3 - 
+    4.3 - Energy
     4.4 - 
     4.5 - 
 
@@ -771,21 +771,21 @@ function inGameChecks() {
         return; //prevent function from progressing with gamecycle
     };
 
-    // Energy
+    // 4.3 Energy
                     
 
 
 } // end game checks
 
 
-/*-- 4. Upgrades  -----------------------------------------------------*/
+/*-- 5. Upgrades  -----------------------------------------------------*/
 
-// 4.1 : Display Upgrade Modal
+// 5.1 : Display Upgrade Modal
 
 $("#terminal-miner-upgradebtn").click(function() {
     $('#modal-upgrades').modal('show');
     
-    // 4.2 : Upgrade Rig 
+    // 5.2 : Upgrade Rig 
 
     // A: Display Table
     $("#upgrade-rigs-tab").click(function() {
@@ -918,7 +918,7 @@ $("#terminal-miner-upgradebtn").click(function() {
     });  // end of rig upgrades function
 
     
-    // 4.3 : Upgrade Processor
+    // 5.3 : Upgrade Processor
 
     // A: Display Table
     $("#upgrade-processors-tab").click(function() {
@@ -1050,7 +1050,7 @@ $("#terminal-miner-upgradebtn").click(function() {
     }); // end of processor upgrades function
 
 
-    // 4.4 : Upgrade Cooling System
+    // 5.4 : Upgrade Cooling System
 
     // A: Display Table
     $("#upgrade-cooling-tab").click(function() {
@@ -1182,7 +1182,7 @@ $("#terminal-miner-upgradebtn").click(function() {
     }); // end of cooling system upgrades function
 
 
-    // 4.5 Upgrade Operating System
+    // 5.5 Upgrade Operating System
 
     // A: Display Table
     $("#upgrade-os-tab").click(function() {
@@ -1315,7 +1315,7 @@ $("#terminal-miner-upgradebtn").click(function() {
     }); // end of opSys upgrades function
 
 
-    // 4.6 : Exit Upgrade Modal
+    // 5.6 : Exit Upgrade Modal
 
     $("#upgrade-exit-btn").click(function() {
         $('#modal-upgrades').modal('hide');
@@ -1325,28 +1325,28 @@ $("#terminal-miner-upgradebtn").click(function() {
 
 
 
-/*-- 5. Repairs  -----------------------------------------------------------*/
+/*-- 6. Repairs  -----------------------------------------------------------*/
 
-/*-- 6. Energy -------------------------------------------------------------*/
+/*-- 7. Energy -------------------------------------------------------------*/
 
-/*-- 7. Events -------------------------------------------------------------*/
+/*-- 8. Events -------------------------------------------------------------*/
 
-/*-- 8. Crypto-Coin Exchange -----------------------------------------------*/
+/*-- 9. Crypto-Coin Exchange -----------------------------------------------*/
 
-/*-- 9. Validate Block -----------------------------------------------------*/
+/*-- 10. Validate Block -----------------------------------------------------*/
 
-/*-- 10. Mine Block -------------------------------------------------------*/
+/*-- 11. Mine Block -------------------------------------------------------*/
 
         
 //called from 'on-click' added inline to miner play button (html)
 
 $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
-// 10.1 : Pre-Game Checks    
+// 11.1 : Pre-Game Checks    
 
     inGameChecks();
 
-    // 10.2 : Generate Device and Block Keys 
+    // 11.2 : Generate Device and Block Keys 
    
     console.log("mine block initiated");
 
@@ -1407,7 +1407,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         return minerKey;
     }
 
-    // 10.3 : Display modal and populate semi 'static' fields (semi static, meaning they do not change during the individual game round, but can display different values in other game rounds depending on user actions)
+    // 11.3 : Display modal and populate semi 'static' fields (semi static, meaning they do not change during the individual game round, but can display different values in other game rounds depending on user actions)
 
     $('#modal-mine-block').modal('show'); // display modal
     $('#modal-block-mining-response1').text(liveGameData.rig.name);
@@ -1416,7 +1416,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
 
 
-    // 10.4: Run Game Cycle (time is 10 second cycle less hashSpeed buffs, displays animation whilst running, returns text to indicate when cycle complete and runs match (block vs. miner keys)
+    // 11.4: Run Game Cycle (time is 10 second cycle less hashSpeed buffs, displays animation whilst running, returns text to indicate when cycle complete and runs match (block vs. miner keys)
 
     //Cycle timer : length = 10secs (10,000millisecs) less % hash speed bonus
     let hashSpeed = totalActiveStats.totalHash / 100; //to convert to percentage;
@@ -1463,7 +1463,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         }, 1000);
     }
 
-    //10.5 : Check Result (determines if success / fail messages, buttons and redirects to display)
+    //11.5 : Check Result (determines if success / fail messages, buttons and redirects to display)
 
     let outcome = "";
     
@@ -1520,13 +1520,26 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         calcResult();
     });
 
-    // 10.6 : Calculate Result (1 - costs / power useage, 2 - update stats. 3 - update winnings)
+    // 11.6 : Calculate Result (1 - costs / power useage, 2 - update stats. 3 - update winnings)
 
     function calcResult() {
 
          // Part 1 - calc and deduct power usage
-         console.log("deduct power costs here");
-        
+        console.log("deduct power costs here");
+        console.log("power usage", totalActiveStats.totalPower);
+        console.log("power cost", liveGameData.energy.usageCostPerKw);
+        console.log("count", count);
+        let powerUsage = totalActiveStats.totalPower;
+        let perUnit = liveGameData.energy.usageCostPerKw;
+        let unitsUsed = count;
+        let totalPowerUsage = powerUsage * unitsUsed;
+        let totalPowerCost = totalPowerUsage * perUnit;
+        console.log("total power Cost", totalPowerCost);
+        let postPowerCosts = liveGameData.finance.bankBalance - totalPowerCost;
+        console.log("postPowerCosts", postPowerCosts);
+        liveGameData.finance.bankBalance = postPowerCosts;
+        $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
+
          // Part 2 - update stats (incl. condition deterioration)
          console.log("update stats here");
 
@@ -1562,6 +1575,6 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
 
 
-/*-- 11. Game Stats and Achivements -----------------------------------------------------*/
+/*-- 12. Game Stats and Achivements -----------------------------------------------------*/
 
-/*-- 12. Further Styling / Format Related -----------------------------------------------------*/
+/*-- 13. Further Styling / Format Related -----------------------------------------------------*/
