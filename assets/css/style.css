@@ -52,27 +52,27 @@
 
 h1 {
     /*--font-size: clamp(5rem);---*/
-    color: var(--ink6-LED2)
+    color: var(--ink6-LED2);
 }
 
 h2 {
     /*--font-size: clamp(3rem, 32px);---*/
-    color: var(--ink6-LED2)
+    color: var(--ink9);
 }
 
 h3 {
     /*--font-size: clamp(2.5rem, 28px);---*/
-    color: var(--ink6-LED2)
+    color: var(--ink6-LED2);
 }
 
 h4 {
     /*--font-size: 1.5vw;---*/
-    color: var(--iink6-LED2)
+    color: var(--iink6-LED2);
 }
 
 h5 {
     /*--font-size: 1.25vw;---*/
-    color: var(--iink6-LED2)
+    color: var(--iink6-LED2);
 }
 
 div,
@@ -498,6 +498,7 @@ li>span {
     font-size: 2rem;
     width: 2vw;
     display: inline;
+    color:var(--ink9);
 }
 
 #terminal-title {
@@ -784,6 +785,7 @@ input[type="radio"]:checked+label {
     font-size: 2rem;
     width: 2vw;
     display: inline;
+    color:var(--ink9);
 }
 
 #message-title {
@@ -853,6 +855,7 @@ input[type="radio"]:checked+label {
     font-size: 2rem;
     width: 2vw;
     display: inline;
+    color:var(--ink9);
 }
 
 #finance-title {
@@ -990,6 +993,7 @@ input[type="radio"]:checked+label {
     font-size: 2rem;
     width: 2vw;
     display: inline;
+    color:var(--ink9);
 }
 
 #achievements-title {
@@ -1201,6 +1205,7 @@ input[type="radio"]:checked+label {
     font-size: 2rem;
     width: 2vw;
     display: inline;
+    color:var(--ink9);
 }
 
 #energy-title {
