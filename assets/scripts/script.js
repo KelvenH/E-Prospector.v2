@@ -1487,22 +1487,16 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
  
          if (outcome == "win") {
  
-             // add coin to ewallet balance
-             let currentCoinBalance = parseInt(document.getElementById('ewallet-value').innerHTML);
-             console.log("current coin balance", currentCoinBalance);
-             let newCoin = 1;
-             console.log("new coin", newCoin);
-             let newCoinBalance = currentCoinBalance + newCoin;
-             console.log("newCoinBalance", newCoinBalance);
+             // add coin to ewallet balance via increment
+             let newCoinBalance = ++ liveGameData.finance.ewalletBalance;
              $('#ewallet-value').text(newCoinBalance);
-             
+             console.log(liveGameData.finance.ewalletBalance);
              
              // adds 1 to stats 'blocks mined'           
              let newBlockMined = document.getElementById('stats-2-txt').innerHTML;
              ++newBlockMined;
              $('#stats-2-txt').html(newBlockMined);
              console.log("newBlockMined", newBlockMined);
-            
  
          } else {
              console.log("no wins to add");
