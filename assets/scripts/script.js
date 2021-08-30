@@ -503,7 +503,7 @@ const liveGameData = {
         }
     }],
     finance: {
-        bankBalance: 0,     //temp buff for development - reduce to £1k for gameplay
+        bankBalance: 10000,     //temp buff for development - reduce to £1k for gameplay
         ewalletBalance: 0,
         fxRate: 100
     },
@@ -1289,6 +1289,15 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
         $("#game-over-btn").unbind('click').click(function() {
             location.reload();
+        });
+        return; //prevent function from progressing with gamecycle
+
+    } else if ((liveGameData.finance.bankBalance < 1) && (liveGameData.finance.ewalletBalance > 0)) {
+        $('#modal-no-funds').modal('show');
+        console.log("no funds over");
+
+        $("#no-funds-btn").unbind('click').click(function() {
+            $('#modal-no-funds').modal('hide');
         });
         return; //prevent function from progressing with gamecycle
     }
