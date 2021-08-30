@@ -2,61 +2,72 @@
 
 /*--- Key Steps & Sequencing -----------------------------------------------------/
 
-0.1 - Global variables initiated
+1. Utilities;
+    1.1 - DOMContentLoaded
 
-1. Load New Game Data - miner table loads with default starter device and balance 
+2. Game Data Tables;
+    2.1 - Full Game Library
+    2.2 - Live Game Data (loads with default values and updated through gameplay actions)
+    2.3 - *Purchase History
+    2.4 - *Temporary Stats
+    2.5 - *Total Active Stats
+    * initiated as empty arrays so available at Global level. Entries are passed through gemplay actions.
 
-2. Upgrade Parts;
-        a - populate upgrade shop (event = player opening modal)
-        b - action player purchase (event = player clicks 'purchase' button);
-            i - device status changed (mainDataLibrary) indicating miner now available for selection
-            ii - transaction processed (player live balance reduced)
-            iii - liveGameData updated to 'append' purchased device (user able to select from drop-down of available devices) 
-        c - (not in baseline version) player able to purchase additional 'terminal' i.e. run multiple devices
+3. Update Game Card;
+    3.1 - Load & display default text values
+    3.2 - Calculate and display performance stats
+    3.3 - Refresh Performance Bars
 
-3. Repair Parts
+4. Upgrades;
+    4.1 - Display Upgrade Modal
+    4.2 - Upgrade Rig*
+    4.3 - Upgrade Processor*
+    4.4 - Upgrade Cooling System*
+    4.5 - Upgrade Operating System*
+    4.6 - Exit Upgrade Modal
+    * sub-sections to;
+        A - Populate modal table
+        B - Check if item already purchased (FEATURE OUTSTANDING)
+        C -  Purchase Item;
+            - create temp array to hold html values of selected item
+            - check if able to afford and display modal with balance if unaffordable
+            - update liveGameData with purchase
+            - update html text
+            - add item to Purchase History
+            - pass costs (deduct bank balance in liveGameData & html) 
+            - refresh stats (incl performance bars) to reflect purchase
 
-4. Energy
+5. Repairs 
 
-5. Events 
+6. Energy
 
-6. Crypto-Coin Exchange
+7. Events 
 
-7. Validate Block
+8. Crypto-Coin Exchange
 
-8. Mine Block
+9. Validate Block
 
-        a - game generates device and block keys (linked to active device probability range) 
-        b - checks if match 
-        c - if win calculate winnings
-        d - calc round costs (i.e. active device power consumpation x power unit rate)
-        e - calc subTotal (i.e. balance + winnings - cost)
-        f - update balance
+10. Mine Block;
+    10.1 - Pre-game checks
+    10.2 - Generate Device and Block Keys
+    10.3 - Display Modal and Populate Semi-Static Fields
+    10.4 - Run Game Cycle
+    10.5 - Check Result
+    10.6 - Calulcate Result & Update liveGameData and HTML Values
 
-9. Game Stats and Achivements
+11. Game Stats and Achivements
 
-10. Further Styling / Format Related
+12. Further Styling / Format Related
 
 
 --------------------------------------------------------------------------------*/
 
 
-
-/*---0.0 - Utilities-----------------------------------------------------*/
-
+/*-- 1. Utilities--------------------------------------------------------------*/
 
 
+//  1.1 : Prepare Game After DOM Loaded
 
-
-/*--- 0.2 - Global Variables -----------------------------------------------------*/
-
-/*--- 1 New Game (inclduing Game Mode Types and Reset) -----------------------------------------------------*/
-
-/*---------------------------------------------------------------------------------
-//  1.1 Prepare Game On DOM Load;
-//      Wait until DOM loaded then obtain miner details from 'liveGameData' (default only available at start)
-//      Data used to populate the HTML fields (dropdown menu, and performance stats)
-//-------------------------------------------------------------------------------*/
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -65,9 +76,9 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-/*--- 1.1 - Game data tables -----------------------------------------------------*/
+/*-- 2. Game Data Tables -----------------------------------------------------*/
 
-//Full Game Library note: unable to import gamelibray as a local JSON file, so retained on main js file
+// 2.1 : Full Game Library 
 
 const gameLibrary = {
     rigs: [{
@@ -445,7 +456,7 @@ const gameLibrary = {
     }
 ]};
 
-// Live Game Data - initiated with default starting data and ammended through game actions
+// 2.2 : Live Game Data (initiated with default starting data and ammended through game actions)
 
 const liveGameData = {
     validationDevice: {
@@ -517,7 +528,7 @@ const liveGameData = {
 };
 
 
-// Purchase history - use to add purchases to avoid a repeated cost to switch to
+// 2.3 : Purchase history (use to add purchases to avoid a repeated cost to switch to)
 
 const purchasedRigs = [];
 const purchasedProcs = [];
@@ -525,7 +536,7 @@ const purchasedCoolSys = [];
 const purchasedOpSys = [];
 
 
-/*-- 1.2 -- Temporary Stats (the temp stats table is used to capture short-term pos / neg impacts to performace typically as a result of events) --*/
+// 2.4 : Temporary Stats (captures short-term pos / neg impacts typically as a result of events)
 
 const tempStats = {
     chanceTemp: 9000,      //temp increase to increase speed during testing
@@ -534,7 +545,7 @@ const tempStats = {
     conditionTemp: 0
 };
 
-/*--1.3 TotalActiveStats - calculates the combined ratings of the base + parts + temp impacts --*/
+// 2.5 : Total Active Stats (calculates the combined ratings of the base + parts + temp impacts)
 
 const totalActiveStats = {
     totalChance: 0,
@@ -549,8 +560,9 @@ console.log("power", liveGameData.rig.basePower);
 console.log("condition", liveGameData.rig.baseCondition);
 
 
+/*-- 3. Update Game Card  -----------------------------------------------------*/
 
-/*--- 1.4 - Load Base Game data and update initial values on html page (note: some values are updated via a seperate function as this is re-used outside of the 'new game'stage ----------------------------------------------------*/
+// 3.1 : Load Base Game data and update initial text on html page  
 
 function newGame() {
     console.log("Stage 2: running newGame function");
@@ -586,7 +598,7 @@ function newGame() {
 
 }
 
-/*-- 1.5 -- Calc Total Stats & update html (calcs base stat x buff / nerf multipliers (i.e. impacts of parts and temp event effects) --*/
+// 3.2 : Calculate Total Performance Stats & Update html 
 
 
 function calcTotalActiveStats() {
@@ -598,14 +610,12 @@ function calcTotalActiveStats() {
     const osBuff = liveGameData.parts[0].operatingSystem;
     const temp = tempStats;
 
-    /*--total.totalChance = base.baseChance + (base.baseChance / 100 * (proBuff.chanceBuff + coolBuff.chanceBuff + osBuff.chanceBuff + temp.chanceTemp));--*/
-
-    // caps result to 100 max
+    // sum total by applying temp stats to liveGameData, where relevent also round values to nearest whole number and cap max value at 100
     
+    // Chance
     let ChanceTotal = (Math.round(base.baseChance + (base.baseChance / 100 * (proBuff.chanceBuff + coolBuff.chanceBuff + osBuff.chanceBuff + temp.chanceTemp))));
 
     console.log("ChanceTotal", ChanceTotal);
-  
 
     if (ChanceTotal > 100) {
         total.totalChance = 100
@@ -614,6 +624,7 @@ function calcTotalActiveStats() {
     }
     $("#chance-value").text(total.totalChance);
     
+    // Hash Rate 
     HashTotal = (Math.round(base.baseHash + (base.baseHash / 100 * (proBuff.hashPowerBuff + coolBuff.hashPowerBuff + osBuff.hashPowerBuff + temp.hashPowerTemp))));
     if (HashTotal > 100) {
         total.totalHash = 100
@@ -622,10 +633,11 @@ function calcTotalActiveStats() {
     }
     $("#speed-value").text(total.totalHash);
     
-    //no cap on power usage
+    // Power Useage (note: no cap on power usage)
     total.totalPower = (Math.round(base.basePower + (base.basePower / 100 * (proBuff.powerBuff + coolBuff.powerBuff + osBuff.powerBuff + temp.pwrUsageTemp))));
     $("#power-value").text(total.totalPower);
     
+    // Condition
     ConditionTotal = base.baseCondition + (base.baseCondition / 100 * (proBuff.conditionBuff + coolBuff.conditionBuff + osBuff.conditionBuff + temp.conditionTemp));
     if (ConditionTotal > 100) {
         total.totalCondition = 100
@@ -634,9 +646,10 @@ function calcTotalActiveStats() {
     }
     $("#condition-value").text(total.totalCondition);
 
+    
 
 
-    /*--temp console logging to remove from final version--*/
+    /*--TEMPORARY CONSOLE LOGS - REMOVE FROM FINAL VERSION--*/
     console.log("base chance", base.baseChance);
     console.log("base hash", base.baseHash);
     console.log("base power", base.basePower);
@@ -647,6 +660,9 @@ function calcTotalActiveStats() {
     console.log("total condition", total.totalCondition);
     console.log("total data", total);
 
+
+
+
     refreshPerformanceBars();
 
 };
@@ -654,7 +670,7 @@ function calcTotalActiveStats() {
 
 
 
-/*--- 1.6 - Refresh Performance Bars  ---------------------------------------------------*/
+// 3.3 : Refresh Performance Bars 
 
 function refreshPerformanceBars() {
 
@@ -682,12 +698,16 @@ function refreshPerformanceBars() {
 
 
 
-/*--- 2. Upgrades  -----------------------------------------------------*/
+/*-- 4. Upgrades  -----------------------------------------------------*/
+
+// 4.1 : Display Upgrade Modal
 
 $("#terminal-miner-upgradebtn").click(function() {
     $('#modal-upgrades').modal('show');
     
-    /*--display rigs table --*/
+    // 4.2 : Upgrade Rig 
+
+    // A: Display Table
     $("#upgrade-rigs-tab").click(function() {
 
         let rigs = gameLibrary['rigs'];
@@ -732,21 +752,20 @@ $("#terminal-miner-upgradebtn").click(function() {
 
         document.getElementById('rigs-table').innerHTML = rigHtml; 
 
-        /*--check if rig already purchased, if yes remove button and replace with text --*/
+        // B: Check if already purchased (if yes remove button and replace with text)
         
-        // feature outstanding
+        /*-- this feature is outstanding as unable to implement IF statement within template literal --*/
 
 
-        /*--purchase rig --*/
+        // C: Purchase Rig 
         $(".purchase-button").click(function() {
 
-            /*--create array to hold values associated to button's indirect siblings--*/
+            /*-- create temp array to hold html values associated to button's indirect siblings--*/
 
             let selectedRig = [];
             selectedRig = $(this).parent().siblings();
             console.log(selectedRig[0]);
 
-            /*--create temp array to pull innerhtml values--*/
             let name = selectedRig[0].innerHTML;
             let cost = parseFloat(selectedRig[1].innerHTML);
             let chance = parseFloat(selectedRig[2].innerHTML);
@@ -811,6 +830,7 @@ $("#terminal-miner-upgradebtn").click(function() {
 
                 /*--redirect after purchase (close modal)--*/
                 $('#modal-upgrades').modal('hide');
+
             } // end of purchase rig function
 
         }); // end of functions within purchase rig button
@@ -818,8 +838,9 @@ $("#terminal-miner-upgradebtn").click(function() {
     });  // end of rig upgrades function
 
     
-    /*--display processors table --*/
+    // 4.3 : Upgrade Processor
 
+    // A: Display Table
     $("#upgrade-processors-tab").click(function() {
         
         let processors = gameLibrary.parts[0].processor;
@@ -862,20 +883,20 @@ $("#terminal-miner-upgradebtn").click(function() {
 
         document.getElementById('processors-table').innerHTML = procHtml; 
         
-        /*--check if proc already purchased, if yes remove button and replace with text --*/
+        // B: Check if already purchased (if yes remove button and replace with text)
         
-        // feature outstanding
+        /*-- this feature is outstanding as unable to implement IF statement within template literal --*/
 
-        /*--purchase processor --*/
+        
+        // C: Purchase Processor
         $(".purchase-button").click(function() {
 
-            /*--create array to hold values associated to button's indirect siblings--*/
+            /*--create temp array to hold html values associated to button's indirect siblings--*/
 
             let selectedProc = [];
             selectedProc = $(this).parent().siblings();
             console.log(selectedProc[0]);
 
-            /*--create temp array to pull innerhtml values--*/
             let name = selectedProc[0].innerHTML;
             let cost = parseFloat(selectedProc[1].innerHTML);
             let chance = parseFloat(selectedProc[2].innerHTML);
@@ -946,12 +967,12 @@ $("#terminal-miner-upgradebtn").click(function() {
 
         }); // end of functions within purchase processor button
 
-    });
+    }); // end of processor upgrades function
 
 
+    // 4.4 : Upgrade Cooling System
 
-
-    /*--display cooling sys table --*/
+    // A: Display Table
     $("#upgrade-cooling-tab").click(function() {
         
         let cooling = gameLibrary.parts[0].coolingSystem;
@@ -994,20 +1015,20 @@ $("#terminal-miner-upgradebtn").click(function() {
 
         document.getElementById('cooling-table').innerHTML = coolHtml; 
         
-        /*--check if cooling system already purchased, if yes remove button and replace with text --*/
+        // B: Check if already purchased (if yes remove button and replace with text)
         
-        // feature outstanding
+        /*-- this feature is outstanding as unable to implement IF statement within template literal --*/
 
-        /*--purchase cooling Sys --*/
+
+        // C: Purchase Cooling System
         $(".purchase-button").click(function() {
 
-        /*--create array to hold values associated to button's indirect siblings--*/
+        /*-- create temp array to hold html values associated to button's indirect siblings--*/
 
         let selectedCool = [];
         selectedCool = $(this).parent().siblings();
         console.log(selectedCool[0]);
 
-        /*--create temp array to pull innerhtml values--*/
         let name = selectedCool[0].innerHTML;
         let cost = parseFloat(selectedCool[1].innerHTML);
         let chance = parseFloat(selectedCool[2].innerHTML);
@@ -1078,10 +1099,12 @@ $("#terminal-miner-upgradebtn").click(function() {
 
         }); // end of functions within purchase cooling sys button
 
-    });
+    }); // end of cooling system upgrades function
 
-    /*--display op sys table --*/
 
+    // 4.5 Upgrade Operating System
+
+    // A: Display Table
     $("#upgrade-os-tab").click(function() {
         
         let opSys = gameLibrary.parts[0].operatingSystem;
@@ -1124,14 +1147,15 @@ $("#terminal-miner-upgradebtn").click(function() {
 
         document.getElementById('os-table').innerHTML = osHtml; 
         
-        /*--check if operating system already purchased, if yes remove button and replace with text --*/
+        // B: Check if already purchased (if yes remove button and replace with text)
         
-        // feature outstanding
+        /*-- this feature is outstanding as unable to implement IF statement within template literal --*/
 
-        /*--purchase Op Sys --*/
+
+        // C: Purchase Operating System 
         $(".purchase-button").click(function() {
 
-            /*--create array to hold values associated to button's indirect siblings--*/
+            /*--create temp array to hold html values associated to button's indirect siblings--*/
     
             let selectedOs = [];
             selectedOs = $(this).parent().siblings();
@@ -1169,13 +1193,13 @@ $("#terminal-miner-upgradebtn").click(function() {
                 purchaseOpSys();
             };
     
-            /*--function to purchase cooling system---*/
+            /*--function to purchase Operating System---*/
     
             function purchaseOpSys() {
     
                 console.log("find opSys", liveGameData.parts[0].operatingSystem);
     
-                /*--update liveGameData with purchased cooling sys details--*/
+                /*--update liveGameData with purchased op sys details--*/
                 liveGameData.parts[0].operatingSystem.name = name;
                 liveGameData.parts[0].operatingSystem.cost = cost;
                 liveGameData.parts[0].operatingSystem.chanceBuff = chance;
@@ -1183,10 +1207,10 @@ $("#terminal-miner-upgradebtn").click(function() {
                 liveGameData.parts[0].operatingSystem.powerBuff = power;
                 liveGameData.parts[0].operatingSystem.conditionBuff = condition;
                 
-                /*--update cooling sys name displayed on html. --*/
+                /*--update op sys name displayed on html. --*/
                 $("#software-name").text(liveGameData.parts[0].operatingSystem.name);
     
-                /*--add cooling sys to purchased list --*/
+                /*--add op sys to purchased list --*/
                 console.log("purchased operatingSystem", purchasedOpSys);
                 purchasedOpSys.push(name);
                 console.log("purchased operatingSystem", purchasedOpSys);
@@ -1208,32 +1232,32 @@ $("#terminal-miner-upgradebtn").click(function() {
     
             }); // end of functions within purchase op sys button
 
-    });
+    }); // end of opSys upgrades function
 
 
-    /*--buttons to exit upgrades --*/
+    // 4.6 : Exit Upgrade Modal
 
     $("#upgrade-exit-btn").click(function() {
         $('#modal-upgrades').modal('hide');
     });
 
-}); //end of upgrade parts function
+}); //end of Upgrades function
 
 
 
-/*--- 3. Repair Parts -----------------------------------------------------*/
+/*-- 5. Repairs  -----------------------------------------------------------*/
 
-/*--- 4. Energy -----------------------------------------------------*/
+/*-- 6. Energy -------------------------------------------------------------*/
 
-/*--- 5. Events -----------------------------------------------------*/
+/*-- 7. Events -------------------------------------------------------------*/
 
-/*--- 6. Crypto-Coin Exchange -----------------------------------------------------*/
+/*-- 8. Crypto-Coin Exchange -----------------------------------------------*/
 
-/*--- 7. Validate Block -----------------------------------------------------*/
+/*-- 9. Validate Block -----------------------------------------------------*/
 
-/*--- 8. Mine Block -----------------------------------------------------
-        a - pregame checks (i.e. finances, miner status, etc)
-        b - generate device and block keys (linked to active device probability range)
+/*-- 10. Mine Block -------------------------------------------------------*/
+
+        
         c - run game cycle 
         d - check result 
         e - calculate result
@@ -1245,9 +1269,10 @@ $("#terminal-miner-upgradebtn").click(function() {
 //called from 'on-click' added inline to miner play button (html)
 
 $("#terminal-miner-activatebtn").click(function() {
-    //variables hoisted to enable usage across play functions//
 
-    /*-- Step A - Run pre-game checks -----OUTSTANDING!!! - Consider adding checks which must pass prior to being able to run game//
+// 10.1 : Pre-Game Checks (i.e. finances, miner status, etc)    
+
+    /*-- OUTSTANDING!!! - Consider adding checks which must pass prior to being able to run game//
 
     /*-- list of items to check;
 
@@ -1262,7 +1287,7 @@ $("#terminal-miner-activatebtn").click(function() {
                     - provider selected--*/
 
 
-    //-- Step B - generate device and block keys 
+    // 10.2 : Generate Device and Block Keys 
    
     console.log("mine block initiated");
 
@@ -1323,7 +1348,7 @@ $("#terminal-miner-activatebtn").click(function() {
         return minerKey;
     }
 
-    //display modal and populate semi 'static' fields (semi static, meaning they do not change during the individual game round, but can display different values in other game rounds depending on user actions)
+    // 10.3 : Display modal and populate semi 'static' fields (semi static, meaning they do not change during the individual game round, but can display different values in other game rounds depending on user actions)
 
     $('#modal-mine-block').modal('show'); // display modal
     $('#modal-block-mining-response1').text(liveGameData.rig.name);
@@ -1332,7 +1357,7 @@ $("#terminal-miner-activatebtn").click(function() {
 
 
 
-    //Step C - run game cycle (covers time (10 second cycle less hashSpeed buffs), displays animation whilst running, returns text to indicate when cycle complete and runs match (block vs. miner keys)
+    // 10.4: Run Game Cycle (time is 10 second cycle less hashSpeed buffs, displays animation whilst running, returns text to indicate when cycle complete and runs match (block vs. miner keys)
 
     //Cycle timer : length = 10secs (10,000millisecs) less % hash speed bonus
     let hashSpeed = totalActiveStats.totalHash / 100; //to convert to percentage;
@@ -1379,7 +1404,7 @@ $("#terminal-miner-activatebtn").click(function() {
         }, 1000);
     }
 
-    //Step D - Check Result - determines if success / fail messages, buttons and redirects to display
+    //10.5 : Check Result (determines if success / fail messages, buttons and redirects to display)
 
     let outcome = "";
     
@@ -1434,7 +1459,7 @@ $("#terminal-miner-activatebtn").click(function() {
     // deduct costs (outcome 2 or 3) + add winnings (outcome 3 only)
     
 
-    //Step E - Calc Result (1 - costs / power useage, 2 - update stats. 3 - update winnings)
+    // 10.6 : Calculate Result (1 - costs / power useage, 2 - update stats. 3 - update winnings)
 
     function calcResult() {
 
@@ -1478,4 +1503,6 @@ $("#terminal-miner-activatebtn").click(function() {
 
 
 
-/*--- 9. Game Stats and Achivements -----------------------------------------------------*/
+/*-- 11. Game Stats and Achivements -----------------------------------------------------*/
+
+/*-- 12. Further Styling / Format Related -----------------------------------------------------*/
