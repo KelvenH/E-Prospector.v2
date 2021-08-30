@@ -528,8 +528,8 @@ const purchasedOpSys = [];
 /*-- 1.2 -- Temporary Stats (the temp stats table is used to capture short-term pos / neg impacts to performace typically as a result of events) --*/
 
 const tempStats = {
-    chanceTemp: 0,      //temp increase to increase speed during testing
-    hashPowerTemp: 0,   //temp increase to increase speed during testing
+    chanceTemp: 10000,      //temp increase to increase speed during testing
+    hashPowerTemp: 10000,   //temp increase to increase speed during testing
     pwrUsageTemp: 0,
     conditionTemp: 0
 };
@@ -1386,7 +1386,7 @@ $("#terminal-miner-activatebtn").click(function() {
 
     let outcome = "";
 
-    //Step D - Check Result
+    //Step D - Check Result - determines if success / fail messages, buttons and redirects to display
 
     function checkResult(minerKey, blockKey) {
         console.log("minerKey vs blockKey", minerKey, "v", blockKey);
@@ -1398,6 +1398,53 @@ $("#terminal-miner-activatebtn").click(function() {
             $('#exit-success-mine-btn').css('display', 'block'); //show success exit button
             $('#mine-block-exit-btn').css('visibility', 'hidden');
             $('#mine-block-exit-footnote').css('visibility', 'hidden');
+
+            outcome = "win";
+            return outcome;
+
+        } else {
+            $('#modal-block-mining-response5').text('Key Not Accepted');
+            $('#repeat-mine-btn').css('visibility', 'visible'); //display button to run again (note, btn rehidden after next cycle commences to prevent multi-clicks / attempts)
+
+        };
+
+    }
+
+    // Redirects for different outcomes
+
+    // outcome 1 - no win and try again 
+    $("#repeat-mine-btn").click(function() {
+        gameCycle();
+
+    });
+
+    // outcome 2 - no win and exit
+    $("#mine-block-exit-btn").click(function() {
+        $('#modal-mine-block').modal('hide');
+        calcResult();
+
+    });
+
+    // ouctome 3 - win (also resets from success to default to avoid these displaying at start of next attempt)
+    $('#exit-success-mine-btn').click(function() {
+        $('#mine-success-img').css('display', 'none');
+        $('#exit-success-mine-btn').css('display', 'none');
+        $('#modal-mine-block').modal('hide');
+        $('#mine-block-exit-btn').css('visibility', 'visible');
+        $('#mine-block-exit-footnote').css('visibility', 'visible');
+        calcResult();
+    })
+
+    // deduct costs (outcome 2 or 3) + add winnings (outcome 3 only)
+
+    function calcResult() {
+       
+        //calc and deduct power usage
+        
+        //calc and update stats (incl. condition)
+
+
+        if (outcome = "win") {
 
             // add coin to ewallet balance
             let newCoinBalance = document.getElementById('ewallet-value').innerHTML;
@@ -1411,52 +1458,8 @@ $("#terminal-miner-activatebtn").click(function() {
             $('#stats-3-txt').html(newBlockMined);
             console.log("newBlockMined", newBlockMined);
 
-            outcome = "win";
-            return outcome;
-            // run end of cycle function to update ewallet, calc and deduct energy costs, update game stats (blocks mined / keys checked, success rate, coins mined), miner performance (deterioration)
-
-        } else {
-            $('#modal-block-mining-response5').text('Key Not Accepted');
-            $('#repeat-mine-btn').css('visibility', 'visible'); //display button to run again (note, btn rehidden after next cycle commences to prevent multi-clicks / attempts)
-
         };
 
-    }
-
-    // outcome 1 - no win and repeat 
-    $("#repeat-mine-btn").click(function() {
-        gameCycle();
-
-    });
-
-    // outcome 2 - no win and exit
-    $("#mine-block-exit-btn").click(function() {
-        $('#modal-mine-block').modal('hide');
-        calcResult();
-
-    });
-
-    // ouctome 3 - win
-    $('#exit-success-mine-btn').click(function() {
-        $('#mine-success-img').css('display', 'none');
-        $('#exit-success-mine-btn').css('display', 'none');
-        $('#modal-mine-block').modal('hide');
-        $('#mine-block-exit-btn').css('visibility', 'visible');
-        $('#mine-block-exit-footnote').css('visibility', 'visible');
-        calcResult();
-    })
-
-    // deduct costs (outcome 2 or 3) + add winnings (outcome 3 only)
-
-    function calcResult() {
-
-        //calc and deduct power usage
-        //calc and update stats (incl. condition)
-
-
-        if (outcome = "win") {
-
-        };
         console.log("calcResult complete");
     };
 
