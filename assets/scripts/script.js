@@ -884,7 +884,7 @@ $("#terminal-miner-upgradebtn").click(function() {
             let condition = parseFloat(selectedProc[5].innerHTML);
             
                        
-            /*--check able to afford, if able to afford run purchaseRig, else display message with current balance --*/
+            /*--check able to afford, if able to afford run purchaseProc, else display message with current balance --*/
 
             let price = cost;
             console.log("price", price);
@@ -997,6 +997,86 @@ $("#terminal-miner-upgradebtn").click(function() {
         /*--check if cooling system already purchased, if yes remove button and replace with text --*/
         
         // feature outstanding
+
+         /*--purchase cooling Sys --*/
+         $(".purchase-button").click(function() {
+
+            /*--create array to hold values associated to button's indirect siblings--*/
+
+            let selectedCool = [];
+            selectedCool = $(this).parent().siblings();
+            console.log(selectedCool[0]);
+
+            /*--create temp array to pull innerhtml values--*/
+            let name = selectedCool[0].innerHTML;
+            let cost = parseFloat(selectedCool[1].innerHTML);
+            let chance = parseFloat(selectedCool[2].innerHTML);
+            let hash = parseFloat(selectedCool[3].innerHTML);
+            let power = parseFloat(selectedCool[4].innerHTML);
+            let condition = parseFloat(selectedCool[5].innerHTML);
+            
+                       
+            /*--check able to afford, if able to afford run purchaseCool, else display message with current balance --*/
+
+            let price = cost;
+            console.log("price", price);
+
+            let currentBal = liveGameData.finance.bankBalance;
+            console.log("current Balance", currentBal);
+            
+            if (price > currentBal) {
+                $('#modal-unaffordable').modal('show');
+                $('#unaffordable-balance').text(currentBal);
+                console.log("can't afford");
+
+                $("#unaffordable-exit-btn").click(function() {
+                    $('#modal-unaffordable').modal('hide');
+                });
+            
+            }
+
+            else {
+                purchaseCool();
+            };
+
+            /*--function to purchase cooling system---*/
+
+            function purchaseCool() {
+
+                console.log("find coolsys", liveGameData.parts[0].processor);
+
+                /*--update liveGameData with purchased cooling sys details--*/
+                liveGameData.parts[0].coolingSystem.name = name;
+                liveGameData.parts[0].coolingSystem.cost = cost;
+                liveGameData.parts[0].coolingSystem.chanceBuff = chance;
+                liveGameData.parts[0].coolingSystem.hashPowerBuff = hash;
+                liveGameData.parts[0].coolingSystem.powerBuff = power;
+                liveGameData.parts[0].coolingSystem.conditionBuff = condition;
+                
+                /*--update cooling sys name displayed on html. --*/
+                $("#cooling-name").text(liveGameData.parts[0].coolingSystem.name);
+
+                /*--add cooling sys to purchased list --*/
+                console.log("purchased coolingSystem", purchasedCoolSys);
+                purchasedCoolSys.push(name);
+                console.log("purchased coolingSystem", purchasedCoolSys);
+
+                /*--deduct costs (calculate, update liveGameData and display to page) --*/
+                newBalance = liveGameData.finance.bankBalance - cost;
+                liveGameData.finance.bankBalance = newBalance;
+                $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
+                console.log(newBalance);
+
+                /*--run Total Active Stats to update performance values and bars --*/
+                calcTotalActiveStats();
+
+                /*--redirect after purchase (close modal) --*/
+                $('#modal-upgrades').modal('hide');
+
+
+            } // end of purchase cooling sys function
+
+        }); // end of functions within purchase cooling sys button
 
     });
 
