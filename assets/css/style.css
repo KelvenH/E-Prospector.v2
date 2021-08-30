@@ -38,9 +38,11 @@
     /*-- papayawhip ----------------*/
     --ink10-red: rgb(209, 17, 17);
     /*-- red (off status)-----------*/
-    --ink11-green: rgb(52, 232, 42);
+    --ink11-amber: rgb(255, 103, 0);
+    /*-- amber (warning status)-----------*/
+    --ink12-green: rgb(52, 232, 42);
     /*-- green (on status) --------------------*/
-    --ink12: rgb(250, 250, 250);
+    
     /*-- XXXXX --------------------*/
     --ink13: rgb(184, 201, 211);
     --ink14: rgb(223, 242, 255);
@@ -572,8 +574,8 @@ input[type="radio"]:checked+label {
 }
 
 #terminal-miner-status-available {
-    border: solid 1px var(--ink11-green);
-    color: var(--ink11-green);
+    border: solid 1px var(--ink12-green);
+    color: var(--ink12-green);
     display:block;   
 }
 

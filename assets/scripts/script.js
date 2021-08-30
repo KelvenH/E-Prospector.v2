@@ -218,7 +218,7 @@ const gameLibrary = {
         baseChance: 35,
         baseHash: 20,
         basePower: 50,
-        baseCondition: -25,
+        baseCondition: 25,
         rigComments: "Ironically for the i-pop this one runs a dream….before well, she 'pops'! Rewards should cover the repairs and keep you in the black."
     },
     {
@@ -228,7 +228,7 @@ const gameLibrary = {
         baseChance: 50,
         baseHash: 50,
         basePower: 1500,
-        baseCondition: 50,
+        baseCondition: 60,
         rigComments: "More expensive, but the cheapest of the terminals purpose built for crypto-mining. Things are getting serious now!"
     },
     {
@@ -238,7 +238,7 @@ const gameLibrary = {
         baseChance: 60,
         baseHash: 50,
         basePower: 2000,
-        baseCondition: 50,
+        baseCondition: 65,
         rigComments: "Blackbox are back again with an improved secret box….. it's black.… ad the rest, well its a secret!"
     },
     {
@@ -503,7 +503,7 @@ const liveGameData = {
         }
     }],
     finance: {
-        bankBalance: 10000,     //temp buff for development - reduce to £1k for gameplay
+        bankBalance: 100000,     //temp buff for development - reduce to £1k for gameplay
         ewalletBalance: 0,
         fxRate: 100
     },
@@ -638,12 +638,15 @@ function calcTotalActiveStats() {
     $("#power-value").text(total.totalPower);
     
     // Condition
-    ConditionTotal = base.baseCondition + (base.baseCondition / 100 * (proBuff.conditionBuff + coolBuff.conditionBuff + osBuff.conditionBuff + temp.conditionTemp));
+    ConditionTotal = (Math.round(base.baseCondition + (base.baseCondition / 100 * (proBuff.conditionBuff + coolBuff.conditionBuff + osBuff.conditionBuff + temp.conditionTemp))));
     if (ConditionTotal > 100) {
         total.totalCondition = 100
+    } else if (ConditionTotal < 0) {
+        total.totalCondition = 0            //prevent performance deteriorating below zero
     } else {
         total.totalCondition = ConditionTotal
     }
+
     $("#condition-value").text(total.totalCondition);
 
     
@@ -694,6 +697,17 @@ function refreshPerformanceBars() {
     const conditionProgress = total.totalCondition;
     const z = (conditionProgress / maxValue) * 100;
     $("#condition-meter-bar").css("width", z + '%');
+    // formatting on condition bar to indicate health
+
+    console.log("color", total.totalCondition);
+
+    if (total.totalCondition < 20) {
+        $("#condition-meter-bar").css("background-color", "var(--ink10-red)");
+    } else if (total.totalCondition < 40) {
+        $("#condition-meter-bar").css("background-color", "var(--ink11-amber)");
+    } else {
+        $("#condition-meter-bar").css("background-color", "var(--ink12-green)");
+    }
 };
 
 
@@ -1462,7 +1476,13 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         
          // Part 2 - update stats (incl. condition deterioration)
          console.log("update stats here");
- 
+
+         /*-- condition deteriorates by 1 per completed cycle via decrement--*/
+         -- liveGameData.rig.baseCondition;
+
+         calcTotalActiveStats(); // run to refresh GameCard incl performnce bars
+
+
          // Part 3 - calc winnings
  
          if (outcome == "win") {
