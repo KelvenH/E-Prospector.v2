@@ -539,8 +539,8 @@ const purchasedOpSys = [];
 // 2.4 : Temporary Stats (captures short-term pos / neg impacts typically as a result of events)
 
 const tempStats = {
-    chanceTemp: 9000,      //temp increase to increase speed during testing
-    hashPowerTemp: 1000,   //temp increase to increase speed during testing
+    chanceTemp: 10000,      //temp increase to increase speed during testing
+    hashPowerTemp: 10000,   //temp increase to increase speed during testing
     pwrUsageTemp: 0,
     conditionTemp: 0
 };
@@ -1260,7 +1260,7 @@ $("#terminal-miner-upgradebtn").click(function() {
         
 //called from 'on-click' added inline to miner play button (html)
 
-$("#terminal-miner-activatebtn").click(function() {
+$("#terminal-miner-activatebtn").unbind('click').click(function() {
 
 // 10.1 : Pre-Game Checks (i.e. finances, miner status, etc)    
 
@@ -1411,13 +1411,16 @@ $("#terminal-miner-activatebtn").click(function() {
             $('#exit-success-mine-btn').css('display', 'block'); //show success exit button
             $('#mine-block-exit-btn').css('visibility', 'hidden');
             $('#mine-block-exit-footnote').css('visibility', 'hidden');
-
+            console.log("checkResult=win");
             outcome = "win";
             return outcome;
 
         } else {
             $('#modal-block-mining-response5').text('Key Not Accepted');
             $('#repeat-mine-btn').css('visibility', 'visible'); //display button to run again (note, btn rehidden after next cycle commences to prevent multi-clicks / attempts)
+            console.log("checkResult=no win");
+            outcome = "no win";
+            return outcome;
         }
 
     }
@@ -1425,20 +1428,22 @@ $("#terminal-miner-activatebtn").click(function() {
     // Redirects for different outcomes
 
     // outcome 1 - no win and try again 
-    $("#repeat-mine-btn").click(function() {
+    $("#repeat-mine-btn").unbind('click').click(function() {
+        console.log("repeat-mine-btn selected")
         gameCycle();
 
     });
 
     // outcome 2 - no win and exit
-    $("#mine-block-exit-btn").click(function() {
+    $("#mine-block-exit-btn").unbind('click').click(function() {
+        console.log("mine-block-exit-btn selected");
         $('#modal-mine-block').modal('hide');
         calcResult();
 
     });
 
     // ouctome 3 - win (also resets from success to default to avoid these displaying at start of next attempt)
-    $('#exit-success-mine-btn').click(function() {
+    $('#exit-success-mine-btn').unbind('click').click(function() {
         $('#mine-success-img').css('display', 'none');
         $('#exit-success-mine-btn').css('display', 'none');
         $('#modal-mine-block').modal('hide');
@@ -1448,50 +1453,44 @@ $("#terminal-miner-activatebtn").click(function() {
         calcResult();
     });
 
-    // deduct costs (outcome 2 or 3) + add winnings (outcome 3 only)
-    
-
     // 10.6 : Calculate Result (1 - costs / power useage, 2 - update stats. 3 - update winnings)
 
     function calcResult() {
 
+         // Part 1 - calc and deduct power usage
+         console.log("deduct power costs here");
         
-        // Part 1 - calc and deduct power usage
-        
-        // Part 2 - update stats (incl. condition deterioration)
-
-        // Part 3 - calc winnings
-
-        if (outcome == "win") {
-
-            // add coin to ewallet balance
-            let currentCoinBalance = parseInt(document.getElementById('ewallet-value').innerHTML);
-            console.log("current coin balance", currentCoinBalance);
-            let newCoin = 1;
-            console.log("new coin", newCoin);
-            let newCoinBalance = currentCoinBalance + newCoin;
-            console.log("newCoinBalance", newCoinBalance);
-            $('#ewallet-value').text(newCoinBalance);
-        
-            /*--
-            // adds 1 to stats 'blocks mined'           
-            let newBlockMined = document.getElementById('stats-3-txt').innerHTML;
-            ++newBlockMined;
-            $('#stats-3-txt').html(newBlockMined);
-            console.log("newBlockMined", newBlockMined);
-            --*/
-
-        }
-        console.log("calcResult complete");
-    } 
+         // Part 2 - update stats (incl. condition deterioration)
+         console.log("update stats here");
+ 
+         // Part 3 - calc winnings
+ 
+         if (outcome == "win") {
+ 
+             // add coin to ewallet balance
+             let currentCoinBalance = parseInt(document.getElementById('ewallet-value').innerHTML);
+             console.log("current coin balance", currentCoinBalance);
+             let newCoin = 1;
+             console.log("new coin", newCoin);
+             let newCoinBalance = currentCoinBalance + newCoin;
+             console.log("newCoinBalance", newCoinBalance);
+             $('#ewallet-value').text(newCoinBalance);
+             
+             
+             // adds 1 to stats 'blocks mined'           
+             let newBlockMined = document.getElementById('stats-2-txt').innerHTML;
+             ++newBlockMined;
+             $('#stats-2-txt').html(newBlockMined);
+             console.log("newBlockMined", newBlockMined);
+            
+ 
+         } else {
+             console.log("no wins to add");
+         }
+         console.log("calcResult complete");
+     }      
 
 });
-
-
-
-
-
-
 
 
 
