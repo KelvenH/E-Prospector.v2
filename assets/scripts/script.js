@@ -243,7 +243,7 @@ const gameLibrary = {
     ],
     parts: [{
         processor: [{
-                name: "A&D Zipper",
+                name: "AND Zipper",
                 cost: 0,
                 chanceBuff: 10,
                 hashPowerBuff: 10,
@@ -267,7 +267,7 @@ const gameLibrary = {
                 conditionBuff: 0
             },
             {
-                name: "A&D Zipper+",
+                name: "AND Zipper+",
                 cost: 1250,
                 chanceBuff: 20,
                 hashPowerBuff: 100,
@@ -291,7 +291,7 @@ const gameLibrary = {
                 conditionBuff: -50
             },
             {
-                name: "A&D Zipper++",
+                name: "AND Zipper++",
                 cost: 5000,
                 chanceBuff: 35,
                 hashPowerBuff: 35,
@@ -467,7 +467,7 @@ const liveGameData = {
     },
     parts: [{
         processor: {
-            name: "A&D Zipper",
+            name: "AND Zipper",
             cost: 0,
             chanceBuff: 10, 
             hashPowerBuff: 10, 
@@ -756,9 +756,7 @@ $("#terminal-miner-upgradebtn").click(function() {
             let comments = selectedRig[6].innerHTML;
             
             
-            /*--check able to afford, if unable display message--*/
-
-            // if able to afford run purchaseRig, else display message with current balance
+            /*--check able to afford, if able to afford run purchaseRig, else display message with current balance --*/
 
             let price = cost;
             console.log("price", price);
@@ -863,6 +861,90 @@ $("#terminal-miner-upgradebtn").click(function() {
             `;
 
         document.getElementById('processors-table').innerHTML = procHtml; 
+        
+        /*--check if proc already purchased, if yes remove button and replace with text --*/
+        
+        // feature outstanding
+
+        /*--purchase processor --*/
+        $(".purchase-button").click(function() {
+
+            /*--create array to hold values associated to button's indirect siblings--*/
+
+            let selectedProc = [];
+            selectedProc = $(this).parent().siblings();
+            console.log(selectedProc[0]);
+
+            /*--create temp array to pull innerhtml values--*/
+            let name = selectedProc[0].innerHTML;
+            let cost = parseFloat(selectedProc[1].innerHTML);
+            let chance = parseFloat(selectedProc[2].innerHTML);
+            let hash = parseFloat(selectedProc[3].innerHTML);
+            let power = parseFloat(selectedProc[4].innerHTML);
+            let condition = parseFloat(selectedProc[5].innerHTML);
+            
+                       
+            /*--check able to afford, if able to afford run purchaseRig, else display message with current balance --*/
+
+            let price = cost;
+            console.log("price", price);
+
+            let currentBal = liveGameData.finance.bankBalance;
+            console.log("current Balance", currentBal);
+            
+            if (price > currentBal) {
+                $('#modal-unaffordable').modal('show');
+                $('#unaffordable-balance').text(currentBal);
+                console.log("can't afford");
+
+                $("#unaffordable-exit-btn").click(function() {
+                    $('#modal-unaffordable').modal('hide');
+                });
+            
+            }
+
+            else {
+                purchaseProc();
+            };
+
+            /*--function to purchase processor---*/
+
+            function purchaseProc() {
+
+                console.log("find procs", liveGameData.parts[0].processor);
+
+                /*--update liveGameData with purchased processor details--*/
+                liveGameData.parts[0].processor.name = name;
+                liveGameData.parts[0].processor.cost = cost;
+                liveGameData.parts[0].processor.chanceBuff = chance;
+                liveGameData.parts[0].processor.hashPowerBuff = hash;
+                liveGameData.parts[0].processor.powerBuff = power;
+                liveGameData.parts[0].processor.conditionBuff = condition;
+                
+                /*--update processor name displayed on html. --*/
+                $("#processor-name").text(liveGameData.parts[0].processor.name);
+
+                /*--add processor to purchased list --*/
+                console.log("purchased processor", purchasedProcs);
+                purchasedProcs.push(name);
+                console.log("purchased rigs", purchasedProcs);
+
+                /*--deduct costs (calculate, update liveGameData and display to page) --*/
+                newBalance = liveGameData.finance.bankBalance - cost;
+                liveGameData.finance.bankBalance = newBalance;
+                $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
+                console.log(newBalance);
+
+                /*--run Total Active Stats to update performance values and bars --*/
+                calcTotalActiveStats();
+
+                /*--redirect after purchase (close modal) --*/
+                $('#modal-upgrades').modal('hide');
+
+
+            } // end of purchase processor function
+
+        }); // end of functions within purchase processor button
 
     });
 
@@ -911,10 +993,62 @@ $("#terminal-miner-upgradebtn").click(function() {
             `;
 
         document.getElementById('cooling-table').innerHTML = coolHtml; 
+        
+        /*--check if cooling system already purchased, if yes remove button and replace with text --*/
+        
+        // feature outstanding
 
     });
 
     /*--display op sys table --*/
+
+    $("#upgrade-os-tab").click(function() {
+        
+        let opSys = gameLibrary.parts[0].operatingSystem;
+        console.log("os", opSys);
+
+        let osHtml = `
+            <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Cost</th>
+                            <th>Chance Buff</th>
+                            <th>Speed Buff</th>
+                            <th>Power Buff</th>
+                            <th>Condition Buff</th>
+                            <th>Purchase</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+        
+        for (os of opSys) {
+            let rowHtml = `
+                    <tr class="os-row">
+                        <td class="upgrade-os-name">${os.name}</td>
+                        <td class="upgrade-os-cost">${os.cost}</td>
+                        <td class="upgrade-os-chance">${os.chanceBuff}</td>
+                        <td class="upgrade-os-hash">${os.hashPowerBuff}</td>
+                        <td class="upgrade-os-power">${os.powerBuff}</td>
+                        <td class="upgrade-os-condition">${os.conditionBuff}</td>
+                        <td><button class="purchase-button">Buy</button></td>
+                    </tr>
+                    `;
+            osHtml += rowHtml;
+            }
+            osHtml += `
+                    </tbody>
+                </table>
+            `;
+
+        document.getElementById('os-table').innerHTML = osHtml; 
+        
+        /*--check if operating system already purchased, if yes remove button and replace with text --*/
+        
+        // feature outstanding
+
+    });
 
 
     /*--buttons to exit upgrades --*/
