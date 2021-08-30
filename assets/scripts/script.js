@@ -528,7 +528,7 @@ const purchasedOpSys = [];
 /*-- 1.2 -- Temporary Stats (the temp stats table is used to capture short-term pos / neg impacts to performace typically as a result of events) --*/
 
 const tempStats = {
-    chanceTemp: 10000,      //temp increase to increase speed during testing
+    chanceTemp: 9000,      //temp increase to increase speed during testing
     hashPowerTemp: 10000,   //temp increase to increase speed during testing
     pwrUsageTemp: 0,
     conditionTemp: 0
@@ -602,7 +602,7 @@ function calcTotalActiveStats() {
 
     // caps result to 100 max
     
-    let ChanceTotal = base.baseChance + (base.baseChance / 100 * (proBuff.chanceBuff + coolBuff.chanceBuff + osBuff.chanceBuff + temp.chanceTemp));
+    let ChanceTotal = (Math.round(base.baseChance + (base.baseChance / 100 * (proBuff.chanceBuff + coolBuff.chanceBuff + osBuff.chanceBuff + temp.chanceTemp))));
 
     console.log("ChanceTotal", ChanceTotal);
   
@@ -614,7 +614,7 @@ function calcTotalActiveStats() {
     }
     $("#chance-value").text(total.totalChance);
     
-    HashTotal = base.baseHash + (base.baseHash / 100 * (proBuff.hashPowerBuff + coolBuff.hashPowerBuff + osBuff.hashPowerBuff + temp.hashPowerTemp));
+    HashTotal = (Math.round(base.baseHash + (base.baseHash / 100 * (proBuff.hashPowerBuff + coolBuff.hashPowerBuff + osBuff.hashPowerBuff + temp.hashPowerTemp))));
     if (HashTotal > 100) {
         total.totalHash = 100
     } else {
@@ -623,7 +623,7 @@ function calcTotalActiveStats() {
     $("#speed-value").text(total.totalHash);
     
     //no cap on power usage
-    total.totalPower = base.basePower + (base.basePower / 100 * (proBuff.powerBuff + coolBuff.powerBuff + osBuff.powerBuff + temp.pwrUsageTemp));
+    total.totalPower = (Math.round(base.basePower + (base.basePower / 100 * (proBuff.powerBuff + coolBuff.powerBuff + osBuff.powerBuff + temp.pwrUsageTemp))));
     $("#power-value").text(total.totalPower);
     
     ConditionTotal = base.baseCondition + (base.baseCondition / 100 * (proBuff.conditionBuff + coolBuff.conditionBuff + osBuff.conditionBuff + temp.conditionTemp));
@@ -1236,7 +1236,7 @@ $("#terminal-miner-upgradebtn").click(function() {
         b - generate device and block keys (linked to active device probability range)
         c - run game cycle 
         d - check result 
-        
+        e - calculate result
         c - if win calculate winnings
         d - calc round costs (i.e. active device power consumpation x power unit rate)
         e - calc subTotal (i.e. balance + winnings - cost)
@@ -1246,8 +1246,6 @@ $("#terminal-miner-upgradebtn").click(function() {
 
 $("#terminal-miner-activatebtn").click(function() {
     //variables hoisted to enable usage across play functions//
-
-
 
     /*-- Step A - Run pre-game checks -----OUTSTANDING!!! - Consider adding checks which must pass prior to being able to run game//
 
@@ -1268,7 +1266,7 @@ $("#terminal-miner-activatebtn").click(function() {
    
     console.log("mine block initiated");
 
-    //runs function to ensure all changes to miner including performnce buffs / events are reflected
+    //runs function to ensure all changes to miner including performance buffs / events are reflected
     calcTotalActiveStats();
 
     //set probability ceiling 
@@ -1277,9 +1275,9 @@ $("#terminal-miner-activatebtn").click(function() {
     const range = maxValue - probability; //reduces the maxValue according to the total 'chance' rating
     // puts floor on minimum value to prevent a range of 0 (i.e. if 100% probability)
     if (range < 1) {
-        keyRange = 1
+        keyRange = 1;
     } else {
-        keyRange = range
+        keyRange = range;
     }
 
     console.log("probability", probability);
@@ -1303,17 +1301,16 @@ $("#terminal-miner-activatebtn").click(function() {
     function generateBlockKey() {
         blockKey = Math.floor(Math.random() * keyRange) + 1;
         if (blockKey > keyRange) {
-            alert("Error: BlockKey is out of range, please re-click to mine block!");
+            alert("Error: BlockKey is out of range, please re-click to mine block!"); // BUG experienced in development, should not be enouncountered now min floor value assigned but retained in case of unexpected behaviour through events / buffs 
             console.log("blockKey:", blockKey);
         } else {
             console.log("blockKey:", blockKey);
-        };
+        }
         return blockKey;
-    };
+    }
 
     //generate minerKey which is limited to the pre-defined keyRange
     let minerKey = 0;
-
 
     function generateMinerKey() {
         minerKey = Math.floor(Math.random() * keyRange) + 1;
@@ -1322,9 +1319,9 @@ $("#terminal-miner-activatebtn").click(function() {
             console.log("minerKey:", minerKey);
         } else {
             console.log("minerKey:", minerKey);
-        };
+        }
         return minerKey;
-    };
+    }
 
     //display modal and populate semi 'static' fields (semi static, meaning they do not change during the individual game round, but can display different values in other game rounds depending on user actions)
 
@@ -1335,18 +1332,16 @@ $("#terminal-miner-activatebtn").click(function() {
 
 
 
-    //Step C - run game cycle (covers time (10 second cycle less hashSpeed buffs), displays animation whilst running, returns text to indicate when cycle complete, runs match (block vs. miner keys) and animation whilst cycle in play
+    //Step C - run game cycle (covers time (10 second cycle less hashSpeed buffs), displays animation whilst running, returns text to indicate when cycle complete and runs match (block vs. miner keys)
 
     //Cycle timer : length = 10secs (10,000millisecs) less % hash speed bonus
     let hashSpeed = totalActiveStats.totalHash / 100; //to convert to percentage;
     console.log("hashspeed", hashSpeed);
     let maxCounter = 10; // maximum (unbuffed) speed of 10secs to mine block
-    let buffedSpeed = maxCounter - (maxCounter * hashSpeed) //reduces the maxValue according to the total hashSpeed buff
+    let buffedSpeed = maxCounter - (maxCounter * hashSpeed); //reduces the maxValue according to the total hashSpeed buff
     console.log("buffedSpeed", buffedSpeed);
 
-
-
-    let count = document.getElementById('modal-block-mining-response3').innerHTML; //increment count of attempts
+    let count = document.getElementById('modal-block-mining-response3').innerHTML; //increment count of attempts (set to 0 (in display modal section) for 1st round but increased through GameCycle for round 2+)
 
 
     gameCycle();
@@ -1382,11 +1377,12 @@ $("#terminal-miner-activatebtn").click(function() {
             }
             timeleft -= 1;
         }, 1000);
-    };
-
-    let outcome = "";
+    }
 
     //Step D - Check Result - determines if success / fail messages, buttons and redirects to display
+
+    let outcome = "";
+    
 
     function checkResult(minerKey, blockKey) {
         console.log("minerKey vs blockKey", minerKey, "v", blockKey);
@@ -1405,8 +1401,7 @@ $("#terminal-miner-activatebtn").click(function() {
         } else {
             $('#modal-block-mining-response5').text('Key Not Accepted');
             $('#repeat-mine-btn').css('visibility', 'visible'); //display button to run again (note, btn rehidden after next cycle commences to prevent multi-clicks / attempts)
-
-        };
+        }
 
     }
 
@@ -1432,42 +1427,48 @@ $("#terminal-miner-activatebtn").click(function() {
         $('#modal-mine-block').modal('hide');
         $('#mine-block-exit-btn').css('visibility', 'visible');
         $('#mine-block-exit-footnote').css('visibility', 'visible');
+        console.log("round win - exit button selected");
         calcResult();
-    })
+    });
 
     // deduct costs (outcome 2 or 3) + add winnings (outcome 3 only)
+    
+
+    //Step E - Calc Result (1 - costs / power useage, 2 - update stats. 3 - update winnings)
 
     function calcResult() {
-       
-        //calc and deduct power usage
+
         
-        //calc and update stats (incl. condition)
+        // Part 1 - calc and deduct power usage
+        
+        // Part 2 - update stats (incl. condition deterioration)
 
+        // Part 3 - calc winnings
 
-        if (outcome = "win") {
+        if (outcome == "win") {
 
             // add coin to ewallet balance
-            let newCoinBalance = document.getElementById('ewallet-value').innerHTML;
-            ++newCoinBalance;
-            $('#ewallet-value').html(newCoinBalance);
+            let currentCoinBalance = parseInt(document.getElementById('ewallet-value').innerHTML);
+            console.log("current coin balance", currentCoinBalance);
+            let newCoin = 1;
+            console.log("new coin", newCoin);
+            let newCoinBalance = currentCoinBalance + newCoin;
             console.log("newCoinBalance", newCoinBalance);
-
-            //adds 1 to stats 'blocks mined'           
+            $('#ewallet-value').text(newCoinBalance);
+        
+            /*--
+            // adds 1 to stats 'blocks mined'           
             let newBlockMined = document.getElementById('stats-3-txt').innerHTML;
             ++newBlockMined;
             $('#stats-3-txt').html(newBlockMined);
             console.log("newBlockMined", newBlockMined);
+            --*/
 
-        };
-
+        }
         console.log("calcResult complete");
-    };
-
-
-    
+    } 
 
 });
-
 
 
 
