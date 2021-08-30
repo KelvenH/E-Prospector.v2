@@ -260,7 +260,16 @@ li>span {
     grid-template-columns: 50% 50%;
     grid-template-rows: 9;
     row-gap: 1vh;
-    grid-template-areas: "mml1 mmr1" "mml2   mmr2" "mml3   mmr3" "mml4   mmr4" "mml5   mmr5" "repeat-mine-btn repeat-mine-btn" "win-img win-img" "win-btn  win-btn" "mmi1 mmi1";
+    grid-template-areas: 
+    "mml1 mmr1"
+    "mml2 mmr2"
+    "mml3 mmr3"
+    "mml4 mmr4"
+    "mml5 mmr5"
+    "repeat-mine-btn repeat-mine-btn"
+    "win-img win-img"
+    "win-btn win-btn"
+    "mmi1 mmi1";
 }
 
 #modal-block-mining-line1 {
@@ -333,16 +342,17 @@ li>span {
 
 /*-- animated spinning block -- credit to: https://codepen.io/JTParrett/pen/hktzu */
 
+#modal-block-mining-img {
+    grid-area: mmi1;
+}
+
 #block-anim {
     -webkit-transform-style: preserve-3d;
     -webkit-animation: spin 3s infinite ease-out;
     position: relative;
-    width: 20vh;
+    width: 0;   /*-- minimal width to minimise size of axis of rotation--*/
     height: 20vh;
-    top: 50%;
-    left: 50%;
-    margin-left: -50px;
-    margin-top: -50px;
+    margin:auto;
 }
 
 #block-anim div {
@@ -428,8 +438,8 @@ li>span {
     align-self: end;
     justify-content: space-evenly;
     height: 8vh;
-    margin: 2vh 0 2vh 0;
-    width:90%;
+    margin-top: 2vh;
+    width:100%;
     border-radius: 0.5vw;
     box-shadow: -2px -2px 3px var(--ink8-glass1), 1px 1px 1px rgb(107, 196, 255), 1px 2px 1px rgb(107, 196, 255), 1px 3px 1px rgb(107, 196, 255), 1px 4px 1px rgb(107, 196, 255), 4px 12px 4px rgba(0, 189, 255, 0.2), 8px 16px 8px rgba(0, 189, 255, 0.2), 16px 28px 28px rgba(0, 189, 255, 0.2);
     overflow: hidden;

@@ -540,7 +540,7 @@ const purchasedOpSys = [];
 
 const tempStats = {
     chanceTemp: 9000,      //temp increase to increase speed during testing
-    hashPowerTemp: 10000,   //temp increase to increase speed during testing
+    hashPowerTemp: 1000,   //temp increase to increase speed during testing
     pwrUsageTemp: 0,
     conditionTemp: 0
 };
@@ -1258,14 +1258,6 @@ $("#terminal-miner-upgradebtn").click(function() {
 /*-- 10. Mine Block -------------------------------------------------------*/
 
         
-        c - run game cycle 
-        d - check result 
-        e - calculate result
-        c - if win calculate winnings
-        d - calc round costs (i.e. active device power consumpation x power unit rate)
-        e - calc subTotal (i.e. balance + winnings - cost)
-        f - update balance -----------------------------------------------------*/
-
 //called from 'on-click' added inline to miner play button (html)
 
 $("#terminal-miner-activatebtn").click(function() {
