@@ -54,9 +54,8 @@
 
 9. Crypto-Coin Exchange
 
-10. Validate Block
 
-11. Mine Block;
+10. Mine Block;
     11.1 - Pre-game checks
     11.2 - Generate Device and Block Keys
     11.3 - Display Modal and Populate Semi-Static Fields
@@ -64,9 +63,9 @@
     11.5 - Check Result
     11.6 - Calulcate Result & Update liveGameData and HTML Values
 
-12. Game Stats and Achivements
+11. Game Stats and Achivements
 
-13. Further Styling / Format Related
+12. Further Styling / Format Related
 
 
 --------------------------------------------------------------------------------*/
@@ -468,13 +467,6 @@ const gameLibrary = {
 // 2.2 : Live Game Data (initiated with default starting data and ammended through game actions)
 
 const liveGameData = {
-    validationDevice: {
-        difficulty: "",
-        joinPool: "",
-        memberTier: "",
-        upgradeRequirements: "",
-        upgradeProgress: ""
-    },
     rig: {
         name: "Comm-Atari-ZX",
         cost: 0,
@@ -484,7 +476,7 @@ const liveGameData = {
         basePower: 1,
         baseCondition: 20,
         rigComments: "Self-built from re-purposed parts from 1980's tech - hey, it's free?!",
-        status: "Available"
+        status: "Unavailable"
     },
     parts: [{
         processor: {
@@ -1333,9 +1325,7 @@ $("#terminal-miner-upgradebtn").click(function() {
 
 /*-- 9. Crypto-Coin Exchange -----------------------------------------------*/
 
-/*-- 10. Validate Block -----------------------------------------------------*/
-
-/*-- 11. Mine Block -------------------------------------------------------*/
+/*-- 10. Mine Block -------------------------------------------------------*/
 
         
 //called from 'on-click' added inline to miner play button (html)

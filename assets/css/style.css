@@ -486,7 +486,7 @@ li>span {
 }
 
 
-/*---- Left Pane Main Terminal (contents: validation & miner)--------*/
+/*---- Left Pane Main Terminal --------*/
 
 #main-terminal {
     height: 84vh;
@@ -535,21 +535,20 @@ input[type="radio"]:checked+label {
     background: var(--ink6-LED2OFF);
     border-radius: 0.4vw;
     padding: 2vh 1vw;
-    
     overflow: hidden;
     margin-bottom: 1vh;
 }
 
-#terminal-miner-title {
-    margin-bottom :1vh;
+#terminal-miner-status-label {
+    margin-top:2vh;
+    margin-bottom:2vh;
 }
 
-#terminal-miner-status-label,
 #terminal-miner-stats-label,
 #terminal-miner-parts-label,
-#terminal-valid-label {
-    margin-top:2vh;
-    margin-bottom:0;
+#terminal-miner-actions-label {
+    margin-top:4vh;
+    margin-bottom:2vh;
 }
 
 #terminal-miner-top-section {
@@ -563,8 +562,7 @@ input[type="radio"]:checked+label {
 
 #terminal-miner-status-available,
 #terminal-miner-status-unavailable,
-#terminal-miner-activatebtn,
-#terminal-miner-repairbtn {
+#terminal-miner-activatebtn {
     display: inline-block;
     text-align: center;
     padding: 1vh 1vw;
@@ -590,13 +588,6 @@ input[type="radio"]:checked+label {
     display:none;   
 }
 
-#terminal-miner-repairbtn {
-    background: rgba(209, 17, 17, 1);
-    color: var(--ink14);  
-    display:none;  
-    
-}
-
 .meter-off {
     border: 0.1vw solid var(--ink6-LED2LOW);
     background-color: var(--ink6-LED2LOW);
@@ -606,8 +597,6 @@ input[type="radio"]:checked+label {
     border: 0.2vw solid var(--ink6-LED2ON);
     background-color: var(--ink6-LED2ON);
 }
-
-
 
 #terminal-miner-stats-grid {
     display: grid;
@@ -688,7 +677,6 @@ input[type="radio"]:checked+label {
     "f1   f2" 
     "g1  g2" 
     "h1  h2"
-    "i1  i1"
 }
 
 #parts-rig {
@@ -723,50 +711,27 @@ input[type="radio"]:checked+label {
     grid-area: h2;
 }
 
+#terminal-miner-actions-pane {
+    border: 2px solid var(--ink6-LED2LOW);
+    border-radius: 0.4vw; 
+    
+    padding: 1vh 1vw;
+}
+
+#terminal-miner-repairbtn,
 #terminal-miner-upgradebtn {
     display: inline-block;
-    grid-area: i1;
-    margin: 0 1vw;
-}
-
-#terminal-valid-pane {
-    border: 2px solid var(--ink6-LED2LOW);
-    background: linear-gradient(217deg, rgba(42, 46, 51), rgba(29, 43, 53) 70.71%), linear-gradient(127deg, rgba(42, 46, 51), rgba(24, 42, 56) 70.71%), linear-gradient(336deg, rgba(042, 46, 51), rgba(24, 42, 56) 70.71%);
-    border-radius: 0.4vw;
-    margin-bottom:1vh;
+    text-align: center;
     padding: 1vh 1vw;
-    height:10vh;
+    border-radius: 0.4vw;
+    margin:0.5vh 0.5vw;
+    width:40%;
 }
 
-#terminal-quality {
-    display:inline-block;
+#terminal-miner-repairbtn {
+    background: rgba(209, 17, 17, 1);
+    color: var(--ink14);  
 }
-
-.radio-val {
-    display:inline-block;
-    background-color: inherit;
-    border-color: rgba(0, 0, 0, 0);
-    color: var(--ink6-LED2);
-    font-weight:800;
-}
-
-.radio-val:hover {
-    background-color: var(--ink6-LED2LOW);
-    border-color: var(--ink6-LED2LOW);
-    color: var(--ink6-LED2ON);
-}
-
-input[type="radio"]:checked+label {
-    background-color: inherit;
-    border-color: var(--ink6-LED2ON);
-    color: var(--ink6-LED2ON);
-}
-
-#terminal-miner-upgradebtn {
-    margin-top:2vh;
-    width: 20vw;
-}
-
 
 
 /*---- Mid Row (nested) (contents: message window & finances)--------*/

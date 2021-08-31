@@ -69,9 +69,6 @@
 
                         <div id="terminal-miner-pane">
 
-                            <!--Block Mining Pane-->
-                            <h3 id="terminal-miner-title">BLOCK MINING</h3>
-
                             <!--Status & Mine Btn-->
                             <h5 id="terminal-miner-status-label">STATUS:</h5>
                             <div id="terminal-miner-status" class="col-12">
@@ -79,7 +76,7 @@
                                     <p id="terminal-miner-status-available">AVAILABLE</p>
                                     <button id="terminal-miner-activatebtn" class="btn btn-info">Mine Block</button>
                                     <p id="terminal-miner-status-unavailable">UNAVAILABLE</p>
-                                    <button id="terminal-miner-repairbtn" class="btn">Repair</button>
+                                    
                                 </div>
                             </div>
 
@@ -127,26 +124,15 @@
                                 <div id="rig-name" class="key-value">[RIG NAME]</div>
                                 <div id="processor-name" class="key-value">[PROCESSOR]</div>
                                 <div id="cooling-name" class="key-value">[COOLING]</div>
-                                <div id="software-name" class="key-value">[SOFTWARE]</div>
-                                <button id="terminal-miner-upgradebtn" class="btn btn-warning float-end">Upgrade
-                                    Parts</button>
+                                <div id="software-name" class="key-value">[SOFTWARE]</div> 
                             </div>
-                            <!-- close terminal parts-->
-                            <h5 id="terminal-valid-label">VALIDATE BLOCK:</h5>
-                            <div id="terminal-valid-pane">
-                                <div id="terminal-quality">Difficulty:</div>
-                                <input type="radio" class="btn-check" name="valid-level" id="option1"
-                                    autocomplete="off">
-                                <label class="btn  radio-val" for="option1">LOW</label>
-                                <input type="radio" class="btn-check" name="valid-level" id="option2"
-                                    autocomplete="off">
-                                <label class="btn  radio-val" for="option2">MED</label>
-                                <input type="radio" class="btn-check" name="valid-level" id="option3"
-                                    autocomplete="off">
-                                <label class="btn  radio-val" for="option3">HIGH</label>
-                                <button id="terminal-miner-validatebtn" class="btn btn-info float-end">Validate
-                                    Block</button>
-                            </div>
+
+                             <!--terminal actions-->
+                             <h5 id="terminal-miner-actions-label">ACTIONS:</h5>
+                             <div id="terminal-miner-actions-pane" class="d-flex justify-content-evenly">
+                                <button id="terminal-miner-upgradebtn" class="btn btn-warning">Upgrades</button>
+                                <button id="terminal-miner-repairbtn" class="btn">Repair</button>
+                             </div>
 
                         </div>
                         <!--close terminal pane-->
