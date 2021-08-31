@@ -212,74 +212,54 @@
 
                     <div class="row">
 
-                        <!--achievements pane-->
+                        <!--terminal activity pane-->
                         <div class="col-7">
-                            <div id="achievements" class="lower-row-pane center-panel">
-                                <i id="achievements-logo" class="bi bi-award"></i>
-                                <h2 id="achievements-title">ACHIEVEMENTS</h2>
-                                <div id="grid-divider">
-                                    <div id="achievements-left">
-                                        <h4 id="game-stats-title" class="awards-sub-title">Game Stats</h4>
-                                        <div id="stats-grid">
-
-                                            <div id="stats-1-label">Current Rank</div>
-                                            <div id="stats-1-txt" class="stats-val key-value">Beginner</div>
-                                            <div id="stats-2-label">Blocks Mined</div>
-                                            <div id="stats-2-txt" class="stats-val key-value">0</div>
-                                            <div id="stats-3-label">Blocks Validated</div>
-                                            <div id="stats-3-txt" class="stats-val key-value">0</div>
-                                            <div id="stats-4-label">Mine Success Rate</div>
-                                            <div id="stats-4-txt" class="stats-val key-value">0%</div>
-                                            <div id="stats-5-label">Power Consumed</div>
-                                            <div id="stats-5-txt" class="stats-val key-value">0</div>
-                                            <div id="stats-6-label">Clean Power Sourced</div>
-                                            <div id="stats-6-txt" class="stats-val key-value">%</div>
-                                            <div id="stats-7-label">Upgrades Purchased</div>
-                                            <div id="stats-7-txt" class="stats-val key-value">0</div>
-                                            <div id="stats-8-label">Cyber Threats Thwarted</div>
-                                            <div id="stats-8-txt" class="stats-val key-value">0</div>
-                                            <div id="stats-9-label">Another</div>
-                                            <div id="stats-9-txt" class="stats-val key-value">0</div>
-
+                            <div id="activity" class="lower-row-pane center-panel">
+                                <i id="activity-logo" class="bi bi-award"></i>
+                                <h2 id="window-title">MINING ACTIVITY</h2>
+                
+                                    <div id="mine-block-grid">
+                                        <div id="modal-block-mining-line1"> Mining Device:</div>
+                                        <div id="modal-block-mining-line2"> Potential Key Combinations:</div>
+                                        <div id="modal-block-mining-line3"> # Attempts Completed:</div>
+                                        <div id="modal-block-mining-line4"> Analysing Key.....</div>
+                                        <div id="modal-block-mining-line5"> Result:</div>
+                                        <btn id="repeat-mine-btn" class="btn btn-info">Try Again</btn>
+                
+                                        <div id="modal-block-mining-response1"></div>
+                                        <div id="modal-block-mining-response2"></div>
+                                        <div id="modal-block-mining-response3" type="number" value="0"></div>
+                                        <div id="modal-block-mining-response4"></div>
+                                        <div id="modal-block-mining-response5">Pending</div>
+                
+                                        <i id='mine-success-img' class="bi bi-currency-bitcoin"></i>
+                                        <btn id="exit-success-mine-btn" class="btn btn-info">Return to Dashboard</btn>
+                
+                                        <div id="modal-block-mining-img">
+                                            <div id="block-anim">
+                                                <div class="top"></div>
+                                                <div class="right"></div>
+                                                <div class="bottom"></div>
+                                                <div class="left"></div>
+                                                <div class="front"></div>
+                                                <div class="back"></div>
+                                            </div>
                                         </div>
-                                        <!--close achievements stats-->
+                                        <!-- close modal img -->
+                
                                     </div>
-                                    <!--close achievements left-->
-                                    <div id="achievements-right">
-                                        <h4 id="game-awards-title" class="awards-sub-title">Awards</h4>
-                                        <div id="awards-grid">
-
-                                            <i id="award-1-img" class="bi bi-trophy"></i>
-
-                                            <i id="award-2-img" class="bi bi-trophy-fill"></i>
-
-                                            <i id="award-3-img" class="bi bi-award"></i>
-
-                                            <i id="award-4-img" class="bi bi-award-fill"></i>
-
-                                            <i id="award-5-img" class="bi bi-bookmark-star"></i>
-
-                                            <i id="award-6-img" class="bi bi-bookmark-star-fill"></i>
-
-                                            <i id="award-7-img" class="bi bi-cash-coin"></i>
-
-                                            <i id="award-8-img" class="bi bi-gem"></i>
-
-                                            <i id="award-9-img" class="bi bi-gift"></i>
-
-                                            <i id="award-10-img" class="bi bi-gift-fill"></i>
-
-                                            <i id="award-11-img" class="bi bi-joystick"></i>
-
-                                            <i id="award-12-img" class="bi bi-speedometer"></i>
-                                        </div>
-                                        <!--close awards grid-->
-                                    </div>
-                                    <!--close achievements right-->
-                                </div>
+                                    <!-- close mine block grid -->
+                                
+                                    <btn id="mine-block-exit-btn" class="btn btn-secondary">Cancel & Return to Dashboard</btn>
+                
+                                    <p id="mine-block-exit-footnote">
+                                        Note: when cancelling mining you will still be charged for the
+                                        power usage on all completed attempts
+                                    </p>
                             </div>
+                            <!-- close mine block panel -->
                         </div>
-                        <!--close achievements pane / col-->
+                        <!--close activity pane / col-->
 
                         <!--energy pane-->
                         <div class="col-5">
@@ -324,66 +304,12 @@
     </div>
     <!--close fullscreen container-->
 
-    <!--pop-up modals-->
-
-    <!--Modal : Mining Block-->
-
-    <div class="modal fade" id="modal-mine-block" data-bs-backdrop="static" tabindex="-1" role="dialog"
-        aria-labelledby="modal displaying block mining activity" aria-hidden="false">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title">Block Mining : Activated</h3>
-
-                </div>
-                <div class="modal-body">
-                    <div id="modal-mine-block-body-grid">
-                        <div id="modal-block-mining-line1"> Mining Device:</div>
-                        <div id="modal-block-mining-line2"> Potential Key Combinations:</div>
-                        <div id="modal-block-mining-line3"> # Attempts Completed:</div>
-                        <div id="modal-block-mining-line4"> Analysing Key.....</div>
-                        <div id="modal-block-mining-line5"> Result:</div>
-                        <btn id="repeat-mine-btn" class="btn btn-info">Try Again</btn>
-
-                        <div id="modal-block-mining-response1"></div>
-                        <div id="modal-block-mining-response2"></div>
-                        <div id="modal-block-mining-response3" type="number" value="0"></div>
-                        <div id="modal-block-mining-response4"></div>
-                        <div id="modal-block-mining-response5">Pending</div>
-
-                        <i id='mine-success-img' class="bi bi-currency-bitcoin"></i>
-                        <btn id="exit-success-mine-btn" class="btn btn-info">Return to Dashboard</btn>
-
-                        <div id="modal-block-mining-img">
-                            <div id="block-anim">
-                                <div class="top"></div>
-                                <div class="right"></div>
-                                <div class="bottom"></div>
-                                <div class="left"></div>
-                                <div class="front"></div>
-                                <div class="back"></div>
-                            </div>
-                        </div>
-                        <!-- close modal img -->
-
-                    </div>
-                    <!-- close modal grid -->
-
-                </div>
-                <!-- close modal body -->
-                <div class="modal-footer">
-                    <btn id="mine-block-exit-btn" class="btn btn-secondary">Cancel & Return to Dashboard</btn>
-
-                    <p id="mine-block-exit-footnote">Note: when cancelling mining you will still be charged for the
-                        power usage on all completed attempts</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- close mine block modal -->
 
 
 
+    <!--MODALS-->
+
+    
 
     <!--Modal : Upgrades-->
 
