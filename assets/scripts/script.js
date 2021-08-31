@@ -507,7 +507,7 @@ const liveGameData = {
     finance: {
         bankBalance: 10000,     //temp buff for development - reduce to £1k for gameplay
         ewalletBalance: 0,
-        fxRate: 100
+        fxRate: 1000
     },
     energy: {
         provider: "Gas-tricity",
@@ -1367,6 +1367,27 @@ $("#terminal-miner-repairbtn").click(function() {
 /*-- 8. Events -------------------------------------------------------------*/
 
 /*-- 9. Crypto-Coin Exchange -----------------------------------------------*/
+
+// 9.1 : Calculate a moving exchange rate every 30 seconds 
+
+let currentExRate = liveGameData.finance.fxRate;
+let exInterval = setInterval(update, 20000);
+
+function update () {
+    let num = Math.random(); //generates a random float value (0 - 1)
+    console.log("num1", num);
+    num *= Math.round(Math.random()) ? 1 : -1; // randomly determines a positive or negative value [Acknowledgement to online post: https://stackoverflow.com/questions/13455042/random-number-between-negative-and-positive-value]
+    console.log("num2", num);
+    let movingRate = num / 10; // caps range of movement between -10% and +10% 
+    console.log("num3", movingRate);
+    let newRate = currentExRate + (currentExRate * movingRate); // calculates rate move against existing exchnage rate
+    liveGameData.finance.fxRate= newRate.toFixed(2); // updates gameLibrary with new exchnage rate fixed to 2 decimal places
+    $("#exchange-value").contents()[1].nodeValue = liveGameData.finance.fxRate; // updates value displayed on screen
+    console.log("num4", newRate);
+  
+}
+
+ 
 
 /*-- 10. Mine Block -------------------------------------------------------*/
 
