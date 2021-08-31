@@ -495,7 +495,7 @@
                 <div class="modal-body">
                 
                     <p>
-                    Sorry, but you have insufficient funds for that purchase, please choose something more affordable!
+                    Sorry, but you have insufficient funds!
                     </p>
 
                     <p>
@@ -614,6 +614,30 @@
              </div>
          </div>
      </div> <!-- close repairs modal-->
+
+     <!--Modal : Confirm Repaired-->
+    <div class="modal fade" id="modal-confirm-repaired" data-bs-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="modal confirming rig repaired" aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Repaired!</h3>
+
+                </div>
+                <div class="modal-body">
+                
+                    <p>
+                    Repaired! You have been charged £<span id="repaired-cost">0</span> and your rig has been restored to it's original condition.
+                    Thanks for using our services. 
+                    </p>
+
+                </div> <!-- close modal body -->
+                <div class="modal-footer">
+                   <btn id="repaired-exit-btn" class="btn btn-info">Exit</btn>
+                </div>
+            </div>
+        </div>
+    </div> <!-- close repairs modal-->
 
 
     <script src="./assets/scripts/script.js "></script>

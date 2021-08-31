@@ -1320,8 +1320,13 @@ $("#terminal-miner-upgradebtn").click(function() {
 // check if total active condition is 0 if yes display modal to advise rig broken and need to buy a new one, otherwise display modal to purchase repair which costs 50% of rig price
 
 $("#terminal-miner-repairbtn").click(function() {
-
+    // display repair modal
     $('#modal-repair').modal('show');
+    
+    // calculate and display cost of repair
+    let rigCost = liveGameData.rig.cost;
+    let repairCost = rigCost / 4;
+    $('#repair-cost').text(repairCost);    
 
     $("#repair-exit-btn").click(function() {
         $('#modal-repair').modal('hide');
@@ -1329,9 +1334,31 @@ $("#terminal-miner-repairbtn").click(function() {
 
     $("#pay-repairs-btn").click(function() {
         $('#modal-repair').modal('hide');
+        // check if funds to pay for repairs...
+        let currentBal = liveGameData.finance.bankBalance;
+        if (repairCost > currentBal) {
+            //..display can not afford modal
+            $('#modal-unaffordable').modal('show');
+            $('#unaffordable-balance').text(currentBal);
+            $("#unaffordable-exit-btn").click(function() {
+                $('#modal-unaffordable').modal('hide');
+            });
+
+        } else {
+            //...display modal confirming repair, pass the costs and restore the condition
+            $('#modal-confirm-repaired').modal('show');
+            $('#modal-unaffordable').modal('hide'); //Bug Fix; although this modal should not be displayed there were experiences of it appearing after exiting the 'confirm repaired modal'
+            $('#repaired-cost').text(repairCost);
+            newBalance = liveGameData.finance.bankBalance - repairCost;
+            liveGameData.finance.bankBalance = newBalance; // update bank balance 
+            $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
+            tempStats.conditionTemp = 0;  // restores temp condition buff to zero 
+            $("#repaired-exit-btn").click(function() {
+                $('#modal-unaffordable').modal('hide'); //Bug Fix; although this modal should not be displayed there were experiences of it appearing after exiting the 'confirm repaired modal'
+                $('#modal-confirm-repaired').modal('hide');
+            });
+        }
     });
-
-
 });
 
 
@@ -1546,9 +1573,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         liveGameData.finance.bankBalance = postPowerCosts;
         $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
-         // Part 2 - update stats (incl. condition deterioration)
-         console.log("update stats here");
-
+         // Part 2 - update stats 
          /*-- temp condition deteriorates by 1 per completed cycle via decrement--*/
          --tempStats.conditionTemp;
 
