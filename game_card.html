@@ -74,7 +74,6 @@
                             <div id="terminal-miner-status" class="col-12">
                                 <div id="terminal-miner-top-section">
                                     <p id="terminal-miner-status-available">AVAILABLE</p>
-                                    <button id="terminal-miner-activatebtn" class="btn btn-info">Mine Block</button>
                                     <p id="terminal-miner-status-unavailable">UNAVAILABLE</p>
                                     
                                 </div>
@@ -208,54 +207,35 @@
 
 
 
-
-
                     <div class="row">
 
                         <!--terminal activity pane-->
                         <div class="col-7">
                             <div id="activity" class="lower-row-pane center-panel">
-                                <i id="activity-logo" class="bi bi-award"></i>
-                                <h2 id="window-title">MINING ACTIVITY</h2>
-                
-                                    <div id="mine-block-grid">
-                                        <div id="modal-block-mining-line1"> Mining Device:</div>
-                                        <div id="modal-block-mining-line2"> Potential Key Combinations:</div>
-                                        <div id="modal-block-mining-line3"> # Attempts Completed:</div>
-                                        <div id="modal-block-mining-line4"> Analysing Key.....</div>
-                                        <div id="modal-block-mining-line5"> Result:</div>
-                                        <btn id="repeat-mine-btn" class="btn btn-info">Try Again</btn>
-                
-                                        <div id="modal-block-mining-response1"></div>
-                                        <div id="modal-block-mining-response2"></div>
-                                        <div id="modal-block-mining-response3" type="number" value="0"></div>
-                                        <div id="modal-block-mining-response4"></div>
-                                        <div id="modal-block-mining-response5">Pending</div>
-                
-                                        <i id='mine-success-img' class="bi bi-currency-bitcoin"></i>
-                                        <btn id="exit-success-mine-btn" class="btn btn-info">Return to Dashboard</btn>
-                
-                                        <div id="modal-block-mining-img">
-                                            <div id="block-anim">
-                                                <div class="top"></div>
-                                                <div class="right"></div>
-                                                <div class="bottom"></div>
-                                                <div class="left"></div>
-                                                <div class="front"></div>
-                                                <div class="back"></div>
-                                            </div>
-                                        </div>
-                                        <!-- close modal img -->
-                
-                                    </div>
-                                    <!-- close mine block grid -->
-                                
-                                    <btn id="mine-block-exit-btn" class="btn btn-secondary">Cancel & Return to Dashboard</btn>
-                
-                                    <p id="mine-block-exit-footnote">
-                                        Note: when cancelling mining you will still be charged for the
-                                        power usage on all completed attempts
-                                    </p>
+                                <i id="activity-logo" class="bi bi-gear-wide-connected"></i>
+                                <h2 id="activity-title">MINING ACTIVITY</h2>
+                                <div class="d-flex justify-content-center">
+                                    <button id="terminal-miner-activatebtn" class="btn btn-info">ACTIVATE</button>
+                                    <button id="terminal-miner-stopbtn" class="btn btn-info">STOP</button>
+                                </div>
+                                <div id="mine-block-grid">
+                                    <div id="block-mining-line1"> Miner Activity:</div>
+                                    <div id="block-mining-line2"> Potential Key Combinations:</div>
+                                    <div id="block-mining-line3"> # Attempts Completed:</div>
+                                    <div id="block-mining-progressbar"></div>
+                                    <div id="block-mining-line5"> Result:</div>
+                                    <div id="block-mining-reattempt">Will re-attempt in......</div>
+
+                                    <div id="block-mining-response1">Not Running</div>
+                                    <div id="block-mining-response2"></div>
+                                    <div id="block-mining-response3"></div>
+                                    <div id="block-mining-response5"></div>
+                                    <div id="block-mining-reattempt-count">3</div>
+            
+                                    <i id='mine-success-img' class="bi bi-currency-bitcoin"></i>
+            
+                                </div>
+                                <!-- close mine block grid -->
                             </div>
                             <!-- close mine block panel -->
                         </div>

@@ -53,7 +53,7 @@
 8. Events 
 
 9. Crypto-Coin Exchange
-    9.1 - calculate moving coin to £ exchange rate
+    9.1 - Calculate moving coin to £ exchange rate
     9.2 - Exchange Coins
 
 10. Mine Block;
@@ -542,7 +542,7 @@ const purchasedOpSys = [];
 // 2.4 : Temporary Stats (captures short-term pos / neg impacts typically as a result of events)
 
 const tempStats = {
-    chanceTemp: 9000,      //temp increase to increase speed during testing
+    chanceTemp: 5000,      //temp increase to increase speed during testing
     hashPowerTemp: 5000,   //temp increase to increase speed during testing
     pwrUsageTemp: 0,
     conditionTemp: 0
@@ -1484,7 +1484,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
     function generateMinerKey() {
         console.log("allKeys", allKeys);
         
-        minerKey = Math.floor(Math.random() * allKeys.length); // random selection from the array of keyRange
+        minerKey = Math.floor(Math.random() * allKeys.length +1); // random selection from the array of keyRange
         console.log("minerKey", minerKey);
         
         // find the random chosen key and remove from array to prevent re-selection 
@@ -1500,12 +1500,16 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
     }
 
-    // 11.3 : Display modal and populate semi 'static' fields (semi static, meaning they do not change during the individual game round, but can display different values in other game rounds depending on user actions)
-
-    $('#modal-mine-block').modal('show'); // display modal
-    $('#modal-block-mining-response1').text(liveGameData.rig.name);
-    $('#modal-block-mining-response2').text(keyRange);
-    $('#modal-block-mining-response3').html(0); //Resets number of completed attempts to 0
+    // 11.3 : Update Activity Pane - Populate semi 'static' fields (semi static, meaning they do not change during the individual game round, but can display different values in other game rounds depending on user actions)
+    
+    $('#terminal-miner-activatebtn').css('display', 'none');
+    $('#terminal-miner-stopbtn').css('display', 'inline-block');
+    $('#block-mining-response1').text("Running");
+    $('#block-mining-line2').css('display', 'block');
+    $('#block-mining-response2').css('display', 'block').text(keyRange);
+    $('#block-mining-line3').css('display', 'block');
+    $('#block-mining-response3').css('display', 'block').html(0); //Resets number of completed attempts to 0
+    $('#block-mining-progressbar').css('display', 'block');
 
 
 
@@ -1518,39 +1522,34 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
     let buffedSpeed = maxCounter - (maxCounter * hashSpeed); //reduces the maxValue according to the total hashSpeed buff
     console.log("buffedSpeed", buffedSpeed);
 
-    let count = document.getElementById('modal-block-mining-response3').innerHTML; //increment count of attempts (set to 0 (in display modal section) for 1st round but increased through GameCycle for round 2+)
+    let count = document.getElementById('block-mining-response3').innerHTML; //increment count of attempts (set to 0 (in display  section) for 1st round but increased through GameCycle for round 2+)
 
 
     gameCycle();
 
     function gameCycle() {
 
-        $('#repeat-mine-btn').css('visibility', 'hidden'); //re-hides button to prevent repeated clicks before cycle completes
         generateMinerKey(minerKey);
         var timeleft = buffedSpeed;
-        $('#modal-block-mining-response4').text("");
-        $('#modal-block-mining-line5').css('visibility', 'hidden');
-        $('#modal-block-mining-response5').css('visibility', 'hidden');
+        $('#block-mining-line5').css('display', 'none');
+        $('#block-mining-response5').css('display', 'none');
         var timer = setInterval(function() {
             if (timeleft <= 0) {
                 clearInterval(timer);
-                $('#modal-block-mining-response4').text("Check Completed");
-                $('#modal-block-mining-img').css('visibility', 'hidden'); //hide animation
-                $('#modal-block-mining-line5').css('visibility', 'visible');
-                $('#modal-block-mining-response5').css('visibility', 'visible'); //display result line
+                $('#block-mining-line5').css('display', 'block');
+                $('#block-mining-response5').css('display', 'block'); //display result line
 
                 console.log("count=", count); //increment attempt count
                 ++count;
                 console.log("count=", count);
-                $('#modal-block-mining-response3').html(count);
+                $('#block-mining-response3').html(count);
                 console.log("count=", count);
 
                 checkResult(minerKey, blockKey);
 
             } else {
                 console.log(timeleft);
-                $('#modal-block-mining-response4').text("Check in Operation");
-                $('#modal-block-mining-img').css('visibility', 'visible');
+
             }
             timeleft -= 1;
         }, 1000);
@@ -1565,26 +1564,58 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         console.log("minerKey vs blockKey", minerKey, "v", blockKey);
         if (minerKey === blockKey) {
 
-            $('#modal-block-mining-response5').text('Key Accepted - Congratulations, block mined!'); // displays message confirming success
-            $('#repeat-mine-btn').css('visibility', 'hidden'); //re-hides button to prevent running again
+            $('#block-mining-response5').text('Success, block mined!'); // displays message confirming success
             $('#mine-success-img').css('display', 'block'); //reveal success image
-            $('#exit-success-mine-btn').css('display', 'block'); //show success exit button
-            $('#mine-block-exit-btn').css('visibility', 'hidden');
-            $('#mine-block-exit-footnote').css('visibility', 'hidden');
             console.log("checkResult=win");
             outcome = "win";
-            return outcome;
+            result (outcome);
+            
 
         } else {
-            $('#modal-block-mining-response5').text('Key Not Accepted');
-            $('#repeat-mine-btn').css('visibility', 'visible'); //display button to run again (note, btn rehidden after next cycle commences to prevent multi-clicks / attempts)
+            $('#block-mining-response5').text('Key Not Accepted');
+            $('#block-mining-reattempt').css('display', 'block');
+            $('#block-mining-reattempt-count').css('display', 'block');
+            
             console.log("checkResult=no win");
             outcome = "no win";
-            return outcome;
+            result (outcome);
+        }
+        
+    }
+      
+   
+    function result(outcome) {
+    
+        console.log("redirect + outcome", outcome);
+        
+        //if outcome = no win, display re-attempt message with 3 sec countdown
+        if (outcome == "no win") {
+        
+            let delayTime = 3;    // 3 secs delay
+            let repeatInterval = setInterval(function() {
+                //insert actions once time reached
+                if (delayTime <=0) {
+                    clearInterval(repeatInterval);
+                    console.log("3 sec delay completed");
+                    $('#block-mining-reattempt').fadeOut(800);
+                    $('#block-mining-reattempt-count').fadeOut(800);
+
+                } else {           
+                    $('#block-mining-reattempt-count').text(delayTime);
+                }
+                delayTime -= 1;
+            }, 1000);
+                
+        }
+
+        // if outcome = win, 3 second pause and display calcResult
+        if (outcome == "win") {
+            console.log("win?", outcome);
         }
 
     }
-
+    
+    
     // Redirects for different outcomes
 
     // outcome 1 - no win and try again 

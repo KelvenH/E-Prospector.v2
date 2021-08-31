@@ -255,162 +255,15 @@ li>span {
     font-size: 1.25vw;
 }
 
-#modal-mine-block-body-grid {
-    color: var(--ink2-offblacksolid);
-    font-size: 1.5rem;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 9;
-    row-gap: 1vh;
-    grid-template-areas: 
-    "mml1 mmr1"
-    "mml2 mmr2"
-    "mml3 mmr3"
-    "mml4 mmr4"
-    "mml5 mmr5"
-    "repeat-mine-btn repeat-mine-btn"
-    "win-img win-img"
-    "win-btn win-btn"
-    "mmi1 mmi1";
-}
-
-#modal-block-mining-line1 {
-    grid-area: mml1;
-}
-
-#modal-block-mining-line2 {
-    grid-area: mml2;
-}
-
-#modal-block-mining-line3 {
-    grid-area: mml3;
-}
-
-#modal-block-mining-line4 {
-    grid-area: mml4;
-}
-
-#modal-block-mining-line5 {
-    grid-area: mml5;
-    visibility: hidden;
-}
-
-#modal-block-mining-response1 {
-    grid-area: mmr1;
-}
-
-#modal-block-mining-response2 {
-    grid-area: mmr2;
-}
-
-#modal-block-mining-response3 {
-    grid-area: mmr3;
-}
-
-#modal-block-mining-response4 {
-    grid-area: mmr4;
-}
-
-#modal-block-mining-response5 {
-    grid-area: mmr5;
-    visibility: hidden;
-}
-
-#repeat-mine-btn {
-    visibility: hidden;
-    grid-area: repeat-mine-btn;
-}
-
-#mine-block-exit-footnote {
-    margin-top: 1vh;
-}
-
-#mine-success-img {
-    grid-area: win-img;
-    display: none;
-    font-size: 5rem;
-    color: var(--ink6-LED2ON);
-    text-align: center;
-}
-
-#exit-success-mine-btn {
-    grid-area: win-btn;
-    display: none;
-}
-
-#modal-unaffordable {
-    display: none;
-}
-
-/*-- animated spinning block -- credit to: https://codepen.io/JTParrett/pen/hktzu */
-
-#modal-block-mining-img {
-    grid-area: mmi1;
-}
-
-#block-anim {
-    -webkit-transform-style: preserve-3d;
-    -webkit-animation: spin 3s infinite ease-out;
-    position: relative;
-    width: 0;   /*-- minimal width to minimise size of axis of rotation--*/
-    height: 20vh;
-    margin:auto;
-}
-
-#block-anim div {
-    width: 150px;
-    height: 150px;
-    line-height: 100px;
-    text-align: center;
-    box-shadow: inset 0px 0px 0px 1px rgba(10, 0, 0, 0.8);
-    background: var(--ink6-LED2LOW);
-    display: block;
-    position: absolute;
-}
-
-#block-anim div.top {
-    -webkit-transform: rotateX(90deg);
-    margin-top: -50px;
-}
-
-#block-anim div.right {
-    -webkit-transform: rotateY(90deg);
-    margin-left: 50px;
-}
-
-#block-anim div.bottom {
-    -webkit-transform: rotateX(-90deg);
-    margin-top: 50px;
-}
-
-#block-anim div.left {
-    -webkit-transform: rotateY(-90deg);
-    margin-left: -50px;
-}
-
-#block-anim div.front {
-    -webkit-transform: translateZ(50px);
-}
-
-#block-anim div.back {
-    -webkit-transform: translateZ(-50px) rotateX(180deg);
-}
-
-@-webkit-keyframes spin {
-    0% {
-        -webkit-transform: rotateX(-20deg) rotateY(20deg);
-    }
-    100% {
-        -webkit-transform: rotateX(-20deg) rotateY(740deg);
-    }
-}
-
 
 #upgrade-shop {
     padding-top: 5vh;
     text-align: center;
 }
 
+#modal-unaffordable {
+    display: none;
+}
 
 /****************************************************************************************/
 
@@ -567,8 +420,7 @@ input[type="radio"]:checked+label {
 }
 
 #terminal-miner-status-available,
-#terminal-miner-status-unavailable,
-#terminal-miner-activatebtn {
+#terminal-miner-status-unavailable {
     display: inline-block;
     text-align: center;
     padding: 1vh 1vw;
@@ -583,9 +435,7 @@ input[type="radio"]:checked+label {
     display:block;   
 }
 
-#terminal-miner-activatebtn {
-    display:block;  
-}
+
 
 #terminal-miner-status-unavailable {
     border: solid 1px rgba(209, 17, 17, 1);
@@ -948,7 +798,7 @@ input[type="radio"]:checked+label {
 }
 
 
-/*----Lower Section (contents: Achievements & Energy--------*/
+/*----Lower Section (contents: Miner Activity & Energy--------*/
 
 .lower-row-pane {
     height: 46vh;
@@ -960,205 +810,241 @@ input[type="radio"]:checked+label {
 }
 
 
-/*----Achievements Panel--------*/
+/*----Activity Panel--------*/
 
-#achievements-logo {
+
+#activity-logo {
     font-size: 2rem;
     width: 2vw;
     display: inline;
     color:var(--ink9);
 }
 
-#achievements-title {
+#activity-title {
     font-size: 2rem;
     display: inline;
 }
 
-#grid-divider {
-    align-text: top;
+#terminal-miner-activatebtn,
+#terminal-miner-stopbtn {
+    text-align: center;
+    padding: 1vh 1vw;
+    border-radius: 0.4vw;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    width:40%; 
 }
 
-#achievements-left,
-#achievements-right {
-    margin-top: 1vh;
+#terminal-miner-activatebtn {
     display: inline-block;
-    width: 45%;
-    vertical-align: top;
 }
 
-.awards-sub-title {
-    padding-left: 2vw;
-    width: 100%;
+#terminal-miner-stopbtn {
+    display: none;
 }
 
-#stats-grid {
-    width: 100%;
-    height: 100%;
-    padding-left: 2vw;
+#mine-block-grid {
+    padding-left:2vw;
+    margin-top: 2vh;
+    color: var(--ink2-offblacksolid);
+    font-size: 1.5rem;
     display: grid;
-    margin-bottom: 2vh;
     grid-template-columns: 60% 40%;
-    grid-template-rows: 5;
     row-gap: 1vh;
-    grid-template-areas: "stats-1-label  stats-1-txt" "stats-2-label  stats-2-txt" "stats-3-label  stats-3-txt" "stats-4-label  stats-4-txt" "stats-5-label  stats-5-txt" "stats-6-label  stats-6-txt" "stats-7-label  stats-7-txt" "stats-8-label  stats-8-txt" "stats-9-label  stats-9-txt" "stats-10-label  stats-10-txt"
+    grid-template-areas: 
+    "mml1 mmr1"
+    "mml2 mmr2"
+    "mml3 mmr3"
+    "mml4 mmr4"
+    "mml5 mmr5"
+    "reattempt repeatcount"
+    "win-img win-img"
+    "win-btn win-btn"
+    "mmi1 mmi1";
 }
 
-.stats-val {
-    text-align: center;
+#block-mining-line1 {
+    grid-area: mml1;
 }
 
-#stats-1-label {
-    grid-area: stats-1-label;
+#block-mining-line2 {
+    grid-area: mml2;
+    display:none;
 }
 
-#stats-1-txt {
-    grid-area: stats-1-txt;
+#block-mining-line3 {
+    grid-area: mml3;
+    display:none;
 }
 
-#stats-2-label {
-    grid-area: stats-2-label;
+#block-mining-progressbar {
+    grid-area: mml4;
+    display:none;
 }
 
-#stats-2-txt {
-    grid-area: stats-2-txt;
+#block-mining-line5 {
+    grid-area: mml5;
+    display:none;
 }
 
-#stats-3-label {
-    grid-area: stats-3-label;
+#block-mining-reattempt {
+    grid-area: reattempt;
+    display:none;
 }
 
-#stats-3-txt {
-    grid-area: stats-3-txt;
+#block-mining-response1 {
+    grid-area: mmr1;
 }
 
-#stats-4-label {
-    grid-area: stats-4-label;
+#block-mining-response2 {
+    grid-area: mmr2;
+    display:none;
 }
 
-#stats-4-txt {
-    grid-area: stats-4-txt;
+#block-mining-response3 {
+    grid-area: mmr3;
+    display:none;
 }
 
-#stats-5-label {
-    grid-area: stats-5-label;
+#block-mining-response4 {
+    grid-area: mmr4;
+    display:none;
 }
 
-#stats-5-txt {
-    grid-area: stats-5-txt;
+#block-mining-response5 {
+    grid-area: mmr5;
+    display:none;
 }
 
-#stats-6-label {
-    grid-area: stats-6-label;
+#block-mining-reattempt-count {
+    grid-area: repeatcount;
+    display: none;
+    color: var(--ink9);
 }
 
-#stats-6-txt {
-    grid-area: stats-6-txt;
-}
-
-#stats-7-label {
-    grid-area: stats-7-label;
-}
-
-#stats-7-txt {
-    grid-area: stats-7-txt;
-}
-
-#stats-8-label {
-    grid-area: stats-8-label;
-}
-
-#stats-8-txt {
-    grid-area: stats-8-txt;
-}
-
-#stats-9-label {
-    grid-area: stats-9-label;
-}
-
-#stats-9-txt {
-    grid-area: stats-9-txt;
-}
-
-#stats-10-label {
-    grid-area: stats-10-label;
-}
-
-#stats-10-txt {
-    grid-area: stats-10-txt;
-}
-
-#game-awards-title {
-    padding-left: 4vw;
-}
-
-#awards-grid {
-    width: 100%;
-    height: 100%;
-    padding-left: 4vw;
-    display: grid;
+#mine-block-exit-footnote {
     margin-top: 1vh;
-    margin-bottom: 2vh;
-    grid-template-columns: 3;
-    grid-template-rows: 4;
-    row-gap: 1vh;
-    grid-template-areas: "award-1-img   award-2-img  award-3-img" "award-4-img   award-5-img  award-6-img" "award-7-img   award-8-img  award-9-img" "award-10-img   award-11-img  award-12-img"
 }
 
-#awards-grid>i {
-    font-size: 2.5rem;
-}
-
-.award-val {
+#mine-success-img {
+    grid-area: win-img;
+    display: none;
+    font-size: 5rem;
+    color: var(--ink6-LED2ON);
     text-align: center;
 }
 
-#award-1-img {
-    grid-area: award-1-img;
+#exit-success-mine-btn {
+    grid-area: win-btn;
+    display: none;
 }
 
-#award-2-img {
-    grid-area: award-2-img;
+
+
+/*-- animated spinning block -- credit to: https://codepen.io/JTParrett/pen/hktzu */
+
+#modal-block-mining-img {
+    grid-area: mmi1;
 }
 
-#award-3-img {
-    grid-area: award-3-img;
+#block-anim {
+    -webkit-transform-style: preserve-3d;
+    -webkit-animation: spin 3s infinite ease-out;
+    position: relative;
+    width: 0;   /*-- minimal width to minimise size of axis of rotation--*/
+    height: 20vh;
+    margin:auto;
 }
 
-#award-4-img {
-    grid-area: award-4-img;
+#block-anim div {
+    width: 150px;
+    height: 150px;
+    line-height: 100px;
+    text-align: center;
+    box-shadow: inset 0px 0px 0px 1px rgba(10, 0, 0, 0.8);
+    background: var(--ink6-LED2LOW);
+    display: block;
+    position: absolute;
 }
 
-#award-5-img {
-    grid-area: award-5-img;
+#block-anim div.top {
+    -webkit-transform: rotateX(90deg);
+    margin-top: -50px;
 }
 
-#award-6-img {
-    grid-area: award-6-img;
+#block-anim div.right {
+    -webkit-transform: rotateY(90deg);
+    margin-left: 50px;
 }
 
-#award-7-img {
-    grid-area: award-7-img;
+#block-anim div.bottom {
+    -webkit-transform: rotateX(-90deg);
+    margin-top: 50px;
 }
 
-#award-8-img {
-    grid-area: award-8-img;
+#block-anim div.left {
+    -webkit-transform: rotateY(-90deg);
+    margin-left: -50px;
 }
 
-#award-9-img {
-    grid-area: award-9-img;
+#block-anim div.front {
+    -webkit-transform: translateZ(50px);
 }
 
-#award-10-img {
-    grid-area: award-10-img;
+#block-anim div.back {
+    -webkit-transform: translateZ(-50px) rotateX(180deg);
 }
 
-#award-11-img {
-    grid-area: award-11-img;
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotateX(-20deg) rotateY(20deg);
+    }
+    100% {
+        -webkit-transform: rotateX(-20deg) rotateY(740deg);
+    }
 }
 
-#award-12-img {
-    grid-area: award-12-img;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*----Energy Panel--------*/
