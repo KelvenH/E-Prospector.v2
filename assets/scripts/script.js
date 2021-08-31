@@ -53,7 +53,8 @@
 8. Events 
 
 9. Crypto-Coin Exchange
-
+    9.1 - calculate moving coin to £ exchange rate
+    9.2 - Exchange Coins
 
 10. Mine Block;
     11.1 - Pre-game checks
@@ -393,25 +394,25 @@ const gameLibrary = {
             },
             {
                 name: "Macro-hard 15",
-                cost: 2000,
+                cost: 500,
                 chanceBuff: 0,
-                hashPowerBuff: 0,
+                hashPowerBuff: 20,
                 powerBuff: 0,
                 conditionBuff: 50
             },
             {
                 name: "Orange OS",
-                cost: 4000,
-                chanceBuff: 0,
+                cost: 500,
+                chanceBuff: 50,
                 hashPowerBuff: 0,
                 powerBuff: 0,
                 conditionBuff: 75
             },
             {
                 name: "Blackbox .IO",
-                cost: 50000,
-                chanceBuff: 0,
-                hashPowerBuff: 0,
+                cost: 2000,
+                chanceBuff: 75,
+                hashPowerBuff: 75,
                 powerBuff: 100,
                 conditionBuff: 100
             }
@@ -505,7 +506,7 @@ const liveGameData = {
         }
     }],
     finance: {
-        bankBalance: 10000,     //temp buff for development - reduce to £1k for gameplay
+        bankBalance: 1000,     //temp buff for development - reduce to £1k for gameplay
         ewalletBalance: 0,
         fxRate: 1000
     },
@@ -541,8 +542,8 @@ const purchasedOpSys = [];
 // 2.4 : Temporary Stats (captures short-term pos / neg impacts typically as a result of events)
 
 const tempStats = {
-    chanceTemp: 10000,      //temp increase to increase speed during testing
-    hashPowerTemp: 10000,   //temp increase to increase speed during testing
+    chanceTemp: 9000,      //temp increase to increase speed during testing
+    hashPowerTemp: 5000,   //temp increase to increase speed during testing
     pwrUsageTemp: 0,
     conditionTemp: 0
 };
@@ -1371,7 +1372,7 @@ $("#terminal-miner-repairbtn").click(function() {
 // 9.1 : Calculate a moving exchange rate every 30 seconds 
 
 let currentExRate = liveGameData.finance.fxRate;
-let exInterval = setInterval(update, 20000);
+let exInterval = setInterval(update, 60000); //30,000 = 30 secs (!!change back to 30)
 
 function update () {
     let num = Math.random(); //generates a random float value (0 - 1)
@@ -1384,10 +1385,40 @@ function update () {
     liveGameData.finance.fxRate= newRate.toFixed(2); // updates gameLibrary with new exchnage rate fixed to 2 decimal places
     $("#exchange-value").contents()[1].nodeValue = liveGameData.finance.fxRate; // updates value displayed on screen
     console.log("num4", newRate);
-  
 }
 
- 
+// 9.2 : exchange coins 
+
+$("#exchange-btn").click(function() {
+    let wallet = liveGameData.finance.ewalletBalance;
+    let exRate = liveGameData.finance.fxRate;
+    let exValue = wallet * exRate;
+
+    
+    $('#modal-exchange').modal('show');
+    $('#wallet-balance').text(wallet);
+    $('#exchange-rate').text(exRate);
+    $('#exchange-returned').text(exValue);
+
+    $('#exchange-deal-btn').unbind('click').click(function() {
+        // reset ewallet balance to zero in library and on screen
+        liveGameData.finance.ewalletBalance = 0;
+        $('#ewallet-value').text(0);
+
+        // update bank balance with value of exchange in library and on screen
+        liveGameData.finance.bankBalance =  liveGameData.finance.bankBalance + exValue;
+        $('#bank-value').contents()[1].nodeValue = liveGameData.finance.bankBalance;
+
+        $('#modal-exchange').modal('hide');
+
+    });
+
+
+    $('#exchange-exit-btn').click(function() {
+        $('#modal-exchange').modal('hide');
+    });
+
+});
 
 /*-- 10. Mine Block -------------------------------------------------------*/
 
@@ -1451,14 +1482,22 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
     let minerKey = 0;
 
     function generateMinerKey() {
-        minerKey = Math.floor(Math.random() * keyRange) + 1;
-        if (minerKey > keyRange) {
-            alert("Error: MinerKey is out of range, please re-click to mine block!");
-            console.log("minerKey:", minerKey);
-        } else {
-            console.log("minerKey:", minerKey);
+        console.log("allKeys", allKeys);
+        
+        minerKey = Math.floor(Math.random() * allKeys.length); // random selection from the array of keyRange
+        console.log("minerKey", minerKey);
+        
+        // find the random chosen key and remove from array to prevent re-selection 
+        let index = allKeys.indexOf(minerKey);
+        if (index > -1) {
+            allKeys.splice(index, 1);
         }
-        return minerKey;
+        console.log("allKeys", allKeys);
+        console.log("minerKey", minerKey);
+        //BUG: the minerKey is being selected from the allKeys array and console.log shows this is then removed, but this does not prevent the minerKey from choosing the same item on a further attempt 
+
+        return minerKey; 
+
     }
 
     // 11.3 : Display modal and populate semi 'static' fields (semi static, meaning they do not change during the individual game round, but can display different values in other game rounds depending on user actions)
