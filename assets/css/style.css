@@ -860,8 +860,7 @@ input[type="radio"]:checked+label {
     "progress progress"
     "result-l result-r"
     "reattempt repeatcount"
-    "win-img win-img"
-    "win-btn win-btn"
+    "win-img win-btn"
     "mmi1 mmi1";
 }
 
@@ -948,7 +947,16 @@ input[type="radio"]:checked+label {
     text-align: center;
 }
 
-
+#terminal-miner-won-btn {
+    grid-area: win-btn;
+    text-align: center;
+    padding: 1vh 1vw;
+    border-radius: 0.4vw;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    width: 80%;
+    display: none;
+}
 
 
 

@@ -59,14 +59,11 @@
 10. Mine Block;
     11.1 - Pre-game checks
     11.2 - Generate Device and Block Keys
-    11.3 - Display Modal and Populate Semi-Static Fields
+    11.3 - Prepare Activity Pane
     11.4 - Run Game Cycle
     11.5 - Check Result
     11.6 - Calulcate Result & Update liveGameData and HTML Values
 
-11. Game Stats and Achivements
-
-12. Further Styling / Format Related
 
 
 --------------------------------------------------------------------------------*/
@@ -542,7 +539,7 @@ const purchasedOpSys = [];
 // 2.4 : Temporary Stats (captures short-term pos / neg impacts typically as a result of events)
 
 const tempStats = {
-    chanceTemp: 3000,      //temp increase to increase speed during testing
+    chanceTemp: 99000,      //temp increase to increase speed during testing
     hashPowerTemp: 9000,   //temp increase to increase speed during testing
     pwrUsageTemp: 0,
     conditionTemp: 0
@@ -1427,8 +1424,13 @@ $("#exchange-btn").click(function() {
 
 $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
-// 11.1 : Pre-Game Checks    
+    // 11.0 : Deactivate Repair, Upgrade and Energy Buttons (Bug Fix : unexpected behavious encountered if changes made during gameplay)
 
+    $('#terminal-miner-upgradebtn').prop('disabled', true);
+    $('#terminal-miner-repairbtn').prop('disabled', true);
+    $('#energy-btn').prop('disabled', true);
+
+    // 11.1 : Pre-Game Checks    
     inGameChecks();
 
     // 11.2 : Generate Device and Block Keys 
@@ -1500,7 +1502,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
     }
 
-    // 11.3 : Update Activity Pane - Populate semi 'static' fields (semi static, meaning they do not change during the individual game round, but can display different values in other game rounds depending on user actions)
+    // 11.3 : Prepare Activity Pane - Populate semi 'static' fields (semi static, meaning they do not change during the individual game round, but can display different values in other game rounds depending on user actions)
     
     $('#terminal-miner-activatebtn').css('display', 'none');
     $('#terminal-miner-stopbtn').css('display', 'inline-block');
@@ -1557,7 +1559,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
                 //update power used
                 let currentPowerUsage = totalActiveStats.totalPower * count;
                 $('#block-mining-power-used').html(currentPowerUsage +$('#block-mining-power-used span')[0].outerHTML);
-                let currentPowerCost = currentPowerUsage * liveGameData.energy.usageCostPerKw;
+                let currentPowerCost = (currentPowerUsage * liveGameData.energy.usageCostPerKw).toFixed(2);
                 $('#block-mining-power-cost').html("<span>£ </span>" + currentPowerCost);
 
                 checkResult(minerKey, blockKey);
@@ -1627,44 +1629,46 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         // if outcome = win, 3 second pause and display calcResult
         if (outcome == "win") {
             console.log("win?", outcome);
+            $('#terminal-miner-stopbtn').css('display', 'none');
+            $('#block-mining-response1').text("Completed");
+            $('#block-mining-line2').css('display', 'none');
+            $('#block-mining-response2').css('display', 'none');
+            $('#terminal-miner-won-btn').css('display', 'block');
+
+            $('#terminal-miner-won-btn').unbind('click').click(function() {
+                $('#terminal-miner-won-btn').css('display', 'none');
+                calcResult();
+            });
+
         }
 
     }
-    
-    
-    // Redirects for different outcomes
-
-    // outcome 1 - no win and try again 
-    $("#repeat-mine-btn").unbind('click').click(function() {
-        console.log("repeat-mine-btn selected")
-        gameCycle();
-
-    });
-
-    // outcome 2 - no win and exit
-    $("#mine-block-exit-btn").unbind('click').click(function() {
-        console.log("mine-block-exit-btn selected");
-        $('#modal-mine-block').modal('hide');
-        calcResult();
-
-    });
-
-    // ouctome 3 - win (also resets from success to default to avoid these displaying at start of next attempt)
-    $('#exit-success-mine-btn').unbind('click').click(function() {
-        $('#mine-success-img').css('display', 'none');
-        $('#exit-success-mine-btn').css('display', 'none');
-        $('#modal-mine-block').modal('hide');
-        $('#mine-block-exit-btn').css('visibility', 'visible');
-        $('#mine-block-exit-footnote').css('visibility', 'visible');
-        console.log("round win - exit button selected");
-        calcResult();
-    });
+     
 
     // 11.6 : Calculate Result (1 - costs / power useage, 2 - update stats. 3 - update winnings)
 
     function calcResult() {
 
-         // Part 1 - calc and deduct power usage
+        // Part 1 - reset fields and buttons
+        $('#mine-success-img').css('display', 'none');
+        $('#terminal-miner-activatebtn').css('display', 'inline-block');
+        $('#block-mining-line2').css('display', 'none');
+        $('#block-mining-response2').css('display', 'none');
+        $('#block-mining-line3').css('display', 'none');
+        $('#block-mining-response3').css('display', 'none');
+        $('#block-mining-power-used-label').css('display', 'none');
+        $('#block-mining-power-used').css('display', 'none');
+        $('#block-mining-power-cost-label').css('display', 'none');
+        $('#block-mining-power-cost').css('display', 'none');
+        $('#block-mining-progressbar').css('display', 'none');
+        $('#block-mining-line5').css('display', 'none');
+        $('#block-mining-response5').css('display', 'none');
+        $('#terminal-miner-upgradebtn').prop('disabled', false);
+        $('#terminal-miner-repairbtn').prop('disabled', false);
+        $('#energy-btn').prop('disabled', false);
+
+
+        // Part 2 - calc and deduct power usage
         console.log("deduct power costs here");
         console.log("power usage", totalActiveStats.totalPower);
         console.log("power cost", liveGameData.energy.usageCostPerKw);
@@ -1680,14 +1684,14 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         liveGameData.finance.bankBalance = postPowerCosts;
         $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
-         // Part 2 - update stats 
+         // Part 3 - update stats 
          /*-- temp condition deteriorates by 1 per completed cycle via decrement--*/
          --tempStats.conditionTemp;
 
          calcTotalActiveStats(); // run to refresh GameCard incl performnce bars
 
 
-         // Part 3 - calc winnings
+         // Part 4 - calc winnings
  
          if (outcome == "win") {
  
@@ -1711,8 +1715,3 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
 });
 
-
-
-/*-- 12. Game Stats and Achivements -----------------------------------------------------*/
-
-/*-- 13. Further Styling / Format Related -----------------------------------------------------*/
