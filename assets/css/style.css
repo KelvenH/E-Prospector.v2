@@ -855,8 +855,10 @@ input[type="radio"]:checked+label {
     "mml1 mmr1"
     "mml2 mmr2"
     "mml3 mmr3"
-    "mml4 mmr4"
-    "mml5 mmr5"
+    "power-used-l power-used-r"
+    "power-cost-l power-cost-r"
+    "progress progress"
+    "result-l result-r"
     "reattempt repeatcount"
     "win-img win-img"
     "win-btn win-btn"
@@ -877,13 +879,23 @@ input[type="radio"]:checked+label {
     display:none;
 }
 
+#block-mining-power-used-label {
+    grid-area: power-used-l;
+    display:none;
+} 
+
+#block-mining-power-cost-label {
+    grid-area: power-cost-l;
+    display:none;
+}
+
 #block-mining-progressbar {
-    grid-area: mml4;
+    grid-area: progress;
     display:none;
 }
 
 #block-mining-line5 {
-    grid-area: mml5;
+    grid-area: result-l;
     display:none;
 }
 
@@ -906,13 +918,18 @@ input[type="radio"]:checked+label {
     display:none;
 }
 
-#block-mining-response4 {
-    grid-area: mmr4;
+#block-mining-power-used {
+    grid-area: power-used-r;
+    display:none;
+}
+
+#block-mining-power-cost {
+    grid-area: power-cost-r;
     display:none;
 }
 
 #block-mining-response5 {
-    grid-area: mmr5;
+    grid-area: result-r;
     display:none;
 }
 
@@ -922,9 +939,6 @@ input[type="radio"]:checked+label {
     color: var(--ink9);
 }
 
-#mine-block-exit-footnote {
-    margin-top: 1vh;
-}
 
 #mine-success-img {
     grid-area: win-img;
@@ -933,115 +947,6 @@ input[type="radio"]:checked+label {
     color: var(--ink6-LED2ON);
     text-align: center;
 }
-
-#exit-success-mine-btn {
-    grid-area: win-btn;
-    display: none;
-}
-
-
-
-/*-- animated spinning block -- credit to: https://codepen.io/JTParrett/pen/hktzu */
-
-#modal-block-mining-img {
-    grid-area: mmi1;
-}
-
-#block-anim {
-    -webkit-transform-style: preserve-3d;
-    -webkit-animation: spin 3s infinite ease-out;
-    position: relative;
-    width: 0;   /*-- minimal width to minimise size of axis of rotation--*/
-    height: 20vh;
-    margin:auto;
-}
-
-#block-anim div {
-    width: 150px;
-    height: 150px;
-    line-height: 100px;
-    text-align: center;
-    box-shadow: inset 0px 0px 0px 1px rgba(10, 0, 0, 0.8);
-    background: var(--ink6-LED2LOW);
-    display: block;
-    position: absolute;
-}
-
-#block-anim div.top {
-    -webkit-transform: rotateX(90deg);
-    margin-top: -50px;
-}
-
-#block-anim div.right {
-    -webkit-transform: rotateY(90deg);
-    margin-left: 50px;
-}
-
-#block-anim div.bottom {
-    -webkit-transform: rotateX(-90deg);
-    margin-top: 50px;
-}
-
-#block-anim div.left {
-    -webkit-transform: rotateY(-90deg);
-    margin-left: -50px;
-}
-
-#block-anim div.front {
-    -webkit-transform: translateZ(50px);
-}
-
-#block-anim div.back {
-    -webkit-transform: translateZ(-50px) rotateX(180deg);
-}
-
-@-webkit-keyframes spin {
-    0% {
-        -webkit-transform: rotateX(-20deg) rotateY(20deg);
-    }
-    100% {
-        -webkit-transform: rotateX(-20deg) rotateY(740deg);
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
