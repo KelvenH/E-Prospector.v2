@@ -476,7 +476,7 @@ const liveGameData = {
         basePower: 1,
         baseCondition: 20,
         rigComments: "Self-built from re-purposed parts from 1980's tech - hey, it's free?!",
-        status: "Unavailable"
+        status: "Available"
     },
     parts: [{
         processor: {
@@ -1533,8 +1533,8 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
          // Part 2 - update stats (incl. condition deterioration)
          console.log("update stats here");
 
-         /*-- condition deteriorates by 1 per completed cycle via decrement--*/
-         --liveGameData.rig.baseCondition;
+         /*-- temp condition deteriorates by 1 per completed cycle via decrement--*/
+         --tempStats.conditionTemp;
 
          calcTotalActiveStats(); // run to refresh GameCard incl performnce bars
 
