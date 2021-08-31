@@ -745,14 +745,12 @@ function inGameChecks() {
         $("#terminal-miner-status-available").css("display", "block");
         $("#terminal-miner-activatebtn").css("display", "block");
         $("#terminal-miner-status-unavailable").css("display", "none");
-        $("#terminal-miner-repairbtn").css("display", "none");
-
+        
     } else if (liveGameData.rig.status == "Unavailable" ) {
 
         $("#terminal-miner-status-available").css("display", "none");
         $("#terminal-miner-activatebtn").css("display", "none");
         $("#terminal-miner-status-unavailable").css("display", "block");
-        $("#terminal-miner-repairbtn").css("display", "block");
 
         $('#modal-unavailable').modal('show');
         console.log("rig unavailable");
@@ -1318,6 +1316,24 @@ $("#terminal-miner-upgradebtn").click(function() {
 
 
 /*-- 6. Repairs  -----------------------------------------------------------*/
+
+// check if total active condition is 0 if yes display modal to advise rig broken and need to buy a new one, otherwise display modal to purchase repair which costs 50% of rig price
+
+$("#terminal-miner-repairbtn").click(function() {
+
+    $('#modal-repair').modal('show');
+
+    $("#repair-exit-btn").click(function() {
+        $('#modal-repair').modal('hide');
+    });
+
+    $("#pay-repairs-btn").click(function() {
+        $('#modal-repair').modal('hide');
+    });
+
+
+});
+
 
 /*-- 7. Energy -------------------------------------------------------------*/
 

@@ -369,14 +369,13 @@
                     </div>
                     <!-- close modal grid -->
 
+                </div>
+                <!-- close modal body -->
+                <div class="modal-footer">
                     <btn id="mine-block-exit-btn" class="btn btn-secondary">Cancel & Return to Dashboard</btn>
 
                     <p id="mine-block-exit-footnote">Note: when cancelling mining you will still be charged for the
                         power usage on all completed attempts</p>
-                </div>
-                <!-- close modal body -->
-                <div class="modal-footer">
-
                 </div>
             </div>
         </div>
@@ -435,8 +434,13 @@
                     <div class="tab-content" id="myTabContent">
                         <!--Shop / Landing-->
                         <div class="tab-pane fade show active" id="upgrade-shop" role="tabpanel"
-                            aria-labelledby="shop-tab">Upgrade Shop Content</div>
-
+                            aria-labelledby="shop-tab">
+                            <h3>Welcome to the upgrades shop</h3>
+                            <br>
+                            <h4>View the available upgrades by clicking on the tabs above.</h4>
+                            <h4>You will be presented with the cost of each item alongwith the performance ratings</h4>
+                            <h4>Note: Purchasing an item will replace your current set-up, so be sure you want to make the change before doing so!</h4>
+                        </div>
                         <!--Rigs-->
                         <div class="tab-pane fade" id="upgrade-rigs" role="tabpanel" aria-labelledby="rigs-tab">
                             <div id="rigs-table">
@@ -472,7 +476,7 @@
                 </div><!-- close modal body -->
 
                 <div class="modal-footer">
-                    <btn id="upgrade-exit-btn" class="btn btn-secondary">Exit</btn>
+                    <btn id="upgrade-exit-btn" class="btn btn-secondary">Exit Without Making a Purchase</btn>
                 </div>
             </div>
         </div>
@@ -487,7 +491,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title">You Can't Afford!</h3>
-
                 </div>
                 <div class="modal-body">
                 
@@ -519,16 +522,14 @@
 
                 </div>
                 <div class="modal-body">
-                
+                    <h3>GAME OVER!</h3>
                     <p>
-                    Unfortunately there's no such thing as a loan here and you're out of funds!
+                    Unfortunately there's no such thing as a loan here and you're out of funds. Click below to have another go.
                     </p>
-
-                    <btn id="game-over-btn" class="btn btn-danger">Try Again!</btn>
 
                 </div> <!-- close modal body -->
                 <div class="modal-footer">
-                    
+                    <btn id="game-over-btn" class="btn btn-danger">Try Again!</btn>
                 </div>
             </div>
         </div>
@@ -550,43 +551,69 @@
                     You can't afford to pay for the electricity! However you still have crypto-coins. Convert these to continue playing.....just hope you manage to get some more!
                     </p>
 
-                    <btn id="no-funds-btn" class="btn btn-warning">Return to Exchange Your Coins</btn>
-
                 </div> <!-- close modal body -->
                 <div class="modal-footer">
-                    
+                    <btn id="no-funds-btn" class="btn btn-warning">Return to Exchange Your Coins</btn>
                 </div>
             </div>
         </div>
-    </div> <!-- close game over modal-->
+    </div> <!-- close no funds modal-->
 
 
      <!--Modal : Unavailable-->
-     <div class="modal fade" id="modal-unavailable" data-bs-backdrop="static" tabindex="-1" role="dialog"
+    <div class="modal fade" id="modal-unavailable" data-bs-backdrop="static" tabindex="-1" role="dialog"
      aria-labelledby="modal displaying message rig unavailable" aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Rig is Unavailable</h3>
+ 
+                </div>
+                <div class="modal-body">
+                 
+                    <p>
+                    You're terminal is currently unavailable. Please check the message panel for more information. 
+                    This could be a temporary issue due to an event, or you're rig may need to be repaired!
+                    </p>
+ 
+                     
+ 
+                </div> <!-- close modal body -->
+                <div class="modal-footer">
+                    <btn id="unavailable-btn" class="btn btn-warning">Return to Gamecard</btn>
+                </div> <!-- close modal footer -->
+            </div>
+        </div>
+    </div> <!-- close unavailable modal-->
+
+    <!--Modal : Repairs-->
+    <div class="modal fade" id="modal-repair" data-bs-backdrop="static" tabindex="-1" role="dialog"
+     aria-labelledby="modal to repair rig" aria-hidden="false">
          <div class="modal-dialog modal-dialog-centered" role="document">
              <div class="modal-content">
                  <div class="modal-header">
-                     <h3 class="modal-title">Rig is Unavailable</h3>
+                     <h3 class="modal-title">Repair Rig</h3>
  
                  </div>
                  <div class="modal-body">
                  
                      <p>
-                     You're terminal is currently unavailable. Please check the message panel for more information. 
-                     This could be a temporary issue due to an event, or you're rig may need to be repaired!
+                     Need Repairs? Repairing your terminal will restore it to it's original condition. The cost is 25% of the cost of replacing it for a new one from the upgrade shop.
+
+                     You can decide not to repair, but if the condition rating reaches zero you risk losing the rig and all of it's components!
                      </p>
  
-                     <btn id="unavailable-btn" class="btn btn-warning">Return to Gamecard</btn>
+                     <p>The cost to repair is: £<span id="repair-cost">0</span></p>
+                     
  
                  </div> <!-- close modal body -->
                  <div class="modal-footer">
-                     
+                    <btn id="repair-exit-btn" class="btn btn-secondary">Exit without Repairing</btn>
+                    <btn id="pay-repairs-btn" class="btn btn-info">Pay for Repairs</btn>
                  </div>
              </div>
          </div>
-     </div> <!-- close game over modal-->
-
+     </div> <!-- close repairs modal-->
 
 
     <script src="./assets/scripts/script.js "></script>
