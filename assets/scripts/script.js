@@ -461,6 +461,117 @@ const gameLibrary = {
         reliability: "Great",
         pollutionRating: "C",
         comments: "Good to the wallet, great reliability but awful to the environment. The choice for those who care for today and not tomorrow"
+    }],
+    events: [{
+        title: "Title 1",
+        description: "Description 1",
+        choices: "You have choices 1",
+        choiceA: "Will you choose A (1)",
+        choiceB: "Will you choose B (1)",
+        optA_Win: "Opt A Win (1)",
+        optA_Lose: "Opt A Lose (1)",
+        optB_Win: "Opt B Win (1)",
+        optB_Lose: "Opt B Lose (1)"
+    },
+    {
+        title: "Title 2",
+        description: "Description 2",
+        choices: "You have choices 2",
+        choiceA: "Will you choose A (2)",
+        choiceB: "Will you choose B (2)",
+        optA_Win: "Opt A Win (2)",
+        optA_Lose: "Opt A Lose (2)",
+        optB_Win: "Opt B Win (2)",
+        optB_Lose: "Opt B Lose (2)"
+
+    },
+    {
+        title: "Title 3",
+        description: "Description 3",
+        choices: "You have choices 3",
+        choiceA: "Will you choose A (3)",
+        choiceB: "Will you choose B (3)",
+        optA_Win: "Opt A Win (3)",
+        optA_Lose: "Opt A Lose (3)",
+        optB_Win: "Opt B Win (3)",
+        optB_Lose: "Opt B Lose (3)"
+    },
+    {
+        title: "Title 4",
+        description: "Description 4",
+        choices: "You have choices 4",
+        choiceA: "Will you choose A (4)",
+        choiceB: "Will you choose B (4)",
+        optA_Win: "Opt A Win (4)",
+        optA_Lose: "Opt A Lose (4)",
+        optB_Win: "Opt B Win (4)",
+        optB_Lose: "Opt B Lose (4)"
+    },
+    {
+        title: "Title 5",
+        description: "Description 5",
+        choices: "You have choices 5",
+        choiceA: "Will you choose A (5)",
+        choiceB: "Will you choose B (5)",
+        optA_Win: "Opt A Win (5)",
+        optA_Lose: "Opt A Lose (5)",
+        optB_Win: "Opt B Win (5)",
+        optB_Lose: "Opt B Lose (5)"
+    },
+    {
+        title: "Title 6",
+        description: "Description 6",
+        choices: "You have choices 6",
+        choiceA: "Will you choose A (6)",
+        choiceB: "Will you choose B (6)",
+        optA_Win: "Opt A Win (6)",
+        optA_Lose: "Opt A Lose (6)",
+        optB_Win: "Opt B Win (6)",
+        optB_Lose: "Opt B Lose (6)"
+    },
+    {
+        title: "Title 7",
+        description: "Description 7",
+        choices: "You have choices 7",
+        choiceA: "Will you choose A (7)",
+        choiceB: "Will you choose B (7)",
+        optA_Win: "Opt A Win (7)",
+        optA_Lose: "Opt A Lose (7)",
+        optB_Win: "Opt B Win (7)",
+        optB_Lose: "Opt B Lose (7)"
+    },
+    {
+        title: "Title 8",
+        description: "Description 8",
+        choices: "You have choices 8",
+        choiceA: "Will you choose A (8)",
+        choiceB: "Will you choose B (8)",
+        optA_Win: "Opt A Win (8)",
+        optA_Lose: "Opt A Lose (8)",
+        optB_Win: "Opt B Win (8)",
+        optB_Lose: "Opt B Lose (8)"
+    },
+    {
+        title: "Title 9",
+        description: "Description 9",
+        choices: "You have choices 9",
+        choiceA: "Will you choose A (9)",
+        choiceB: "Will you choose B (9)",
+        optA_Win: "Opt A Win (9)",
+        optA_Lose: "Opt A Lose (9)",
+        optB_Win: "Opt B Win (9)",
+        optB_Lose: "Opt B Lose (9)"
+    },
+    {
+        title: "Title 10",
+        description: "Description 10",
+        choices: "You have choices 10",
+        choiceA: "Will you choose A (10)",
+        choiceB: "Will you choose B (10)",
+        optA_Win: "Opt A Win (10)",
+        optA_Lose: "Opt A Lose (10)",
+        optB_Win: "Opt B Win (10)",
+        optB_Lose: "Opt B Lose (10)"
     }
 ]};
 
@@ -543,7 +654,7 @@ const purchasedOpSys = [];
 // 2.4 : Temporary Stats (captures short-term pos / neg impacts typically as a result of events)
 
 const tempStats = {
-    chanceTemp: 1000,      //temp increase to increase speed during testing
+    chanceTemp: 10000,      //temp increase to increase speed during testing
     hashPowerTemp: 5000,   //temp increase to increase speed during testing
     pwrUsageTemp: 0,
     conditionTemp: 0
@@ -1497,6 +1608,42 @@ $("#energy-btn").click(function() {
 
 /*-- 8. Events -------------------------------------------------------------*/
 
+// 8.1 : determine if event occurs
+function newEvent() {
+    console.log("new Event script reached");
+    let eventHappen = Math.floor(Math.random() * 50); // generate no. 0 - 49
+
+    console.log("eventHappen", eventHappen)
+    //range of 50 with only 10 events prevents an event occuring too frequently
+
+    if (eventHappen > 10) {
+        $('#msg-alert').css('display', 'block');
+        let eventBank = gameLibrary.events;
+        let randomEvent = eventBank[Math.random() * eventBank.length | 0];
+        console.log("eventBank", eventBank);
+        console.log("randomEvent", randomEvent);
+        let randomTitle = randomEvent.title;
+        let randomDescription = randomEvent.description;
+        let randomChoices = randomEvent.choices;
+        let randomChoiceA = randomEvent.choiceA;
+        let randomChoiceB = randomEvent.choiceB;
+        let randomOptA_Win = randomEvent.optA_Win;
+        let randomOptA_Lose = randomEvent.optA_Lose;
+        let randomOptB_Win = randomEvent.optB_Win;
+        let randomOptB_Lose =  randomEvent.optB_Lose;
+
+    }
+    else {
+        console.log("No random Event");
+    }
+};
+
+
+
+
+
+
+
 
 /*-- 9. Crypto-Coin Exchange -----------------------------------------------*/
 
@@ -1556,6 +1703,7 @@ $("#exchange-btn").click(function() {
     });
 
 });
+
 
 /*-- 10. Mine Block -------------------------------------------------------*/
 
@@ -1912,6 +2060,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         }
 
         console.log("calcResult complete");
+        newEvent();
     }      
 
 });

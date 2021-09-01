@@ -18,6 +18,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/d01fd203b5.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>E-Prospector</title>
     <link rel="shortcut icon" type="image/jpg" href="/assets/images/favicon-32x32.png" />
@@ -153,10 +154,9 @@
                                 <i id="message-logo" class="bi bi-envelope"></i>
                                 <h2 id="message-title">MESSAGES</h2>
                                 <div id="message-screen">
-                                    <div id="msg-symbol">ALERT!</div>
-                                    <div id="msg-title">An event is happening!!</div>
-                                    <div id="msg-event">This event has happened and you need to do something about
-                                        it......
+                                    <h3 id="msg-alert">! ALERT ! An event is happening</h3>
+                                    <h3 id="msg-title"></h3>
+                                    <div id="msg-event">
                                     </div>
                                     <div id="msg-optA">Option A :</div>
                                     <div id="msg-optA-txt">Will you choose to......</div>

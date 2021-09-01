@@ -38,11 +38,11 @@
     /*-- papayawhip ----------------*/
     --ink10-red: rgb(209, 17, 17);
     /*-- red (off status)-----------*/
-    --ink11-amber: rgb(255, 103, 0);
+    --ink11-amber: rgb(255, 193, 7);
     /*-- amber (warning status)-----------*/
     --ink12-green: rgb(52, 232, 42);
     /*-- green (on status) --------------------*/
-    
+  
     /*-- XXXXX --------------------*/
     --ink13: rgb(184, 201, 211);
     --ink14: rgb(223, 242, 255);
@@ -625,11 +625,21 @@ input[type="radio"]:checked+label {
     grid-template-rows: 5;
     row-gap: 1vh;
     /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
-    grid-template-areas: "msg-symbol  msg-title" "msg-event   msg-event" "msg-optA    msg-optA-txt" "msg-optB    msg-optB-txt" "response-txt    response-txt" "btn-optA       btn-optB"
+    grid-template-areas: 
+    "msg-alert  msg-alert"
+    "msg-title  msg-title"
+    "msg-event  msg-event"
+    "msg-optA   msg-optA-txt"
+    "msg-optB   msg-optB-txt"
+    "response-txt   response-txt"
+    "btn-optA   btn-optB"
 }
 
-#msg-symbol {
-    grid-area: msg-symbol;
+#msg-alert {
+    grid-area: msg-alert;
+    text-align:center;
+    color: var(--ink11-amber);
+    display:none;
 }
 
 #msg-title {
@@ -693,7 +703,11 @@ input[type="radio"]:checked+label {
     grid-template-columns: 3;
     grid-template-rows: 5;
     /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
-    grid-template-areas: "finance-bank      finance-bank      finance-bank" "finance-ewallet    finance-ewallet    finance-ewallet" "finance-exchange  finance-exchange  finance-exchange" "exchange-btn    exchange-btn    exchange-btn";
+    grid-template-areas: 
+    "finance-bank      finance-bank      finance-bank" 
+    "finance-ewallet    finance-ewallet    finance-ewallet" 
+    "finance-exchange  finance-exchange  finance-exchange" 
+    "exchange-btn    exchange-btn    exchange-btn";
 }
 
 .finance-sub-grid {
@@ -704,7 +718,7 @@ input[type="radio"]:checked+label {
 }
 
 
-/*-- finance icon / label / value classes apply consistent styling aross 'master and sub grids---*/
+/*-- finance icon / label / value classes apply consistent styling aross master and sub grids---*/
 
 .finance-icon {
     width: 2vw;
