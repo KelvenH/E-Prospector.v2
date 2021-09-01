@@ -1861,8 +1861,9 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
              let newCoinBalance = ++ liveGameData.finance.ewalletBalance;
              $('#ewallet-value').text(newCoinBalance);
              console.log(liveGameData.finance.ewalletBalance);
-            // insert update coins mind stat
-             
+             ++liveGameData.stats.coinsMined; // increment coins mined stat
+             $('#stat2-result').text(liveGameData.stats.coinsMined);
+
              // adds 1 to stats 'blocks mined' & update stats          
              let newBlockMined = document.getElementById('stats-2-txt').innerHTML;
              ++newBlockMined;
