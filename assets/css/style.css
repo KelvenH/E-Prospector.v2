@@ -647,11 +647,13 @@ input[type="radio"]:checked+label {
     color: var(--ink11-amber);
     text-align:center;
     display:none;
+    margin-bottom:0;
 }
 
 #msg-event {
     grid-area: msg-event;
     color: var(--ink11-amber);
+    text-align:center;
     display:none;
 }
 

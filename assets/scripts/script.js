@@ -468,10 +468,11 @@ const gameLibrary = {
         choices: "You can pay £100 fee to download cyber security software or take a risk",
         choiceA: "Option A: Pay £100 for security software",
         choiceB: "Option B: Take a risk that you will not be compromised",
-        optA_Win: "You paid your £100, but could have been worse!",
-        optA_Lose: "Good news - you paid £100 and the OS release identified efficiencies leading to a temporary 25% performance boost",
-        optB_Win: "Great news - there was no attempted hack of your terminal, and the OS security patch also identified efficiencies leading to a temporary 50% performance boost!",
-        optB_Lose: "Bad news - the head in the sand approach didn't work, hackers managed to access your password and steal 25% of your balance before the bank were able to freeze"
+        optA_Safe: "You paid your £100, but could have been worse!",
+        optA_Good: "Good news - you paid £100 and the OS release identified efficiencies leading to a temporary 25% performance boost",
+        optB_Bad: "Bad news - the head in the sand approach didn't work, hackers managed to access your password and steal 25% of your balance before the bank were able to freeze",
+        optB_Neutral: "You were lucky, nothing became of it",
+        optB_Great: "Great news - there was no attempted hack of your terminal, and the OS security patch also identified efficiencies leading to a temporary 50% performance boost!"
     },
     {
         title: "Title 2",
@@ -479,11 +480,11 @@ const gameLibrary = {
         choices: "You have choices 2",
         choiceA: "Option A: (2)",
         choiceB: "Option B: (2)",
-        optA_Win: "Opt A Win (2)",
-        optA_Lose: "Opt A Lose (2)",
-        optB_Win: "Opt B Win (2)",
-        optB_Lose: "Opt B Lose (2)"
-
+        optA_Safe: "Opt A Win (2)",
+        optA_Good: "Opt A Lose (2)",
+        optB_Bad: "Opt B Win (2)",
+        optB_Neutral: "Opt B Lose (2)",
+        optB_Great: ""
     },
     {
         title: "Title 3",
@@ -491,10 +492,11 @@ const gameLibrary = {
         choices: "You have choices 3",
         choiceA: "Option A: (3)",
         choiceB: "Option B: (3)",
-        optA_Win: "Opt A Win (3)",
-        optA_Lose: "Opt A Lose (3)",
-        optB_Win: "Opt B Win (3)",
-        optB_Lose: "Opt B Lose (3)"
+        optA_Safe: "Opt A Win (3)",
+        optA_Good: "Opt A Lose (3)",
+        optB_Bad: "Opt B Win (3)",
+        optB_Neutral: "Opt B Lose (3)",
+        optB_Great: ""
     },
     {
         title: "Title 4",
@@ -502,10 +504,11 @@ const gameLibrary = {
         choices: "You have choices 4",
         choiceA: "Option A: (4)",
         choiceB: "Option B: (4)",
-        optA_Win: "Opt A Win (4)",
-        optA_Lose: "Opt A Lose (4)",
-        optB_Win: "Opt B Win (4)",
-        optB_Lose: "Opt B Lose (4)"
+        optA_Safe: "Opt A Win (4)",
+        optA_Good: "Opt A Lose (4)",
+        optB_Bad: "Opt B Win (4)",
+        optB_Neutral: "Opt B Lose (4)",
+        optB_Great: ""
     },
     {
         title: "Title 5",
@@ -513,65 +516,11 @@ const gameLibrary = {
         choices: "You have choices 5",
         choiceA: "Option A: (5)",
         choiceB: "Option B: (5)",
-        optA_Win: "Opt A Win (5)",
-        optA_Lose: "Opt A Lose (5)",
-        optB_Win: "Opt B Win (5)",
-        optB_Lose: "Opt B Lose (5)"
-    },
-    {
-        title: "Title 6",
-        description: "Description 6",
-        choices: "You have choices 6",
-        choiceA: "Option A: (6)",
-        choiceB: "Option B: (6)",
-        optA_Win: "Opt A Win (6)",
-        optA_Lose: "Opt A Lose (6)",
-        optB_Win: "Opt B Win (6)",
-        optB_Lose: "Opt B Lose (6)"
-    },
-    {
-        title: "Title 7",
-        description: "Description 7",
-        choices: "You have choices 7",
-        choiceA: "Option A: (7)",
-        choiceB: "Option B: (7)",
-        optA_Win: "Opt A Win (7)",
-        optA_Lose: "Opt A Lose (7)",
-        optB_Win: "Opt B Win (7)",
-        optB_Lose: "Opt B Lose (7)"
-    },
-    {
-        title: "Title 8",
-        description: "Description 8",
-        choices: "You have choices 8",
-        choiceA: "Option A: (8)",
-        choiceB: "Option B: (8)",
-        optA_Win: "Opt A Win (8)",
-        optA_Lose: "Opt A Lose (8)",
-        optB_Win: "Opt B Win (8)",
-        optB_Lose: "Opt B Lose (8)"
-    },
-    {
-        title: "Title 9",
-        description: "Description 9",
-        choices: "You have choices 9",
-        choiceA: "Option A: (9)",
-        choiceB: "Option B: (9)",
-        optA_Win: "Opt A Win (9)",
-        optA_Lose: "Opt A Lose (9)",
-        optB_Win: "Opt B Win (9)",
-        optB_Lose: "Opt B Lose (9)"
-    },
-    {
-        title: "Title 10",
-        description: "Description 10",
-        choices: "You have choices 10",
-        choiceA: "Option A: (10)",
-        choiceB: "Option B: (10)",
-        optA_Win: "Opt A Win (10)",
-        optA_Lose: "Opt A Lose (10)",
-        optB_Win: "Opt B Win (10)",
-        optB_Lose: "Opt B Lose (10)"
+        optA_Safe: "Opt A Win (5)",
+        optA_Good: "Opt A Lose (5)",
+        optB_Bad: "Opt B Win (5)",
+        optB_Neutral: "Opt B Lose (5)",
+        optB_Great: ""
     }
 ]};
 
@@ -1633,20 +1582,70 @@ function newEvent() {
         let randomChoices = randomEvent.choices;
         let randomChoiceA = randomEvent.choiceA;
         let randomChoiceB = randomEvent.choiceB;
-        let randomOptA_Win = randomEvent.optA_Win;
-        let randomOptA_Lose = randomEvent.optA_Lose;
-        let randomOptB_Win = randomEvent.optB_Win;
-        let randomOptB_Lose =  randomEvent.optB_Lose;
+        let optA_Safe = randomEvent.optA_Safe;
+        let optA_Good = randomEvent.optA_Good;
+        let optB_Bad = randomEvent.optB_Bad;
+        let optB_Neutral =  randomEvent.optB_Neutral;
+        let optB_Great =  randomEvent.optB_Great;
 
         $('#msg-title').css('display', 'block').text(randomTitle);
         $('#msg-event').css('display', 'block').text(randomDescription);
         $('#msg-choices').css('display', 'block').text(randomChoices);
-        
         $('#msg-optA-txt').css('display', 'block').text(randomChoiceA);
-        
         $('#msg-optB-txt').css('display', 'block').text(randomChoiceB);
         $('#msg-btn-optA').css('display', 'block');
         $('#msg-btn-optB').css('display', 'block');
+
+        
+
+
+        $('#msg-btn-optA').unbind('click').click(function(finalOutcome) {
+            optionSelected();
+            //option A - 90% 'safe' option, 10% good news
+            let outcomeA = Math.floor(Math.random() * 10)  // random number 0 - 9
+            console.log("outcome", outcomeA);
+
+            if (outcomeA <= 8) {
+                console.log("outcomeSafe");
+                finalOutcome = optA_Safe;
+                eventResult (finalOutcome);
+            }  
+            else if (outcomeA = 9) {
+                console.log("outcomeGood");
+                finalOutcome = optA_Good;
+                eventResult (finalOutcome);
+            }  
+
+        });
+
+        $('#msg-btn-optB').unbind('click').click(function(finalOutcome) {
+            optionSelected();
+            //option B - 50% 'bad bews', 40% 'neutral', 10% 'great news
+            let outcomeB = Math.floor(Math.random() * 10)  // random number 0 - 9
+            console.log("outcome", outcomeB);
+
+            if (outcomeB <= 4) {
+                console.log("outcomeBad");
+                finalOutcome = optB_Bad;
+                eventResult (finalOutcome);
+            }  
+            else if (outcomeB > 4 && outcomeB < 9) {
+                console.log("outcomeNeutral");
+                finalOutcome = optB_Neutral;
+                eventResult (finalOutcome);
+            }
+            else if (outcomeB = 9) {
+                console.log("outcomeGreat");
+                finalOutcome = optB_Great;
+                eventResult (finalOutcome);
+            }  
+
+        });
+        
+        function eventResult (finalOutcome) {
+            console.log("eventResult", finalOutcome)
+        };
+
 
     }
     else {
@@ -1655,6 +1654,14 @@ function newEvent() {
 };
 
 
+function optionSelected() {
+        $('#msg-event').fadeOut(800);
+        $('#msg-choices').fadeOut(800);
+        $('#msg-optA-txt').fadeOut(800);
+        $('#msg-optB-txt').fadeOut(800);
+        $('#msg-btn-optA').fadeOut(800);
+        $('#msg-btn-optB').fadeOut(800);
+};
 
 
 
