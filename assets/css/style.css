@@ -893,6 +893,12 @@ input[type="radio"]:checked+label {
     display:none;
 }
 
+/*-- BUG: miner progress bar default animation to reset the bar means 'quick' progress bars would only get down to around 40% before re-filling. Added custom class to remove animation at end of cycle (i.e. remove the reverse fill) and remove this class on start of next cycle--*/
+
+.no-animation {
+    transition: none;
+}
+
 #block-mining-line5 {
     grid-area: result-l;
     display:none;

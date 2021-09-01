@@ -1640,7 +1640,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
     $('#block-mining-power-used').css('display', 'block').html("0"+$('#block-mining-power-used span')[0].outerHTML);
     $('#block-mining-power-cost-label').css('display', 'block');
     $('#block-mining-power-cost').css('display', 'block').html("<span>£ </span>" + "0");
-    $('#block-mining-progressbar').css('display', 'block');
+    $('#block-mining-progressbar').css('display', 'flex');
 
 
     // 10.5: Run Game Cycle (time is 10 second cycle less hashSpeed buffs, displays animation whilst running, returns text to indicate when cycle complete and runs match (block vs. miner keys)
@@ -1678,13 +1678,21 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
                 }
             );
 
+            let progressBar = $('#inner-mining-progress-bar');
+            let currentProgress = 100 - ((timeleft / buffedSpeed) * 100);    
+           
 
-            if (timeleft < 0) {
+            if (timeleft <= 0) {
                 clearInterval(timer);
+                progressBar.attr('aria-valuemax', buffedSpeed);
+                progressBar.css('width', currentProgress + '%').addClass("no-animation"); //Bug Fix : class applied to remove animation for reversefill to prevent timer appearing to re-start from c. 20% - 40% depending on speed
+                progressBar.attr('aria-valuenow', currentProgress);
                 $('#block-mining-response1').text("Checking Result");
                 $('#block-mining-line5').css('display', 'block');
                 $('#block-mining-response5').css('display', 'block'); //display result line
                 
+
+
                 //increment attempt count
                 console.log("count=", count); 
                 ++count;
@@ -1701,10 +1709,16 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
                 checkResult(minerKey, blockKey);
 
             } else {
-                console.log(timeleft);
+                progressBar.attr('aria-valuemax', buffedSpeed);
+                progressBar.css('width', currentProgress + '%').removeClass("no-animation");
+                progressBar.attr('aria-valuenow', currentProgress);
+                console.log("buffedSpeed", buffedSpeed);
+                console.log("timeleft", timeleft);
+                console.log("currentProgress", currentProgress);
+        
             } 
-            timeleft -= 1;
-        }, 1000);
+            timeleft -= 0.5;
+        }, 500);
     }
 
     //10.6 : Check Result (determines if success / fail messages, buttons and redirects to display)
