@@ -618,10 +618,10 @@ input[type="radio"]:checked+label {
 #message-screen {
     background-image: repeating-linear-gradient(var(--ink3-offblacksemi), black 1%);
     border-radius: 0.4vw;
-    height: 25vh;
+    height: 30vh;
     padding: 0.5vh 1vw;
     display: grid;
-    grid-template-columns: 10vw 25vw;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 5;
     row-gap: 1vh;
     /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
@@ -629,55 +629,76 @@ input[type="radio"]:checked+label {
     "msg-alert  msg-alert"
     "msg-title  msg-title"
     "msg-event  msg-event"
-    "msg-optA   msg-optA-txt"
-    "msg-optB   msg-optB-txt"
-    "response-txt   response-txt"
-    "btn-optA   btn-optB"
+    "msg-choices msg-choices"
+    "msg-optA-txt   msg-optA-txt"
+    "msg-optB-txt   msg-optB-txt"
+    "msg-btn-optA   msg-btn-optB";
 }
 
 #msg-alert {
     grid-area: msg-alert;
-    text-align:center;
     color: var(--ink11-amber);
+    text-align:center;
     display:none;
 }
 
 #msg-title {
     grid-area: msg-title;
+    color: var(--ink11-amber);
+    text-align:center;
+    display:none;
 }
 
 #msg-event {
     grid-area: msg-event;
+    color: var(--ink11-amber);
+    display:none;
+}
+
+#msg-choices {
+    grid-area: msg-choices;
+    color: var(--ink11-amber);
+    display:none;
 }
 
 #msg-optA {
     grid-area: msg-optA;
+    color: var(--ink11-amber);
+    display:none;
 }
 
 #msg-optA-txt {
     grid-area: msg-optA-txt;
+    color: var(--ink11-amber);
+    display:none;
 }
 
 #msg-optB {
     grid-area: msg-optB;
+    color: var(--ink11-amber);
+    display:none;
 }
 
 #msg-optB-txt {
     grid-area: msg-optB-txt;
+    color: var(--ink11-amber);
+    display:none;
 }
 
-#response-txt {
-    grid-area: response-txt;
-}
-
-#btn-optA {
-    grid-area: btn-optA;
+#msg-btn-optA {
+    grid-area: msg-btn-optA;
     text-align: center;
+    display:none;
+    width: 80%;
+    justify-self:center;
 }
 
-#btn-optB {
-    grid-area: btn-optB;
+#msg-btn-optB {
+    grid-area: msg-btn-optB;
     text-align: center;
+    display:none;
+    width: 80%;
+    justify-self:center;
 }
 
 

@@ -463,22 +463,22 @@ const gameLibrary = {
         comments: "Good to the wallet, great reliability but awful to the environment. The choice for those who care for today and not tomorrow"
     }],
     events: [{
-        title: "Title 1",
-        description: "Description 1",
-        choices: "You have choices 1",
-        choiceA: "Will you choose A (1)",
-        choiceB: "Will you choose B (1)",
-        optA_Win: "Opt A Win (1)",
-        optA_Lose: "Opt A Lose (1)",
-        optB_Win: "Opt B Win (1)",
-        optB_Lose: "Opt B Lose (1)"
+        title: "Hacker Attack",
+        description: "A vulnerability flaw has been exposed in the latest OS update",
+        choices: "You can pay £100 fee to download cyber security software or take a risk",
+        choiceA: "Option A: Pay £100 for security software",
+        choiceB: "Option B: Take a risk that you will not be compromised",
+        optA_Win: "You paid your £100, but could have been worse!",
+        optA_Lose: "Good news - you paid £100 and the OS release identified efficiencies leading to a temporary 25% performance boost",
+        optB_Win: "Great news - there was no attempted hack of your terminal, and the OS security patch also identified efficiencies leading to a temporary 50% performance boost!",
+        optB_Lose: "Bad news - the head in the sand approach didn't work, hackers managed to access your password and steal 25% of your balance before the bank were able to freeze"
     },
     {
         title: "Title 2",
         description: "Description 2",
         choices: "You have choices 2",
-        choiceA: "Will you choose A (2)",
-        choiceB: "Will you choose B (2)",
+        choiceA: "Option A: (2)",
+        choiceB: "Option B: (2)",
         optA_Win: "Opt A Win (2)",
         optA_Lose: "Opt A Lose (2)",
         optB_Win: "Opt B Win (2)",
@@ -489,8 +489,8 @@ const gameLibrary = {
         title: "Title 3",
         description: "Description 3",
         choices: "You have choices 3",
-        choiceA: "Will you choose A (3)",
-        choiceB: "Will you choose B (3)",
+        choiceA: "Option A: (3)",
+        choiceB: "Option B: (3)",
         optA_Win: "Opt A Win (3)",
         optA_Lose: "Opt A Lose (3)",
         optB_Win: "Opt B Win (3)",
@@ -500,8 +500,8 @@ const gameLibrary = {
         title: "Title 4",
         description: "Description 4",
         choices: "You have choices 4",
-        choiceA: "Will you choose A (4)",
-        choiceB: "Will you choose B (4)",
+        choiceA: "Option A: (4)",
+        choiceB: "Option B: (4)",
         optA_Win: "Opt A Win (4)",
         optA_Lose: "Opt A Lose (4)",
         optB_Win: "Opt B Win (4)",
@@ -511,8 +511,8 @@ const gameLibrary = {
         title: "Title 5",
         description: "Description 5",
         choices: "You have choices 5",
-        choiceA: "Will you choose A (5)",
-        choiceB: "Will you choose B (5)",
+        choiceA: "Option A: (5)",
+        choiceB: "Option B: (5)",
         optA_Win: "Opt A Win (5)",
         optA_Lose: "Opt A Lose (5)",
         optB_Win: "Opt B Win (5)",
@@ -522,8 +522,8 @@ const gameLibrary = {
         title: "Title 6",
         description: "Description 6",
         choices: "You have choices 6",
-        choiceA: "Will you choose A (6)",
-        choiceB: "Will you choose B (6)",
+        choiceA: "Option A: (6)",
+        choiceB: "Option B: (6)",
         optA_Win: "Opt A Win (6)",
         optA_Lose: "Opt A Lose (6)",
         optB_Win: "Opt B Win (6)",
@@ -533,8 +533,8 @@ const gameLibrary = {
         title: "Title 7",
         description: "Description 7",
         choices: "You have choices 7",
-        choiceA: "Will you choose A (7)",
-        choiceB: "Will you choose B (7)",
+        choiceA: "Option A: (7)",
+        choiceB: "Option B: (7)",
         optA_Win: "Opt A Win (7)",
         optA_Lose: "Opt A Lose (7)",
         optB_Win: "Opt B Win (7)",
@@ -544,8 +544,8 @@ const gameLibrary = {
         title: "Title 8",
         description: "Description 8",
         choices: "You have choices 8",
-        choiceA: "Will you choose A (8)",
-        choiceB: "Will you choose B (8)",
+        choiceA: "Option A: (8)",
+        choiceB: "Option B: (8)",
         optA_Win: "Opt A Win (8)",
         optA_Lose: "Opt A Lose (8)",
         optB_Win: "Opt B Win (8)",
@@ -555,8 +555,8 @@ const gameLibrary = {
         title: "Title 9",
         description: "Description 9",
         choices: "You have choices 9",
-        choiceA: "Will you choose A (9)",
-        choiceB: "Will you choose B (9)",
+        choiceA: "Option A: (9)",
+        choiceB: "Option B: (9)",
         optA_Win: "Opt A Win (9)",
         optA_Lose: "Opt A Lose (9)",
         optB_Win: "Opt B Win (9)",
@@ -566,8 +566,8 @@ const gameLibrary = {
         title: "Title 10",
         description: "Description 10",
         choices: "You have choices 10",
-        choiceA: "Will you choose A (10)",
-        choiceB: "Will you choose B (10)",
+        choiceA: "Option A: (10)",
+        choiceB: "Option B: (10)",
         optA_Win: "Opt A Win (10)",
         optA_Lose: "Opt A Lose (10)",
         optB_Win: "Opt B Win (10)",
@@ -1611,15 +1611,21 @@ $("#energy-btn").click(function() {
 // 8.1 : determine if event occurs
 function newEvent() {
     console.log("new Event script reached");
-    let eventHappen = Math.floor(Math.random() * 50); // generate no. 0 - 49
+    let eventHappen = Math.floor(Math.random() * 2); // generate no. 0 - 19
 
     console.log("eventHappen", eventHappen)
-    //range of 50 with only 10 events prevents an event occuring too frequently
+    
+    //1 in 20 chance of event occuring prevents occuring too frequently
+    if (eventHappen == 1) {
+        //disable other functional buttons to prevent unexpected behaviour
+        $('#terminal-miner-upgradebtn').prop('disabled', true);
+        $('#terminal-miner-repairbtn').prop('disabled', true);
+        $('#energy-btn').prop('disabled', true);
+        $('#terminal-miner-activatebtn').prop('disabled', true);
 
-    if (eventHappen > 10) {
         $('#msg-alert').css('display', 'block');
         let eventBank = gameLibrary.events;
-        let randomEvent = eventBank[Math.random() * eventBank.length | 0];
+        let randomEvent = eventBank[Math.random() * eventBank.length | 0]; //random selection from events array
         console.log("eventBank", eventBank);
         console.log("randomEvent", randomEvent);
         let randomTitle = randomEvent.title;
@@ -1631,6 +1637,16 @@ function newEvent() {
         let randomOptA_Lose = randomEvent.optA_Lose;
         let randomOptB_Win = randomEvent.optB_Win;
         let randomOptB_Lose =  randomEvent.optB_Lose;
+
+        $('#msg-title').css('display', 'block').text(randomTitle);
+        $('#msg-event').css('display', 'block').text(randomDescription);
+        $('#msg-choices').css('display', 'block').text(randomChoices);
+        
+        $('#msg-optA-txt').css('display', 'block').text(randomChoiceA);
+        
+        $('#msg-optB-txt').css('display', 'block').text(randomChoiceB);
+        $('#msg-btn-optA').css('display', 'block');
+        $('#msg-btn-optB').css('display', 'block');
 
     }
     else {
