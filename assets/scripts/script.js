@@ -24,8 +24,6 @@
         - No Funds but have Coins (need to exchange)
     4.2 - Miner Status Unavailable
     4.3 - Energy
-    4.4 - 
-    4.5 - 
 
 5. Upgrades;
     5.1 - Display Upgrade Modal
@@ -46,15 +44,15 @@
             - pass costs (deduct bank balance in liveGameData & html) 
             - refresh stats (incl performance bars) to reflect purchase
 
-6. Repairs 
+6. Repairs; 
 
 7. Energy;
     A - Display Table
     B - Switch Supplier
 
-8. Events 
+8. Events; 
 
-9. Crypto-Coin Exchange
+9. Crypto-Coin Exchange;
     9.1 - Calculate moving coin to £ exchange rate
     9.2 - Exchange Coins
 
@@ -545,7 +543,7 @@ const purchasedOpSys = [];
 // 2.4 : Temporary Stats (captures short-term pos / neg impacts typically as a result of events)
 
 const tempStats = {
-    chanceTemp: 0,      //temp increase to increase speed during testing
+    chanceTemp: 10000,      //temp increase to increase speed during testing
     hashPowerTemp: 5000,   //temp increase to increase speed during testing
     pwrUsageTemp: 0,
     conditionTemp: 0
@@ -1517,12 +1515,12 @@ $("#exchange-btn").click(function() {
     let wallet = liveGameData.finance.ewalletBalance;
     let exRate = liveGameData.finance.fxRate;
     let exValue = wallet * exRate;
-
     
     $('#modal-exchange').modal('show');
     $('#wallet-balance').text(wallet);
     $('#exchange-rate').text(exRate);
     $('#exchange-returned').text(exValue);
+
 
     $('#exchange-deal-btn').unbind('click').click(function() {
         // reset ewallet balance to zero in library and on screen
@@ -1532,6 +1530,9 @@ $("#exchange-btn").click(function() {
         // update bank balance with value of exchange in library and on screen
         liveGameData.finance.bankBalance =  liveGameData.finance.bankBalance + exValue;
         $('#bank-value').contents()[1].nodeValue = liveGameData.finance.bankBalance;
+        // update money earned stat
+        liveGameData.stats.moneyEarned = liveGameData.stats.moneyEarned + exValue;
+        $('#stat3-result').html("<span>£ </span>" + liveGameData.stats.moneyEarned);
 
         $('#modal-exchange').modal('hide');
 
@@ -1795,6 +1796,8 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
             $('#block-mining-line2').css('display', 'none');
             $('#block-mining-response2').css('display', 'none');
             $('#terminal-miner-won-btn').css('display', 'block');
+            $('#terminal-miner-stopbtn').css('display', 'none');
+            $('#block-mining-response1').text("Completed");
 
             $('#terminal-miner-won-btn').unbind('click').click(function() {
                 $('#terminal-miner-won-btn').css('display', 'none');
@@ -1812,11 +1815,8 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
         // Part 1 - reset fields and buttons
         $('#mining-stats-grid').css('display', 'grid');
-        $('#terminal-miner-stopbtn').css('display', 'none');
         $('#mine-success-img').css('display', 'none');
         $('#terminal-miner-activatebtn').css('display', 'inline-block');
-        $('#block-mining-line2').css('display', 'none');
-        $('#block-mining-response2').css('display', 'none');
         $('#block-mining-line3').css('display', 'none');
         $('#block-mining-response3').css('display', 'none');
         $('#block-mining-power-used-label').css('display', 'none');
@@ -1856,22 +1856,26 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         // Part 4 - calc winnings
  
         if (outcome == "win") {
-            $('#block-mining-response1').text("Completed");
-             // add coin to ewallet balance via increment
+            
+             // add coin to ewallet balance via increment & update stats
              let newCoinBalance = ++ liveGameData.finance.ewalletBalance;
              $('#ewallet-value').text(newCoinBalance);
              console.log(liveGameData.finance.ewalletBalance);
+            // insert update coins mind stat
              
-             // adds 1 to stats 'blocks mined'           
+             // adds 1 to stats 'blocks mined' & update stats          
              let newBlockMined = document.getElementById('stats-2-txt').innerHTML;
              ++newBlockMined;
+             // change to update stats table and correct field
              $('#stats-2-txt').html(newBlockMined);
              console.log("newBlockMined", newBlockMined);
              inGameChecks();
 
         } else if (outcome == "no win") {
             // Part 4 - early exit
-        
+            $('#block-mining-line2').css('display', 'none');
+            $('#block-mining-response2').css('display', 'none');
+            $('#terminal-miner-stopbtn').css('display', 'none');
             $('#block-mining-response1').text("Stopped");
             console.log("no win - early exit");
             inGameChecks();
