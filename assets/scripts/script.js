@@ -543,7 +543,7 @@ const purchasedOpSys = [];
 // 2.4 : Temporary Stats (captures short-term pos / neg impacts typically as a result of events)
 
 const tempStats = {
-    chanceTemp: 10000,      //temp increase to increase speed during testing
+    chanceTemp: 1000,      //temp increase to increase speed during testing
     hashPowerTemp: 5000,   //temp increase to increase speed during testing
     pwrUsageTemp: 0,
     conditionTemp: 0
@@ -1858,6 +1858,27 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         console.log("postPowerCosts", postPowerCosts);
         liveGameData.finance.bankBalance = postPowerCosts;
         $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
+        //update pollution output 
+
+        let pollutionRate = liveGameData.energy.pollutionRating;
+        let pollutionOutput = "";
+
+        if (pollutionRate == "A") {
+            pollutionOutput = 0;
+        }
+
+        else if (pollutionRate == "B") {
+            pollutionOutput = totalPowerUsage / 2;
+        }
+
+        else if (pollutionRate == "C") {
+            pollutionOutput = totalPowerUsage;
+        }
+       let newPolOutput = pollutionOutput + liveGameData.stats.pollutionOutput;
+       liveGameData.stats.pollutionOutput = newPolOutput;
+       $('#stat4-result').html(liveGameData.stats.pollutionOutput + "<span> k/w</span>");
+       
+        console.log("pol output", pollutionOutput);
 
          // Part 3 - update stats 
          /*-- temp condition deteriorates by 1 per completed cycle via decrement--*/
