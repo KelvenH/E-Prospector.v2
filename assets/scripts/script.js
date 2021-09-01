@@ -597,6 +597,14 @@ function newGame() {
     console.log("this should be the balance", finance.bankBalance);
     $("#bank-value").contents()[1].nodeValue = finance.bankBalance;
     
+    // load initial stats
+    const stats = liveGameData['stats'];
+    $("#stat1-result").text(stats.blocksAttempted);
+    $("#stat2-result").text(stats.coinsMined);
+    $("#stat3-result").html("<span>£ </span>" + stats.moneyEarned);
+    $("#stat4-result").html(stats.pollutionOutput + "<span> k/w</span>");
+    $("#stat5-result").text(stats.cyberThwarts);
+    $("#stat6-result").text(stats.cyberSuffered);
 
     calcTotalActiveStats();
 
@@ -1489,6 +1497,7 @@ $("#energy-btn").click(function() {
 
 /*-- 8. Events -------------------------------------------------------------*/
 
+
 /*-- 9. Crypto-Coin Exchange -----------------------------------------------*/
 
 // 9.1 : Calculate a moving exchange rate every 30 seconds 
@@ -1530,9 +1539,12 @@ $("#exchange-btn").click(function() {
         // update bank balance with value of exchange in library and on screen
         liveGameData.finance.bankBalance =  liveGameData.finance.bankBalance + exValue;
         $('#bank-value').contents()[1].nodeValue = liveGameData.finance.bankBalance;
+        
         // update money earned stat
-        liveGameData.stats.moneyEarned = liveGameData.stats.moneyEarned + exValue;
+        let newMoneyEarned = exValue + liveGameData.stats.moneyEarned;
+        liveGameData.stats.moneyEarned = newMoneyEarned;
         $('#stat3-result').html("<span>£ </span>" + liveGameData.stats.moneyEarned);
+       
 
         $('#modal-exchange').modal('hide');
 
@@ -1850,6 +1862,9 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
          // Part 3 - update stats 
          /*-- temp condition deteriorates by 1 per completed cycle via decrement--*/
          --tempStats.conditionTemp;
+         ++liveGameData.stats.blocksAttempted;
+         $('#stat1-result').text(liveGameData.stats.blocksAttempted);
+
 
          calcTotalActiveStats(); // run to refresh GameCard incl performnce bars
 
@@ -1863,13 +1878,6 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
              console.log(liveGameData.finance.ewalletBalance);
              ++liveGameData.stats.coinsMined; // increment coins mined stat
              $('#stat2-result').text(liveGameData.stats.coinsMined);
-
-             // adds 1 to stats 'blocks mined' & update stats          
-             let newBlockMined = document.getElementById('stats-2-txt').innerHTML;
-             ++newBlockMined;
-             // change to update stats table and correct field
-             $('#stats-2-txt').html(newBlockMined);
-             console.log("newBlockMined", newBlockMined);
              inGameChecks();
 
         } else if (outcome == "no win") {
