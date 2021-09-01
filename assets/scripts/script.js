@@ -1616,9 +1616,12 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         
         //if outcome = no win, display re-attempt message with 3 sec countdown before re-playing gameCycle
         if (outcome == "no win") {
-        
+            
+            $('#terminal-miner-stopbtn').prop('disabled', true); // BUG : unexpected behaviour if exit btn used during 3 second delay - deactivated for this stage
+
             let delayTime = 3;    // 3 secs delay
             let repeatInterval = setInterval(function() {
+
                 // actions once time reached
                 if (delayTime <=0) {
                     clearInterval(repeatInterval);
@@ -1627,6 +1630,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
                     $('#block-mining-response5').fadeOut(800);
                     $('#block-mining-reattempt').fadeOut(800);
                     $('#block-mining-reattempt-count').fadeOut(800).text("0");
+                    $('#terminal-miner-stopbtn').prop('disabled', false);
                     gameCycle();            
 
                 // countdown refreshes each second until time reached     
