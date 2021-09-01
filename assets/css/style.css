@@ -570,7 +570,6 @@ input[type="radio"]:checked+label {
 #terminal-miner-actions-pane {
     border: 2px solid var(--ink6-LED2LOW);
     border-radius: 0.4vw; 
-    
     padding: 1vh 1vw;
 }
 
@@ -844,7 +843,8 @@ input[type="radio"]:checked+label {
 }
 
 #mine-block-grid {
-    padding-left:2vw;
+    padding-left:1vw;
+    padding-right:1vw;
     margin-top: 2vh;
     color: var(--ink2-offblacksolid);
     font-size: 1.5rem;
@@ -861,7 +861,7 @@ input[type="radio"]:checked+label {
     "result-l result-r"
     "reattempt repeatcount"
     "win-img win-btn"
-    "mmi1 mmi1";
+    "stats-grid stats-grid";
 }
 
 #block-mining-line1 {
@@ -963,6 +963,79 @@ input[type="radio"]:checked+label {
     width: 80%;
     display: none;
 }
+
+#mining-stats-grid {
+    grid-area:stats-grid;
+    margin-top: -7vh;
+    border: 2px solid var(--ink6-LED2LOW);
+    border-radius: 0.4vw; 
+    padding: 1vh 1vw;
+    display:grid;
+    grid-template-columns: 2;
+    column-gap:1vw;
+    row-gap: 1vh;
+    grid-template-areas: 
+    "stat-title stat-title"
+    "stat1   stat1-result"
+    "stat2   stat2-result"
+    "stat3   stat3-result"
+    "stat4   stat4-result"
+    "stat5   stat5-result"
+    "stat6   stat6-result"
+}
+
+#stats-grid-title {
+    grid-area:stat-title;
+}
+
+#stat1 {
+    grid-area:stat1;
+}
+
+#stat1-result {
+    grid-area:stat1-result;
+}
+
+#stat2 {
+    grid-area:stat2;
+}
+
+#stat2-result {
+    grid-area:stat2-result;
+}
+
+#stat3 {
+    grid-area:stat3;
+}
+
+#stat3-result {
+    grid-area:stat3-result;
+}
+
+#stat4 {
+    grid-area:stat4;
+}
+
+#stat4-result {
+    grid-area:stat4-result;
+}
+
+#stat5 {
+    grid-area:stat5;
+}
+
+#stat5-result {
+    grid-area:stat5-result;
+}
+
+#stat6 {
+    grid-area:stat6;
+}
+
+#stat6-result {
+    grid-area:stat6-result;
+}
+
 
 
 

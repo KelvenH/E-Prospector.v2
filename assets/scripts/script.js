@@ -524,10 +524,12 @@ const liveGameData = {
         /*---TBC--*/
     },
     stats: {
-        /*---TBC--*/
-    },
-    awards: {
-        /*---TBC--*/
+        blocksAttempted: 0,
+        coinsMined: 0,
+        moneyEarned: 0,
+        pollutionOutput: 0,
+        cyberThwarts: 0,
+        cyberSuffered: 0
     }
 };
 
@@ -1548,6 +1550,9 @@ $("#exchange-btn").click(function() {
 //called from 'on-click' added inline to miner play button (html)
 
 $("#terminal-miner-activatebtn").unbind('click').click(function() {
+    
+    // 10.0 : Hide Stats Grid
+    $('#mining-stats-grid').css('display', 'none');
 
     // 10.1 : Deactivate Repair, Upgrade and Energy Buttons (Bug Fix : unexpected behavious encountered if changes made during gameplay)
 
@@ -1806,6 +1811,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
     function calcResult(outcome) {
 
         // Part 1 - reset fields and buttons
+        $('#mining-stats-grid').css('display', 'grid');
         $('#terminal-miner-stopbtn').css('display', 'none');
         $('#mine-success-img').css('display', 'none');
         $('#terminal-miner-activatebtn').css('display', 'inline-block');
