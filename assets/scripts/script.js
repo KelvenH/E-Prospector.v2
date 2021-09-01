@@ -539,8 +539,8 @@ const purchasedOpSys = [];
 // 2.4 : Temporary Stats (captures short-term pos / neg impacts typically as a result of events)
 
 const tempStats = {
-    chanceTemp: 99000,      //temp increase to increase speed during testing
-    hashPowerTemp: 9000,   //temp increase to increase speed during testing
+    chanceTemp: 0,      //temp increase to increase speed during testing
+    hashPowerTemp: 5000,   //temp increase to increase speed during testing
     pwrUsageTemp: 0,
     conditionTemp: 0
 };
@@ -1518,7 +1518,6 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
     $('#block-mining-progressbar').css('display', 'block');
 
 
-
     // 11.4: Run Game Cycle (time is 10 second cycle less hashSpeed buffs, displays animation whilst running, returns text to indicate when cycle complete and runs match (block vs. miner keys)
 
     //Cycle timer : length = 10secs (10,000millisecs) less % hash speed bonus
@@ -1543,6 +1542,18 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         $('#block-mining-reattempt-count').css('display', 'none');
 
         var timer = setInterval(function() {
+
+
+            // 11.3B: Early Terminate Function  - gamecycle placed inside button allowing play to be terminated with default of 'no win'
+
+            $('#terminal-miner-stopbtn').unbind('click').click(function() {
+                clearInterval(timer);
+                outcome = "no win";
+                calcResult(outcome);
+                }
+            );
+
+
             if (timeleft < 0) {
                 clearInterval(timer);
                 $('#block-mining-response1').text("Checking Result");
@@ -1564,6 +1575,8 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
                 checkResult(minerKey, blockKey);
 
+            } else {
+                console.log(timeleft);
             } 
             timeleft -= 1;
         }, 1000);
@@ -1629,15 +1642,15 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         // if outcome = win, 3 second pause and display calcResult
         if (outcome == "win") {
             console.log("win?", outcome);
-            $('#terminal-miner-stopbtn').css('display', 'none');
-            $('#block-mining-response1').text("Completed");
+           
+           
             $('#block-mining-line2').css('display', 'none');
             $('#block-mining-response2').css('display', 'none');
             $('#terminal-miner-won-btn').css('display', 'block');
 
             $('#terminal-miner-won-btn').unbind('click').click(function() {
                 $('#terminal-miner-won-btn').css('display', 'none');
-                calcResult();
+                calcResult(outcome);
             });
 
         }
@@ -1647,9 +1660,10 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
     // 11.6 : Calculate Result (1 - costs / power useage, 2 - update stats. 3 - update winnings)
 
-    function calcResult() {
+    function calcResult(outcome) {
 
         // Part 1 - reset fields and buttons
+        $('#terminal-miner-stopbtn').css('display', 'none');
         $('#mine-success-img').css('display', 'none');
         $('#terminal-miner-activatebtn').css('display', 'inline-block');
         $('#block-mining-line2').css('display', 'none');
@@ -1690,11 +1704,10 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
          calcTotalActiveStats(); // run to refresh GameCard incl performnce bars
 
-
-         // Part 4 - calc winnings
+        // Part 4 - calc winnings
  
-         if (outcome == "win") {
- 
+        if (outcome == "win") {
+            $('#block-mining-response1').text("Completed");
              // add coin to ewallet balance via increment
              let newCoinBalance = ++ liveGameData.finance.ewalletBalance;
              $('#ewallet-value').text(newCoinBalance);
@@ -1705,13 +1718,18 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
              ++newBlockMined;
              $('#stats-2-txt').html(newBlockMined);
              console.log("newBlockMined", newBlockMined);
- 
-         } else {
-             console.log("no wins to add");
              inGameChecks();
-         }
-         console.log("calcResult complete");
-     }      
+
+        } else if (outcome == "no win") {
+            // Part 4 - early exit
+        
+            $('#block-mining-response1').text("Stopped");
+            console.log("no win - early exit");
+            inGameChecks();
+        }
+
+        console.log("calcResult complete");
+    }      
 
 });
 
