@@ -1620,7 +1620,7 @@ function newEvent() {
 
         $('#msg-btn-optB').unbind('click').click(function(finalOutcome) {
             optionSelected();
-            //option B - 50% 'bad bews', 40% 'neutral', 10% 'great news
+            //option B - 50% 'bad bews', 40% 'neutral', 10% 'great news'
             let outcomeB = Math.floor(Math.random() * 10)  // random number 0 - 9
             console.log("outcome", outcomeB);
 
@@ -1643,7 +1643,19 @@ function newEvent() {
         });
         
         function eventResult (finalOutcome) {
-            console.log("eventResult", finalOutcome)
+            console.log("eventResult", finalOutcome);
+            $('#msg-outcome-txt').css('display', 'block').text(finalOutcome);
+            $('#msg-btn-outcome').css('display', 'block');
+            $('#msg-btn-outcome').unbind('click').click(function() {
+                $('#msg-alert').fadeOut(800);
+                $('#msg-title').fadeOut(800);
+                $('#msg-outcome-txt').fadeOut(800);
+                $('#msg-btn-outcome').fadeOut(800);
+                $('#terminal-miner-upgradebtn').prop('disabled', false);
+                $('#terminal-miner-repairbtn').prop('disabled', false);
+                $('#energy-btn').prop('disabled', false);
+                $('#terminal-miner-activatebtn').prop('disabled', false);
+            })
         };
 
 
