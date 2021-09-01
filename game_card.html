@@ -263,7 +263,7 @@
                                     <div id="reliability-response" class="energy-response key-value">(Reliability)</div>
                                     <div id="pollution-rating">Pollution Rating:</div>
                                     <div id="pollution-rating-response" class="energy-response key-value">
-                                        (Rating)<span>%</span></div>
+                                        (Rating)</div>
                                     <div id="statement">"Statement here relates to energy type"</div>
                                 </div>
                                 <button id="energy-btn" class="btn btn-info d-flex mx-auto">Change Energy Provider</button>
@@ -395,6 +395,8 @@
     <!-- close upgrade modal -->
 
 
+
+
     <!--Modal : Can't Afford Purchase-->
     <div class="modal fade" id="modal-unaffordable" data-bs-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="modal displaying message can't afford purchase" aria-hidden="false">
@@ -423,6 +425,8 @@
     </div> <!-- close can't afford modal-->
     
 
+
+
     <!--Modal : Game Over-->
     <div class="modal fade" id="modal-gameover" data-bs-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="modal displaying message game over" aria-hidden="false">
@@ -445,6 +449,8 @@
             </div>
         </div>
     </div> <!-- close game over modal-->
+
+
 
 
     <!--Modal : No Funds-->
@@ -471,6 +477,8 @@
     </div> <!-- close no funds modal-->
 
 
+
+
      <!--Modal : Unavailable-->
     <div class="modal fade" id="modal-unavailable" data-bs-backdrop="static" tabindex="-1" role="dialog"
      aria-labelledby="modal displaying message rig unavailable" aria-hidden="false">
@@ -487,8 +495,6 @@
                     This could be a temporary issue due to an event, or you're rig may need to be repaired!
                     </p>
  
-                     
- 
                 </div> <!-- close modal body -->
                 <div class="modal-footer">
                     <btn id="unavailable-btn" class="btn btn-warning">Return to Gamecard</btn>
@@ -496,6 +502,9 @@
             </div>
         </div>
     </div> <!-- close unavailable modal-->
+
+
+
 
     <!--Modal : Repairs-->
     <div class="modal fade" id="modal-repair" data-bs-backdrop="static" tabindex="-1" role="dialog"
@@ -526,6 +535,10 @@
          </div>
      </div> <!-- close repairs modal-->
 
+
+
+
+
      <!--Modal : Confirm Repaired-->
     <div class="modal fade" id="modal-confirm-repaired" data-bs-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="modal confirming rig repaired" aria-hidden="false">
@@ -550,6 +563,9 @@
         </div>
     </div> <!-- close repairs modal-->
 
+
+
+
     <!--Modal : Exchange -->
     <div class="modal fade" id="modal-exchange" data-bs-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="modal to exchange coins for cash" aria-hidden="false">
@@ -571,6 +587,33 @@
                 
                 <div class="modal-footer">
                     <btn id="exchange-exit-btn" class="btn btn-secondary">Exit Without Exchanging</btn>
+                </div>
+            </div>
+        </div>
+    </div> <!-- close exchange modal-->
+
+
+
+
+
+
+    <!--Modal : Enery Provider -->
+    <div class="modal fade" id="modal-energy" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modal to change energy provider" aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Energy Providers</h3>
+                </div>
+                <div class="modal-body">
+                
+                    <div id="energy-table">
+
+                    </div>
+
+                </div><!-- close modal body -->
+                
+                <div class="modal-footer">
+                    <btn id="energy-exit-btn" class="btn btn-secondary">Exit Without Changes</btn>
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@
     4.1 - Finances;
         - Game Over (no funds or coins)
         - No Funds but have Coins (need to exchange)
-    4.2 - Rig Status Unavailable
+    4.2 - Miner Status Unavailable
     4.3 - Energy
     4.4 - 
     4.5 - 
@@ -48,7 +48,9 @@
 
 6. Repairs 
 
-7. Energy
+7. Energy;
+    A - Display Table
+    B - Switch Supplier
 
 8. Events 
 
@@ -57,12 +59,14 @@
     9.2 - Exchange Coins
 
 10. Mine Block;
-    11.1 - Pre-game checks
-    11.2 - Generate Device and Block Keys
-    11.3 - Prepare Activity Pane
-    11.4 - Run Game Cycle
-    11.5 - Check Result
-    11.6 - Calulcate Result & Update liveGameData and HTML Values
+    10.1 - Deactivate Function Buttons
+    10.2 - Pre-game checks
+    10.3 - Generate Device and Block Keys
+    10.4 - Prepare Activity Pane
+    10.5 - Run Game Cycle
+    10.5B - Early Terminate Function 
+    10.6 - Check Result
+    10.7 - Calulcate Result & Update liveGameData and HTML Values
 
 
 
@@ -440,7 +444,7 @@ const gameLibrary = {
         usageCostPerKw: 0.75,
         reliability: "Average",
         pollutionRating: "B",
-        comments: "UK's leading renewable energy provider. The less than ideal geographical location means reliability can be patchy at best (then you may find yourself shouting the companies name)."
+        comments: "UK's leading renewable energy provider. The less than ideal geographical location means reliability can be patchy at best (then you may find yourself shouting the companies initials)."
     },
     {
         provider: "Flower Power Ltd",
@@ -860,9 +864,7 @@ $("#terminal-miner-upgradebtn").click(function() {
                     $('#modal-unaffordable').modal('hide');
                 });
             
-            }
-
-            else {
+            } else {
                 purchaseRig();
             };
 
@@ -1362,6 +1364,129 @@ $("#terminal-miner-repairbtn").click(function() {
 
 /*-- 7. Energy -------------------------------------------------------------*/
 
+$("#energy-btn").click(function() {
+    $('#modal-energy').modal('show');
+
+    // A: Display Table
+   
+    let providers = gameLibrary['energy'];
+    console.log("providers", providers);
+
+    let energyHtml = `
+        <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Provider</th>
+                        <th>Up Front Cost</th>
+                        <th>Type</th>
+                        <th>£ per k/w</th>
+                        <th>Reliability</th>
+                        <th>Pollution Rating</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+    
+    for (provider of providers) {
+        let rowHtml = `
+                <tr class="energy-row">
+                    <td class="energy-provider">${provider.provider}</td>
+                    <td class="energy-cost">${provider.upfrontCost}</td>
+                    <td class="energy-type">${provider.type}</td>
+                    <td class="energy-useage-cost">${provider.usageCostPerKw}</td>
+                    <td class="energy-reliability">${provider.reliability}</td>
+                    <td class="energy-pollution">${provider.pollutionRating}</td>
+                    <td class="energy-comments">${provider.comments}</td>
+                    <td><button class="choose-provider-button">Choose</button></td>
+                </tr>
+                `;
+        energyHtml += rowHtml;
+        }
+        energyHtml += `
+                </tbody>
+            </table>
+        `;
+
+    document.getElementById('energy-table').innerHTML = energyHtml; 
+
+
+    // B: Switch Supplier
+    $(".choose-provider-button").unbind('click').click(function() {
+        
+        /*-- create temp array to hold html values associated to button's indirect siblings--*/
+
+        let selectedProvider = [];
+        selectedProvider = $(this).parent().siblings();
+        console.log(selectedProvider[0]);
+
+        let provider = selectedProvider[0].innerHTML;
+        let cost = parseFloat(selectedProvider[1].innerHTML);
+        let type = selectedProvider[2].innerHTML;
+        let useage = parseFloat(selectedProvider[3].innerHTML);
+        let reliability = selectedProvider[4].innerHTML;
+        let pollution = selectedProvider[5].innerHTML;
+        let comments = selectedProvider[6].innerHTML;
+    
+        /*--check able to afford, if able to afford run chooseSupplier, else display message with current balance --*/
+
+        let price = cost;
+        console.log("price", price);
+
+        let currentBal = liveGameData.finance.bankBalance;
+        console.log("current Balance", currentBal);
+        
+        if (price > currentBal) {
+            $('#modal-energy').modal('hide');
+            $('#modal-unaffordable').modal('show');
+            $('#unaffordable-balance').text(currentBal);
+            console.log("can't afford");
+
+            $("#unaffordable-exit-btn").click(function() {
+                $('#modal-unaffordable').modal('hide');
+            });
+
+        } else {
+            chooseSupplier();
+        };
+
+        /*--function to purchase rig---*/
+
+        function chooseSupplier() {
+
+            /*--update liveGameData with supplier details--*/
+            liveGameData.energy.provider = provider;
+            liveGameData.energy.upfrontCost = cost;
+            liveGameData.energy.type = type;
+            liveGameData.energy.usageCostPerKw = useage;
+            liveGameData.energy.reliability = reliability;
+            liveGameData.energy.pollutionRating = pollution;
+            liveGameData.energy.comments = comments;
+            
+            /*--update supplier details displayed on html. --*/
+            $("#provider-response").text(liveGameData.energy.provider);
+            $("#type-response").text(liveGameData.energy.type);
+            $("#cost-response").text(liveGameData.energy.usageCostPerKw);
+            $("#reliability-response").text(liveGameData.energy.reliability);
+            $("#pollution-rating-response").text(liveGameData.energy.pollutionRating);
+            $("#statement").text(liveGameData.energy.comments);
+            
+
+            /*--deduct upfront costs (calculate, update liveGameData and display to page)--*/
+            newBalance = liveGameData.finance.bankBalance - cost;
+            liveGameData.finance.bankBalance = newBalance;
+            $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
+            console.log(newBalance);
+
+           
+            /*--redirect after purchase (close modal)--*/
+            $('#modal-energy').modal('hide');
+
+        } // end of change supplier function
+    })
+});
+
+
 /*-- 8. Events -------------------------------------------------------------*/
 
 /*-- 9. Crypto-Coin Exchange -----------------------------------------------*/
@@ -1384,7 +1509,7 @@ function update () {
     console.log("num4", newRate);
 }
 
-// 9.2 : exchange coins 
+// 9.2 : Exchange Coins 
 
 $("#exchange-btn").click(function() {
     let wallet = liveGameData.finance.ewalletBalance;
@@ -1424,16 +1549,16 @@ $("#exchange-btn").click(function() {
 
 $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
-    // 11.0 : Deactivate Repair, Upgrade and Energy Buttons (Bug Fix : unexpected behavious encountered if changes made during gameplay)
+    // 10.1 : Deactivate Repair, Upgrade and Energy Buttons (Bug Fix : unexpected behavious encountered if changes made during gameplay)
 
     $('#terminal-miner-upgradebtn').prop('disabled', true);
     $('#terminal-miner-repairbtn').prop('disabled', true);
     $('#energy-btn').prop('disabled', true);
 
-    // 11.1 : Pre-Game Checks    
+    // 10.2 : Pre-Game Checks    
     inGameChecks();
 
-    // 11.2 : Generate Device and Block Keys 
+    // 10.3 : Generate Device and Block Keys 
    
     console.log("mine block initiated");
 
@@ -1502,7 +1627,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
     }
 
-    // 11.3 : Prepare Activity Pane - Populate semi 'static' fields (semi static, meaning they do not change during the individual game round, but can display different values in other game rounds depending on user actions)
+    // 10.4 : Prepare Activity Pane - Populate semi 'static' fields (semi static, meaning they do not change during the individual game round, but can display different values in other game rounds depending on user actions)
     
     $('#terminal-miner-activatebtn').css('display', 'none');
     $('#terminal-miner-stopbtn').css('display', 'inline-block');
@@ -1518,7 +1643,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
     $('#block-mining-progressbar').css('display', 'block');
 
 
-    // 11.4: Run Game Cycle (time is 10 second cycle less hashSpeed buffs, displays animation whilst running, returns text to indicate when cycle complete and runs match (block vs. miner keys)
+    // 10.5: Run Game Cycle (time is 10 second cycle less hashSpeed buffs, displays animation whilst running, returns text to indicate when cycle complete and runs match (block vs. miner keys)
 
     //Cycle timer : length = 10secs (10,000millisecs) less % hash speed bonus
     let hashSpeed = totalActiveStats.totalHash / 100; //to convert to percentage;
@@ -1544,7 +1669,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         var timer = setInterval(function() {
 
 
-            // 11.3B: Early Terminate Function  - gamecycle placed inside button allowing play to be terminated with default of 'no win'
+            // 10.5B: Early Terminate Function  - gamecycle placed inside button allowing play to be terminated with default of 'no win'
 
             $('#terminal-miner-stopbtn').unbind('click').click(function() {
                 clearInterval(timer);
@@ -1582,7 +1707,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         }, 1000);
     }
 
-    //11.5 : Check Result (determines if success / fail messages, buttons and redirects to display)
+    //10.6 : Check Result (determines if success / fail messages, buttons and redirects to display)
 
     let outcome = "";
 
@@ -1662,7 +1787,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
     }
      
 
-    // 11.6 : Calculate Result (1 - costs / power useage, 2 - update stats. 3 - update winnings)
+    // 10.7 : Calculate Result (1 - costs / power useage, 2 - update stats. 3 - update winnings)
 
     function calcResult(outcome) {
 
