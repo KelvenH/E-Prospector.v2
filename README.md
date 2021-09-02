@@ -6,7 +6,7 @@
 
 [E-Prospector - Live Site](https://kelvenh.github.io/E-Prospector/)
 
-[GitHub Repo](https://github.com/KelvenH/E-Prospector)
+[GitHub Repo](https://github.com/KelvenH/E-Prospector.v2)
 
 
 ***
@@ -28,7 +28,7 @@
 
 ---
 ## Overview
-E-Prospector is a digital block mining game. The purpose of the game is to generate Bit coins which can be exchanged for currency which in turn is used to 'pay' for power costs and upgrade elements. The game has a dashboard style layout to prevent 'lose of scrore' which would be encountered if the page were to be re-loaded. Note that all content including the brand name Electronic Zebra is entirely ficticious and there is no link or intended relationship to real world crypto performance / valuations.       
+E-Prospector is a digital block mining game. The purpose of the game is to generate Bit coins which can be exchanged for currency which in turn is used to 'pay' for power costs and upgrade elements. The game has a dashboard style layout to prevent 'lose of scrore' which would be encountered if the page were to be re-loaded. 
 
 ---
 
@@ -36,22 +36,16 @@ E-Prospector is a digital block mining game. The purpose of the game is to gener
 
 ### User Stories 
 
-### Business Requirements 
--    Business owners would;
-      * look to produce a game which is informative and fun to play
-      * generate brand awarenesss
-      * potential source of revenue if game was monetised (e.g. enhanced attributes)
-      * potentially create a community for example - player league 
 
 
 ### Client Goals 
 Site visitors ;
 -    Users want to;
       * navigate the site easily
-      * easily understand how to play the game
-      * understand what the game is doing
-      * see what ‘score’ they have
-      * be able to manage any inputs / actions easily
+      * understand how to play
+      * be able to manage any inputs / actions easily  
+      * see what ‘performance score / stats’ they have
+      * make interactive decisions to determine game outcome
       * have fun! 
 
 
@@ -79,10 +73,8 @@ Expanded to deomonstrate possible further enhancements
 ![Enhanced](README-Files/gamedesign-enhanced.png)
  
 End Result - player dashboard
-![Dashboard](README-Files/GameDashboard.png)
+![Dashboard](README-Files/screenshot_gamecard.png)
 
-A ficiticious design studio behind the game was also developed!
-![Electric Zebra](README-Files/EZLogov3.png)
  
 
  
@@ -91,31 +83,26 @@ A ficiticious design studio behind the game was also developed!
 * Have a styling which is in keeping with the 'digital' topic.
 * Single page is crucial - as there is no back end / save game capability any page loas / refreshes would lose current progress. 
 * Pop-up modals / accordion sections where additional screen estate is needed
-* Scrolling section between landing area and the game area.
-* The game area will have a 'dashboard' style layout with minimal text (make use of icons and other visual aids).
+* The game area will have a 'dashboard' style layout.
 
 
 ---
 ### Content and Key Features
 
-* Single page with scroll function between written material (i.e. how to play) vs. gaming area.
 * The game area will consist of a single full page dashboard.
 * JavaScript handling the game mechanics.
 * Players 'earn' rewards in BitCoins and opt when to exchange for £GBP 
 * Fluid exchange rate
 * Upgradeable elements to improve player likelihoods
+* Gameplay linked to player actions with randomised outcomes based on probabilities
 
 
 ###  Future Enhancements
    There were a number of features which have not yet been implemented as intended. These include;
-   * use of API to track real world exchange rates (see bugs / defects)
-   * embedded ' How do i play' tutorial
-   * responsive 'level' indicators (i.e. static blocks which appear alongside device attributes) (see bugs / defects)
-   * events - these would be linked to player decisions, for example, increased likelihood that using the cheaper renewable energy provider carries a risk of power failure / loss of turn. Option to purchase cyber security tools with scenarios whereby e-wallet balance could be attacked, or other forms of maliscious acivity which could result in costs to repair / replace the players game terminals.
-   * expand from single crypto-currency to multiple currencies
-   * were back-end functionality possible, this could lead to the creation of leagues
-   * upgrade shop (out of time!)
-   * improved script - number of if / else statements could be made more efficient if able to work through as loops 
+  - ability to change crypto-curencies
+  - more enhanced set of events
+  - improved balancing of game probability ratings
+  - improved layout for smaller screens
 
 ---
 ### Technologies Used
@@ -144,9 +131,7 @@ Development of this game was through a modular style and as such bugs encountere
 
    Issue                                |  Description                                                                                                   |       
 --------------------------------------- |----------------------------------------------------------------------------------------------------------------|
-Exchange rate - Random Generation       | A random factor to increase / decrease rates is not feeding through (issue with 'NaN / not a number) unable to resolve|
-Level indicators not operating          | Unable to work through a looped script which would apply conditional formatting to adjust the color based on another fields value|  
-Script error                            | A bug is encountered periodically whereby part of the script is flagged as 'not defined' (relates to gamePowerData), but this is not consistent and is encountered approxiamtely every 1 in 20 attempts. The order (and layering) of this part of the code was adapted which did see a noticeable improvement (previously was around 1 in 10). 
+Unexpected behaviour | Some instances noticed of unexpected behaviour where gameplay flows through the mutipe functions / scenarios which are not easy to replicate. For exmaple, there can be occassions where the in game check (to identify if balance nil / game over) can occur in the midst of another stage of gameplay leading to a game over message and play continuing. Likley needs a more specific set of functional flow to avoid these being encountered, but instances were low and difficult to replicate in development.
 
 
 
