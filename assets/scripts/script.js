@@ -502,30 +502,30 @@ const gameLibrary = {
         optB_Great: "Great news! Your energy provider misunderstood that they were not meant to pass the tax on to their customers, in addition they pay £2k compensation for the distress caused!"
     },
     {
-        title: "Title 4",
+        title: "What's That Burning Smell?",
         code: 4,
-        description: "Description 4",
-        choices: "You have choices 4",
-        choiceA: "Option A: (4)",
-        choiceB: "Option B: (4)",
-        optA_Safe: "Opt A Win (4)",
-        optA_Good: "Opt A Lose (4)",
-        optB_Bad: "Opt B Win (4)",
-        optB_Neutral: "Opt B Lose (4)",
-        optB_Great: ""
+        description: "There's smoke coming from your rig!!",
+        choices: "Do you reach for the fire extinguisher or hope switching it off will cool things down",
+        choiceA: "Option A: Extinguish the flames",
+        choiceB: "Option B: Switch off the power",
+        optA_Safe: "You dowse the flames, the rigs not a write-off but you will need to pay for repairs",
+        optA_Good: "You extinsguish the flames, luckily your insurance footed the bill but you had to pay £200 premium",
+        optB_Bad: "Wow, that took hold quickly! You're rig is a write-off and you need to purchase a new terminal",
+        optB_Neutral: "That did the trick... after a cool down you're back up and running",
+        optB_Great: "Bad news became great news.... your insurance company sent you a check for £2k but a friend offered to repair it free of charge!"
     },
     {
-        title: "Title 5",
+        title: "Busy Bit Coin Market",
         code: 5,
-        description: "Description 5",
-        choices: "You have choices 5",
-        choiceA: "Option A: (5)",
-        choiceB: "Option B: (5)",
-        optA_Safe: "Opt A Win (5)",
-        optA_Good: "Opt A Lose (5)",
-        optB_Bad: "Opt B Win (5)",
-        optB_Neutral: "Opt B Lose (5)",
-        optB_Great: ""
+        description: "",
+        choices: "There's been a sudden increase mining this crypto-currency",
+        choiceA: "Option A: Stick with this currency",
+        choiceB: "Option B: Switch to a new crypto with lower mining activity",
+        optA_Safe: "You stick with it, the crowded market leads to a temp reduction to your odds of success",
+        optA_Good: "You stick with it, there's a temp reduction to your odds of success but the coin value bumps up",
+        optB_Bad: "You make the switch..... unfortunately the new currency is not favoured in the market and the valuation plummets!",
+        optB_Neutral: "You make the switch, good move as the market is less crowded and valued the same",
+        optB_Great: "You make a move Gordon Gecko would be impressed with. The valuation of this new coin rockets!"
     }
 ]};
 
@@ -1673,9 +1673,10 @@ function newEvent() {
                         // deduct £100 per pollution unit
 
                     } else if (eventCode = 4) {
+                        // put rig temp condition as zero
 
                     } else if (eventCode = 5) {
-
+                        // slight temp reduction to chance
                     } 
 
                 } else if (finalOutcome = optA_Good) {
@@ -1689,8 +1690,10 @@ function newEvent() {
                         // deduct £50 per pollution unit
 
                     } else if (eventCode = 4) {
+                        // deduct £200 from bank balance
 
                     } else if (eventCode = 5) {
+                        //  slight temp reduction to chance + increase to coin FX value
 
                     } 
 
@@ -1705,8 +1708,10 @@ function newEvent() {
                         // deduct £2k fine + £100 per pollution unit
 
                     } else if (eventCode = 4) {
+                        // remove terminal from current game library
 
                     } else if (eventCode = 5) {
+                        // significant decrease to coin FX value
 
                     } 
 
@@ -1721,9 +1726,10 @@ function newEvent() {
                         // no action
 
                     } else if (eventCode = 4) {
+                        // no action
 
                     } else if (eventCode = 5) {
-
+                        // No action
                     } 
 
                 } else if (finalOutcome = optB_Great) {
@@ -1737,9 +1743,10 @@ function newEvent() {
                         // increase bank balance by £2k
 
                     } else if (eventCode = 4) {
+                        // increase bank balance by £2k
 
                     } else if (eventCode = 5) {
-
+                        // significant increase to coin FX value
                     } 
 
                 } 
