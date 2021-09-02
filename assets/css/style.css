@@ -4,22 +4,17 @@
 /*----------------------------Global Root Variables---------------------------------------*/
 
 :root {
-    /*---Font Variables---*/
-    --specialfont1: 'Turret Road', sans-serif;
-    /*-- used for main headers----------------------*/
+    /*---Font Variable---*/
     --specialfont-light: 'Turret Road', sans-serif;
-    /*-- used for content----------------------*/
-    /*---Font Color Variables---*/
-    --ink1-black: rgba(0, 0, 0, 0.8);
-    /*-- black----------------------*/
+    
+    /*---Color Variables---*/
+    
     --ink2-offblacksolid: rgba(29, 40, 49, 1);
     /*-- blue-black (solid) main b/ground----*/
     --ink3-offblacksemi: rgba(29, 40, 49, 0.7);
     /*-- blue-black (semi-transparent) - to blend with hero image------*/
     --ink4-blueblack: rgb(10, 25, 35);
     /*-- off-black - mid-level panel --*/
-    --ink5-LED1: rgba(0, 217, 255, 1);
-    /*--Bright Teal Blue LED-------*/
     --ink6-LED2: rgba(0, 189, 255, 0.8);
     /*--Blue LED ------------------*/
     --ink6-LED2ON: rgba(0, 189, 255, 1);
@@ -31,55 +26,44 @@
     --ink7-LED3: rgba(0, 255, 241, 1);
     /*--'Lit''Blue----------------*/
     --ink8-glass1: rgba(107, 196, 255, 1);
-    /*--svg glass fill w high transparency --*/
-    --ink9-glass2: rgba(0, 0, 0, 0.3);
-    /*--black 50% transparency---*/
+    /*--fill w high transparency --*/
     --ink9: rgb(255, 239, 213);
     /*-- papayawhip ----------------*/
     --ink10-red: rgb(209, 17, 17);
     /*-- red (off status)-----------*/
     --ink11-amber: rgb(255, 193, 7);
-    /*-- amber (warning status)-----------*/
+    /*-- amber (warning status)-----*/
     --ink12-green: rgb(52, 232, 42);
-    /*-- green (on status) --------------------*/
-  
-    /*-- XXXXX --------------------*/
-    --ink13: rgb(184, 201, 211);
+    /*-- green (on status) ---------*/
     --ink14: rgb(223, 242, 255);
-    
+    /*--modal background------------*/
 }
 
 
 /*---------------------Responsive Font Groups -----------------------------*/
 
 h1 {
-    /*--font-size: clamp(5rem);---*/
     color: var(--ink6-LED2);
 }
 
 h2 {
-    /*--font-size: clamp(3rem, 32px);---*/
     color: var(--ink9);
 }
 
 h3 {
-    /*--font-size: clamp(2.5rem, 28px);---*/
     color: var(--ink6-LED2);
 }
 
 h4 {
-    /*--font-size: 1.5vw;---*/
     color: var(--iink6-LED2);
 }
 
 h5 {
-    /*--font-size: 1.25vw;---*/
     color: var(--iink6-LED2);
 }
 
 div,
 p {
-    /*--font-size: 1vw;---*/
     font-size: 1rem;
     font-family: var(--specialfont-light);
     color: var(--ink6-LED2);
@@ -150,7 +134,6 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    /*-background-color: var(--ink2-offblacksolid);--*/
     background: linear-gradient(217deg, rgba(42, 46, 51), rgba(29, 43, 53) 70.71%), linear-gradient(127deg, rgba(42, 46, 51), rgba(24, 42, 56) 70.71%), linear-gradient(336deg, rgba(042, 46, 51), rgba(24, 42, 56) 70.71%);
 }
 
