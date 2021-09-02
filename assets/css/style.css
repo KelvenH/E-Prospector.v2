@@ -393,15 +393,15 @@ input[type="radio"]:checked+label {
 }
 
 #terminal-miner-status-label {
-    margin-top:2vh;
-    margin-bottom:2vh;
+    margin-top:1vh;
+    margin-bottom:1vh;
 }
 
 #terminal-miner-stats-label,
 #terminal-miner-parts-label,
 #terminal-miner-actions-label {
-    margin-top:4vh;
-    margin-bottom:2vh;
+    margin-top:1vh;
+    margin-bottom:1vh;
 }
 
 #terminal-miner-top-section {
