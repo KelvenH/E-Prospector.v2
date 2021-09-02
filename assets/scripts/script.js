@@ -1,5 +1,3 @@
-/jshint esversion:8, jquery:true/
-
 /*--- Key Steps & Sequencing -----------------------------------------------------/
 
 1. Utilities;
@@ -107,7 +105,7 @@ const gameLibrary = {
         name: "Comm-Atari-ZX",
         cost: 0,
         multiCore: "N",
-        baseChance: 1,
+        baseChance: 10,
         baseHash: 1,
         basePower: 1,
         baseCondition: 20,
@@ -117,7 +115,7 @@ const gameLibrary = {
         name: "Bell 200",
         cost: 100,
         multiCore: "N",
-        baseChance: 2,
+        baseChance: 15,
         baseHash: 2,
         basePower: 2,
         baseCondition: 22,
@@ -127,7 +125,7 @@ const gameLibrary = {
         name: "Macro-hard 350+",
         cost: 500,
         multiCore: "N",
-        baseChance: 3,
+        baseChance: 20,
         baseHash: 3,
         basePower: 3,
         baseCondition: 17,
@@ -137,7 +135,7 @@ const gameLibrary = {
         name: "Dwell Junior",
         cost: 1000,
         multiCore: "N",
-        baseChance: 5,
+        baseChance: 25,
         baseHash: 4,
         basePower: 5,
         baseCondition: 25,
@@ -147,7 +145,7 @@ const gameLibrary = {
         name: "Orange i-plop",
         cost: 1250,
         multiCore: "N",
-        baseChance: 5,
+        baseChance: 25,
         baseHash: 8,
         basePower: 7,
         baseCondition: 40,
@@ -157,7 +155,7 @@ const gameLibrary = {
         name: "Blackbox F-Series",
         cost: 1500,
         multiCore: "Y",
-        baseChance: 15,
+        baseChance: 30,
         baseHash: 4,
         basePower: 25,
         baseCondition: 15,
@@ -167,7 +165,7 @@ const gameLibrary = {
         name: "Bell Runner S",
         cost: 2000,
         multiCore: "N",
-        baseChance: 10,
+        baseChance: 35,
         baseHash: 6,
         basePower: 25,
         baseCondition: 35,
@@ -177,7 +175,7 @@ const gameLibrary = {
         name: "Bell Runner S+",
         cost: 3000,
         multiCore: "N",
-        baseChance: 10,
+        baseChance: 35,
         baseHash: 6,
         basePower: 22,
         baseCondition: 35,
@@ -187,7 +185,7 @@ const gameLibrary = {
         name: "Orange i-poop",
         cost: 4500,
         multiCore: "N",
-        baseChance: 15,
+        baseChance: 40,
         baseHash: 8,
         basePower: 25,
         baseCondition: 40,
@@ -197,7 +195,7 @@ const gameLibrary = {
         name: "Dwell Expert",
         cost: 6000,
         multiCore: "N",
-        baseChance: 15,
+        baseChance: 40,
         baseHash: 4,
         basePower: 20,
         baseCondition: 35,
@@ -207,7 +205,7 @@ const gameLibrary = {
         name: "Majic My-k",
         cost: 7500,
         multiCore: "N",
-        baseChance: 20,
+        baseChance: 40,
         baseHash: 10,
         basePower: 35,
         baseCondition: 35,
@@ -217,7 +215,7 @@ const gameLibrary = {
         name: "Majic My-k Extreme",
         cost: 10000,
         multiCore: "N",
-        baseChance: 20,
+        baseChance: 40,
         baseHash: 15,
         basePower: 40,
         baseCondition: 35,
@@ -227,7 +225,7 @@ const gameLibrary = {
         name: "Dwell Professional",
         cost: 20000,
         multiCore: "N",
-        baseChance: 25,
+        baseChance: 45,
         baseHash: 20,
         basePower: 40,
         baseCondition: 40,
@@ -237,7 +235,7 @@ const gameLibrary = {
         name: "Orange i-pop",
         cost: 50000,
         multiCore: "N",
-        baseChance: 35,
+        baseChance: 50,
         baseHash: 20,
         basePower: 50,
         baseCondition: 25,
@@ -247,7 +245,7 @@ const gameLibrary = {
         name: "Coin - Ripper",
         cost: 70000,
         multiCore: "Y",
-        baseChance: 50,
+        baseChance: 70,
         baseHash: 50,
         basePower: 1500,
         baseCondition: 60,
@@ -257,7 +255,7 @@ const gameLibrary = {
         name: "Blackbox X-Series",
         cost: 100000,
         multiCore: "Y",
-        baseChance: 60,
+        baseChance: 80,
         baseHash: 50,
         basePower: 2000,
         baseCondition: 65,
@@ -267,7 +265,7 @@ const gameLibrary = {
         name: "Terminus",
         cost: 200000,
         multiCore: "Y",
-        baseChance: 75,
+        baseChance: 90,
         baseHash: 65,
         basePower: 5000,
         baseCondition: 75,
@@ -550,7 +548,7 @@ const liveGameData = {
         name: "Comm-Atari-ZX",
         cost: 0,
         multiCore: "N",
-        baseChance: 1,
+        baseChance: 10,
         baseHash: 1,
         basePower: 1,
         baseCondition: 20,
@@ -641,8 +639,8 @@ const totalActiveStats = {
 function newGame() {
     
     // load default miner //
-    const miner = liveGameData['rig'];
-    const parts = liveGameData['parts'];
+    const miner = liveGameData.rig;
+    const parts = liveGameData.parts;
     const minerProcessor = parts[0].processor;
     const minerCoolSys = parts[0].coolingSystem;
     const minerOpSys = parts[0].operatingSystem;
@@ -653,7 +651,7 @@ function newGame() {
     $("#software-name").text(minerOpSys.name);
    
     // load default energy //
-    const energy = liveGameData['energy'];
+    const energy = liveGameData.energy;
     $("#provider-response").text(energy.provider);
     $("#type-response").text(energy.type);
     $("#cost-response").text(energy.usageCostPerKw);
@@ -662,11 +660,11 @@ function newGame() {
     $("#statement").text(energy.comments);
 
     // load default finance - note approach to update the second [1] value to prevent overwriting the span (£) //
-    const finance = liveGameData['finance'];
+    const finance = liveGameData.finance;
     $("#bank-value").contents()[1].nodeValue = finance.bankBalance;
-    
+
     // load initial stats
-    const stats = liveGameData['stats'];
+    const stats = liveGameData.stats;
     $("#stat1-result").text(stats.blocksAttempted);
     $("#stat2-result").text(stats.coinsMined);
     $("#stat3-result").html("<span>£ </span>" + stats.moneyEarned);
@@ -684,7 +682,7 @@ function newGame() {
 function calcTotalActiveStats() {
 
     const total = totalActiveStats;
-    const base = liveGameData['rig'];
+    const base = liveGameData.rig;
     const proBuff = liveGameData.parts[0].processor;
     const coolBuff = liveGameData.parts[0].coolingSystem;
     const osBuff = liveGameData.parts[0].operatingSystem;
@@ -696,18 +694,18 @@ function calcTotalActiveStats() {
     let ChanceTotal = (Math.round(base.baseChance + (base.baseChance / 100 * (proBuff.chanceBuff + coolBuff.chanceBuff + osBuff.chanceBuff + temp.chanceTemp))));
 
     if (ChanceTotal > 100) {
-        total.totalChance = 100
+        total.totalChance = 100;
     } else {
-        total.totalChance = ChanceTotal
+        total.totalChance = ChanceTotal;
     }
     $("#chance-value").text(total.totalChance);
     
     // Hash Rate 
     HashTotal = (Math.round(base.baseHash + (base.baseHash / 100 * (proBuff.hashPowerBuff + coolBuff.hashPowerBuff + osBuff.hashPowerBuff + temp.hashPowerTemp))));
     if (HashTotal > 100) {
-        total.totalHash = 100
+        total.totalHash = 100;
     } else {
-        total.totalHash = HashTotal
+        total.totalHash = HashTotal;
     }
     $("#speed-value").text(total.totalHash);
     
@@ -718,11 +716,11 @@ function calcTotalActiveStats() {
     // Condition
     ConditionTotal = (Math.round(base.baseCondition + (base.baseCondition / 100 * (proBuff.conditionBuff + coolBuff.conditionBuff + osBuff.conditionBuff + temp.conditionTemp))));
     if (ConditionTotal > 100) {
-        total.totalCondition = 100
+        total.totalCondition = 100;
     } else if (ConditionTotal < 0) {
-        total.totalCondition = 0            // prevent performance deteriorating below zero
+        total.totalCondition = 0;            // prevent performance deteriorating below zero
     } else {
-        total.totalCondition = ConditionTotal
+        total.totalCondition = ConditionTotal;
     }
 
     $("#condition-value").text(total.totalCondition);
@@ -731,14 +729,12 @@ function calcTotalActiveStats() {
 
     if (total.totalCondition == 0) {
         liveGameData.rig.status = "Unavailable";
-    };
+    }
 
 
     refreshPerformanceBars();
 
-};
-
-
+}
 
 
 // 3.3 : Refresh Performance Bars 
@@ -773,7 +769,7 @@ function refreshPerformanceBars() {
     } else {
         $("#condition-meter-bar").css("background-color", "var(--ink12-green)");
     }
-};
+}
 
 /*-- 4. In Game Checks  (function called prior to running game cycle and after)--*/
 
@@ -797,7 +793,7 @@ function inGameChecks() {
             $('#modal-no-funds').modal('hide');
         });
         return; //prevent function from progressing with gamecycle
-    };
+    }
 
     // 4.2 : Miner Status
  
@@ -819,7 +815,7 @@ function inGameChecks() {
             $('#modal-unavailable').modal('hide');
         });
         return; //prevent function from progressing with gamecycle
-    };
+    }
                   
 
 } // end game checks
@@ -837,7 +833,7 @@ $("#terminal-miner-upgradebtn").click(function() {
     // A: Display Table
     $("#upgrade-rigs-tab").click(function() {
 
-        let rigs = gameLibrary['rigs'];
+        let rigs = gameLibrary.rigs;
     
         let rigHtml = `
             <table class="table table-striped table-hover table-bordered">
@@ -916,7 +912,7 @@ $("#terminal-miner-upgradebtn").click(function() {
             
             } else {
                 purchaseRig();
-            };
+            }
 
             /*--function to purchase rig---*/
 
@@ -1038,7 +1034,7 @@ $("#terminal-miner-upgradebtn").click(function() {
 
             else {
                 purchaseProc();
-            };
+            }
 
             /*--function to purchase processor---*/
 
@@ -1160,7 +1156,7 @@ $("#terminal-miner-upgradebtn").click(function() {
 
         else {
             purchaseCool();
-        };
+        }
 
         /*--function to purchase cooling system---*/
 
@@ -1283,7 +1279,7 @@ $("#terminal-miner-upgradebtn").click(function() {
     
             else {
                 purchaseOpSys();
-            };
+            }
     
             /*--function to purchase Operating System---*/
     
@@ -1387,7 +1383,7 @@ $("#energy-btn").click(function() {
 
     // A: Display Table
    
-    let providers = gameLibrary['energy'];
+    let providers = gameLibrary.energy;
 
     let energyHtml = `
         <table class="table table-striped table-hover table-bordered">
@@ -1461,7 +1457,7 @@ $("#energy-btn").click(function() {
 
         } else {
             chooseSupplier();
-        };
+        }
 
         /*--function to change supplier---*/
 
@@ -1495,7 +1491,7 @@ $("#energy-btn").click(function() {
             $('#modal-energy').modal('hide');
 
         } // end of change supplier function
-    })
+    });
 });
 
 
@@ -1503,10 +1499,10 @@ $("#energy-btn").click(function() {
 
 // 8.1 : Determine if event occurs
 function newEvent() {
-    let eventHappen = Math.floor(Math.random() * 1); // generate no. 0 - 19. !!! chnage to * 20
+    let eventHappen = Math.floor(Math.random() * 20); // generate no. 0 - 19 
     
     //1 in 20 chance of event occuring prevents occuring too frequently
-    if (eventHappen < 2) {                                                       //!!! chnage to ==1
+    if (eventHappen == 1) {                                                       
         //disable other functional buttons to prevent unexpected behaviour
         $('#terminal-miner-upgradebtn').prop('disabled', true);
         $('#terminal-miner-repairbtn').prop('disabled', true);
@@ -1531,18 +1527,19 @@ function newEvent() {
         let finalOutcome = "";
         
         $('#msg-event').css('display', 'block').text(randomDescription);
+        $('#msg-alert').css('display', 'block');
+        $('#msg-title').css('display', 'block').text(randomTitle);
+        $('#msg-choices').css('display', 'block').text(randomChoices);
         
-        // media query to only show title and description on larger screens
-        if (window.matchMedia("(max-height: 500px)")) {
+        // media query to only show title and description on larger screens (Note there is no event listener so only applies when loading as opposed to manual resizing of the browser but viewed acceptable given this is for small screens)
+        let mediaQuery = window.matchMedia('(max-height: 400px)');
+        if (mediaQuery.matches) {
             $('#message-screen').css('line-height', '10px');
             $('#msg-alert').css('display', 'none');
             $('#msg-title').css('display', 'none');
             $('#msg-choices').css('display', 'none');
-        } else {
-            $('#msg-alert').css('display', 'block');
-            $('#msg-title').css('display', 'block').text(randomTitle);
-            $('#msg-choices').css('display', 'block').text(randomChoices);
-        };
+        }
+
         $('#msg-optA-txt').css('display', 'block').text(randomChoiceA);
         $('#msg-optB-txt').css('display', 'block').text(randomChoiceB);
         $('#msg-btn-optA').css('display', 'block');
@@ -1552,7 +1549,7 @@ function newEvent() {
         $('#msg-btn-optA').unbind('click').click(function(finalOutcome) {
             optionSelected();
             //option A - 90% 'safe' option, 10% good news
-            let outcomeA = Math.floor(Math.random() * 10)  // random number 0 - 9
+            let outcomeA = Math.floor(Math.random() * 10);  // random number 0 - 9
 
             if (outcomeA <= 8) {                
                 finalOutcome = optA_Safe;
@@ -1568,7 +1565,7 @@ function newEvent() {
         $('#msg-btn-optB').unbind('click').click(function(finalOutcome) {
             optionSelected();
             //option B - 50% 'bad bews', 40% 'neutral', 10% 'great news'
-            let outcomeB = Math.floor(Math.random() * 10)  // random number 0 - 9
+            let outcomeB = Math.floor(Math.random() * 10);  // random number 0 - 9
 
             if (outcomeB <= 4) {
                 finalOutcome = optB_Bad;
@@ -1765,12 +1762,12 @@ function newEvent() {
 
                 } 
 
-            })
-        };
+            });
+        }
 
     }
    
-};
+}
 
 
 function optionSelected() {
@@ -1780,7 +1777,7 @@ function optionSelected() {
         $('#msg-optB-txt').fadeOut(800);
         $('#msg-btn-optA').fadeOut(800);
         $('#msg-btn-optB').fadeOut(800);
-};
+}
 
 
 /*-- 9. Crypto-Coin Exchange -----------------------------------------------*/

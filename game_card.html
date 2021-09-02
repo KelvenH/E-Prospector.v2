@@ -18,7 +18,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/d01fd203b5.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>E-Prospector</title>
     <link rel="shortcut icon" type="image/jpg" href="/assets/images/favicon-32x32.png" />
@@ -31,9 +30,9 @@
         <!--media query will display the following message if portrait orientation detected & hide main game screen-->
 
         <img class="rotate" src="./assets/images/rotate-device.svg" alt="rotate device">
-        <div class="portrait-detected">
+        <h4 class="portrait-detected">
             Portrait mode detected<br> Please rotate your device to view the game.
-        </div>
+        </h4>
 
     </div>
 
@@ -44,15 +43,15 @@
             <div class="row justify-content-end">
 
                 <div class="col-7">
-                    <div id="dashboard-title" refl="E-Prospector">E-Prospector</div>
+                    <div id="dashboard-title">E-Prospector</div>
                 </div>
                 <!--close title col-->
 
                 <div class="col-5">
                     <div id="game-menu">
-                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal-how-to-play"><h5>How to Play</h5></button>
-                        <a role="button" class="btn" href=""><h5>New Game</h5></a>
-                        <a role="button" class="btn" href="/index.html"><h5>Quit</h5></a>
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal-how-to-play">How to Play</button>
+                        <a role="button" class="btn" href="">New Game</a>
+                        <a role="button" class="btn" href="/index.html">Quit</a>
                     </div>
 
                 </div>
@@ -91,7 +90,7 @@
                                 </div>
                             </div>
 
-                            <!--Performance stats--->
+                            <!--Performance stats-->
                             <h5 id="terminal-miner-stats-label">PERFORMANCE:</h5>
                             <div id="terminal-miner-stats-grid">
                                 <div id="miner-chance">CHANCE</div>
@@ -118,8 +117,7 @@
                                     </div>
                                 </div>
                                 <div id="condition-meter" class="meter-off progress">
-                                    <div id="condition-meter-bar" class=" meter-on progress-bar" role="progress-bar"
-                                        role="progressbar" style="width: 50%" aria-valuenow="100" aria-valuemin="0"
+                                    <div id="condition-meter-bar" class=" meter-on progress-bar" role="progressbar" style="width: 50%" aria-valuenow="100" aria-valuemin="0"
                                         aria-valuemax="100"></div>
                                 </div>
                             </div>
@@ -194,7 +192,7 @@
                                         <div id="bank-value" class="finance-value key-value"><span>£ </span>0</div>
                                     </div>
                                     <div id="finance-ewallet" class="finance-sub-grid">
-                                        <i id="ewallet-icon d-flex" class="finance-icon fas fa-wallet"></i>
+                                        <i id="ewallet-icon" class="finance-icon fas fa-wallet"></i>
                                         <div id="ewallet-label" class="finance-label">E-Wallet Balance:</div>
                                         <div id="ewallet-value" class="finance-value key-value">0</div>
                                     </div>
@@ -330,8 +328,7 @@
 
     <!--Modal : Upgrades-->
 
-    <div class="modal fade" id="modal-upgrades" data-bs-backdrop="static" tabindex="-1" role="dialog"
-        aria-labelledby="modal to purchase upgrades" aria-hidden="false">
+    <div class="modal fade" id="modal-upgrades" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-label="modal to purchase upgrades" aria-hidden="false">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen" role="document">
             <div class="modal-content">
 
@@ -344,30 +341,23 @@
                     <!--Nav tabs -->
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="shop-tab" data-bs-toggle="tab"
-                                data-bs-target="#upgrade-shop" type="button" role="tab" aria-controls="upgrade-shop"
-                                aria-selected="true">Upgrade Shop</button>
+                            <button class="nav-link active" id="shop-tab" data-bs-toggle="tab" data-bs-target="#upgrade-shop" type="button" role="tab" aria-controls="upgrade-shop" aria-selected="true">Upgrade Shop</button>
                         </li>
 
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="upgrade-rigs-tab" data-bs-toggle="tab" data-bs-target="#upgrade-rigs" type="button" role="tab" aria-controls="rigs" aria-selected="false">Rigs</button>
+                            <button class="nav-link" id="upgrade-rigs-tab" data-bs-toggle="tab" data-bs-target="#upgrade-rigs" type="button" role="tab" aria-controls="upgrade-rigs" aria-selected="false">Rigs</button>
                         </li>
 
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="upgrade-processors-tab" data-bs-toggle="tab"
-                                data-bs-target="#upgrade-processors" type="button" role="tab" aria-controls="processors"
-                                aria-selected="false">Processors</button>
+                            <button class="nav-link" id="upgrade-processors-tab" data-bs-toggle="tab" data-bs-target="#upgrade-processors" type="button" role="tab" aria-controls="upgrade-processors" aria-selected="false">Processors</button>
                         </li>
 
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="upgrade-cooling-tab" data-bs-toggle="tab"
-                                data-bs-target="#upgrade-cooling" type="button" role="tab" aria-controls="cooling"
-                                aria-selected="false">Cooling Sys.</button>
+                            <button class="nav-link" id="upgrade-cooling-tab" data-bs-toggle="tab" data-bs-target="#upgrade-cooling" type="button" role="tab" aria-controls="upgrade-cooling"             aria-selected="false">Cooling Sys.</button>
                         </li>
 
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="upgrade-os-tab" data-bs-toggle="tab" data-bs-target="#upgrade-os"
-                                type="button" role="tab" aria-controls="os" aria-selected="false">Operating
+                            <button class="nav-link" id="upgrade-os-tab" data-bs-toggle="tab" data-bs-target="#upgrade-os" type="button" role="tab" aria-controls="upgrade-os" aria-selected="false">Operating
                                 Sys.</button>
                         </li>
 
@@ -376,8 +366,7 @@
                     <!-- Nav Tabs Content-->
                     <div class="tab-content" id="myTabContent">
                         <!--Shop / Landing-->
-                        <div class="tab-pane fade show active" id="upgrade-shop" role="tabpanel"
-                            aria-labelledby="shop-tab">
+                        <div class="tab-pane fade show active" id="upgrade-shop" role="tabpanel" aria-label="shop-tab">
                             <h3>Welcome to the upgrades shop</h3>
                             <br>
                             <h4>View the available upgrades by clicking on the tabs above.</h4>
@@ -385,22 +374,21 @@
                             <h4>Note: Purchasing an item will replace your current set-up, so be sure you want to make the change before doing so!</h4>
                         </div>
                         <!--Rigs-->
-                        <div class="tab-pane fade" id="upgrade-rigs" role="tabpanel" aria-labelledby="rigs-tab">
+                        <div class="tab-pane fade" id="upgrade-rigs" role="tabpanel" aria-label="rigs-tab">
                             <div id="rigs-table">
 
                             </div>
                         </div>
 
                         <!--Processors-->
-                        <div class="tab-pane fade" id="upgrade-processors" role="tabpanel"
-                            aria-labelledby="processors-tab">
+                        <div class="tab-pane fade" id="upgrade-processors" role="tabpanel" aria-label="processors-tab">
                             <div id="processors-table">
 
                             </div>
                         </div>
 
                         <!--Cooling-->
-                        <div class="tab-pane fade" id="upgrade-cooling" role="tabpanel" aria-labelledby="cooling-tab">
+                        <div class="tab-pane fade" id="upgrade-cooling" role="tabpanel" aria-label="cooling-tab">
                             <div id="cooling-table">
 
                             </div>
@@ -408,7 +396,7 @@
                         </div>
 
                         <!--OS-->
-                        <div class="tab-pane fade" id="upgrade-os" role="tabpanel" aria-labelledby="os-tab">
+                        <div class="tab-pane fade" id="upgrade-os" role="tabpanel" aria-label="os-tab">
                             <div id="os-table">
 
                             </div>
@@ -419,7 +407,7 @@
                 </div><!-- close modal body -->
 
                 <div class="modal-footer">
-                    <btn id="upgrade-exit-btn" class="btn btn-secondary">Exit Without Making a Purchase</btn>
+                    <button id="upgrade-exit-btn" class="btn btn-secondary">Exit Without Making a Purchase</button>
                 </div>
             </div>
         </div>
@@ -431,7 +419,7 @@
 
     <!--Modal : Can't Afford Purchase-->
     <div class="modal fade" id="modal-unaffordable" data-bs-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="modal displaying message can't afford purchase" aria-hidden="false">
+    aria-label="modal displaying message can't afford purchase" aria-hidden="false">
         <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -450,7 +438,7 @@
                 </div><!-- close modal body -->
                 
                 <div class="modal-footer">
-                    <btn id="unaffordable-exit-btn" class="btn btn-secondary">Close</btn>
+                    <button id="unaffordable-exit-btn" class="btn btn-secondary">Close</button>
                 </div>
             </div>
         </div>
@@ -461,7 +449,7 @@
 
     <!--Modal : Game Over-->
     <div class="modal fade" id="modal-gameover" data-bs-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="modal displaying message game over" aria-hidden="false">
+    aria-label="modal displaying message game over" aria-hidden="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -476,7 +464,7 @@
 
                 </div> <!-- close modal body -->
                 <div class="modal-footer">
-                    <btn id="game-over-btn" class="btn btn-danger">Try Again!</btn>
+                    <button id="game-over-btn" class="btn btn-danger">Try Again!</button>
                 </div>
             </div>
         </div>
@@ -487,7 +475,7 @@
 
     <!--Modal : No Funds-->
     <div class="modal fade" id="modal-no-funds" data-bs-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="modal displaying message no bank funds" aria-hidden="false">
+    aria-label="modal displaying message no bank funds" aria-hidden="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -502,7 +490,7 @@
 
                 </div> <!-- close modal body -->
                 <div class="modal-footer">
-                    <btn id="no-funds-btn" class="btn btn-warning">Return to Exchange Your Coins</btn>
+                    <button id="no-funds-btn" class="btn btn-warning">Return to Exchange Your Coins</button>
                 </div>
             </div>
         </div>
@@ -513,7 +501,7 @@
 
      <!--Modal : Unavailable-->
     <div class="modal fade" id="modal-unavailable" data-bs-backdrop="static" tabindex="-1" role="dialog"
-     aria-labelledby="modal displaying message rig unavailable" aria-hidden="false">
+     aria-label="modal displaying message rig unavailable" aria-hidden="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -529,7 +517,7 @@
  
                 </div> <!-- close modal body -->
                 <div class="modal-footer">
-                    <btn id="unavailable-btn" class="btn btn-warning">Return to Gamecard</btn>
+                    <button id="unavailable-btn" class="btn btn-warning">Return to Gamecard</button>
                 </div> <!-- close modal footer -->
             </div>
         </div>
@@ -540,7 +528,7 @@
 
     <!--Modal : Repairs-->
     <div class="modal fade" id="modal-repair" data-bs-backdrop="static" tabindex="-1" role="dialog"
-     aria-labelledby="modal to repair rig" aria-hidden="false">
+     aria-label="modal to repair rig" aria-hidden="false">
          <div class="modal-dialog modal-dialog-centered" role="document">
              <div class="modal-content">
                  <div class="modal-header">
@@ -560,8 +548,8 @@
  
                  </div> <!-- close modal body -->
                  <div class="modal-footer">
-                    <btn id="repair-exit-btn" class="btn btn-secondary">Exit without Repairing</btn>
-                    <btn id="pay-repairs-btn" class="btn btn-info">Pay for Repairs</btn>
+                    <button id="repair-exit-btn" class="btn btn-secondary">Exit without Repairing</button>
+                    <button id="pay-repairs-btn" class="btn btn-info">Pay for Repairs</button>
                  </div>
              </div>
          </div>
@@ -573,7 +561,7 @@
 
      <!--Modal : Confirm Repaired-->
     <div class="modal fade" id="modal-confirm-repaired" data-bs-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="modal confirming rig repaired" aria-hidden="false">
+    aria-label="modal confirming rig repaired" aria-hidden="false">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -589,7 +577,7 @@
 
                 </div> <!-- close modal body -->
                 <div class="modal-footer">
-                   <btn id="repaired-exit-btn" class="btn btn-info">Exit</btn>
+                   <button id="repaired-exit-btn" class="btn btn-info">Exit</button>
                 </div>
             </div>
         </div>
@@ -600,7 +588,7 @@
 
     <!--Modal : Exchange -->
     <div class="modal fade" id="modal-exchange" data-bs-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="modal to exchange coins for cash" aria-hidden="false">
+    aria-label="modal to exchange coins for cash" aria-hidden="false">
         <div class="modal-dialog modal-dialog-centered modal" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -613,12 +601,12 @@
                         Current Exchange Rate = <span id="exchange-rate">0</span><br>
                         Total value of exchange = £ <span id="exchange-returned">0</span>
                     </p>
-                    <btn id="exchange-deal-btn" class="btn btn-success">Exchange</btn>
+                    <button id="exchange-deal-btn" class="btn btn-success">Exchange</button>
 
                 </div><!-- close modal body -->
                 
                 <div class="modal-footer">
-                    <btn id="exchange-exit-btn" class="btn btn-secondary">Exit Without Exchanging</btn>
+                    <button id="exchange-exit-btn" class="btn btn-secondary">Exit Without Exchanging</button>
                 </div>
             </div>
         </div>
@@ -630,7 +618,7 @@
 
 
     <!--Modal : Enery Provider -->
-    <div class="modal fade" id="modal-energy" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modal to change energy provider" aria-hidden="false">
+    <div class="modal fade" id="modal-energy" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-label="modal to change energy provider" aria-hidden="false">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -645,7 +633,7 @@
                 </div><!-- close modal body -->
                 
                 <div class="modal-footer">
-                    <btn id="energy-exit-btn" class="btn btn-secondary">Exit Without Changes</btn>
+                    <button id="energy-exit-btn" class="btn btn-secondary">Exit Without Changes</button>
                 </div>
             </div>
         </div>
@@ -655,7 +643,7 @@
     <script src="./assets/scripts/script.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js "
         integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8 "
-        crossorigin="anonymous "></script>
+        crossorigin="anonymous"></script>
 
 </body>
 
