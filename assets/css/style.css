@@ -76,6 +76,11 @@ p {
     color: var(--ink6-LED2);
 }
 
+.text_small {
+    font-size: clamp(0.75rem, 9px);
+    color: var(--ink6-LED2);
+}
+
 .LED-ON {
     color: var(--ink6-LED2ON);
 }
@@ -264,7 +269,7 @@ body, html {
 
 .modal-txt {
     color: var(--ink4-blueblack);
-}
+};
 
 #upgrade-shop {
     padding-top: 5vh;
@@ -361,7 +366,7 @@ body, html {
 }
 
 #game-menu .btn a {
-    color: var(--ink7-LED3);
+    color: ink7-LED3;
     text-decoration: none;
 }
 
@@ -510,8 +515,6 @@ input[type="radio"]:checked+label {
     margin-bottom: 2vh;
     -ms-grid-columns: 40% 10% 50%;
     grid-template-columns: 40% 10% 50%;
-    -ms-grid-rows: 4;
-    grid-template-rows: 4;
     row-gap: 1vh;
         grid-template-areas: "a1   a2   a3" "b1   b2    b3" "c1  c2 c3" "d1  d2 d3"
 }
@@ -602,10 +605,8 @@ input[type="radio"]:checked+label {
     padding: 1vh 1vw;
     -ms-grid-columns: 50% 50%;
     grid-template-columns: 50% 50%;
-    -ms-grid-rows: 4;
-    grid-template-rows: 4;
     row-gap: 1vh;
-        grid-template-areas: 
+    grid-template-areas: 
     "e1   e2" 
     "f1   f2" 
     "g1  g2" 
@@ -719,8 +720,6 @@ input[type="radio"]:checked+label {
     display: grid;
     -ms-grid-columns: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
-    -ms-grid-rows: 5;
-    grid-template-rows: 5;
     row-gap: 1vh;
     /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
         grid-template-areas: 
@@ -871,9 +870,7 @@ input[type="radio"]:checked+label {
     display: -ms-inline-grid;
     display: inline-grid;
     -ms-grid-columns: 3;
-    grid-template-columns: 3;
-    -ms-grid-rows: 5;
-    grid-template-rows: 5;
+    grid-template-columns: 1fr 1fr 1fr;
     /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
         grid-template-areas: 
     "finance-bank      finance-bank      finance-bank" 
@@ -920,9 +917,7 @@ input[type="radio"]:checked+label {
     -ms-grid-columns: 2vw 10vw 10vw;
     grid-template-columns: 2vw 10vw 10vw;
     width: 22.5vw;
-    -ms-grid-rows: 1;
-    grid-template-rows: 1;
-        grid-template-areas: "bank-icon  bank-label bank-value"
+    grid-template-areas: "bank-icon  bank-label bank-value"
 }
 
 #bank-icon {
@@ -953,9 +948,7 @@ input[type="radio"]:checked+label {
     -ms-grid-columns: 2vw 10vw 10vw;
     grid-template-columns: 2vw 10vw 10vw;
     width: 22.5vw;
-    -ms-grid-rows: 1;
-    grid-template-rows: 1;
-        grid-template-areas: "ewallet-icon  ewallet-label ewallet-value"
+    grid-template-areas: "ewallet-icon  ewallet-label ewallet-value"
 }
 
 #ewallet-icon {
@@ -986,9 +979,7 @@ input[type="radio"]:checked+label {
     -ms-grid-columns: 2vw 10vw 10vw 2vw 10vw 10vw;
     grid-template-columns: 2vw 10vw 10vw 2vw 10vw 10vw;
     width: 22.5vw;
-    -ms-grid-rows: 1;
-    grid-template-rows: 1;
-        grid-template-areas: "exchange-icon  exchange-label exchange-value"
+    grid-template-areas: "exchange-icon  exchange-label exchange-value"
 }
 
 #exchange-icon {
@@ -1241,8 +1232,8 @@ input[type="radio"]:checked+label {
     padding: 1vh 1vw;
     display:-ms-grid;
     display:grid;
-    -ms-grid-columns: 2;
-    grid-template-columns: 2;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     -webkit-column-gap:1vw;
        -moz-column-gap:1vw;
             column-gap:1vw;
@@ -1352,8 +1343,6 @@ input[type="radio"]:checked+label {
     margin-bottom: 2vh;
     -ms-grid-columns: 10vw 10vw;
     grid-template-columns: 10vw 10vw;
-    -ms-grid-rows: 6;
-    grid-template-rows: 6;
     row-gap: 1vh;
     /*-- CSS BEAUTIFIER AUTO-STYLING GRID-LAYOUT ON SINGLE ROW???--*/
         grid-template-areas: "provider       provider-response" "type           type-response" "cost           cost-response" "reliability    reliability-response" "pollution-rating      pollution-rating-response" "statement      statement"
@@ -1503,7 +1492,7 @@ input[type="radio"]:checked+label {
     }
 
     #terminal-miner-repairbtn {
-        right:5;
+        right: 10vw;
     }
 
     #terminal-miner-actions-label, #terminal-miner-actions-pane {
