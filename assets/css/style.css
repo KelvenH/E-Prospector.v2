@@ -877,8 +877,8 @@ input[type="radio"]:checked+label {
     text-align: center;
     padding: 1vh 1vw;
     border-radius: 0.4vw;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
     width:40%; 
 }
 
@@ -893,7 +893,7 @@ input[type="radio"]:checked+label {
 #mine-block-grid {
     padding-left:1vw;
     padding-right:1vw;
-    margin-top: 2vh;
+    margin-top: 1vh;
     color: var(--ink2-offblacksolid);
     font-size: 1.5rem;
     display: grid;
@@ -1167,3 +1167,83 @@ input[type="radio"]:checked+label {
 #energy-btn {
     text-align: center;
 }
+
+/*---Media Queries for Gamecard--*/
+
+@media screen and (max-height: 835px) {
+    html {
+        font-size:10px;
+    }
+    
+    #activity, #energy {
+        position: relative;
+    }
+
+    #terminal-miner-activatebtn, #energy-btn {
+        position: absolute;
+        right: 1vw;
+        top: 1vh;
+        width: 10vw;
+        max-height:30px;
+        padding: 0;
+    }
+    #energy-grid {
+        margin-top:1vh;
+    }
+
+    #game-menu .btn {
+        margin:0.5vh 0;
+    }
+
+    #statement {
+        display: none;
+    }
+}  
+
+@media screen and (max-height: 500px) {
+   
+    #terminal-miner-pane, #finances {
+        position: relative;
+    }
+
+    #terminal-miner-upgradebtn,
+    #terminal-miner-repairbtn,
+    #terminal-miner-stopbtn,
+    #exchange-btn {
+        position: absolute;
+        top: 0.5vh;
+        width: 8vw;
+        padding: 0;
+    }
+
+    #terminal-miner-upgradebtn, #exchange-btn, #terminal-miner-stopbtn {
+        right: 0.5vw;
+    }
+
+    #terminal-miner-repairbtn {
+        right:5;
+    }
+
+    #terminal-miner-actions-label, #terminal-miner-actions-pane {
+        display: none;
+        border: none;
+        border-radius: 0; 
+        padding: 0;
+
+    }
+
+    .finance-sub-grid {
+        margin-top:0.5vh;
+    }
+
+    #terminal-miner-stats-grid, #mine-block-grid {
+        row-gap: 0.5vh;
+    }
+
+  }
+
+  @media screen and (max-height: 400px) {
+      h1 {
+          font-size: 12px;
+      }
+  }
