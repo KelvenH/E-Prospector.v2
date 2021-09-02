@@ -23,7 +23,7 @@
         - Game Over (no funds or coins)
         - No Funds but have Coins (need to exchange)
     4.2 - Miner Status Unavailable
-    4.3 - Energy
+   
 
 5. Upgrades;
     5.1 - Display Upgrade Modal
@@ -45,12 +45,17 @@
             - refresh stats (incl performance bars) to reflect purchase
 
 6. Repairs; 
+    6.1 - Repair Function
 
 7. Energy;
     A - Display Table
     B - Switch Supplier
 
 8. Events; 
+    8.1 - determine if event occurs (1 in 20 chance)
+    8.2 - select random event from library
+    8.3 - Generate Ouctome for A or B Decision
+    8.4 - Update Message Screen and Map Outcome to Respective Actions
 
 9. Crypto-Coin Exchange;
     9.1 - Calculate moving coin to £ exchange rate
@@ -64,7 +69,7 @@
     10.5 - Run Game Cycle
     10.5B - Early Terminate Function 
     10.6 - Check Result
-    10.7 - Calulcate Result & Update liveGameData and HTML Values
+    10.7 - Calculate Result & Update liveGameData and HTML Values
 
 
 
@@ -483,16 +488,16 @@ const gameLibrary = {
         choiceA: "Option A: Pay £1k to install fibre",
         choiceB: "Option B: Take a risk things will get better",
         optA_Safe: "You paid £1k, the switchover was otherwise painless",
-        optA_Good: "You paid £1k and found that you got a 25% speed boost",
-        optB_Bad: "Bad news - your speed has been hit with a temporary 50% speed reduction until your ISP can improve the infrastructure",
+        optA_Good: "You paid £1k and found that you got a speed boost",
+        optB_Bad: "Bad news - your speed has been hit with a speed reduction until your ISP can improve the infrastructure",
         optB_Neutral: "You were lucky, your ISP was quick to improve the infrastructure leading to no impact",
-        optB_Great: "Great news! Your ISP installed a new fibre cabinet in your area, you receive a temporary 50% speed boost until they connect other properties"
+        optB_Great: "Great news! Your ISP installed a new fibre cabinet in your area, you receive a speed boost until they connect other properties"
     },
     {
         title: "Pollution TAX!",
         code: 3,
         description: "To help tackle climate change, the government have announced a new pollution tax",
-        choices: "Pay the new tax which is £100 per pollution unit output by your operation, or join the growing body of refuing to pay in protest",
+        choices: "Pay tax of £100 per pollution unit, or refuse to pay in protest",
         choiceA: "Option A: Pay £100 per pollution unit tax",
         choiceB: "Option B: Join the protest",
         optA_Safe: "You pay the tax... ouch!",
@@ -517,10 +522,10 @@ const gameLibrary = {
     {
         title: "Busy Bit Coin Market",
         code: 5,
-        description: "",
-        choices: "There's been a sudden increase mining this crypto-currency",
+        description: "There's been a sudden increase mining this crypto-currency",
+        choices: "Stick with the crypto-coin and hope things improve or take a chance by switching to a new coin.",
         choiceA: "Option A: Stick with this currency",
-        choiceB: "Option B: Switch to a new crypto with lower mining activity",
+        choiceB: "Option B: Switch to a new crypto",
         optA_Safe: "You stick with it, the crowded market leads to a temp reduction to your odds of success",
         optA_Good: "You stick with it, there's a temp reduction to your odds of success but the coin value bumps up",
         optB_Bad: "You make the switch..... unfortunately the new currency is not favoured in the market and the valuation plummets!",
@@ -570,7 +575,7 @@ const liveGameData = {
         }
     }],
     finance: {
-        bankBalance: 1000,     //temp buff for development - reduce to £1k for gameplay
+        bankBalance: 1000,     
         ewalletBalance: 0,
         fxRate: 1000
     },
@@ -582,9 +587,6 @@ const liveGameData = {
         reliability: "Great",
         pollutionRating: "C",
         comments: "Good to the wallet, great reliability but awful to the environment. The choice for those who care for today and not for tomorrow"
-    },
-    messages: {
-        /*---TBC--*/
     },
     stats: {
         blocksAttempted: 0,
@@ -598,7 +600,7 @@ const liveGameData = {
 
 
 // 2.3 : Purchase history (use to add purchases to avoid a repeated cost to switch to)
-
+//BUG - the table is updated but not able to pull this into an if statement when constructing the upgrades template literal
 const purchasedRigs = [];
 const purchasedProcs = [];
 const purchasedCoolSys = [];
@@ -608,8 +610,8 @@ const purchasedOpSys = [];
 // 2.4 : Temporary Stats (captures short-term pos / neg impacts typically as a result of events)
 
 const tempStats = {
-    chanceTemp: 10000,      //temp increase to increase speed during testing
-    hashPowerTemp: 5000,   //temp increase to increase speed during testing
+    chanceTemp: 0,      
+    hashPowerTemp: 0,   
     pwrUsageTemp: 0,
     conditionTemp: 0
 };
@@ -719,14 +721,18 @@ function calcTotalActiveStats() {
     if (ConditionTotal > 100) {
         total.totalCondition = 100
     } else if (ConditionTotal < 0) {
-        total.totalCondition = 0            //prevent performance deteriorating below zero
+        total.totalCondition = 0            // prevent performance deteriorating below zero
     } else {
         total.totalCondition = ConditionTotal
     }
 
     $("#condition-value").text(total.totalCondition);
 
-    
+    // change status if condition reaches zero
+
+    if (total.totalCondition == 0) {
+        liveGameData.rig.status = "Unavailable";
+    };
 
 
     /*--TEMPORARY CONSOLE LOGS - REMOVE FROM FINAL VERSION--*/
@@ -835,10 +841,7 @@ function inGameChecks() {
         });
         return; //prevent function from progressing with gamecycle
     };
-
-    // 4.3 Energy
-                    
-
+                  
 
 } // end game checks
 
@@ -1389,8 +1392,9 @@ $("#terminal-miner-upgradebtn").click(function() {
 
 
 /*-- 6. Repairs  -----------------------------------------------------------*/
+//Note: step 3.2 (CalcTotalActiveStats) identifies if condition = 0 and changes status to Unavailable, step 4.2 (inGameChecks Miner : Status) prevents play continuing if repair required
 
-// check if total active condition is 0 if yes display modal to advise rig broken and need to buy a new one, otherwise display modal to purchase repair which costs 50% of rig price
+// 6.1 - Repair Function
 
 $("#terminal-miner-repairbtn").click(function() {
     // display repair modal
@@ -1523,7 +1527,7 @@ $("#energy-btn").click(function() {
             chooseSupplier();
         };
 
-        /*--function to purchase rig---*/
+        /*--function to change supplier---*/
 
         function chooseSupplier() {
 
@@ -1562,24 +1566,26 @@ $("#energy-btn").click(function() {
 
 /*-- 8. Events -------------------------------------------------------------*/
 
-// 8.1 : determine if event occurs
+// 8.1 : Determine if event occurs
 function newEvent() {
     console.log("new Event script reached");
-    let eventHappen = Math.floor(Math.random() * 2); // generate no. 0 - 19
+    let eventHappen = Math.floor(Math.random() * 20); // generate no. 0 - 19
 
-    console.log("eventHappen", eventHappen)
+    console.log("eventHappen", eventHappen);
     
     //1 in 20 chance of event occuring prevents occuring too frequently
-    if (eventHappen == 1) {
+    if (eventHappen == 1) {                             
         //disable other functional buttons to prevent unexpected behaviour
         $('#terminal-miner-upgradebtn').prop('disabled', true);
         $('#terminal-miner-repairbtn').prop('disabled', true);
         $('#energy-btn').prop('disabled', true);
         $('#terminal-miner-activatebtn').prop('disabled', true);
-
         $('#msg-alert').css('display', 'block');
+
+        // 8.2 : Random event selection
         let eventBank = gameLibrary.events;
         let randomEvent = eventBank[Math.random() * eventBank.length | 0]; //random selection from events array
+
         console.log("eventBank", eventBank);
         console.log("randomEvent", randomEvent);
         let randomTitle = randomEvent.title;
@@ -1593,6 +1599,7 @@ function newEvent() {
         let optB_Bad = randomEvent.optB_Bad;
         let optB_Neutral =  randomEvent.optB_Neutral;
         let optB_Great =  randomEvent.optB_Great;
+        let finalOutcome = "";
 
         $('#msg-title').css('display', 'block').text(randomTitle);
         $('#msg-event').css('display', 'block').text(randomDescription);
@@ -1602,18 +1609,19 @@ function newEvent() {
         $('#msg-btn-optA').css('display', 'block');
         $('#msg-btn-optB').css('display', 'block');
 
+        // 8.3 : Generate Ouctome for A or B Decision
         $('#msg-btn-optA').unbind('click').click(function(finalOutcome) {
             optionSelected();
             //option A - 90% 'safe' option, 10% good news
             let outcomeA = Math.floor(Math.random() * 10)  // random number 0 - 9
             console.log("outcome", outcomeA);
 
-            if (outcomeA <= 8) {
+            if (outcomeA <= 8) {                
                 console.log("outcomeSafe");
                 finalOutcome = optA_Safe;
                 eventResult (finalOutcome);
             }  
-            else if (outcomeA = 9) {
+            else if (outcomeA = 9) {            
                 console.log("outcomeGood");
                 finalOutcome = optA_Good;
                 eventResult (finalOutcome);
@@ -1637,7 +1645,7 @@ function newEvent() {
                 finalOutcome = optB_Neutral;
                 eventResult (finalOutcome);
             }
-            else if (outcomeB = 9) {
+            else if (outcomeB == 9) {
                 console.log("outcomeGreat");
                 finalOutcome = optB_Great;
                 eventResult (finalOutcome);
@@ -1645,12 +1653,17 @@ function newEvent() {
 
         });
         
+        // 8.4 : Update Message Screen and Map Outcome to Respective Actions
         function eventResult (finalOutcome) {
             console.log("eventResult", finalOutcome);
             console.log("event", randomTitle);
             $('#msg-outcome-txt').css('display', 'block').text(finalOutcome);
             $('#msg-btn-outcome').css('display', 'block');
             $('#msg-btn-outcome').unbind('click').click(function() {
+                console.log("outcome-btn-pressed");
+                console.log("final outcome", finalOutcome);
+                console.log("optASafe", optA_Safe);
+
                 $('#msg-alert').fadeOut(800);
                 $('#msg-title').fadeOut(800);
                 $('#msg-outcome-txt').fadeOut(800);
@@ -1660,93 +1673,198 @@ function newEvent() {
                 $('#energy-btn').prop('disabled', false);
                 $('#terminal-miner-activatebtn').prop('disabled', false);
 
-                if (finalOutcome = optA_Safe) {
+                if (finalOutcome == optA_Safe) {
 
-                } else if (finalOutcome = optA_Safe) {
-                    if (eventCode = 1) {
+                    if (eventCode == 1) {
+                        console.log("1 - Safe");
                         // deduct £100 from balance
+                        let penalty = 100;
+                        let newBalance = liveGameData.finance.bankBalance - penalty;
+                        liveGameData.finance.bankBalance = newBalance;
+                        $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
-                    } else if (eventCode = 2) {
+                    } else if (eventCode == 2) {
+                        console.log("2 - Safe");
                         // deduct £1k balance
+                        let penalty = 1000;
+                        let newBalance = liveGameData.finance.bankBalance - penalty;
+                        liveGameData.finance.bankBalance = newBalance;
+                        $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
-                    } else if (eventCode = 3) {
+                    } else if (eventCode == 3) {
+                        console.log("3 - Safe");
                         // deduct £100 per pollution unit
+                        let pollutionOutput = liveGameData.stats.pollutionOutput;
+                        let tax = 100 * pollutionOutput;
+                        let newBalance = liveGameData.finance.bankBalance - tax;
+                        liveGameData.finance.bankBalance = newBalance;
+                        $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
-                    } else if (eventCode = 4) {
-                        // put rig temp condition as zero
+                    } else if (eventCode == 4) {
+                        console.log("4 - Safe");
+                        // put rig temp condition as - 1000 (this forces the totalActive condition to be 0 and can be restored by using repairs)
+                        tempStats.conditionTemp = -1000;
+                        calcTotalActiveStats();
 
-                    } else if (eventCode = 5) {
+                    } else if (eventCode == 5) {
+                        console.log("5 - Safe");
                         // slight temp reduction to chance
+                        tempStats.chanceTemp = tempStats.chanceTemp - 20;
+                        calcTotalActiveStats();
                     } 
 
-                } else if (finalOutcome = optA_Good) {
-                    if (eventCode = 1) {
+                } else if (finalOutcome == optA_Good) {
+                    if (eventCode == 1) {
+                        console.log("1 - Good");
                         // deduct £100 from balance & temp speed boost 25%
+                        let penalty = 100;
+                        let newBalance = liveGameData.finance.bankBalance - penalty;
+                        liveGameData.finance.bankBalance = newBalance;
+                        $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
+                        tempStats.hashPowerTemp = tempStats.hashPowerTemp + 25;
+                        calcTotalActiveStats();
 
-                    } else if (eventCode = 2) {
+                    } else if (eventCode == 2) {
+                        console.log("2 - Good");
                         // deduct £1k from balance & speed boost 25%
+                        let penalty = 1000;
+                        let newBalance = liveGameData.finance.bankBalance - penalty;
+                        liveGameData.finance.bankBalance = newBalance;
+                        $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
+                        tempStats.hashPowerTemp = tempStats.hashPowerTemp + 25;
+                        calcTotalActiveStats();
 
-                    } else if (eventCode = 3) {
+
+                    } else if (eventCode == 3) {
+                        console.log("3 - Good");
                         // deduct £50 per pollution unit
+                        let pollutionOutput = liveGameData.stats.pollutionOutput;
+                        let tax = 50 * pollutionOutput;
+                        let newBalance = liveGameData.finance.bankBalance - tax;
+                        liveGameData.finance.bankBalance = newBalance;
+                        $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
-                    } else if (eventCode = 4) {
+                    } else if (eventCode == 4) {
+                        console.log("4 - Good");
                         // deduct £200 from bank balance
+                        let penalty = 200;
+                        let newBalance = liveGameData.finance.bankBalance - penalty;
+                        liveGameData.finance.bankBalance = newBalance;
+                        $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
-                    } else if (eventCode = 5) {
-                        //  slight temp reduction to chance + increase to coin FX value
+                    } else if (eventCode == 5) {
+                        console.log("5 - Good");
+                        //  slight reduction to chance + increase to coin FX value
+                        tempStats.chanceTemp = tempStats.chanceTemp - 20;
+                        let currentExRate = liveGameData.finance.fxRate;
+                        let newRate = currentExRate - 100;
+                        liveGameData.finance.fxRate = newRate.toFixed(2);
+                        $("#exchange-value").contents()[1].nodeValue = liveGameData.finance.fxRate;
+
+                        calcTotalActiveStats();
 
                     } 
 
-                } else if (finalOutcome = optB_Bad) {
-                    if (eventCode = 1) {
+                } else if (finalOutcome == optB_Bad) {
+                    if (eventCode == 1) {
+                        console.log("1 - Bad");
                         // deduct 25% bank balance
+                        let currentBalance = liveGameData.finance.bankBalance;
+                        let penalty = currentBalance / 4;
+                        let newBalance = liveGameData.finance.bankBalance - penalty;
+                        liveGameData.finance.bankBalance = newBalance;
+                        $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
-                    } else if (eventCode = 2) {
-                        // temp 50% speed reduction
+                    } else if (eventCode == 2) {
+                        console.log("2 - Bad");
+                        // 50% speed reduction
+                        tempStats.hashPowerTemp = tempStats.hashPowerTemp - 50;
+                        calcTotalActiveStats();
 
-                    } else if (eventCode = 3) {
+                    } else if (eventCode == 3) {
+                        console.log("3 - Bad");
                         // deduct £2k fine + £100 per pollution unit
+                        let penalty = 2000;
 
-                    } else if (eventCode = 4) {
+                        let pollutionOutput = liveGameData.stats.pollutionOutput;
+                        let tax = 100 * pollutionOutput;
+                        
+                        let newBalance = liveGameData.finance.bankBalance - (penalty + tax);
+                        liveGameData.finance.bankBalance = newBalance;
+                        $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
+
+                    } else if (eventCode == 4) {
                         // remove terminal from current game library
+                        console.log("4 - Bad");
 
-                    } else if (eventCode = 5) {
+                    } else if (eventCode == 5) {
+                        console.log("5 - Bad");
                         // significant decrease to coin FX value
+                        let currentExRate = liveGameData.finance.fxRate;
+                        let newRate = currentExRate - 250;
+                        liveGameData.finance.fxRate = newRate.toFixed(2);
+                        $("#exchange-value").contents()[1].nodeValue = liveGameData.finance.fxRate;
 
                     } 
 
-                } else if (finalOutcome = optB_Neutral) {
-                    if (eventCode = 1) {
+                } else if (finalOutcome == optB_Neutral) {
+                    if (eventCode == 1) {
+                        console.log("1 - Neutral");
                         // no action
 
-                    } else if (eventCode = 2) {
+                    } else if (eventCode == 2) {
+                        console.log("2 - Neutral");
                         // no action
 
-                    } else if (eventCode = 3) {
+                    } else if (eventCode == 3) {
+                        console.log("3 - Neutral");
                         // no action
 
-                    } else if (eventCode = 4) {
+                    } else if (eventCode == 4) {
+                        console.log("4 - Neutral");
                         // no action
 
-                    } else if (eventCode = 5) {
+                    } else if (eventCode == 5) {
+                        console.log("5 - Neutral");
                         // No action
                     } 
 
-                } else if (finalOutcome = optB_Great) {
-                    if (eventCode = 1) {
+                } else if (finalOutcome == optB_Great) {
+                    if (eventCode == 1) {
+                        console.log("1 - Great");
+                        // add speed boost 50%
+                        tempStats.hashPowerTemp =  tempStats.hashPowerTemp + 50;
+                        calcTotalActiveStats();
+
+                    } else if (eventCode == 2) {
+                        console.log("2 - Great");
                         // add temp speed boost 50%
+                        tempStats.hashPowerTemp = tempStats.hashPowerTemp + 50;
+                        calcTotalActiveStats();
 
-                    } else if (eventCode = 2) {
-                        // add temp speed boost 50%
-
-                    } else if (eventCode = 3) {
+                    } else if (eventCode == 3) {
+                        console.log("3 - Great");
                         // increase bank balance by £2k
+                        let reward = 2000;
+                        let newBalance = liveGameData.finance.bankBalance + reward;
+                        liveGameData.finance.bankBalance = newBalance;
+                        $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
-                    } else if (eventCode = 4) {
+                    } else if (eventCode == 4) {
+                        console.log("4 - Great");
                         // increase bank balance by £2k
+                        let reward = 2000;
+                        let newBalance = liveGameData.finance.bankBalance + reward;
+                        liveGameData.finance.bankBalance = newBalance;
+                        $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
-                    } else if (eventCode = 5) {
+                    } else if (eventCode == 5) {
+                        console.log("5 - Great");
                         // significant increase to coin FX value
+                        let currentExRate = liveGameData.finance.fxRate;
+                        let newRate = currentExRate + 250;
+                        liveGameData.finance.fxRate = newRate.toFixed(2);
+                        $("#exchange-value").contents()[1].nodeValue = liveGameData.finance.fxRate;
                     } 
 
                 } 
@@ -1781,7 +1899,7 @@ function optionSelected() {
 // 9.1 : Calculate a moving exchange rate every 30 seconds 
 
 let currentExRate = liveGameData.finance.fxRate;
-let exInterval = setInterval(update, 60000); //30,000 = 30 secs (!!change back to 30)
+let exInterval = setInterval(update, 30000); //30,000 = 30 secs 
 
 function update () {
     let num = Math.random(); //generates a random float value (0 - 1)
@@ -1846,7 +1964,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
     // 10.0 : Hide Stats Grid
     $('#mining-stats-grid').css('display', 'none');
 
-    // 10.1 : Deactivate Repair, Upgrade and Energy Buttons (Bug Fix : unexpected behavious encountered if changes made during gameplay)
+    // 10.1 : Deactivate Repair, Upgrade and Energy Buttons (Bug Fix : unexpected behaviour encountered if changes made during gameplay)
 
     $('#terminal-miner-upgradebtn').prop('disabled', true);
     $('#terminal-miner-repairbtn').prop('disabled', true);
@@ -2018,7 +2136,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         }, 500);
     }
 
-    //10.6 : Check Result (determines if success / fail messages, buttons and redirects to display)
+    // 10.6 : Check Result (determines if success / fail messages, buttons and redirects to display)
 
     let outcome = "";
 
@@ -2137,8 +2255,8 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         console.log("postPowerCosts", postPowerCosts);
         liveGameData.finance.bankBalance = postPowerCosts;
         $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
+        
         //update pollution output 
-
         let pollutionRate = liveGameData.energy.pollutionRating;
         let pollutionOutput = "";
 
