@@ -464,6 +464,7 @@ const gameLibrary = {
     }],
     events: [{
         title: "Hacker Attack",
+        code: 1,
         description: "A vulnerability flaw has been exposed in the latest OS update",
         choices: "You can pay £100 fee to download cyber security software or take a risk",
         choiceA: "Option A: Pay £100 for security software",
@@ -472,34 +473,37 @@ const gameLibrary = {
         optA_Good: "Good news - you paid £100 and the OS release identified efficiencies leading to a temporary 25% performance boost",
         optB_Bad: "Bad news - the head in the sand approach didn't work, hackers managed to access your password and steal 25% of your balance before the bank were able to freeze",
         optB_Neutral: "You were lucky, nothing became of it",
-        optB_Great: "Great news - there was no attempted hack of your terminal, and the OS security patch also identified efficiencies leading to a temporary 50% performance boost!"
+        optB_Great: "Great news! There was no attempted hack of your terminal, and the OS security patch also identified efficiencies leading to a temporary 50% performance boost!"
     },
     {
-        title: "Title 2",
-        description: "Description 2",
-        choices: "You have choices 2",
-        choiceA: "Option A: (2)",
-        choiceB: "Option B: (2)",
-        optA_Safe: "Opt A Win (2)",
-        optA_Good: "Opt A Lose (2)",
-        optB_Bad: "Opt B Win (2)",
-        optB_Neutral: "Opt B Lose (2)",
-        optB_Great: ""
+        title: "Internet Connection Down",
+        code: 2,
+        description: "Your ISP has taken on too many local customers and impacting connection speed",
+        choices: "You can pay £1k to switch to a dedicated fibre or hope things improve",
+        choiceA: "Option A: Pay £1k to install fibre",
+        choiceB: "Option B: Take a risk things will get better",
+        optA_Safe: "You paid £1k, the switchover was otherwise painless",
+        optA_Good: "You paid £1k and found that you got a 25% speed boost",
+        optB_Bad: "Bad news - your speed has been hit with a temporary 50% speed reduction until your ISP can improve the infrastructure",
+        optB_Neutral: "You were lucky, your ISP was quick to improve the infrastructure leading to no impact",
+        optB_Great: "Great news! Your ISP installed a new fibre cabinet in your area, you receive a temporary 50% speed boost until they connect other properties"
     },
     {
-        title: "Title 3",
-        description: "Description 3",
-        choices: "You have choices 3",
-        choiceA: "Option A: (3)",
-        choiceB: "Option B: (3)",
-        optA_Safe: "Opt A Win (3)",
-        optA_Good: "Opt A Lose (3)",
-        optB_Bad: "Opt B Win (3)",
-        optB_Neutral: "Opt B Lose (3)",
-        optB_Great: ""
+        title: "Pollution TAX!",
+        code: 3,
+        description: "To help tackle climate change, the government have announced a new pollution tax",
+        choices: "Pay the new tax which is £100 per pollution unit output by your operation, or join the growing body of refuing to pay in protest",
+        choiceA: "Option A: Pay £100 per pollution unit tax",
+        choiceB: "Option B: Join the protest",
+        optA_Safe: "You pay the tax... ouch!",
+        optA_Good: "Pressure mounted and the Tax was reduced to £50 per pollution unit",
+        optB_Bad: "Bad news - the government didn't back down and to avoid the threat of court action you were forced to pay the tax and an additional £2k late payment fine",
+        optB_Neutral: "Pressure mounted and the new tax was scrapped...... for now!",
+        optB_Great: "Great news! Your energy provider misunderstood that they were not meant to pass the tax on to their customers, in addition they pay £2k compensation for the distress caused!"
     },
     {
         title: "Title 4",
+        code: 4,
         description: "Description 4",
         choices: "You have choices 4",
         choiceA: "Option A: (4)",
@@ -512,6 +516,7 @@ const gameLibrary = {
     },
     {
         title: "Title 5",
+        code: 5,
         description: "Description 5",
         choices: "You have choices 5",
         choiceA: "Option A: (5)",
@@ -1578,6 +1583,7 @@ function newEvent() {
         console.log("eventBank", eventBank);
         console.log("randomEvent", randomEvent);
         let randomTitle = randomEvent.title;
+        let eventCode = randomEvent.code;
         let randomDescription = randomEvent.description;
         let randomChoices = randomEvent.choices;
         let randomChoiceA = randomEvent.choiceA;
@@ -1595,9 +1601,6 @@ function newEvent() {
         $('#msg-optB-txt').css('display', 'block').text(randomChoiceB);
         $('#msg-btn-optA').css('display', 'block');
         $('#msg-btn-optB').css('display', 'block');
-
-        
-
 
         $('#msg-btn-optA').unbind('click').click(function(finalOutcome) {
             optionSelected();
@@ -1644,6 +1647,7 @@ function newEvent() {
         
         function eventResult (finalOutcome) {
             console.log("eventResult", finalOutcome);
+            console.log("event", randomTitle);
             $('#msg-outcome-txt').css('display', 'block').text(finalOutcome);
             $('#msg-btn-outcome').css('display', 'block');
             $('#msg-btn-outcome').unbind('click').click(function() {
@@ -1655,6 +1659,91 @@ function newEvent() {
                 $('#terminal-miner-repairbtn').prop('disabled', false);
                 $('#energy-btn').prop('disabled', false);
                 $('#terminal-miner-activatebtn').prop('disabled', false);
+
+                if (finalOutcome = optA_Safe) {
+
+                } else if (finalOutcome = optA_Safe) {
+                    if (eventCode = 1) {
+                        // deduct £100 from balance
+
+                    } else if (eventCode = 2) {
+                        // deduct £1k balance
+
+                    } else if (eventCode = 3) {
+                        // deduct £100 per pollution unit
+
+                    } else if (eventCode = 4) {
+
+                    } else if (eventCode = 5) {
+
+                    } 
+
+                } else if (finalOutcome = optA_Good) {
+                    if (eventCode = 1) {
+                        // deduct £100 from balance & temp speed boost 25%
+
+                    } else if (eventCode = 2) {
+                        // deduct £1k from balance & speed boost 25%
+
+                    } else if (eventCode = 3) {
+                        // deduct £50 per pollution unit
+
+                    } else if (eventCode = 4) {
+
+                    } else if (eventCode = 5) {
+
+                    } 
+
+                } else if (finalOutcome = optB_Bad) {
+                    if (eventCode = 1) {
+                        // deduct 25% bank balance
+
+                    } else if (eventCode = 2) {
+                        // temp 50% speed reduction
+
+                    } else if (eventCode = 3) {
+                        // deduct £2k fine + £100 per pollution unit
+
+                    } else if (eventCode = 4) {
+
+                    } else if (eventCode = 5) {
+
+                    } 
+
+                } else if (finalOutcome = optB_Neutral) {
+                    if (eventCode = 1) {
+                        // no action
+
+                    } else if (eventCode = 2) {
+                        // no action
+
+                    } else if (eventCode = 3) {
+                        // no action
+
+                    } else if (eventCode = 4) {
+
+                    } else if (eventCode = 5) {
+
+                    } 
+
+                } else if (finalOutcome = optB_Great) {
+                    if (eventCode = 1) {
+                        // add temp speed boost 50%
+
+                    } else if (eventCode = 2) {
+                        // add temp speed boost 50%
+
+                    } else if (eventCode = 3) {
+                        // increase bank balance by £2k
+
+                    } else if (eventCode = 4) {
+
+                    } else if (eventCode = 5) {
+
+                    } 
+
+                } 
+
             })
         };
 
