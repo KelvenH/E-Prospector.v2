@@ -76,11 +76,6 @@ p {
     color: var(--ink6-LED2);
 }
 
-.text_small {
-    font-size: clamp(0.75rem, 9px);
-    color: var(--ink6-LED2);
-}
-
 .LED-ON {
     color: var(--ink6-LED2ON);
 }
@@ -269,7 +264,7 @@ body, html {
 
 .modal-txt {
     color: var(--ink4-blueblack);
-};
+}
 
 #upgrade-shop {
     padding-top: 5vh;
@@ -366,7 +361,7 @@ body, html {
 }
 
 #game-menu .btn a {
-    color: ink7-LED3;
+    color: var(--ink7-LED3);
     text-decoration: none;
 }
 
