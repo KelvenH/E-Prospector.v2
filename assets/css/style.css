@@ -84,6 +84,16 @@ body, html {
     width: 100%;
     margin: 0;
   }
+
+/*-- secondary header & icons for smaller devices invoked by media queries --*/
+#terminal-title-small,
+#finance-title-small,
+#message-title-small,
+#activity-title-small,
+#energy-title-small {
+    display: none;
+}
+
 /*---------------------Media Queries - Portrait-----------------------------------------*/
 
 
@@ -1034,6 +1044,7 @@ input[type="radio"]:checked+label {
 
 #stats-grid-title {
     grid-area:stat-title;
+    font-size:1.25rem;
 }
 
 #stat1 {
@@ -1229,21 +1240,67 @@ input[type="radio"]:checked+label {
         border: none;
         border-radius: 0; 
         padding: 0;
-
     }
 
     .finance-sub-grid {
         margin-top:0.5vh;
     }
 
-    #terminal-miner-stats-grid, #mine-block-grid {
+    #terminal-miner-parts-grid, #terminal-miner-stats-grid, #mine-block-grid {
         row-gap: 0.5vh;
     }
 
   }
 
+
   @media screen and (max-height: 400px) {
-      h1 {
-          font-size: 12px;
-      }
+    #terminal-title-small,
+    #finance-title-small,
+    #message-title-small,
+    #activity-title-small,
+    #energy-title-small {
+        display:inline;
+        color: var(--ink9);
+    }
+
+    #terminal-title,
+    #finance-title,
+    #message-title,
+    #activity-title,
+    #energy-title {
+        display:none;
+    }
+    
+    #block-mining-line1,
+    #block-mining-response1  {
+        margin-top:-1.5vh;
+    }
+
+    #mining-stats-grid {
+        margin-top:-3vh;
+    }
+
+    #terminal-miner-parts-grid {
+        row-gap: 0;
+    }
+
+    #message-screen {
+        row-gap: 0vh;
+       
+        grid-template-areas: 
+       
+        "msg-outcome-txt msg-outcome-txt"
+        "msg-event  msg-event"
+        "msg-btn-outcome msg-btn-outcome"
+        
+        "msg-optA-txt   msg-optA-txt"
+        "msg-optB-txt   msg-optB-txt"
+        "msg-btn-optA   msg-btn-optB"
+        ;
+    }
+    #msg-btn-optA, #msg-btn-optB {
+        padding: 0;
+        height: 60%;
+    }
+
   }

@@ -87,6 +87,16 @@ document.addEventListener("DOMContentLoaded", function() {
     newGame();
 });
 
+// 1.2 : Additional Media Queries (Note: media queries handled in CSS with the exception of the below where change of displayed text required)
+
+if (window.matchMedia("(max-height: 500px)")) {
+    $('#exchange-btn').text("Exchange");
+    $('#parts-cooling').text("COOLING SYS.");
+    $('#parts-software').text("OPERATING SYS.");
+    $('#ewallet-label').text("E-Wallet");
+    $('#exchange-value-sub').text("(a coin)");
+}
+
 
 /*-- 2. Game Data Tables -----------------------------------------------------*/
 
@@ -1493,16 +1503,15 @@ $("#energy-btn").click(function() {
 
 // 8.1 : Determine if event occurs
 function newEvent() {
-    let eventHappen = Math.floor(Math.random() * 20); // generate no. 0 - 19
+    let eventHappen = Math.floor(Math.random() * 1); // generate no. 0 - 19. !!! chnage to * 20
     
     //1 in 20 chance of event occuring prevents occuring too frequently
-    if (eventHappen == 1) {                             
+    if (eventHappen < 2) {                                                       //!!! chnage to ==1
         //disable other functional buttons to prevent unexpected behaviour
         $('#terminal-miner-upgradebtn').prop('disabled', true);
         $('#terminal-miner-repairbtn').prop('disabled', true);
         $('#energy-btn').prop('disabled', true);
         $('#terminal-miner-activatebtn').prop('disabled', true);
-        $('#msg-alert').css('display', 'block');
 
         // 8.2 : Random event selection
         let eventBank = gameLibrary.events;
@@ -1520,10 +1529,20 @@ function newEvent() {
         let optB_Neutral =  randomEvent.optB_Neutral;
         let optB_Great =  randomEvent.optB_Great;
         let finalOutcome = "";
-
-        $('#msg-title').css('display', 'block').text(randomTitle);
+        
         $('#msg-event').css('display', 'block').text(randomDescription);
-        $('#msg-choices').css('display', 'block').text(randomChoices);
+        
+        // media query to only show title and description on larger screens
+        if (window.matchMedia("(max-height: 500px)")) {
+            $('#message-screen').css('line-height', '10px');
+            $('#msg-alert').css('display', 'none');
+            $('#msg-title').css('display', 'none');
+            $('#msg-choices').css('display', 'none');
+        } else {
+            $('#msg-alert').css('display', 'block');
+            $('#msg-title').css('display', 'block').text(randomTitle);
+            $('#msg-choices').css('display', 'block').text(randomChoices);
+        };
         $('#msg-optA-txt').css('display', 'block').text(randomChoiceA);
         $('#msg-optB-txt').css('display', 'block').text(randomChoiceB);
         $('#msg-btn-optA').css('display', 'block');
