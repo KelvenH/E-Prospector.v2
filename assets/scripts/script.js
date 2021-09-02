@@ -84,7 +84,6 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    console.log("Stage 1: DOM load complete");
     newGame();
 });
 
@@ -625,18 +624,12 @@ const totalActiveStats = {
     totalCondition: 0
 };
 
-console.log("chance", liveGameData.rig.baseChance);
-console.log("hash", liveGameData.rig.baseHash);
-console.log("power", liveGameData.rig.basePower);
-console.log("condition", liveGameData.rig.baseCondition);
-
-
 /*-- 3. Update Game Card  -----------------------------------------------------*/
 
 // 3.1 : Load Base Game data and update initial text on html page  
 
 function newGame() {
-    console.log("Stage 2: running newGame function");
+    
     // load default miner //
     const miner = liveGameData['rig'];
     const parts = liveGameData['parts'];
@@ -648,8 +641,7 @@ function newGame() {
     $("#processor-name").text(minerProcessor.name);
     $("#cooling-name").text(minerCoolSys.name);
     $("#software-name").text(minerOpSys.name);
-    console.log("Stage 3: base miner loaded");
-
+   
     // load default energy //
     const energy = liveGameData['energy'];
     $("#provider-response").text(energy.provider);
@@ -661,7 +653,6 @@ function newGame() {
 
     // load default finance - note approach to update the second [1] value to prevent overwriting the span (£) //
     const finance = liveGameData['finance'];
-    console.log("this should be the balance", finance.bankBalance);
     $("#bank-value").contents()[1].nodeValue = finance.bankBalance;
     
     // load initial stats
@@ -693,8 +684,6 @@ function calcTotalActiveStats() {
     
     // Chance
     let ChanceTotal = (Math.round(base.baseChance + (base.baseChance / 100 * (proBuff.chanceBuff + coolBuff.chanceBuff + osBuff.chanceBuff + temp.chanceTemp))));
-
-    console.log("ChanceTotal", ChanceTotal);
 
     if (ChanceTotal > 100) {
         total.totalChance = 100
@@ -735,20 +724,6 @@ function calcTotalActiveStats() {
     };
 
 
-    /*--TEMPORARY CONSOLE LOGS - REMOVE FROM FINAL VERSION--*/
-    console.log("base chance", base.baseChance);
-    console.log("base hash", base.baseHash);
-    console.log("base power", base.basePower);
-    console.log("base condition", base.baseCondition);
-    console.log("total chance", total.totalChance);
-    console.log("total hash", total.totalHash);
-    console.log("total power", total.totalPower);
-    console.log("total condition", total.totalCondition);
-    console.log("total data", total);
-
-
-
-
     refreshPerformanceBars();
 
 };
@@ -765,8 +740,6 @@ function refreshPerformanceBars() {
 
     const chanceProgress = total.totalChance;
     const w = (chanceProgress / maxValue) * 100;
-    console.log("chance Progress value", chanceProgress);
-    console.log("chance Progress %", w);
     $("#chance-meter-bar").css("width", w + '%');
 
     const speedProgress = total.totalHash;
@@ -782,7 +755,6 @@ function refreshPerformanceBars() {
     $("#condition-meter-bar").css("width", z + '%');
     // formatting on condition bar to indicate health
 
-    console.log("color", total.totalCondition);
 
     if (total.totalCondition < 20) {
         $("#condition-meter-bar").css("background-color", "var(--ink10-red)");
@@ -801,8 +773,7 @@ function inGameChecks() {
     // Game Over
     if ((liveGameData.finance.bankBalance < 1) && (liveGameData.finance.ewalletBalance < 1)) {
         $('#modal-gameover').modal('show');
-        console.log("game over");
-
+       
         $("#game-over-btn").unbind('click').click(function() {
             location.reload();
         });
@@ -811,8 +782,7 @@ function inGameChecks() {
     // No funds but has crypto-coin to exchange
     } else if ((liveGameData.finance.bankBalance < 1) && (liveGameData.finance.ewalletBalance > 0)) {
         $('#modal-no-funds').modal('show');
-        console.log("no funds over");
-
+      
         $("#no-funds-btn").unbind('click').click(function() {
             $('#modal-no-funds').modal('hide');
         });
@@ -834,8 +804,7 @@ function inGameChecks() {
         $("#terminal-miner-status-unavailable").css("display", "block");
 
         $('#modal-unavailable').modal('show');
-        console.log("rig unavailable");
-
+    
         $("#unavailable-btn").unbind('click').click(function() {
             $('#modal-unavailable').modal('hide');
         });
@@ -859,8 +828,7 @@ $("#terminal-miner-upgradebtn").click(function() {
     $("#upgrade-rigs-tab").click(function() {
 
         let rigs = gameLibrary['rigs'];
-        console.log("rigs", rigs);
-
+    
         let rigHtml = `
             <table class="table table-striped table-hover table-bordered">
                     <thead>
@@ -912,8 +880,7 @@ $("#terminal-miner-upgradebtn").click(function() {
 
             let selectedRig = [];
             selectedRig = $(this).parent().siblings();
-            console.log(selectedRig[0]);
-
+        
             let name = selectedRig[0].innerHTML;
             let cost = parseFloat(selectedRig[1].innerHTML);
             let chance = parseFloat(selectedRig[2].innerHTML);
@@ -926,16 +893,13 @@ $("#terminal-miner-upgradebtn").click(function() {
             /*--check able to afford, if able to afford run purchaseRig, else display message with current balance --*/
 
             let price = cost;
-            console.log("price", price);
-
+        
             let currentBal = liveGameData.finance.bankBalance;
-            console.log("current Balance", currentBal);
-            
+                    
             if (price > currentBal) {
                 $('#modal-unaffordable').modal('show');
                 $('#unaffordable-balance').text(currentBal);
-                console.log("can't afford");
-
+            
                 $("#unaffordable-exit-btn").click(function() {
                     $('#modal-unaffordable').modal('hide');
                 });
@@ -961,16 +925,13 @@ $("#terminal-miner-upgradebtn").click(function() {
                 $("#rig-name").text(liveGameData.rig.name);
 
                 /*--add rig to list of purchased rigs --*/
-                console.log("purchased rigs", purchasedRigs);
                 purchasedRigs.push(name);
-                console.log("purchased rigs", purchasedRigs);
-
+                
                 /*--deduct costs (calculate, update liveGameData and display to page)--*/
                 newBalance = liveGameData.finance.bankBalance - cost;
                 liveGameData.finance.bankBalance = newBalance;
                 $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
-                console.log(newBalance);
-
+               
                 /*--run Total Active Stats to update performance values and bars --*/
                 calcTotalActiveStats();
 
@@ -990,8 +951,7 @@ $("#terminal-miner-upgradebtn").click(function() {
     $("#upgrade-processors-tab").click(function() {
         
         let processors = gameLibrary.parts[0].processor;
-        console.log("processors", processors);
-
+        
         let procHtml = `
             <table class="table table-striped table-hover table-bordered">
                     <thead>
@@ -1041,8 +1001,7 @@ $("#terminal-miner-upgradebtn").click(function() {
 
             let selectedProc = [];
             selectedProc = $(this).parent().siblings();
-            console.log(selectedProc[0]);
-
+           
             let name = selectedProc[0].innerHTML;
             let cost = parseFloat(selectedProc[1].innerHTML);
             let chance = parseFloat(selectedProc[2].innerHTML);
@@ -1054,16 +1013,13 @@ $("#terminal-miner-upgradebtn").click(function() {
             /*--check able to afford, if able to afford run purchaseProc, else display message with current balance --*/
 
             let price = cost;
-            console.log("price", price);
-
             let currentBal = liveGameData.finance.bankBalance;
-            console.log("current Balance", currentBal);
+          
             
             if (price > currentBal) {
                 $('#modal-unaffordable').modal('show');
                 $('#unaffordable-balance').text(currentBal);
-                console.log("can't afford");
-
+               
                 $("#unaffordable-exit-btn").click(function() {
                     $('#modal-unaffordable').modal('hide');
                 });
@@ -1078,8 +1034,6 @@ $("#terminal-miner-upgradebtn").click(function() {
 
             function purchaseProc() {
 
-                console.log("find procs", liveGameData.parts[0].processor);
-
                 /*--update liveGameData with purchased processor details--*/
                 liveGameData.parts[0].processor.name = name;
                 liveGameData.parts[0].processor.cost = cost;
@@ -1092,15 +1046,12 @@ $("#terminal-miner-upgradebtn").click(function() {
                 $("#processor-name").text(liveGameData.parts[0].processor.name);
 
                 /*--add processor to purchased list --*/
-                console.log("purchased processor", purchasedProcs);
                 purchasedProcs.push(name);
-                console.log("purchased rigs", purchasedProcs);
 
                 /*--deduct costs (calculate, update liveGameData and display to page) --*/
                 newBalance = liveGameData.finance.bankBalance - cost;
                 liveGameData.finance.bankBalance = newBalance;
                 $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
-                console.log(newBalance);
 
                 /*--run Total Active Stats to update performance values and bars --*/
                 calcTotalActiveStats();
@@ -1122,7 +1073,6 @@ $("#terminal-miner-upgradebtn").click(function() {
     $("#upgrade-cooling-tab").click(function() {
         
         let cooling = gameLibrary.parts[0].coolingSystem;
-        console.log("cooling", cooling);
 
         let coolHtml = `
             <table class="table table-striped table-hover table-bordered">
@@ -1173,7 +1123,6 @@ $("#terminal-miner-upgradebtn").click(function() {
 
         let selectedCool = [];
         selectedCool = $(this).parent().siblings();
-        console.log(selectedCool[0]);
 
         let name = selectedCool[0].innerHTML;
         let cost = parseFloat(selectedCool[1].innerHTML);
@@ -1186,15 +1135,12 @@ $("#terminal-miner-upgradebtn").click(function() {
         /*--check able to afford, if able to afford run purchaseCool, else display message with current balance --*/
 
         let price = cost;
-        console.log("price", price);
 
         let currentBal = liveGameData.finance.bankBalance;
-        console.log("current Balance", currentBal);
         
         if (price > currentBal) {
             $('#modal-unaffordable').modal('show');
             $('#unaffordable-balance').text(currentBal);
-            console.log("can't afford");
 
             $("#unaffordable-exit-btn").click(function() {
                 $('#modal-unaffordable').modal('hide');
@@ -1210,8 +1156,6 @@ $("#terminal-miner-upgradebtn").click(function() {
 
         function purchaseCool() {
 
-            console.log("find coolsys", liveGameData.parts[0].coolingSystem);
-
             /*--update liveGameData with purchased cooling sys details--*/
             liveGameData.parts[0].coolingSystem.name = name;
             liveGameData.parts[0].coolingSystem.cost = cost;
@@ -1224,15 +1168,12 @@ $("#terminal-miner-upgradebtn").click(function() {
             $("#cooling-name").text(liveGameData.parts[0].coolingSystem.name);
 
             /*--add cooling sys to purchased list --*/
-            console.log("purchased coolingSystem", purchasedCoolSys);
             purchasedCoolSys.push(name);
-            console.log("purchased coolingSystem", purchasedCoolSys);
 
             /*--deduct costs (calculate, update liveGameData and display to page) --*/
             newBalance = liveGameData.finance.bankBalance - cost;
             liveGameData.finance.bankBalance = newBalance;
             $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
-            console.log(newBalance);
 
             /*--run Total Active Stats to update performance values and bars --*/
             calcTotalActiveStats();
@@ -1254,7 +1195,6 @@ $("#terminal-miner-upgradebtn").click(function() {
     $("#upgrade-os-tab").click(function() {
         
         let opSys = gameLibrary.parts[0].operatingSystem;
-        console.log("os", opSys);
 
         let osHtml = `
             <table class="table table-striped table-hover table-bordered">
@@ -1305,7 +1245,6 @@ $("#terminal-miner-upgradebtn").click(function() {
     
             let selectedOs = [];
             selectedOs = $(this).parent().siblings();
-            console.log(selectedOs[0]);
     
             /*--create temp array to pull innerhtml values--*/
             let name = selectedOs[0].innerHTML;
@@ -1319,15 +1258,12 @@ $("#terminal-miner-upgradebtn").click(function() {
             /*--check able to afford, if able to afford run purchaseOpSys, else display message with current balance --*/
     
             let price = cost;
-            console.log("price", price);
     
             let currentBal = liveGameData.finance.bankBalance;
-            console.log("current Balance", currentBal);
             
             if (price > currentBal) {
                 $('#modal-unaffordable').modal('show');
                 $('#unaffordable-balance').text(currentBal);
-                console.log("can't afford");
     
                 $("#unaffordable-exit-btn").click(function() {
                     $('#modal-unaffordable').modal('hide');
@@ -1342,9 +1278,7 @@ $("#terminal-miner-upgradebtn").click(function() {
             /*--function to purchase Operating System---*/
     
             function purchaseOpSys() {
-    
-                console.log("find opSys", liveGameData.parts[0].operatingSystem);
-    
+       
                 /*--update liveGameData with purchased op sys details--*/
                 liveGameData.parts[0].operatingSystem.name = name;
                 liveGameData.parts[0].operatingSystem.cost = cost;
@@ -1357,15 +1291,12 @@ $("#terminal-miner-upgradebtn").click(function() {
                 $("#software-name").text(liveGameData.parts[0].operatingSystem.name);
     
                 /*--add op sys to purchased list --*/
-                console.log("purchased operatingSystem", purchasedOpSys);
                 purchasedOpSys.push(name);
-                console.log("purchased operatingSystem", purchasedOpSys);
     
                 /*--deduct costs (calculate, update liveGameData and display to page) --*/
                 newBalance = liveGameData.finance.bankBalance - cost;
                 liveGameData.finance.bankBalance = newBalance;
                 $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
-                console.log(newBalance);
     
                 /*--run Total Active Stats to update performance values and bars --*/
                 calcTotalActiveStats();
@@ -1447,7 +1378,6 @@ $("#energy-btn").click(function() {
     // A: Display Table
    
     let providers = gameLibrary['energy'];
-    console.log("providers", providers);
 
     let energyHtml = `
         <table class="table table-striped table-hover table-bordered">
@@ -1495,7 +1425,6 @@ $("#energy-btn").click(function() {
 
         let selectedProvider = [];
         selectedProvider = $(this).parent().siblings();
-        console.log(selectedProvider[0]);
 
         let provider = selectedProvider[0].innerHTML;
         let cost = parseFloat(selectedProvider[1].innerHTML);
@@ -1508,16 +1437,13 @@ $("#energy-btn").click(function() {
         /*--check able to afford, if able to afford run chooseSupplier, else display message with current balance --*/
 
         let price = cost;
-        console.log("price", price);
 
         let currentBal = liveGameData.finance.bankBalance;
-        console.log("current Balance", currentBal);
         
         if (price > currentBal) {
             $('#modal-energy').modal('hide');
             $('#modal-unaffordable').modal('show');
             $('#unaffordable-balance').text(currentBal);
-            console.log("can't afford");
 
             $("#unaffordable-exit-btn").click(function() {
                 $('#modal-unaffordable').modal('hide');
@@ -1553,7 +1479,6 @@ $("#energy-btn").click(function() {
             newBalance = liveGameData.finance.bankBalance - cost;
             liveGameData.finance.bankBalance = newBalance;
             $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
-            console.log(newBalance);
 
            
             /*--redirect after purchase (close modal)--*/
@@ -1568,10 +1493,7 @@ $("#energy-btn").click(function() {
 
 // 8.1 : Determine if event occurs
 function newEvent() {
-    console.log("new Event script reached");
     let eventHappen = Math.floor(Math.random() * 20); // generate no. 0 - 19
-
-    console.log("eventHappen", eventHappen);
     
     //1 in 20 chance of event occuring prevents occuring too frequently
     if (eventHappen == 1) {                             
@@ -1586,8 +1508,6 @@ function newEvent() {
         let eventBank = gameLibrary.events;
         let randomEvent = eventBank[Math.random() * eventBank.length | 0]; //random selection from events array
 
-        console.log("eventBank", eventBank);
-        console.log("randomEvent", randomEvent);
         let randomTitle = randomEvent.title;
         let eventCode = randomEvent.code;
         let randomDescription = randomEvent.description;
@@ -1614,15 +1534,12 @@ function newEvent() {
             optionSelected();
             //option A - 90% 'safe' option, 10% good news
             let outcomeA = Math.floor(Math.random() * 10)  // random number 0 - 9
-            console.log("outcome", outcomeA);
 
             if (outcomeA <= 8) {                
-                console.log("outcomeSafe");
                 finalOutcome = optA_Safe;
                 eventResult (finalOutcome);
             }  
             else if (outcomeA = 9) {            
-                console.log("outcomeGood");
                 finalOutcome = optA_Good;
                 eventResult (finalOutcome);
             }  
@@ -1633,20 +1550,16 @@ function newEvent() {
             optionSelected();
             //option B - 50% 'bad bews', 40% 'neutral', 10% 'great news'
             let outcomeB = Math.floor(Math.random() * 10)  // random number 0 - 9
-            console.log("outcome", outcomeB);
 
             if (outcomeB <= 4) {
-                console.log("outcomeBad");
                 finalOutcome = optB_Bad;
                 eventResult (finalOutcome);
             }  
             else if (outcomeB > 4 && outcomeB < 9) {
-                console.log("outcomeNeutral");
                 finalOutcome = optB_Neutral;
                 eventResult (finalOutcome);
             }
             else if (outcomeB == 9) {
-                console.log("outcomeGreat");
                 finalOutcome = optB_Great;
                 eventResult (finalOutcome);
             }  
@@ -1655,15 +1568,10 @@ function newEvent() {
         
         // 8.4 : Update Message Screen and Map Outcome to Respective Actions
         function eventResult (finalOutcome) {
-            console.log("eventResult", finalOutcome);
-            console.log("event", randomTitle);
             $('#msg-outcome-txt').css('display', 'block').text(finalOutcome);
             $('#msg-btn-outcome').css('display', 'block');
             $('#msg-btn-outcome').unbind('click').click(function() {
-                console.log("outcome-btn-pressed");
-                console.log("final outcome", finalOutcome);
-                console.log("optASafe", optA_Safe);
-
+                
                 $('#msg-alert').fadeOut(800);
                 $('#msg-title').fadeOut(800);
                 $('#msg-outcome-txt').fadeOut(800);
@@ -1676,7 +1584,6 @@ function newEvent() {
                 if (finalOutcome == optA_Safe) {
 
                     if (eventCode == 1) {
-                        console.log("1 - Safe");
                         // deduct £100 from balance
                         let penalty = 100;
                         let newBalance = liveGameData.finance.bankBalance - penalty;
@@ -1684,7 +1591,6 @@ function newEvent() {
                         $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
                     } else if (eventCode == 2) {
-                        console.log("2 - Safe");
                         // deduct £1k balance
                         let penalty = 1000;
                         let newBalance = liveGameData.finance.bankBalance - penalty;
@@ -1692,7 +1598,6 @@ function newEvent() {
                         $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
                     } else if (eventCode == 3) {
-                        console.log("3 - Safe");
                         // deduct £100 per pollution unit
                         let pollutionOutput = liveGameData.stats.pollutionOutput;
                         let tax = 100 * pollutionOutput;
@@ -1701,13 +1606,11 @@ function newEvent() {
                         $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
                     } else if (eventCode == 4) {
-                        console.log("4 - Safe");
                         // put rig temp condition as - 1000 (this forces the totalActive condition to be 0 and can be restored by using repairs)
                         tempStats.conditionTemp = -1000;
                         calcTotalActiveStats();
 
                     } else if (eventCode == 5) {
-                        console.log("5 - Safe");
                         // slight temp reduction to chance
                         tempStats.chanceTemp = tempStats.chanceTemp - 20;
                         calcTotalActiveStats();
@@ -1715,7 +1618,6 @@ function newEvent() {
 
                 } else if (finalOutcome == optA_Good) {
                     if (eventCode == 1) {
-                        console.log("1 - Good");
                         // deduct £100 from balance & temp speed boost 25%
                         let penalty = 100;
                         let newBalance = liveGameData.finance.bankBalance - penalty;
@@ -1725,7 +1627,6 @@ function newEvent() {
                         calcTotalActiveStats();
 
                     } else if (eventCode == 2) {
-                        console.log("2 - Good");
                         // deduct £1k from balance & speed boost 25%
                         let penalty = 1000;
                         let newBalance = liveGameData.finance.bankBalance - penalty;
@@ -1736,7 +1637,6 @@ function newEvent() {
 
 
                     } else if (eventCode == 3) {
-                        console.log("3 - Good");
                         // deduct £50 per pollution unit
                         let pollutionOutput = liveGameData.stats.pollutionOutput;
                         let tax = 50 * pollutionOutput;
@@ -1745,7 +1645,6 @@ function newEvent() {
                         $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
                     } else if (eventCode == 4) {
-                        console.log("4 - Good");
                         // deduct £200 from bank balance
                         let penalty = 200;
                         let newBalance = liveGameData.finance.bankBalance - penalty;
@@ -1753,7 +1652,6 @@ function newEvent() {
                         $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
                     } else if (eventCode == 5) {
-                        console.log("5 - Good");
                         //  slight reduction to chance + increase to coin FX value
                         tempStats.chanceTemp = tempStats.chanceTemp - 20;
                         let currentExRate = liveGameData.finance.fxRate;
@@ -1767,7 +1665,6 @@ function newEvent() {
 
                 } else if (finalOutcome == optB_Bad) {
                     if (eventCode == 1) {
-                        console.log("1 - Bad");
                         // deduct 25% bank balance
                         let currentBalance = liveGameData.finance.bankBalance;
                         let penalty = currentBalance / 4;
@@ -1776,13 +1673,11 @@ function newEvent() {
                         $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
                     } else if (eventCode == 2) {
-                        console.log("2 - Bad");
                         // 50% speed reduction
                         tempStats.hashPowerTemp = tempStats.hashPowerTemp - 50;
                         calcTotalActiveStats();
 
                     } else if (eventCode == 3) {
-                        console.log("3 - Bad");
                         // deduct £2k fine + £100 per pollution unit
                         let penalty = 2000;
 
@@ -1795,10 +1690,17 @@ function newEvent() {
 
                     } else if (eventCode == 4) {
                         // remove terminal from current game library
-                        console.log("4 - Bad");
+                        liveGameData.rig.name = "";
+                        liveGameData.rig.cost = "";
+                        liveGameData.rig.baseChance = 0;
+                        liveGameData.rig.baseHash = 0;
+                        liveGameData.rig.basePower = 0;
+                        liveGameData.rig.baseCondition = 0;
+                        liveGameData.rig.rigComments = "";
+                        liveGameData.rig.status = "Unavailable";
+
 
                     } else if (eventCode == 5) {
-                        console.log("5 - Bad");
                         // significant decrease to coin FX value
                         let currentExRate = liveGameData.finance.fxRate;
                         let newRate = currentExRate - 250;
@@ -1807,43 +1709,20 @@ function newEvent() {
 
                     } 
 
-                } else if (finalOutcome == optB_Neutral) {
-                    if (eventCode == 1) {
-                        console.log("1 - Neutral");
-                        // no action
-
-                    } else if (eventCode == 2) {
-                        console.log("2 - Neutral");
-                        // no action
-
-                    } else if (eventCode == 3) {
-                        console.log("3 - Neutral");
-                        // no action
-
-                    } else if (eventCode == 4) {
-                        console.log("4 - Neutral");
-                        // no action
-
-                    } else if (eventCode == 5) {
-                        console.log("5 - Neutral");
-                        // No action
-                    } 
+                // No function if finalOutcome == optB_Neutral as no impact from event 
 
                 } else if (finalOutcome == optB_Great) {
                     if (eventCode == 1) {
-                        console.log("1 - Great");
                         // add speed boost 50%
                         tempStats.hashPowerTemp =  tempStats.hashPowerTemp + 50;
                         calcTotalActiveStats();
 
                     } else if (eventCode == 2) {
-                        console.log("2 - Great");
                         // add temp speed boost 50%
                         tempStats.hashPowerTemp = tempStats.hashPowerTemp + 50;
                         calcTotalActiveStats();
 
                     } else if (eventCode == 3) {
-                        console.log("3 - Great");
                         // increase bank balance by £2k
                         let reward = 2000;
                         let newBalance = liveGameData.finance.bankBalance + reward;
@@ -1851,7 +1730,6 @@ function newEvent() {
                         $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
                     } else if (eventCode == 4) {
-                        console.log("4 - Great");
                         // increase bank balance by £2k
                         let reward = 2000;
                         let newBalance = liveGameData.finance.bankBalance + reward;
@@ -1859,7 +1737,6 @@ function newEvent() {
                         $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
 
                     } else if (eventCode == 5) {
-                        console.log("5 - Great");
                         // significant increase to coin FX value
                         let currentExRate = liveGameData.finance.fxRate;
                         let newRate = currentExRate + 250;
@@ -1872,11 +1749,8 @@ function newEvent() {
             })
         };
 
-
     }
-    else {
-        console.log("No random Event");
-    }
+   
 };
 
 
@@ -1890,10 +1764,6 @@ function optionSelected() {
 };
 
 
-
-
-
-
 /*-- 9. Crypto-Coin Exchange -----------------------------------------------*/
 
 // 9.1 : Calculate a moving exchange rate every 30 seconds 
@@ -1903,15 +1773,13 @@ let exInterval = setInterval(update, 30000); //30,000 = 30 secs
 
 function update () {
     let num = Math.random(); //generates a random float value (0 - 1)
-    console.log("num1", num);
     num *= Math.round(Math.random()) ? 1 : -1; // randomly determines a positive or negative value [Acknowledgement to online post: https://stackoverflow.com/questions/13455042/random-number-between-negative-and-positive-value]
-    console.log("num2", num);
+    
     let movingRate = num / 10; // caps range of movement between -10% and +10% 
-    console.log("num3", movingRate);
+    
     let newRate = currentExRate + (currentExRate * movingRate); // calculates rate move against existing exchnage rate
     liveGameData.finance.fxRate= newRate.toFixed(2); // updates gameLibrary with new exchnage rate fixed to 2 decimal places
     $("#exchange-value").contents()[1].nodeValue = liveGameData.finance.fxRate; // updates value displayed on screen
-    console.log("num4", newRate);
 }
 
 // 9.2 : Exchange Coins 
@@ -1974,8 +1842,6 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
     inGameChecks();
 
     // 10.3 : Generate Device and Block Keys 
-   
-    console.log("mine block initiated");
 
     //runs function to ensure all changes to miner including performance buffs / events are reflected
     calcTotalActiveStats();
@@ -1991,10 +1857,6 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         keyRange = range;
     }
 
-    console.log("probability", probability);
-    console.log("maxValue", maxValue);
-    console.log("keyRange", keyRange);
-
     //create array with all values within the keyRange - purpose is to cross referrence after minerKey checked and prevent re-selecting the same ID
     let keyStart = 1;
     let keyMax = keyRange;
@@ -2003,8 +1865,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
     while (keyStart <= keyMax) {
         allKeys.push(keyStart++);
     }
-    console.log("allKeys:", allKeys);
-
+ 
     //generate blockKey which is limited to the pre-defined keyRange
     let blockKey = 0;
     generateBlockKey(blockKey);
@@ -2013,10 +1874,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
         blockKey = Math.floor(Math.random() * keyRange) + 1;
         if (blockKey > keyRange) {
             alert("Error: BlockKey is out of range, please re-click to mine block!"); // BUG experienced in development, should not be enouncountered now min floor value assigned but retained in case of unexpected behaviour through events / buffs 
-            console.log("blockKey:", blockKey);
-        } else {
-            console.log("blockKey:", blockKey);
-        }
+        } 
         return blockKey;
     }
 
@@ -2024,18 +1882,15 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
     let minerKey = 0;
 
     function generateMinerKey() {
-        console.log("allKeys", allKeys);
         
         minerKey = Math.floor(Math.random() * allKeys.length +1); // random selection from the array of keyRange
-        console.log("minerKey", minerKey);
         
         // find the random chosen key and remove from array to prevent re-selection 
         let index = allKeys.indexOf(minerKey);
         if (index > -1) {
             allKeys.splice(index, 1);
         }
-        console.log("allKeys", allKeys);
-        console.log("minerKey", minerKey);
+
         //BUG: the minerKey is being selected from the allKeys array and console.log shows this is then removed, but this does not prevent the minerKey from choosing the same item on a further attempt 
 
         return minerKey; 
@@ -2062,10 +1917,8 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
     //Cycle timer : length = 10secs (10,000millisecs) less % hash speed bonus
     let hashSpeed = totalActiveStats.totalHash / 100; //to convert to percentage;
-    console.log("hashspeed", hashSpeed);
     let maxCounter = 10; // maximum (unbuffed) speed of 10secs to mine block
     let buffedSpeed = maxCounter - (maxCounter * hashSpeed); //reduces the maxValue according to the total hashSpeed buff
-    console.log("buffedSpeed", buffedSpeed);
 
     let count = document.getElementById('block-mining-response3').innerHTML; //increment count of attempts (set to 0 (in display  section) for 1st round but increased through GameCycle for round 2+)
  
@@ -2109,11 +1962,8 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
 
                 //increment attempt count
-                console.log("count=", count); 
                 ++count;
-                console.log("count=", count);
                 $('#block-mining-response3').html(count);
-                console.log("count=", count);
 
                 //update power used
                 let currentPowerUsage = totalActiveStats.totalPower * count;
@@ -2127,10 +1977,6 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
                 progressBar.attr('aria-valuemax', buffedSpeed);
                 progressBar.css('width', currentProgress + '%').removeClass("no-animation");
                 progressBar.attr('aria-valuenow', currentProgress);
-                console.log("buffedSpeed", buffedSpeed);
-                console.log("timeleft", timeleft);
-                console.log("currentProgress", currentProgress);
-        
             } 
             timeleft -= 0.5;
         }, 500);
@@ -2141,12 +1987,10 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
     let outcome = "";
 
     function checkResult(minerKey, blockKey) {
-        console.log("minerKey vs blockKey", minerKey, "v", blockKey);
         if (minerKey === blockKey) {
 
             $('#block-mining-response5').text('Success, block mined!'); // displays message confirming success
             $('#mine-success-img').css('display', 'block'); //reveal success image
-            console.log("checkResult=win");
             outcome = "win";
             result (outcome);
             
@@ -2155,8 +1999,6 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
             $('#block-mining-response5').css('color', 'var(--ink10-red)').text('Key Not Accepted');
             $('#block-mining-reattempt').css('display', 'block');
             $('#block-mining-reattempt-count').css('display', 'block');
-            
-            console.log("checkResult=no win");
             outcome = "no win";
             result (outcome);
         }
@@ -2165,8 +2007,6 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
       
    
     function result(outcome) {
-    
-        console.log("redirect + outcome", outcome);
         
         //if outcome = no win, display re-attempt message with 3 sec countdown before re-playing gameCycle
         if (outcome == "no win") {
@@ -2179,7 +2019,6 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
                 // actions once time reached
                 if (delayTime <=0) {
                     clearInterval(repeatInterval);
-                    console.log("3 sec delay completed");
                     $('#block-mining-line5').fadeOut(800);
                     $('#block-mining-response5').fadeOut(800);
                     $('#block-mining-reattempt').fadeOut(800);
@@ -2199,9 +2038,7 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
         // if outcome = win, 3 second pause and display calcResult
         if (outcome == "win") {
-            console.log("win?", outcome);
-           
-           
+
             $('#block-mining-line2').css('display', 'none');
             $('#block-mining-response2').css('display', 'none');
             $('#terminal-miner-won-btn').css('display', 'block');
@@ -2241,18 +2078,13 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
 
 
         // Part 2 - calc and deduct power usage
-        console.log("deduct power costs here");
-        console.log("power usage", totalActiveStats.totalPower);
-        console.log("power cost", liveGameData.energy.usageCostPerKw);
-        console.log("count", count);
+
         let powerUsage = totalActiveStats.totalPower;
         let perUnit = liveGameData.energy.usageCostPerKw;
         let unitsUsed = count;
         let totalPowerUsage = powerUsage * unitsUsed;
         let totalPowerCost = totalPowerUsage * perUnit;
-        console.log("total power Cost", totalPowerCost);
         let postPowerCosts = liveGameData.finance.bankBalance - totalPowerCost;
-        console.log("postPowerCosts", postPowerCosts);
         liveGameData.finance.bankBalance = postPowerCosts;
         $("#bank-value").contents()[1].nodeValue = liveGameData.finance.bankBalance;
         
@@ -2275,7 +2107,6 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
        liveGameData.stats.pollutionOutput = newPolOutput;
        $('#stat4-result').html(liveGameData.stats.pollutionOutput + "<span> k/w</span>");
        
-        console.log("pol output", pollutionOutput);
 
          // Part 3 - update stats 
          /*-- temp condition deteriorates by 1 per completed cycle via decrement--*/
@@ -2293,7 +2124,6 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
              // add coin to ewallet balance via increment & update stats
              let newCoinBalance = ++ liveGameData.finance.ewalletBalance;
              $('#ewallet-value').text(newCoinBalance);
-             console.log(liveGameData.finance.ewalletBalance);
              ++liveGameData.stats.coinsMined; // increment coins mined stat
              $('#stat2-result').text(liveGameData.stats.coinsMined);
              inGameChecks();
@@ -2304,13 +2134,10 @@ $("#terminal-miner-activatebtn").unbind('click').click(function() {
             $('#block-mining-response2').css('display', 'none');
             $('#terminal-miner-stopbtn').css('display', 'none');
             $('#block-mining-response1').text("Stopped");
-            console.log("no win - early exit");
             inGameChecks();
         }
 
-        console.log("calcResult complete");
         newEvent();
     }      
 
 });
-
