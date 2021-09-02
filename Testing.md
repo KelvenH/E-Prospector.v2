@@ -90,8 +90,20 @@ Subsequent Reports
  
  
 ### CSS
+Reviewed with W3C CSS Validation Service. Review identified 14 errors, all reviewed and addressed.
+Initial Report
+![CSSValidator Initial](README-Files/CSS_validator_Initial.png)
 
+ Errors can be grouped as;
+- 10 x 'only 0 can be a unit' : these related to unnessecary use of the grid-rows atribute which was being used to declare the number of grid rows now removed (Fixed)
+- 1 x 'value error only 0 can be a unit' : value was missing vw unit, now applied (Fixed)
+- 1 x 'value error font-size Parse Error : was within a clamp but no longer used and removed (Fixed)
+- 1 x 'parse error };' - an erroneous ';' was added to css statement (Fixed)
+- 1 x 'value error not a color' : color declaration was missing the var(--' prefix (Fixed)
  
+Subsequent Report
+![CSSValidator Post](README-Files/CSS_validator_Post.png)
+
  
 
 ### JavaScript
@@ -127,6 +139,23 @@ Live testing was performed on https://www.lambdatest.com/ across key browsers, o
 
 ## Responsiveness
 
+ This game suits a larger screen size due to the 'dashboard' style gameplay. Howver, to accomodate responsive sizing; 
+
+ - the site has been built using the bootstrap framework using grid layout. Differen column sizing for screens was not employed as this would break the panel layout. However; 
+- unit measurements (e.g. height / width / padding / margins) are typically set in VH / VW units (with the exception of measurements coming from Bootstrap, override of Bootstrap)
+- specific challanges encountered with small screens for which media queries are used for example, adjust padding / margins and location of buttons so not hidden. 
+- small number of JS media functions used where targetted changes needed such as changing the HTML text content to avoid word wraps, removing some non-key fields (e.g. within the 'event messaging' panel). 
+
+It should be noted that whilst the page is responsive, it is acknowledged that aspects are smaller than ideal for small screens. Whilst this does not prohibt use of the site / features, further enhancmenets could be applied to improve the visual layout (noted as a potential future enhancement).
+
+Local testing was performed on;
+
+- mobile (iOS)
+- tablet (ios)
+- medium screen (Safari & Chrome)
+- wide-screen (Safari & Chrome
+
+Live testing performed on https://www.lambdatest.com/ for a selection of other screen resolution sizes / browsers.
 
 
 
