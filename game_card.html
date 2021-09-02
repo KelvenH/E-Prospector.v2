@@ -27,7 +27,17 @@
 
 <body>
 
-    <div id="full-screen-game" class="container-fluid">
+    <div class="mode-check">
+        <!--media query will display the following message if portrait orientation detected & hide main game screen-->
+
+        <img class="rotate" src="./assets/images/rotate-device.svg" alt="rotate device">
+        <div class="portrait-detected">
+            Portrait mode detected<br> Please rotate your device to view the game.
+        </div>
+
+    </div>
+
+    <div id="full-screen-game" class="container-fluid full-screen">
         <!--header row (contents: menu, title & game finances)-->
         <div class="container-fluid" id="game-header">
 

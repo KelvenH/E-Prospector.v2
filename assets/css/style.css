@@ -78,13 +78,18 @@ p {
     color: var(--ink6-LED2ON);
 }
 
-
+/*--100vh for max:height still resulted in screen bigger than device, applied following settings for the limits to be respected--*/
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+  }
 /*---------------------Media Queries - Portrait-----------------------------------------*/
 
 
 /*----The tabular design of the game requires landscape perspective. Media query added to prevent display on portratit and instruct visitor to rotate device--*/
 
-#mode-check {
+.mode-check {
     display: flex;
     position: relative;
     /*--pos relative to enable absolute position of portrait detection message--*/
@@ -95,14 +100,14 @@ p {
 }
 
 @media (orientation: portrait) {
-    #rotate {
+    .rotate {
         visibility: visible;
         position: absolute;
         background-size: 20px 20px;
         top: 20%;
         left: 40%;
     }
-    #portrait-detected {
+    .portrait-detected {
         display: block;
         font-weight: bold;
         position: absolute;
@@ -113,13 +118,13 @@ p {
         top: 35%;
         width: 50vw;
     }
-    #full-screen {
+    .full-screen {
         display: none;
     }
 }
 
 @media (orientation: landscape) {
-    #mode-check {
+    .mode-check {
         display: none;
     }
 }
@@ -130,12 +135,18 @@ p {
 #full-screen-menu {
     position: relative;
     width: 100vw;
-    height: 100vh;
-    display: flex;
+    height: 100%;
     align-items: center;
     justify-content: center;
     background: linear-gradient(217deg, rgba(42, 46, 51), rgba(29, 43, 53) 70.71%), linear-gradient(127deg, rgba(42, 46, 51), rgba(24, 42, 56) 70.71%), linear-gradient(336deg, rgba(042, 46, 51), rgba(24, 42, 56) 70.71%);
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
+
+
+/*--Media Queries - Index ---*/
+
 
 
 /*---------------------Landing Screen (index.html) -----------------------------------------*/
