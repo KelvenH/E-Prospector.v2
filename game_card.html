@@ -49,7 +49,7 @@
 
                 <div class="col-5">
                     <div id="game-menu">
-                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal-how-to-play">How to Play</button>
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modal-how-to-play2">How to Play</button>
                         <a role="button" class="btn" href="">New Game</a>
                         <a role="button" class="btn" href="/index.html">Quit</a>
                     </div>
@@ -324,6 +324,31 @@
 
     <!--MODALS-->
 
+        <!--pop-up modal : how to play-->
+        <div class="modal fade" id="modal-how-to-play2" tabindex="-1" role="dialog" aria-label="modal displaying more information about Cryptomining" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">How To Play</h3>
+                        <button type="button" class="btn-closed" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+    
+                    </div>
+                    <div class="modal-body">
+                        <h4>How to Play</h4>
+                        <div class="modal-txt">
+                            <b class="modal-txt">Play the clip below to see how to play.
+                            </b><br>
+                            <video width="640" height="480" src="./assets/images/screenshot_gamecard.mp4" controls>
+                            </video>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn modal-btn" data-bs-target="#modal-101" data-bs-toggle="modal" data-bs-dismiss="modal">Crypto Mining 101</button>
+                        <button type="button" class="btn btn-secondary btn-close2" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     
 
     <!--Modal : Upgrades-->
