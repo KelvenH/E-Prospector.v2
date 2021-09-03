@@ -28,7 +28,7 @@
 
 ---
 ## Overview
-E-Prospector is a digital block mining game. The purpose of the game is to generate Bit coins which can be exchanged for currency which in turn is used to 'pay' for power costs and upgrade elements. The game has a dashboard style layout to prevent 'lose of scrore' which would be encountered if the page were to be re-loaded. 
+E-Prospector is a digital block mining game built on probabilities. The purpose of the game is to generate crypto-coins which can be exchanged for cash which in turn is used to 'pay' for power costs and upgrade elements. Investment in better equipment improves the probability factor thus leading to increased chance of success. The game has a dashboard style layout to prevent 'lose of scrore' which would be encountered if the page were to be re-loaded. 
 
 ---
 
@@ -81,7 +81,7 @@ End Result - player dashboard
 ### Design
 * Site should have a clean crisp look and feel.
 * Have a styling which is in keeping with the 'digital' topic.
-* Single page is crucial - as there is no back end / save game capability any page loas / refreshes would lose current progress. 
+* Single page is crucial - as there is no back end / save game capability any page loads / refreshes would lose current progress. 
 * Pop-up modals / accordion sections where additional screen estate is needed
 * The game area will have a 'dashboard' style layout.
 
