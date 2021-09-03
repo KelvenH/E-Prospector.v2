@@ -4,7 +4,7 @@
 
 ## Links to;
 
-[E-Prospector - Live Site](https://kelvenh.github.io/E-Prospector/)
+[E-Prospector - Live Site](https://kelvenh.github.io/E-Prospector.v2/)
 
 [GitHub Repo](https://github.com/KelvenH/E-Prospector.v2)
 
