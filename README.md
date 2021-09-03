@@ -127,11 +127,16 @@ Adobe Illustrator
 
 ### Bugs and Defects
 
-Development of this game was through a modular style and as such bugs encountered along the way were resolved as part fo the next build, or in some cases re-designed. Excluding game elements which were unable to implement due to time (see Future Enhancements), a few issues remain in the game as tabled below. 
+The table below outlines key bugs / defects. Note that none of these were through final testing but experienced during the development.  Please refer to the testing.md file for full sight of testing and validation peformed.
 
-   Issue                                |  Description                                                                                                   |       
---------------------------------------- |----------------------------------------------------------------------------------------------------------------|
-Unexpected behaviour | Some instances noticed of unexpected behaviour where gameplay flows through the mutipe functions / scenarios which are not easy to replicate. For exmaple, there can be occassions where the in game check (to identify if balance nil / game over) can occur in the midst of another stage of gameplay leading to a game over message and play continuing. Likley needs a more specific set of functional flow to avoid these being encountered, but instances were low and difficult to replicate in development.
+Issue | Details | Testing Section | Status | Comments |
+|-----|---------|-----------------|--------|----------|
+| Indicating if an item has already been purchaed | Unable to add an if statement within template literal. As a result all items in the upgrade shop have a Buy button, whereas wanted to indicate if item already purchased unless item was unavailable (i.e. broekn) | Identified in development | OPEN | Not a fundamental issue but could be considered as a future enhancement to gameplay |
+| Unexpected behaviour | Some instances noticed of unexpected behaviour where gameplay flows through the mutipe functions / scenarios which are not easy to replicate. For exmaple, there can be occassions where the in game check (to identify if balance nil / game over) can occur in the midst of another stage of gameplay leading to a game over message and play continuing. Likley needs a more specific set of functional flow to avoid these being encountered, but instances were low and difficult to replicate in development.| Identified in development | OPEN | Low occurrence after adding additional modal.hide at specific points in JS script|
+| Game Play Out of Synch |Instances were encountered where player selecting buttons whilst the game cycle was running lead to incorrect order of modals / gameplay e.g. upgrading terminal whilst running | Identified in development | CLOSED | Buttons deactivated when event / gamecycle in operation and reactivated afterwards |
+| Blockkey error | Calculation to create random miner key (number) led to instances where key number was outside of the expected range leading to neither a successful / unsuccesful attempt | Identified in development | CLOSED | A min floor value added to calculation which prevented scenario |
+| The same miner key can be selected | After determining a random key number, this is removed from the range array, however the next key can still select this same number despite console.logs showing the number has been removed from the array | Identified in development | OPEN | Not clear why this is being encountered and no further time to investigate |
+| Bootstrap progress animation | The automatic 'reverse' animation to reset the progress bar eats into the time of the next cycle commencing which could make it appear as if progress was resetting from 40% | Identified in development | CLOSED | Adjustments made to the timer in terms of how often the bar is refreshed. Also applied a class to remove and re-apply the animation at start / end of cycle |
 
 
 
