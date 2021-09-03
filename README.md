@@ -115,7 +115,7 @@ HTML5
 
 CSS3
 
-JavaScript / JSON
+JavaScript
 
 Google Fonts
 
