@@ -103,6 +103,8 @@ End Result - player dashboard
   - more enhanced set of events
   - improved balancing of game probability ratings
   - improved layout for smaller screens
+  - incoprorate a 'multi-core' feature meaning more than 1 cycle could run at the same time (initial efforts were leading to conflicts in scripts running).
+  - future enhanceents would also look to apply fixes for open bugs (please see Bugs and Defects section for details)
 
 ---
 ### Technologies Used
